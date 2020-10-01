@@ -1,7 +1,6 @@
 import React from 'react'
 import { Router, Switch } from 'react-router'
 import './App.css'
-import Navbar from './components/navbar/Navbar'
 import * as Contexts from './utils/contexts'
 
 
@@ -9,7 +8,10 @@ export default class App extends React.Component{
   state = {
     userId: null,
     brightTheme: true,
-    error: {error: false, message: ''},
+    error: {
+      error: false, 
+      message: ''
+    },
     token: null,
     loading: false,
     isAuth: false
@@ -92,7 +94,10 @@ export default class App extends React.Component{
         //will be removed in the future
         console.log(err)
         this.setState({
-          error: {error: true, message: err.message},
+          error: {
+            error: true, 
+            message: err.message
+          },
           loading: false
         })
       })
@@ -123,7 +128,7 @@ export default class App extends React.Component{
     .then(res => res.json())
     .then(res => {
       if(res.errors) throw new Error(res.errors[0].message)
-      this.setState({loading: false})
+      this.setState({ loading: false })
     })
     .catch(err => {
       //
@@ -131,7 +136,10 @@ export default class App extends React.Component{
       //
       console.log(err)
       this.setState({
-        error: {error: true, message: err.message},
+        error: {
+          error: true, 
+          message: err.message
+        },
         loading: false
       })
     })
