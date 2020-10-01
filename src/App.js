@@ -158,19 +158,19 @@ export default class App extends React.Component{
             <Contexts.tokenContext.Provider value={this.state.token}>
               <Contexts.loadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
                 <Contexts.isAuthContext.Provider value={this.state.isAuth}>
-                  <Contexts.logoutHandlerContext value={this.logoutHandler}>
-                    <Contexts.loginHandlerContext value={this.loginHandler}>
-                      <Contexts.signupHandlerContext value={this.signupHandler}>
-                        <Contexts.toggleThemeContext value={this.toggleTheme}>
+                  <Contexts.logoutHandlerContext.Provider value={this.logoutHandler}>
+                    <Contexts.loginHandlerContext.Provider value={this.loginHandler}>
+                      <Contexts.signupHandlerContext.Provider value={this.signupHandler}>
+                        <Contexts.toggleThemeContext.Provider value={this.toggleTheme}>
                           <Router>
                             <Switch>
 
                             </Switch>
                           </Router>
-                        </Contexts.toggleThemeContext>
-                      </Contexts.signupHandlerContext>
-                    </Contexts.loginHandlerContext>
-                  </Contexts.logoutHandlerContext>
+                        </Contexts.toggleThemeContext.Provider>
+                      </Contexts.signupHandlerContext.Provider>
+                    </Contexts.loginHandlerContext.Provider>
+                  </Contexts.logoutHandlerContext.Provider>
                 </Contexts.isAuthContext.Provider>
               </Contexts.loadingContext.Provider>
             </Contexts.tokenContext.Provider>
