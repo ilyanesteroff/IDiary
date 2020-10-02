@@ -1,5 +1,10 @@
 import React from 'react'
+import Navbar from '../../navbar/Navbar'
 
-export class LandingPage extends React.Component{
-    
+export default _ => {
+  return (
+    <div>
+      <Navbar/>
+    </div>
+  )
 }

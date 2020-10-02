@@ -1,6 +1,13 @@
 import { createContext } from 'react'
 
+//for app.js
+
 export const BrightThemeContext = createContext(false)
+
+export const FirstnameContext = createContext({
+  firstname: null, 
+  setFirstname: _ => {}
+})
 
 export const userIdContext = createContext(null)
 
@@ -25,3 +32,5 @@ export const loginHandlerContext = createContext(_ => {})
 export const signupHandlerContext = createContext(_ => {})
 
 export const toggleThemeContext = createContext(_ => {}) 
+
+//

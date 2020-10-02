@@ -1,0 +1,33 @@
+#SideMenu{
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+}
+
+.brightSideMenu{
+  background-color: rgba(44, 44, 44, 0.2);
+}
+
+.darkSideMenu{
+  background-color: rgba(230, 230, 250, 0.2);
+}
+
+.SideMenuNavbarOption{
+  width: 100%;
+  height: auto;
+  text-align: left;
+  padding: 6%;
+}
+
+.SideMenuNavbarOption:first-child{
+  padding-top: 15vh;
+}
+
+#SideMenuNavbarOptionIcon{
+  display: inline-block;
+  margin-right: 3%;
+}
+
+#SideNavbarOptionText{
+  margin-left: 3%;
+}

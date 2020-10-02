@@ -1,0 +1,20 @@
+.darkLogo {
+  color: #333;
+}
+
+.brightLogo {
+  color: #bbb;
+}
+
+#logo {
+  float: left;
+  font-size: 5vh;
+  margin: 2vh 2%;
+}
+
+@media only screen and (min-height: 1000px){
+  #logo{
+    font-size: 3.75vh;
+    margin-top: 1.7vh;
+  }
+}
