@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useContext } from 'react'
 import ReactDOM from 'react-dom'
 import { Link } from 'react-router-dom'
 import { 
-  isAuthContext, 
+  IsAuthContext, 
   FirstnameContext,
   BrightThemeContext
 } from '../../utils/contexts'
@@ -33,7 +33,7 @@ const SideMenuPortal = props => {
 }
 
 const SideMenu = ({opened}) => {
-  const IsAuth = _ => useContext(isAuthContext)
+  const IsAuth = _ => useContext(IsAuthContext)
   const Firstname = _ => useContext(FirstnameContext)
   const Theme = _ => useContext(BrightThemeContext)
   let options //navbar options

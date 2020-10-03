@@ -1,14 +1,14 @@
 import React from 'react'
 import { 
   BrightThemeContext, 
-  toggleThemeContext 
+  ToggleThemeContext 
 } from '../../../utils/contexts'
 import './theme-toggler.css'
 
 
 export const ThemeToggler = _ => {
   return(
-    <toggleThemeContext.Consumer>
+    <ToggleThemeContext.Consumer>
       {toggle => 
         <BrightThemeContext.Consumer>
           {theme => 
@@ -25,6 +25,6 @@ export const ThemeToggler = _ => {
           }
         </BrightThemeContext.Consumer>
       }
-    </toggleThemeContext.Consumer>
+    </ToggleThemeContext.Consumer>
   )
 }

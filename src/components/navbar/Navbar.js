@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import Logo from './logo/Logo'
 import { 
   BrightThemeContext, 
-  isAuthContext, 
+  IsAuthContext, 
   FirstnameContext
 } from '../../utils/contexts'
 import './navbar.css'
@@ -16,7 +16,7 @@ import { ThemeToggler } from './ToggleThemeBtn/ThemeToggler'
 export default props => {
   const [ width, setWidth ] = useState(window.innerWidth)
   const [ menuInPortalOpened, setMenuInPortalOpened] = useState(false)
-  const IsAuth = _ => useContext(isAuthContext)
+  const IsAuth = _ => useContext(IsAuthContext)
   const Firstname = _ => useContext(FirstnameContext)
   const Theme = _ => useContext(BrightThemeContext)
 

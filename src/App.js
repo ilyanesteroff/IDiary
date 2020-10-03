@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css'
 import MainPage from './components/pages/landing-page/Landing-page'
+import {Login as LoginPage} from './components/pages/loginpage/Login'
 import * as Contexts from './utils/contexts'
 
 
@@ -171,36 +172,37 @@ export default class App extends React.Component{
   render(){
     return(
       <Contexts.BrightThemeContext.Provider value={this.state.brightTheme}>
-        <Contexts.userIdContext.Provider value={this.state.userId}>
+        <Contexts.UserIdContext.Provider value={this.state.userId}>
           <Contexts.FirstnameContext.Provider value={{
             firstname: this.state.firstname,
             setFirstname: val => this.setState({ firstname: val })
           }}>
-            <Contexts.errorContext.Provider value={{value: this.state.error, setError: (isError, message = '') => this.setState({error: { error: isError, message: message}})}}>
-              <Contexts.tokenContext.Provider value={this.state.token}>
-                <Contexts.loadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
-                  <Contexts.isAuthContext.Provider value={this.state.isAuth}>
-                    <Contexts.logoutHandlerContext.Provider value={this.logoutHandler}>
-                      <Contexts.loginHandlerContext.Provider value={this.loginHandler}>
-                        <Contexts.signupHandlerContext.Provider value={this.signupHandler}>
-                          <Contexts.toggleThemeContext.Provider value={this.toggleTheme}>
+            <Contexts.ErrorContext.Provider value={{value: this.state.error, setError: (isError, message = '') => this.setState({error: { error: isError, message: message}})}}>
+              <Contexts.TokenContext.Provider value={this.state.token}>
+                <Contexts.LoadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
+                  <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
+                    <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
+                      <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
+                        <Contexts.SignupHandlerContext.Provider value={this.signupHandler}>
+                          <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
                             <Router>
                               <div>
                                 <Switch>
-                                  <Route path="/" render={() => <MainPage/>}/>
+                                  <Route path="/login" render={_ => <LoginPage/>}/>
+                                  <Route path="/" render={_ => <MainPage/>}/>
                                 </Switch>
                               </div>
                             </Router>
-                          </Contexts.toggleThemeContext.Provider>
-                        </Contexts.signupHandlerContext.Provider>
-                      </Contexts.loginHandlerContext.Provider>
-                    </Contexts.logoutHandlerContext.Provider>
-                  </Contexts.isAuthContext.Provider>
-                </Contexts.loadingContext.Provider>
-              </Contexts.tokenContext.Provider>
-            </Contexts.errorContext.Provider>
+                          </Contexts.ToggleThemeContext.Provider>
+                        </Contexts.SignupHandlerContext.Provider>
+                      </Contexts.LoginHandlerContext.Provider>
+                    </Contexts.LogoutHandlerContext.Provider>
+                  </Contexts.IsAuthContext.Provider>
+                </Contexts.LoadingContext.Provider>
+              </Contexts.TokenContext.Provider>
+            </Contexts.ErrorContext.Provider>
           </Contexts.FirstnameContext.Provider>
-        </Contexts.userIdContext.Provider>
+        </Contexts.UserIdContext.Provider>
       </Contexts.BrightThemeContext.Provider>
     )
   }

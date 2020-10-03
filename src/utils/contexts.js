@@ -9,28 +9,28 @@ export const FirstnameContext = createContext({
   setFirstname: _ => {}
 })
 
-export const userIdContext = createContext(null)
+export const UserIdContext = createContext(null)
 
-export const errorContext = createContext({
+export const ErrorContext = createContext({
   value: false,
   setError: _ => {}
 })
 
-export const tokenContext = createContext(null)
+export const TokenContext = createContext(null)
 
-export const loadingContext = createContext({
+export const LoadingContext = createContext({
   value: false,
   setValue: _ => {}
 })
 
-export const isAuthContext = createContext(false)
+export const IsAuthContext = createContext(false)
 
-export const logoutHandlerContext = createContext(_ => {})
+export const LogoutHandlerContext = createContext(_ => {})
 
-export const loginHandlerContext = createContext(_ => {})
+export const LoginHandlerContext = createContext(_ => {})
 
-export const signupHandlerContext = createContext(_ => {})
+export const SignupHandlerContext = createContext(_ => {})
 
-export const toggleThemeContext = createContext(_ => {}) 
+export const ToggleThemeContext = createContext(_ => {}) 
 
 //
