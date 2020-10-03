@@ -1,8 +1,8 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 2.2rem;
-    height: 1.2rem;
+    width: 2.5rem;
+    height: 0.2rem;
   }
   
   .switch input { 
@@ -26,10 +26,10 @@
   .slider:before {
     position: absolute;
     content: "";
-    height: 1rem;
-    width: 1rem;
-    left: 0.1em;
-    bottom: 0.1rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    left: 0rem;
+    bottom: -0.5rem;
     background-color: #2196F3;
     -webkit-transition: .4s;
     transition: .4s;
@@ -44,9 +44,9 @@
   }
   
   input:checked + .slider:before {
-    -webkit-transform: translateX(1rem);
-    -ms-transform: translateX(1rem);
-    transform: translateX(1rem);
+    -webkit-transform: translateX(1.35rem);
+    -ms-transform: translateX(1.35rem);
+    transform: translateX(1.35rem);
   }
   
   /* Rounded sliders */

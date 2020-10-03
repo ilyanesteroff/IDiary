@@ -63,7 +63,7 @@ ul{
 }
 
 #ThemeToggler {
-  top: 3.7vh;
+  top: 4.7vh;
   right: 2%;
   position: absolute;
 }
@@ -94,25 +94,25 @@ ul{
   }  
 
   #ThemeToggler {
-    top: 3.2vh;
+    top: 3.5vh;
   }
 }
 
 @media only screen and (max-height: 300px){
   #ThemeToggler {
-    top: 1.7vh;
+    top: 3.2vh;
   }
 }
 
 
 @media only screen and (max-height: 350px){
   #ThemeToggler {
-    top: 1.9vh;
+    top: 3.9vh;
   }
 }
 
 @media only screen and (max-height: 420px){
   #ThemeToggler {
-    top: 2.2vh;
+    top: 4.2vh;
   }
 }

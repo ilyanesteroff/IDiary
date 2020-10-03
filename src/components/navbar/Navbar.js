@@ -4,8 +4,7 @@ import Logo from './logo/Logo'
 import { 
   BrightThemeContext, 
   isAuthContext, 
-  FirstnameContext, 
-  toggleThemeContext 
+  FirstnameContext
 } from '../../utils/contexts'
 import './navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,6 +18,7 @@ export default props => {
   const [ menuInPortalOpened, setMenuInPortalOpened] = useState(false)
   const IsAuth = _ => useContext(isAuthContext)
   const Firstname = _ => useContext(FirstnameContext)
+  const Theme = _ => useContext(BrightThemeContext)
 
   useEffect(_ => {
     window.addEventListener('resize', () => setWidth(window.innerWidth))
@@ -42,61 +42,54 @@ export default props => {
     link={o.link} 
     content={o.value} 
     icon={o.icon}
+    theme={Theme()}
   />)
 
   return (
-    <BrightThemeContext.Consumer>
-      { value => 
-        <div 
-          id="navbar" 
-          className={value? 'brightNavbar' : 'darkNavbar'}
-          onClick={() => closeSideMenu()}
-        >
-          <Logo clickHandler={width > 830? _ => {} : _ => setMenuInPortalOpened(true)}/>
-          {width > 830 && 
-            <div id="navbarOptions">
-              <ul>
-                {options}
-              </ul>
-            </div>
-          }
-          {width < 830 && menuInPortalOpened && <SideMenu opened={setMenuInPortalOpened}/>}
-          <ThemeToggler/>
+    <div 
+      id="navbar" 
+      className={Theme() ? 'brightNavbar' : 'darkNavbar'}
+      onClick={() => closeSideMenu()}
+    >
+      <Logo clickHandler={width > 830? _ => {} : _ => setMenuInPortalOpened(true)}/>
+      {width > 830 && 
+        <div id="navbarOptions">
+          <ul>
+            {options}
+          </ul>
         </div>
       }
-    </BrightThemeContext.Consumer>
+      {width < 830 && menuInPortalOpened && <SideMenu opened={setMenuInPortalOpened}/>}
+      <ThemeToggler/>
+    </div>
   )
 }
 
-const Option = props => {
+const Option = ({link, icon, content, theme}) => {
   return(
-    <BrightThemeContext.Consumer>
-      {value => 
-        <li className="navbarOption">
-          <Link to={props.link} id="link">
-            <div 
-              id="navbarOptionIcon" 
-              className={
-                value
-                  ? 'BrightNavbarIcon'
-                  : 'DarkNavbarIcon'
-              }
-            >
-              <FontAwesomeIcon icon={props.icon}/>
-            </div>
-            <p 
-              id="navbarOptionText"
-              className={
-                value
-                  ? 'BrightNavbarOptionText'
-                  : 'DarkNavbarOptionText'
-              }
-            >
-              {props.content}
-            </p>
-          </Link>
-        </li>
-      }
-    </BrightThemeContext.Consumer>
+    <li className="navbarOption">
+      <Link to={link} id="link">
+        <div 
+          id="navbarOptionIcon" 
+          className={
+            theme
+              ? 'BrightNavbarIcon'
+              : 'DarkNavbarIcon'
+          }
+        >
+          <FontAwesomeIcon icon={icon}/>
+        </div>
+        <p 
+          id="navbarOptionText"
+          className={
+            theme
+              ? 'BrightNavbarOptionText'
+              : 'DarkNavbarOptionText'
+          }
+        >
+          {content}
+        </p>
+      </Link>
+    </li>
   )
 }
