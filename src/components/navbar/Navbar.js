@@ -11,6 +11,7 @@ import './navbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as na from './navbarOptions'
 import SideMenu from './PortalMenu'
+import { ThemeToggler } from './ToggleThemeBtn/ThemeToggler'
 
 
 export default props => {
@@ -59,8 +60,8 @@ export default props => {
               </ul>
             </div>
           }
-          {menuInPortalOpened && <SideMenu opened={setMenuInPortalOpened}/>}
-          <ToggleThemeBtn/>
+          {width < 830 && menuInPortalOpened && <SideMenu opened={setMenuInPortalOpened}/>}
+          <ThemeToggler/>
         </div>
       }
     </BrightThemeContext.Consumer>
@@ -97,28 +98,5 @@ const Option = props => {
         </li>
       }
     </BrightThemeContext.Consumer>
-  )
-}
-
-const ToggleThemeBtn = _ => {
-  return(
-    <toggleThemeContext.Consumer>
-      {toggle => 
-        <BrightThemeContext.Consumer>
-          {theme => 
-            <div id="ThemeToggler">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={theme} 
-                  onChange={toggle}
-                />
-                <span className="slider round"></span>
-              </label>
-            </div>
-          }
-        </BrightThemeContext.Consumer>
-      }
-    </toggleThemeContext.Consumer>
   )
 }

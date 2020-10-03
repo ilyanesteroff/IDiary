@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import * as na from './navbarOptions'
 import './portal-menu.css'
 
+
 const sideMenu = document.getElementById('side-menu');
 
 const SideMenuPortal = props => {
@@ -34,7 +35,7 @@ const SideMenuPortal = props => {
 const SideMenu = ({opened}) => {
   const IsAuth = _ => useContext(isAuthContext)
   const Firstname = _ => useContext(FirstnameContext)
-  const Thema = _ => useContext(BrightThemeContext)
+  const Theme = _ => useContext(BrightThemeContext)
   let options //navbar options
 
   if(IsAuth()){
@@ -45,7 +46,7 @@ const SideMenu = ({opened}) => {
 
   options = options.map((o, i) => 
     <NavbarElement
-      thema={Thema()} 
+      theme={Theme()} 
       link={o.link} 
       icon={o.icon}
       content={o.value}
@@ -56,7 +57,7 @@ const SideMenu = ({opened}) => {
     <SideMenuPortal>
       <div 
         id="SideMenu" 
-        className={Thema()? 'brightSideMenu' : 'darkSideMenu'}
+        className={Theme()? 'brightSideMenu' : 'darkSideMenu'}
         onClick={() => opened(false)}
       >
         <ul className="SideMenuOptions">
@@ -67,30 +68,34 @@ const SideMenu = ({opened}) => {
   )
 }
 
-const NavbarElement = ({thema, link, icon, content}) => {
+const NavbarElement = ({theme, link, icon, content}) => {
   return(
-    <li className="SideMenuNavbarOption">
+    <li 
+      id="SideMenuNavbarOption"
+      className={
+        theme
+          ? 'BrightSideMenuNavbarOption'
+          : 'DarkSideMenuNavbarOption'
+      }
+    >
       <Link to={link} id="link">
-        <div 
-          id="SideMenuNavbarOptionIcon" 
+        <div>
+          <FontAwesomeIcon icon={icon} id="SideMenuNavbarOptionIcon" 
           className={
-            thema
+            theme
               ? 'BrightNavbarIcon'
               : 'DarkNavbarIcon'
-          }
-        >
-          <FontAwesomeIcon icon={icon}/>
-          <span>  </span>
-          <span
+          }/>
+          <p
             id="SideMenuNavbarOptionText"
             className={
-              thema
+              theme
                 ? 'BrightNavbarOptionText'
                 : 'DarkNavbarOptionText'
             }
           >
             {content}
-          </span>
+          </p>
         </div>
       </Link>
     </li>

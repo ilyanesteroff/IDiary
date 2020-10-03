@@ -24,9 +24,11 @@ export default class App extends React.Component{
     const expiryDate = localStorage.getItem('expiryDate')
     const firstname = localStorage.getItem('firstname')
     const theme = localStorage.getItem('theme')
-    theme === 'true' 
-      ? this.setState({brightTheme: true})
-      : this.setState({brightTheme: false})
+    if(theme === 'true') this.setState({brightTheme: true})
+    else {
+      this.setState({brightTheme: false})
+      document.body.style.backgroundColor = '#232323'
+    }
     if(!theme) window.localStorage.setItem('theme', this.state.brightTheme)
     if (!token || !expiryDate || !theme || !firstname ) {
       return
@@ -160,6 +162,10 @@ export default class App extends React.Component{
   toggleTheme = () => {
     this.setState({brightTheme: !this.state.brightTheme})
     window.localStorage.setItem('theme', !this.state.brightTheme)
+    //because setState sets state asyncronously, but the code here runs syncronously
+    !this.state.brightTheme 
+      ? document.body.style.backgroundColor = '#fff'
+      : document.body.style.backgroundColor = '#232323'
   }
 
   render(){

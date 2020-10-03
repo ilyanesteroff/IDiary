@@ -9,25 +9,83 @@
 }
 
 .darkSideMenu{
-  background-color: rgba(230, 230, 250, 0.2);
+  background-color: rgba(230, 230, 250, 0.05);
 }
 
-.SideMenuNavbarOption{
+li{
+  list-style-type: none;
+}
+
+#SideMenuNavbarOption{
   width: 100%;
   height: auto;
   text-align: left;
-  padding: 6%;
+  transition: all 0.5s ease-in-out;
+  padding: 6vh 6%;
+  list-style-type: none;
 }
 
-.SideMenuNavbarOption:first-child{
-  padding-top: 15vh;
+.BrightSideMenuNavbarOption:active,
+.BrightSideMenuNavbarOption:hover{
+  background-color: rgba(3, 3, 3, 0.1);
+}
+
+.DarkSideMenuNavbarOption:active,
+.DarkSideMenuNavbarOption:hover{
+  background-color: rgba(252, 252, 252, 0.1);
+}
+
+#SideMenuNavbarOption:first-child{
+  padding-top: 16vh;
 }
 
 #SideMenuNavbarOptionIcon{
   display: inline-block;
-  margin-right: 3%;
+  margin-right: 7%;
+  font-size: 4vh;
 }
 
-#SideNavbarOptionText{
-  margin-left: 3%;
+.BrightNavbarIcon{
+  color: #333;
+}
+
+.DarkNavbarIcon{
+  color: #eee;
+}
+
+#SideMenuNavbarOptionText{
+  -webkit-font-smoothing: subpixel-antialiased; 
+  position: relative;
+  float: right;
+  font-size: 3vh;
+  font-weight: 600;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.BrightNavbarOptionText{
+  color: #222;
+}
+
+.DarkNavbarOptionText{
+  color: #ccc;
+}
+
+@media only screen and (max-height: 500px){
+  .SideMenuOptions{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  #SideMenuNavbarOption{
+    width: 50%;
+  }
+  #SideMenuNavbarOption:nth-child(2){
+    padding-top: 16vh;
+  }
+  #SideMenuNavbarOptionIcon{
+    font-size: 6vh;   
+  }
+  #SideMenuNavbarOptionText{
+    font-size: 4.5vh;
+  }
 }
