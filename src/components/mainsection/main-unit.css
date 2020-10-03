@@ -1,0 +1,162 @@
+#main{
+  padding-top: 15vh;
+  padding-bottom: 15vh;
+  z-index: 1;
+}
+
+.BrightMain {
+  background-color: #f5f8ff;
+}
+
+.DarkMain {
+  background-color: #232325;  
+}
+
+#headline {
+  padding: 3vh 6%;
+  padding-top: 10vh;
+  text-align: center;
+  font-size: 6vh;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.BrightHeadline {
+  color: #232329;
+}
+/*for dark mode*/
+.DarkHeadline {
+  color: #f5f8ff;
+}
+
+#para {
+  padding: 5vh 8%;
+  font-size: 3vh;
+  font-weight: 700;
+  font-family: 'Exo 2', sans-serif;
+}
+
+.DarkParagraph{
+  color: #e3e3e3;
+}
+
+.BrightParagraph{
+  color: #222
+}
+
+.pSpan{
+  display: block;
+}
+
+#buttons{
+  float: right;
+  clear: both;
+  padding-top: 7vh;
+  padding-right: 10%;
+}
+
+#buttons a{
+  text-decoration: none;
+  margin-left: 2vw;
+  padding: 1.8vh 2.5vw;
+  border-radius: 0.5vh;
+  font-size: 2.5vh;
+  letter-spacing: 1px;
+  font-family: Ubuntu, sans-serif;
+  transition: all .5s;
+}
+
+.BrightButtons a{
+  background-color: #dfdfff;
+  color:  #2196F3;
+  border: solid  #2196F3 1.5px;
+}
+
+.DarkButtons a{
+  background-color:  #2196F3;
+  color: #dfdfff;
+}
+
+.BrightButtons a:hover{
+  background-color: #fff;
+  color: #1f1fff;
+  border-color: #1f1fff;
+}    
+
+.DarkButtons a:hover{
+  background-color: #1f1fff;
+  color: #fff;
+}
+
+#DisappearingStuff{
+  color: #2196F3;
+}
+
+@media only screen and (max-width: 500px){
+  #main{
+    padding-top: 12vh;
+  } 
+  #headline{
+    font-size: 4.5vh;
+    padding-top: 8vh;
+  }
+  #buttons{
+    float: none;
+    width: 90vw;
+    padding-top: 3vh;
+  }
+  #buttons a{
+    display: block;
+    margin-left: 10%;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 3vh;
+  }
+  .pSpan:last-child{
+    font-size: 2vh;
+  }
+}
+
+@media only screen and (max-height: 420px){
+  #buttons{
+    float: none;
+    padding-left: 30%;
+    width: 100%;
+    display: flex;
+  }
+  #buttons a{
+    text-align: center;
+    width: 30%;
+    padding: 3vh 5%;
+    font-size: 4vh;
+  }
+  .BrightButtons a{
+    color: #222;
+  }
+  #para{
+    font-size: 4vh;
+  } 
+}
+
+@media only screen and (max-height: 300px){
+  #headline{
+    font-size: 8vh;
+  }
+  #para{
+    font-size: 5vh;
+  } 
+}
+
+@media only screen and (min-height: 1000px){
+  #main{
+    padding-top: 7vh;
+  }
+  #headline{
+    font-size: 4vh;
+  }
+  #para{
+    font-size: 2vh;
+  }
+  #buttons a{
+    padding: 1vh 5vw;
+  }
+}

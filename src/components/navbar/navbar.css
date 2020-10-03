@@ -1,10 +1,10 @@
 #navbar {
-  position: relative;
+  position: fixed;
   text-align: center;
   height: 10vh;
   width: 100%;
+  z-index: 2;
   /*will be modified later*/
-  position: fixed;
 }
 
 .brightNavbar{
