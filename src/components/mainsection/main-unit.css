@@ -89,11 +89,26 @@
 
 #DisappearingStuff{
   color: #2196F3;
+  border-bottom: solid 5px #2196F3;
+  line-height: 8vh;
+}
+
+@keyframes border{
+  0%{ border-bottom: solid 5px #222; }
+  50%{ border-bottom: solid 5px #2196F3; }
+  100% { border-bottom: solid 5px #f3f3f3; }
+}
+
+@media only screen and (min-width: 1000px){
+  #DisappearingStuff{
+    animation: border 2s infinite;
+  }
 }
 
 @media only screen and (max-width: 500px){
   #main{
-    padding-top: 12vh;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
   } 
   #headline{
     font-size: 4.5vh;
