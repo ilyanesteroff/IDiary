@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
 import {
@@ -48,6 +48,11 @@ export const Login = _ => {
 }
 
 const LoginForm = ({emailChange, pwChange, loginHandler, theme}) => {
+  //make it responsive when user submits the data
+  const pwComplain = useRef(null)
+  const emailComplain = useRef(null)
+  const [submiting, setSubmiting] = useState(false)
+
   return(
     <form 
       id="LoginForm"
@@ -64,6 +69,11 @@ const LoginForm = ({emailChange, pwChange, loginHandler, theme}) => {
           placeholder="Your email address"
         />
       </label>
+      <span 
+        className="complain" 
+        ref={emailComplain}
+      >
+      </span>
       <label>
         <input 
           type="password" 
@@ -71,6 +81,10 @@ const LoginForm = ({emailChange, pwChange, loginHandler, theme}) => {
           placeholder="Your password"
         />
       </label>
+      <span 
+        className="complain" 
+        ref={pwComplain}
+      ></span>
       <button
         onClick={e => {
             e.preventDefault()
