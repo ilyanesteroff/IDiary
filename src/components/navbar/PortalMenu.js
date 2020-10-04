@@ -69,7 +69,7 @@ const SideMenu = ({opened}) => {
               { options }
             </ul>
           </div>
-      </SideMenuPortal>
+        </SideMenuPortal>
       }
     </BrightThemeContext.Consumer>
   )

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Navbar from '../../navbar/Navbar'
 import {
   LoginHandlerContext,
   BrightThemeContext,
 } from '../../../utils/contexts'
 import './login.css'
-import { Link } from 'react-router-dom'
-
+import '../../mainsection/main-unit.css'
 
 export const Login = _ => {
   const [email, setEmail] = useState('')
@@ -21,7 +21,16 @@ export const Login = _ => {
             <BrightThemeContext.Consumer>
               {theme => 
                 <>
-                  <h1>Login into your existing account</h1>
+                  <h2 
+                    id="headline"
+                    className={
+                      theme
+                        ? 'BrightHeadline'
+                        : 'DarkHeadline'
+                    }
+                  >
+                    Login into your existing account
+                  </h2>
                   <LoginForm 
                     emailChange={(email) => setEmail(email)}
                     pwChange={(pw) => setPassword(pw)}
@@ -44,24 +53,23 @@ const LoginForm = ({emailChange, pwChange, loginHandler, theme}) => {
       id="LoginForm"
       className={
         theme
-          ? 'DarkLoginForm'
-          : 'BrightLoginForm'
+          ? 'BrightLoginForm'
+          : 'DarkLoginForm'
       }
     >
       <label>
-        <p>Email:</p>
         <input 
           type="email" 
           onChange={event => emailChange(event.target.value)}
+          placeholder="Your email address"
         />
       </label>
       <label>
-        <p>Password:</p>
         <input 
           type="password" 
           onChange={event => pwChange(event.target.value)}
+          placeholder="Your password"
         />
-        <Link to="/password-reset">Forgot your password? No problems</Link>
       </label>
       <button
         onClick={e => {
@@ -72,7 +80,9 @@ const LoginForm = ({emailChange, pwChange, loginHandler, theme}) => {
       >
         Login
       </button>
-      <Link to="/create-user">Don't have an account? create one</Link>
+      <Link id="firstLink" to="/password-reset">Forgot your password? No problems</Link>
+      <hr/>
+      <Link id="buttonLikeAnchor" to="/create-user">Create account</Link>
     </form>
   )
 }

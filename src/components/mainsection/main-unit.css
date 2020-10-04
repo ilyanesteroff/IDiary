@@ -67,12 +67,12 @@
 
 .BrightButtons a{
   background-color: #dfdfff;
-  color:  #2196F3;
-  border: solid  #2196F3 1.5px;
+  color:   #2323F3;
+  border: solid   #2323F3 1.5px;
 }
 
 .DarkButtons a{
-  background-color:  #2196F3;
+  background-color:   #2323F3;
   color: #dfdfff;
   border: solid #232329 1.5px;
 }
@@ -89,20 +89,20 @@
 }
 
 #DisappearingStuff{
-  color: #2196F3;
+  color:  #2323F3;
   line-height: 8vh;
 }
 
 @keyframes border{
   0%{ border-bottom: solid 5px #222; }
-  50%{ border-bottom: solid 5px #2196F3; }
+  50%{ border-bottom: solid 5px  #2323F3; }
   100% { border-bottom: solid 5px #f3f3f3; }
 }
 
 @media only screen and (min-width: 1000px){
   #DisappearingStuff{
     animation: border 2s infinite;
-    border-bottom: solid 3px #2196F3;
+    border-bottom: solid 3px  #2323F3;
   }
 }
 

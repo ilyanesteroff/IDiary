@@ -62,10 +62,11 @@ ul{
 }
 
 #ThemeToggler {
-  top: 4.7vh;
+  top: 3.3vh;
   right: 2%;
   position: absolute;
 }
+
 /* media queries */
 @media only screen and (max-width: 1200px){
   #navbarOptionText{
@@ -91,21 +92,20 @@ ul{
   }
 }
 
-@media only screen and (max-height: 300px){
+@media only screen and (max-height: 420px){
   #ThemeToggler {
-    top: 3.2vh;
+    top: 2vh;
   }
 }
-
 
 @media only screen and (max-height: 350px){
   #ThemeToggler {
-    top: 3.9vh;
+    top: 1.5vh;
   }
 }
 
-@media only screen and (max-height: 420px){
+@media only screen and (max-height: 300px){
   #ThemeToggler {
-    top: 4.2vh;
+    top: 0.5vh;
   }
 }

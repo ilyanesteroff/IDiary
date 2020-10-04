@@ -44,9 +44,8 @@ export default props => {
                   <FirstnameContext.Consumer>
                     {firstname =>
                       <ul>
-                        {isAuth
-                          ? na.optionsForUsers.map((op, i) => {
-                              if(op.link === '/profile') op.value = firstname
+                        {isAuth && na.optionsForUsers.map((op, i) => {
+                              if(op.link === '/profile') op.value = firstname.firstname
                               return <NavbarElement
                                 link={op.link}
                                 content={op.value}
@@ -54,7 +53,8 @@ export default props => {
                                 key={i+'opt'}
                               />
                             })
-                          : na.optionsForVisitors.map((op, i) => 
+                        }
+                        {!isAuth && na.optionsForVisitors.map((op, i) => 
                               <NavbarElement
                                 link={op.link}
                                 content={op.value}
