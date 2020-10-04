@@ -74,6 +74,7 @@
 .DarkButtons a{
   background-color:  #2196F3;
   color: #dfdfff;
+  border: solid #232329 1.5px;
 }
 
 .BrightButtons a:hover{
@@ -89,7 +90,6 @@
 
 #DisappearingStuff{
   color: #2196F3;
-  border-bottom: solid 5px #2196F3;
   line-height: 8vh;
 }
 
@@ -102,6 +102,7 @@
 @media only screen and (min-width: 1000px){
   #DisappearingStuff{
     animation: border 2s infinite;
+    border-bottom: solid 3px #2196F3;
   }
 }
 
@@ -128,6 +129,7 @@
   }
   .pSpan:last-child{
     font-size: 2vh;
+    padding-top: 2vh;
   }
 }
 
@@ -150,6 +152,9 @@
   #para{
     font-size: 4vh;
   } 
+  .pSpan:last-child{
+    padding-top: 5vh;
+  }
 }
 
 @media only screen and (max-height: 300px){

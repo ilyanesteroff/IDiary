@@ -26,7 +26,6 @@ li{
   text-align: left;
   transition: all 0.5s ease-in-out;
   padding: 6vh 6%;
-  list-style-type: none;
 }
 
 .BrightSideMenuNavbarOption:active,
@@ -34,45 +33,16 @@ li{
   background-color: rgba(3, 3, 3, 0.3);
 }
 
-/*.BrightSideMenuNavbarOption:active,
-.BrightSideMenuNavbarOption:hover #SideMenuNavbarOptionIcon{
-  color: #ccc;
-}
-
-.BrightSideMenuNavbarOption:active,
-.BrightSideMenuNavbarOption:hover #SideMenuNavbarOptionText{
-  color: #eee;
-}*/
-
 .DarkSideMenuNavbarOption:active,
 .DarkSideMenuNavbarOption:hover{
   background-color: rgba(252, 252, 252, 0.3);
 }
-
-/*.DarkSideMenuNavbarOption:active,
-.DarkSideMenuNavbarOption:hover #SideMenuNavbarOptionIcon{
-  color: #333;
-}
-
-.DarkSideMenuNavbarOption:active,
-.DarkSideMenuNavbarOption:hover #SideMenuNavbarOptionText{
-  color: #222;
-}*/
-
 
 #SideMenuNavbarOptionIcon{
   display: inline-block;
   margin-right: 7%;
   font-size: 4vh;
   transition: all .5s;
-}
-
-.BrightNavbarIcon{
-  color: #333;
-}
-
-.DarkNavbarIcon{
-  color: #eee;
 }
 
 #SideMenuNavbarOptionText{
@@ -83,14 +53,6 @@ li{
   font-size: 3vh;
   font-weight: 600;
   font-family: 'Ubuntu', sans-serif;
-}
-
-.BrightNavbarOptionText{
-  color: #222;
-}
-
-.DarkNavbarOptionText{
-  color: #ccc;
 }
 
 @media only screen and (min-height: 1000px){

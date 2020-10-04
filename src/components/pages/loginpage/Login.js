@@ -5,6 +5,7 @@ import {
   BrightThemeContext,
 } from '../../../utils/contexts'
 import './login.css'
+import { Link } from 'react-router-dom'
 
 
 export const Login = _ => {
@@ -19,12 +20,15 @@ export const Login = _ => {
           {loginHandler => 
             <BrightThemeContext.Consumer>
               {theme => 
-                <LoginForm 
-                  emailChange={(email) => setEmail(email)}
-                  pwChange={(pw) => setPassword(pw)}
-                  loginHandler={_ => loginHandler(email, password)}
-                  theme={theme}
-                />
+                <>
+                  <h1>Login into your existing account</h1>
+                  <LoginForm 
+                    emailChange={(email) => setEmail(email)}
+                    pwChange={(pw) => setPassword(pw)}
+                    loginHandler={_ => loginHandler(email, password)}
+                    theme={theme}
+                  />
+                </>
               }
             </BrightThemeContext.Consumer>
           }
@@ -57,12 +61,18 @@ const LoginForm = ({emailChange, pwChange, loginHandler, theme}) => {
           type="password" 
           onChange={event => pwChange(event.target.value)}
         />
+        <Link to="/password-reset">Forgot your password? No problems</Link>
       </label>
       <button
-        onClick={_ => loginHandler()}
+        onClick={e => {
+            e.preventDefault()
+            loginHandler()
+          }
+        }
       >
         Login
       </button>
+      <Link to="/create-user">Don't have an account? create one</Link>
     </form>
   )
 }

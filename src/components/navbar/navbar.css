@@ -4,7 +4,6 @@
   height: 10vh;
   width: 100%;
   z-index: 2;
-  /*will be modified later*/
 }
 
 .brightNavbar{
@@ -21,7 +20,7 @@
   margin-top: 2.3vh;
 }
 
-li.navbarOption{
+li#navbarOption{
   display: inline;
   transition: all .5s;
 }
@@ -59,7 +58,7 @@ ul{
 }
 
 .DarkNavbarIcon {
-  color: #ddd;
+  color: #eee;
 }
 
 #ThemeToggler {
@@ -67,10 +66,7 @@ ul{
   right: 2%;
   position: absolute;
 }
-
 /* media queries */
-
-
 @media only screen and (max-width: 1200px){
   #navbarOptionText{
     display: none;
@@ -84,15 +80,12 @@ ul{
   #navbar{
     height: 7.5vh;
   }
-
   #navbarOptions {
     margin-top: 1.8vh;
   }
-
   #navbarOptionIcon {
     font-size: 3vh;
   }  
-
   #ThemeToggler {
     top: 3.5vh;
   }

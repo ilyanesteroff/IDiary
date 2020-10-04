@@ -1,14 +1,15 @@
 import React, { useLayoutEffect, useContext } from 'react'
 import ReactDOM from 'react-dom'
-import { Link } from 'react-router-dom'
 import { 
   IsAuthContext, 
   FirstnameContext,
   BrightThemeContext
 } from '../../utils/contexts'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { NavbarElement } from './NavbarElement'
+import { LogoutButton as Logout } from './LogoutButton'
 import * as na from './navbarOptions'
 import './portal-menu.css'
+import './navbar.css'
 
 
 const sideMenu = document.getElementById('side-menu');
@@ -35,70 +36,42 @@ const SideMenuPortal = props => {
 const SideMenu = ({opened}) => {
   const IsAuth = _ => useContext(IsAuthContext)
   const Firstname = _ => useContext(FirstnameContext)
-  const Theme = _ => useContext(BrightThemeContext)
   let options //navbar options
 
   if(IsAuth()){
     options = na.optionsForUsers
-    const firstnameIndex = options.findIndex(f => f.value === 'firstname')
+    const firstnameIndex = options.findIndex(f => f.link === '/profile')
     options[firstnameIndex].value = Firstname().firstname
   } else options = na.optionsForVisitors
 
   options = options.map((o, i) => 
     <NavbarElement
-      theme={Theme()} 
+      sideMenu={true}
       link={o.link} 
       icon={o.icon}
       content={o.value}
       key={i+'op'}
-    />)
+    />
+  )
+
+  if(IsAuth()) options.push(<Logout key="logoutBtn" sideMenu={true}/>)
 
   return (
-    <SideMenuPortal>
-      <div 
-        id="SideMenu" 
-        className={Theme()? 'brightSideMenu' : 'darkSideMenu'}
-        onClick={() => opened(false)}
-      >
-        <ul className="SideMenuOptions">
-          {options}
-        </ul>
-      </div>
-    </SideMenuPortal>
-  )
-}
-
-const NavbarElement = ({theme, link, icon, content}) => {
-  return(
-    <li 
-      id="SideMenuNavbarOption"
-      className={
-        theme
-          ? 'BrightSideMenuNavbarOption'
-          : 'DarkSideMenuNavbarOption'
-      }
-    >
-      <Link to={link} id="link">
-        <div>
-          <FontAwesomeIcon icon={icon} id="SideMenuNavbarOptionIcon" 
-          className={
-            theme
-              ? 'BrightNavbarIcon'
-              : 'DarkNavbarIcon'
-          }/>
-          <p
-            id="SideMenuNavbarOptionText"
-            className={
-              theme
-                ? 'BrightNavbarOptionText'
-                : 'DarkNavbarOptionText'
-            }
+    <BrightThemeContext.Consumer>
+      {theme =>
+        <SideMenuPortal>
+          <div 
+            id="SideMenu" 
+            className={theme? 'brightSideMenu' : 'darkSideMenu'}
+            onClick={() => opened(false)}
           >
-            {content}
-          </p>
-        </div>
-      </Link>
-    </li>
+            <ul className="SideMenuOptions">
+              { options }
+            </ul>
+          </div>
+      </SideMenuPortal>
+      }
+    </BrightThemeContext.Consumer>
   )
 }
 

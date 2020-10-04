@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import './App.css'
 import MainPage from './components/pages/landing-page/Landing-page'
 import {Login as LoginPage} from './components/pages/loginpage/Login'
 import * as Contexts from './utils/contexts'
+import './App.css'
 
 
 export default class App extends React.Component{
@@ -19,6 +19,8 @@ export default class App extends React.Component{
     loading: false,
     isAuth: false
   }
+
+  abortController = new AbortController()
 
   componentDidMount() {
     const token = localStorage.getItem('token')
@@ -39,8 +41,8 @@ export default class App extends React.Component{
       return
     }
     const userId = localStorage.getItem('userId')
-    const remainingMilliseconds =
-      new Date(expiryDate).getTime() - new Date().getTime()
+    //const remainingMilliseconds =
+      //new Date(expiryDate).getTime() - new Date().getTime()
     this.setState({ 
       isAuth: true, 
       token: token, 
@@ -48,11 +50,21 @@ export default class App extends React.Component{
       firstname: firstname,
       brightTheme: theme === 'true' ? true : false
     })
-    this.setAutoLogout(remainingMilliseconds)
+  }
+
+  componentWillUnmount(){
+    this.abortController.abort()
   }
 
   logoutHandler = () => {
-    this.setState({ isAuth: false, token: null })
+    this.setState(
+      { 
+        isAuth: false, 
+        token: null,
+        userId: null,
+        firstname: null
+      }
+    )
     localStorage.removeItem('token')
     localStorage.removeItem('expiryDate')
     localStorage.removeItem('userId')
@@ -82,6 +94,7 @@ export default class App extends React.Component{
     }
 
     fetch('https://toodoodooapi.herokuapp.com/graphql', {
+      signal: this.abortController.signal,
       method: 'Post',
       headers: headers,
       body: JSON.stringify(graphqlQuery)
@@ -90,20 +103,22 @@ export default class App extends React.Component{
       .then(res => {
         if(res.errors) throw new Error(res.errors[0].message)
         this.setState({
-          userId: res.data.userId,
-          token: res.data.token,
-          firstname: res.data.firstname,
+          userId: res.data.login.userId,
+          token: res.data.login.token,
+          firstname: res.data.login.firstname,
           isAuth: true,
           loading: false
         })
-        window.localStorage.setItem('token', this.state.token)
-        window.localStorage.setItem('userId', this.state.userId)
-        window.localStorage.setItem('firstname', this.state.firstname)
+        window.localStorage.setItem('token', res.data.login.token)
+        window.localStorage.setItem('userId', res.data.login.userId)
+        window.localStorage.setItem('firstname', res.data.login.firstname)
+        console.log(window.localStorage.getItem('token'))
         //the token expires after 3 days
         const expiryDate = new Date(
           new Date().getTime() + 3 * 24 * 60 * 60 * 1000
         )
-        localStorage.setItem('expiryDate', expiryDate.toISOString())
+        window.localStorage.setItem('expiryDate', expiryDate.toISOString())
+        window.location.pathname = '/'
       })
       .catch(err => {
         //will be removed in the future
@@ -136,12 +151,14 @@ export default class App extends React.Component{
     }
 
     fetch('https://toodoodooapi.herokuapp.com/graphql', {
+      signal: this.abortController.signal,
       method: 'POST',
       headers: headers,
       body: JSON.stringify(graphqlQuery)
     })
     .then(res => res.json())
     .then(res => {
+      console.log(res)
       if(res.errors) throw new Error(res.errors[0].message)
       this.setState({ loading: false })
     })
@@ -188,8 +205,10 @@ export default class App extends React.Component{
                             <Router>
                               <div>
                                 <Switch>
-                                  <Route path="/login" render={_ => <LoginPage/>}/>
-                                  <Route path="/" render={_ => <MainPage/>}/>
+                                  {!this.state.isAuth && 
+                                    <Route path="/login" render={_ => <LoginPage/>}/>
+                                  }
+                                  <Route exact path="/" render={_ => <MainPage isAuth={this.state.isAuth}/>}/>
                                 </Switch>
                               </div>
                             </Router>
