@@ -11,10 +11,7 @@ export default class App extends React.Component{
     userId: null,
     firstname: null,
     brightTheme: true,
-    error: {
-      error: false, 
-      message: ''
-    },
+    error: '',
     token: null,
     loading: false,
     isAuth: false
@@ -71,7 +68,7 @@ export default class App extends React.Component{
     localStorage.removeItem('firstname')
   }
 
-  loginHandler = (email, password) => {
+  loginHandler = (email, password, cb) => {
     this.setState({loading: true})
 
     const headers = new Headers()
@@ -112,24 +109,21 @@ export default class App extends React.Component{
         window.localStorage.setItem('token', res.data.login.token)
         window.localStorage.setItem('userId', res.data.login.userId)
         window.localStorage.setItem('firstname', res.data.login.firstname)
-        console.log(window.localStorage.getItem('token'))
         //the token expires after 3 days
         const expiryDate = new Date(
           new Date().getTime() + 3 * 24 * 60 * 60 * 1000
         )
         window.localStorage.setItem('expiryDate', expiryDate.toISOString())
         window.location.pathname = '/'
+        cb()
       })
       .catch(err => {
         //will be removed in the future
-        console.log(err)
         this.setState({
-          error: {
-            error: true, 
-            message: err.message
-          },
+          error: err.message,
           loading: false
         })
+        cb()
       })
   }
 
@@ -168,10 +162,7 @@ export default class App extends React.Component{
       //
       console.log(err)
       this.setState({
-        error: {
-          error: true, 
-          message: err.message
-        },
+        error: err.message,
         loading: false
       })
     })
@@ -194,7 +185,7 @@ export default class App extends React.Component{
             firstname: this.state.firstname,
             setFirstname: val => this.setState({ firstname: val })
           }}>
-            <Contexts.ErrorContext.Provider value={{value: this.state.error, setError: (isError, message = '') => this.setState({error: { error: isError, message: message}})}}>
+            <Contexts.ErrorContext.Provider value={{value: this.state.error, setError: (message) => this.setState({error: message})}}>
               <Contexts.TokenContext.Provider value={this.state.token}>
                 <Contexts.LoadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
                   <Contexts.IsAuthContext.Provider value={this.state.isAuth}>

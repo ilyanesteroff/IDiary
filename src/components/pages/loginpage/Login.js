@@ -1,99 +1,81 @@
-import React, { useRef, useState } from 'react'
+import React, { 
+  useRef, 
+  useState
+} from 'react'
 import { Link } from 'react-router-dom'
+import validator from 'validator'
+import { ComplainLog } from './ComplainLog'
+import { Password, Email } from './Fields'
 import Navbar from '../../navbar/Navbar'
 import {
   LoginHandlerContext,
   BrightThemeContext,
+  ErrorContext
 } from '../../../utils/contexts'
 import './login.css'
 import '../../mainsection/main-unit.css'
 
-export const Login = _ => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  
+
+export const Login = _ => {  
   return(    
     <div>
       <Navbar/>
       <div id="Main">
-        <LoginHandlerContext.Consumer>
-          {loginHandler => 
-            <BrightThemeContext.Consumer>
-              {theme => 
-                <>
-                  <h2 
-                    id="headline"
-                    className={
-                      theme
-                        ? 'BrightHeadline'
-                        : 'DarkHeadline'
-                    }
-                  >
-                    Login into your existing account
-                  </h2>
-                  <LoginForm 
-                    emailChange={(email) => setEmail(email)}
-                    pwChange={(pw) => setPassword(pw)}
-                    loginHandler={_ => loginHandler(email, password)}
-                    theme={theme}
-                  />
-                </>
-              }
-            </BrightThemeContext.Consumer>
+        <BrightThemeContext.Consumer>
+          {theme => 
+            <>
+              <h2 
+                id="headline"
+                className={`${theme ? 'Bright' : 'Dark'}Headline`}
+              >
+                Login into your existing account
+              </h2>
+                <LoginForm 
+                  theme={theme}
+                />
+            </>
           }
-        </LoginHandlerContext.Consumer>
+        </BrightThemeContext.Consumer>
       </div>
     </div>
   )
 }
 
-const LoginForm = ({emailChange, pwChange, loginHandler, theme}) => {
-  //make it responsive when user submits the data
-  const pwComplain = useRef(null)
-  const emailComplain = useRef(null)
-  const [submiting, setSubmiting] = useState(false)
+const LoginForm = ({theme}) => {
+  const password = useRef(null)
+  const email = useRef(null)
+  const [submiting, setSubmiting] = useState(false)  
+  const Error = _ => React.useContext(ErrorContext)
+
+  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
+  
+  const setError = React.useRef(Error().setError)
+
+  const handleClick = (event, login) =>{
+    event.preventDefault()
+    const _email = email.current.value.trim()
+    const _password = password.current.value.trim()
+    //validate
+    if(_email.length === 0 || _password.length === 0) return setError.current('Fill both fields')
+    if(!validator.isEmail(_email)) return setError.current('The email does not seem to be valid')
+    if(_password.length < 8) return setError.current('password must be at least 8 characters')
+    setSubmiting(true)
+    setError.current('')
+    login(_email, _password, () => setSubmiting(false))
+  }
 
   return(
-    <form 
-      id="LoginForm"
-      className={
-        theme
-          ? 'BrightLoginForm'
-          : 'DarkLoginForm'
-      }
-    >
-      <label>
-        <input 
-          type="email" 
-          onChange={event => emailChange(event.target.value)}
-          placeholder="Your email address"
-        />
-      </label>
-      <span 
-        className="complain" 
-        ref={emailComplain}
-      >
-      </span>
-      <label>
-        <input 
-          type="password" 
-          onChange={event => pwChange(event.target.value)}
-          placeholder="Your password"
-        />
-      </label>
-      <span 
-        className="complain" 
-        ref={pwComplain}
-      ></span>
-      <button
-        onClick={e => {
-            e.preventDefault()
-            loginHandler()
-          }
+    <form id="LoginForm" className={formClassName}>
+      <ComplainLog/>
+      <Email ref={email}/>
+      <Password ref={password}/>
+      <LoginHandlerContext.Consumer>
+        {loginHandler => 
+          <button onClick={(e) => handleClick(e, loginHandler)}>
+            Login
+          </button>
         }
-      >
-        Login
-      </button>
+      </LoginHandlerContext.Consumer>
       <Link id="firstLink" to="/password-reset">Forgot your password? No problems</Link>
       <hr/>
       <Link id="buttonLikeAnchor" to="/create-user">Create account</Link>

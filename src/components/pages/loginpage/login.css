@@ -8,6 +8,7 @@
   padding: 3vh 2%;
   border-radius: 1vh;
   font-family: Ubuntu, sans-serif;
+  transition: all 0.5s;
 }
 
 .DarkLoginForm{
@@ -15,10 +16,31 @@
   box-shadow: #eee 0 0 0.75vh;
 }
 
+.DarkSubmitingForm{
+  animation: darkForm 1.5s infinite;
+}
+
+@keyframes darkForm {
+  0%{background-color: #111 ;}
+  50%{background-color: #333 ;}
+  100%{background-color: #111 ;}
+}
+
 .BrightLoginForm{
   background-color: #fffe;
   box-shadow: #121212 0 0 0.75vh;
 }
+
+.BrightSubmitingForm{
+  animation: brightForm 1.5s infinite;
+}
+
+@keyframes brightForm {
+  0%{background-color: #eee ;}
+  50%{background-color: #ccc ;}
+  100%{background-color: #eee ;}
+}
+
 
 #LoginForm a, input {
   display: block;
@@ -30,6 +52,21 @@
   width: 100%;
   margin-bottom: 1.7vh;
   font-size: 2.2vh;
+}
+
+#pwField{
+  position: relative;
+}
+
+.revealPwIcon{
+  position: absolute;
+  right: 3%;
+  top: 35%;
+  font-size: 1rem;
+}
+
+.DarkLoginForm .revealPwIcon{
+  color: #eee;
 }
 
 .DarkLoginForm input{
@@ -72,6 +109,12 @@
   text-decoration: none;
   font-size: 2vh;
   padding: 1.5vh 1%;
+}
+
+.complain{
+  color: #ff3434;
+  margin-bottom: 2vh;
+  text-align: center;
 }
 
 .BrightLoginForm a{
