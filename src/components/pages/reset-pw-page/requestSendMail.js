@@ -17,12 +17,8 @@ export default email => {
     method: 'POST'
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return true
-    })
-    .catch(err => {
-      console.log(err.message)
+    .then(_ => true)
+    .catch(_ => {
       return false
     })
 }

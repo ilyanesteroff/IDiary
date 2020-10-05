@@ -12,7 +12,7 @@ import {
   BrightThemeContext,
   ErrorContext
 } from '../../../utils/contexts'
-import './login.css'
+import './forms.css'
 import '../../mainsection/main-unit.css'
 
 

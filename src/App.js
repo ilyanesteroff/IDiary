@@ -195,17 +195,15 @@ export default class App extends React.Component{
                         <Contexts.SignupHandlerContext.Provider value={this.signupHandler}>
                           <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
                             <Router>
-                              <div>
-                                <Switch>
-                                  {!this.state.isAuth &&
-                                    <>
-                                      <Route path="/login" render={_ => <LoginPage/>}/>
-                                      <Route path="/password-reset" render={_ => <ResetPassword/>}/>
-                                    </>
-                                  }
-                                  <Route exact path="/" render={_ => <MainPage isAuth={this.state.isAuth}/>}/>
-                                </Switch>
-                              </div>
+                              <Switch>
+                                <Route exact path="/" render={_ => <MainPage isAuth={this.state.isAuth}/>}/>
+                                {!this.state.isAuth &&
+                                  <>
+                                    <Route path="/login" render={_ => <LoginPage/>}/>
+                                    <Route path="/password-reset" render={_ => <ResetPassword/>}/>
+                                  </>
+                                }
+                              </Switch>
                             </Router>
                           </Contexts.ToggleThemeContext.Provider>
                         </Contexts.SignupHandlerContext.Provider>

@@ -1,7 +1,7 @@
 import React, { useState, forwardRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-import './login.css'
+import './forms.css'
 
 export const Password = forwardRef((props, ref) => {
   const [revealPw, setRevealPw] = useState(false)
