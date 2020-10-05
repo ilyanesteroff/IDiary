@@ -4,8 +4,6 @@ import React, {
   useState 
 } from 'react'
 import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import Navbar from '../../navbar/Navbar'
 import { ComplainLog } from '../loginpage/ComplainLog'
 import { Email } from '../loginpage/Fields'
@@ -16,11 +14,11 @@ import {
 import { checkIfUserExists } from '../../../utils/checks'
 import requestSendMail from './requestSendMail'
 import '../../mainsection/main-unit.css'
-import './reset-password-page.css'
 import '../loginpage/forms.css'
+import DoneMessage from './doneMessage'
 
 
-export const ResetPassword = _ => {
+export default _ => {
   document.title = 'TooDooDoo - Request password reset'
 
   return (
@@ -93,16 +91,3 @@ const ResetPasswordForm = ({theme}) => {
     </form>
   )
 }
-
-const DoneMessage = props => (
-  <div id="DoneMessage">
-    <span>
-      <FontAwesomeIcon icon={faCheckCircle} className="GreenIcon"/>
-    </span>
-    <span 
-      className={`${props.theme? 'Bright' : 'Dark'}Text bigText`}
-    >
-      {' ' + props.children}
-    </span>
-  </div>
-)
