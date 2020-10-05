@@ -1,0 +1,1 @@
+export default 'https://toodoodooapi.herokuapp.com/graphql'

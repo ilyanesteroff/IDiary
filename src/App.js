@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import MainPage from './components/pages/landing-page/Landing-page'
 import {Login as LoginPage} from './components/pages/loginpage/Login'
+import { ResetPassword} from './components/pages/reset-pw-page/Reset-password-page'
 import * as Contexts from './utils/contexts'
 import './App.css'
 
@@ -196,8 +197,11 @@ export default class App extends React.Component{
                             <Router>
                               <div>
                                 <Switch>
-                                  {!this.state.isAuth && 
-                                    <Route path="/login" render={_ => <LoginPage/>}/>
+                                  {!this.state.isAuth &&
+                                    <>
+                                      <Route path="/login" render={_ => <LoginPage/>}/>
+                                      <Route path="/password-reset" render={_ => <ResetPassword/>}/>
+                                    </>
                                   }
                                   <Route exact path="/" render={_ => <MainPage isAuth={this.state.isAuth}/>}/>
                                 </Switch>

@@ -17,8 +17,10 @@ import '../../mainsection/main-unit.css'
 
 
 export const Login = _ => {  
+  document.title = 'TooDooDoo - Login'
+
   return(    
-    <div>
+    <>
       <Navbar/>
       <div id="Main">
         <BrightThemeContext.Consumer>
@@ -37,7 +39,7 @@ export const Login = _ => {
           }
         </BrightThemeContext.Consumer>
       </div>
-    </div>
+    </>
   )
 }
 
