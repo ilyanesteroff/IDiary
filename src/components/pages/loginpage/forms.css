@@ -1,5 +1,5 @@
-#Main, #ResetPwFormMain{
-  padding-top: 15vh;
+#Main, #ResetPwFormMain, #SignUpForm{
+  padding-top: 10vh;
 }
 
 #LoginForm, #LittleMessage, #ResetPwFormMain form{
