@@ -23,8 +23,12 @@ export const NavbarElement = ({link, icon, content, sideMenu}) => {
               : ''
           }
         >
-          <Link to={link} id="link">
-            <span>
+          <Link 
+            to={link} 
+            id="link"
+            className={link === window.location.pathname? 'ActiveNavbarOption' : ''}
+          >
+            <div>
               <FontAwesomeIcon icon={icon} 
                 id={
                   sideMenu
@@ -32,9 +36,11 @@ export const NavbarElement = ({link, icon, content, sideMenu}) => {
                     : 'navbarOptionIcon'
                 } 
                 className={
-                  theme
-                    ? 'BrightNavbarIcon'
-                    : 'DarkNavbarIcon'
+                  link !== window.location.pathname
+                    ? theme
+                      ? 'BrightNavbarIcon'
+                      : 'DarkNavbarIcon'
+                    : ''
               }/>
               <p
                 id={
@@ -43,14 +49,16 @@ export const NavbarElement = ({link, icon, content, sideMenu}) => {
                     : 'navbarOptionText'
                 }
                 className={
-                  theme
-                    ? 'BrightNavbarOptionText'
-                     : 'DarkNavbarOptionText'
+                  link !== window.location.pathname
+                    ? theme
+                      ? 'BrightNavbarOptionText'
+                      : 'DarkNavbarOptionText'
+                    : ''
                }
               >
                 {content}
               </p>
-            </span>
+            </div>
           </Link>
         </li>
       }

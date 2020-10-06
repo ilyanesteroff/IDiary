@@ -23,6 +23,11 @@
 li#navbarOption{
   display: inline;
   transition: all .5s;
+  cursor: pointer;
+}
+
+#navbarOption div{
+  display: inline;
 }
 
 #link{
@@ -46,6 +51,10 @@ ul{
 
 .DarkNavbarOptionText {
   color: #eee;
+}
+
+.ActiveNavbarOption {
+  color: #2323F3;
 }
 
 #navbarOptionIcon {

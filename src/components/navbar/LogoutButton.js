@@ -19,7 +19,15 @@ export const LogoutButton = ({sideMenu}) =>
                 ? 'SideMenuNavbarOption'
                 : 'navbarOption'
             } 
-            onClick={logoutHandler}>
+            className={
+            sideMenu
+              ? theme
+                ? 'BrightSideMenuNavbarOption'
+                : 'DarkSideMenuNavbarOption'
+              : ''
+            }
+            onClick={logoutHandler}
+          >
             <div 
               id={
                 sideMenu

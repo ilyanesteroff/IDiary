@@ -7,7 +7,7 @@ import './logo.css'
 export default props => {
   
   return(
-    <BrightThemeContext.Consumer>
+    <BrightThemeContext.Consumer> 
       { value => 
         <div className={value? "darkLogo" : "brightLogo"} id="logo">
           <FontAwesomeIcon 

@@ -4,6 +4,8 @@ import MainPage from './components/pages/landing-page/Landing-page'
 import {Login as LoginPage} from './components/pages/loginpage/Login'
 import ResetPassword from './components/pages/reset-pw-page/Reset-password-page'
 import SetNewPassword from './components/pages/set-new-pw/Set-new-password'
+import PageNotFound from './components/pages/PageNotFound/Page-not-found'
+import Signup from './components/pages/signup-page/Signup'
 import * as Contexts from './utils/contexts'
 import './App.css'
 
@@ -101,6 +103,8 @@ export default class App extends React.Component{
       .then(res => res.json())
       .then(res => {
         if(res.errors) throw new Error(res.errors[0].message)
+        window.location.pathname = '/'
+        cb()
         this.setState({
           userId: res.data.login.userId,
           token: res.data.login.token,
@@ -116,8 +120,6 @@ export default class App extends React.Component{
           new Date().getTime() + 3 * 24 * 60 * 60 * 1000
         )
         window.localStorage.setItem('expiryDate', expiryDate.toISOString())
-        window.location.pathname = '/'
-        cb()
       })
       .catch(err => {
         //will be removed in the future
@@ -198,13 +200,22 @@ export default class App extends React.Component{
                             <Router>
                               <Switch>
                                 <Route exact path="/" render={_ => <MainPage isAuth={this.state.isAuth}/>}/>
-                                {!this.state.isAuth &&
-                                  <>
-                                    <Route path="/login" render={_ => <LoginPage/>}/>
-                                    <Route path="/password-reset" render={_ => <ResetPassword/>}/>
-                                    <Route path="/resetpassword/:token" render={_ => <SetNewPassword isAuth={this.state.isAuth}/>}/>
-                                  </>
-                                }
+                                <Route 
+                                  path="/login" 
+                                  render={_ => this.state.isAuth ? window.location.pathname = '/' : <LoginPage/>}/>
+                                <Route
+                                  path='/create-account'
+                                  render={_ => this.state.isAuth ? window.location.pathname = '/' : <Signup/>}
+                                />
+                                <Route 
+                                  path="/password-reset" 
+                                  render={_ => this.state.isAuth ? <PageNotFound/> : <ResetPassword/>}
+                                />
+                                <Route 
+                                  path="/resetpassword/:token" 
+                                  render={_ => this.state.isAuth ? <PageNotFound/> : <SetNewPassword/>}  
+                                />
+                                <Route path="*" render={_ => <PageNotFound/>}/>
                               </Switch>
                             </Router>
                           </Contexts.ToggleThemeContext.Provider>

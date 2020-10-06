@@ -48,8 +48,6 @@ const LoginForm = ({theme}) => {
   const email = useRef(null)
   const [submiting, setSubmiting] = useState(false)  
   const Error = _ => React.useContext(ErrorContext)
-
-  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
   
   const setError = React.useRef(Error().setError)
 
@@ -65,6 +63,8 @@ const LoginForm = ({theme}) => {
     setError.current('')
     login(_email, _password, () => setSubmiting(false))
   }
+
+  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
 
   return(
     <form id="LoginForm" className={formClassName}>
