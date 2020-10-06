@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Logo from './logo/Logo'
 import { 
   BrightThemeContext, 
@@ -13,14 +13,20 @@ import { LogoutButton as Logout } from './LogoutButton'
 import './navbar.css'
 
 
-export default props => {
+export default _ => {
   const [ width, setWidth ] = useState(window.innerWidth)
   const [ menuInPortalOpened, setMenuInPortalOpened] = useState(false)
+  const _isMounted = useRef(true)
+
+  const measureWidth = _ => {
+    if(_isMounted.current) setWidth(window.innerWidth)
+  }
 
   useEffect(_ => {
-    window.addEventListener('resize', () => setWidth(window.innerWidth))
+    window.addEventListener('resize', measureWidth)
     return function cleanup() {
-      window.removeEventListener('resize', () => setWidth(window.innerWidth))
+      _isMounted.current = false
+      window.removeEventListener('resize', measureWidth)
     }
   }, [])
  

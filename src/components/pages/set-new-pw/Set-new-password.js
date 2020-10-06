@@ -5,7 +5,7 @@ import React, {
   useEffect
 } from 'react'
 import { Link } from 'react-router-dom'
-//import Navbar from '../../navbar/Navbar'
+import Spinner from '../../spiners/BigSpinner'
 import { 
   BrightThemeContext,
   ErrorContext 
@@ -20,15 +20,14 @@ import '../loginpage/forms.css'
 const abortController = new AbortController()
 const token = window.location.pathname.split('/')[2]
 
-export default ({isAuth}) => {
-  //will add check for isAuth
+export default _ => {
   const [ checked, setChecked ] = useState(false)
   const [ actual, setActual ] = useState(false)
 
   const checkForReset = async _ => {
     const verdict = await checkIfResetPwIsActual(token, abortController.signal)
     setActual(verdict)
-    setChecked(true)
+    setTimeout(_ => setChecked(true), 2000)
   }
 
   useEffect(_ => {
@@ -55,6 +54,7 @@ export default ({isAuth}) => {
             {checked && !actual &&
               <LinkInactive theme={theme}/>
             }
+            {!checked && <Spinner/>}
           </>
         }
       </BrightThemeContext.Consumer>
@@ -86,7 +86,6 @@ const ResetPasswordForm = ({theme}) => {
         setError.current('Reseting password failed try later')
       } else window.location.pathname = '/login'
     } 
-    //test this
     setSubmiting(false)
   }
 
@@ -114,9 +113,22 @@ const LinkInactive = ({theme}) => (
     >
       It seems like the link is inactive
     </h1>
-    <p>
-      You have either already reset password or the link is overdued, so you can request password reset agail
-    </p>
-    <Link id="buttonLikeAnchor" to="/password-reset">Request password reset</Link>
+    <div 
+      id="LittleMessage"
+      className={`${theme? 'Bright': 'Dark'}LoginForm`}
+    >
+      <p 
+        className={`${theme? 'Bright' : 'Dark'}Text`}
+        style={{marginBottom: '4vh'}}
+      >
+        You have either already reset password or the link is overdued, so you can request password reset again
+      </p>
+      <Link 
+        to="/password-reset"
+        id="buttonLikeAnchor"
+      > 
+        Request password reset
+      </Link>
+    </div>
   </div>
 )
