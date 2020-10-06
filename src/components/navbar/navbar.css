@@ -43,6 +43,7 @@ ul{
   display: inline;
   margin: 2%;
   font-family: 'Barlow Semi Condensed', sans-serif;
+  transition: color .7s;
 }
 
 .BrightNavbarOptionText {
@@ -52,6 +53,7 @@ ul{
 .DarkNavbarOptionText {
   color: #eee;
 }
+
 
 .ActiveNavbarOption {
   color: #2323F3;
@@ -64,6 +66,13 @@ ul{
 
 .BrightNavbarIcon {
   color: #232323;
+}
+
+li#navbarOption:hover .BrightNavbarOptionText{
+  color: #888;
+}
+li#navbarOption:hover .DarkNavbarOptionText{
+  color: #888;
 }
 
 .DarkNavbarIcon {
