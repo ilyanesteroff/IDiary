@@ -5,11 +5,9 @@ import {
   FirstnameContext,
   BrightThemeContext
 } from '../../utils/contexts'
-import { NavbarElement } from './NavbarElement'
-import { LogoutButton as Logout } from './LogoutButton'
+import NavbarElement from './NavbarElement'
+import Logout from './LogoutButton'
 import * as na from './navbarOptions'
-import './portal-menu.css'
-import './navbar.css'
 
 
 const sideMenu = document.getElementById('side-menu');

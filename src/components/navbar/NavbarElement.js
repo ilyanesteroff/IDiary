@@ -1,11 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
 import { BrightThemeContext } from '../../utils/contexts'
-import './navbar.css'
-import './portal-menu.css'
 
-export const NavbarElement = ({link, icon, content, sideMenu}) => {
+
+export default ({link, icon, content, sideMenu}) => {
   return(
     <BrightThemeContext.Consumer>
       {theme =>
@@ -23,8 +21,8 @@ export const NavbarElement = ({link, icon, content, sideMenu}) => {
               : ''
           }
         >
-          <Link 
-            to={link} 
+          <a 
+            href={link} 
             id="link"
             className={link === window.location.pathname? 'ActiveNavbarOption' : ''}
           >
@@ -59,7 +57,7 @@ export const NavbarElement = ({link, icon, content, sideMenu}) => {
                 {content}
               </p>
             </div>
-          </Link>
+          </a>
         </li>
       }
     </BrightThemeContext.Consumer>

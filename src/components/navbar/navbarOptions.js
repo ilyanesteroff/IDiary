@@ -56,7 +56,7 @@ export const optionsForVisitors = [
   },
   {
     value: 'Signup',
-    link: '/create-account',
+    link: '/create-user',
     icon: faUserAstronaut
   }
 ]

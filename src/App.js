@@ -1,13 +1,11 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import MainPage from './components/pages/landing-page/Landing-page'
-import {Login as LoginPage} from './components/pages/loginpage/Login'
-import ResetPassword from './components/pages/reset-pw-page/Reset-password-page'
-import SetNewPassword from './components/pages/set-new-pw/Set-new-password'
-import PageNotFound from './components/pages/PageNotFound/Page-not-found'
-import Signup from './components/pages/signup-page/Signup'
+import Router from './routes/index'
+import headers from './utils/headers'
+import serverUrl from './utils/serverUrl'
+import loginQuery from './graphql/login'
+import signupQuery from './graphql/create-user'
 import * as Contexts from './utils/contexts'
-import './App.css'
+import './styles/App.css'
 
 
 export default class App extends React.Component{
@@ -75,54 +73,34 @@ export default class App extends React.Component{
   loginHandler = (email, password, cb) => {
     this.setState({loading: true})
 
-    const headers = new Headers()
-    headers.set('content-type', 'application/json')
-
-    const graphqlQuery = {
-      query: `
-        query Login($email: String!, $password: String!){
-          login(email: $email, password: $password) {
-            token
-            userId
-            firstname
-          }
-        }
-      `,
-      variables: {
-        email: email,
-        password: password
-      }
-    }
-
-    fetch('https://toodoodooapi.herokuapp.com/graphql', {
+    fetch(serverUrl, {
       signal: this.abortController.signal,
       method: 'Post',
       headers: headers,
-      body: JSON.stringify(graphqlQuery)
+      body: JSON.stringify(loginQuery(email, password))
     })
       .then(res => res.json())
       .then(res => {
         if(res.errors) throw new Error(res.errors[0].message)
         window.location.pathname = '/'
         cb()
+        const { userId, token, firstname } = res.data.login
         this.setState({
-          userId: res.data.login.userId,
-          token: res.data.login.token,
-          firstname: res.data.login.firstname,
+          userId: userId,
+          token: token, 
+          firstname: firstname,
           isAuth: true,
           loading: false
         })
-        window.localStorage.setItem('token', res.data.login.token)
-        window.localStorage.setItem('userId', res.data.login.userId)
-        window.localStorage.setItem('firstname', res.data.login.firstname)
-        //the token expires after 3 days
+        window.localStorage.setItem('token', token)
+        window.localStorage.setItem('userId', userId)
+        window.localStorage.setItem('firstname', firstname)
         const expiryDate = new Date(
           new Date().getTime() + 3 * 24 * 60 * 60 * 1000
         )
         window.localStorage.setItem('expiryDate', expiryDate.toISOString())
       })
       .catch(err => {
-        //will be removed in the future
         this.setState({
           error: err.message,
           loading: false
@@ -134,37 +112,18 @@ export default class App extends React.Component{
   signupHandler = (data) => {
     this.setState({loading: true})
 
-    const headers = new Headers()
-    headers.set('content-type', 'application/json')
-
-    const graphqlQuery = {
-      query: `
-        mutation CreateUser($data: CreateUserInputData!) {
-          createUser(userInput: $data) 
-        }
-      `,
-      variables: {
-        data: data
-      }
-    }
-
-    fetch('https://toodoodooapi.herokuapp.com/graphql', {
+    fetch(serverUrl, {
       signal: this.abortController.signal,
       method: 'POST',
       headers: headers,
-      body: JSON.stringify(graphqlQuery)
+      body: JSON.stringify(signupQuery(data))
     })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       if(res.errors) throw new Error(res.errors[0].message)
       this.setState({ loading: false })
     })
     .catch(err => {
-      //
-      //   !!!!!
-      //
-      console.log(err)
       this.setState({
         error: err.message,
         loading: false
@@ -175,7 +134,6 @@ export default class App extends React.Component{
   toggleTheme = () => {
     this.setState({brightTheme: !this.state.brightTheme})
     window.localStorage.setItem('theme', !this.state.brightTheme)
-    //because setState sets state asyncronously, but the code here runs syncronously
     !this.state.brightTheme 
       ? document.body.style.backgroundColor = '#fff'
       : document.body.style.backgroundColor = '#232323'
@@ -197,27 +155,7 @@ export default class App extends React.Component{
                       <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
                         <Contexts.SignupHandlerContext.Provider value={this.signupHandler}>
                           <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
-                            <Router>
-                              <Switch>
-                                <Route exact path="/" render={_ => <MainPage isAuth={this.state.isAuth}/>}/>
-                                <Route 
-                                  path="/login" 
-                                  render={_ => this.state.isAuth ? window.location.pathname = '/' : <LoginPage/>}/>
-                                <Route
-                                  path='/create-account'
-                                  render={_ => this.state.isAuth ? window.location.pathname = '/' : <Signup/>}
-                                />
-                                <Route 
-                                  path="/password-reset" 
-                                  render={_ => this.state.isAuth ? <PageNotFound/> : <ResetPassword/>}
-                                />
-                                <Route 
-                                  path="/resetpassword/:token" 
-                                  render={_ => this.state.isAuth ? <PageNotFound/> : <SetNewPassword/>}  
-                                />
-                                <Route path="*" render={_ => <PageNotFound/>}/>
-                              </Switch>
-                            </Router>
+                            <Router isAuth={this.state.isAuth}/>
                           </Contexts.ToggleThemeContext.Provider>
                         </Contexts.SignupHandlerContext.Provider>
                       </Contexts.LoginHandlerContext.Provider>

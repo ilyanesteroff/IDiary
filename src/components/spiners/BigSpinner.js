@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrightThemeContext } from '../../utils/contexts'
-import './spinners.css'
 
 export default _ => (
   <BrightThemeContext.Consumer>

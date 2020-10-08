@@ -1,6 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import './styles/App.css'
+import './styles/forms.css'
+import './styles/landing-page.css'
+import './styles/logo.css'
+import './styles/main-unit.css'
+import './styles/navbar.css'
+import './styles/page-not-found.css'
+import './styles/portal-menu.css'
+import './styles/signup.css'
+import './styles/theme-toggler.css'
+import './styles/spinners.css'
 
 ReactDOM.render(
   <React.StrictMode>

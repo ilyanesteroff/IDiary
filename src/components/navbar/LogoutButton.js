@@ -5,10 +5,8 @@ import {
   BrightThemeContext,
   LogoutHandlerContext
 } from '../../utils/contexts'
-import './navbar.css'
-import './portal-menu.css'
 
-export const LogoutButton = ({sideMenu}) => 
+export default ({sideMenu}) => 
   <BrightThemeContext.Consumer>
     {theme => 
       <LogoutHandlerContext.Consumer>
