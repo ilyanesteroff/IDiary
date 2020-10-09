@@ -1,13 +1,9 @@
-import validator from 'validator'
 import query from '../../graphql/check-email-and-username'
 import serverUrl from '../../utils/serverUrl'
 import headers from '../../utils/headers'
 
-export default (val, isEmail) => {
-  if(isEmail)
-    if(!validator.isEmail(val)) return false
-  
-  return fetch(serverUrl, {
+export default (val, isEmail) => 
+  fetch(serverUrl, {
       method: 'POST',
       headers: headers,
       body: JSON.stringify(query(isEmail, val))
@@ -18,5 +14,5 @@ export default (val, isEmail) => {
     .catch(err => {
       return false
     })
-} 
+
   

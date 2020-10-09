@@ -2,15 +2,20 @@ import React, { forwardRef } from 'react'
 import { string, bool } from 'prop-types'
 
 const input = forwardRef((props, ref) => {
-  console.log(props.required)
   return(
     <div>
-      <p>{'Your ' + props.placeholder}</p>
+      <p>
+        {'Your ' + props.placeholder}
+        {props.required &&
+          <span className="requiredField">
+            *
+          </span>
+        }
+      </p>
       <input 
         type="text"
         placeholder={props.placeholder}
         ref={ref}
-        onFocus={_ => console.log(props.required)}
       />
     </div>
   )

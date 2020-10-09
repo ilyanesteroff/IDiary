@@ -1,6 +1,13 @@
 import React, { forwardRef } from 'react'
-import { string } from 'prop-types'
 
-const Checkbox = forwardRef((props, ref) => {
-  
+export default forwardRef((props, ref) => {
+  return (
+    <div id="CheckboxUnit">
+      <input
+        type="checkbox"
+        ref={ref}
+      />
+      {props.children}
+    </div>
+  )
 })

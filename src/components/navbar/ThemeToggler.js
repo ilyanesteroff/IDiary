@@ -3,7 +3,7 @@ import {
   BrightThemeContext, 
   ToggleThemeContext 
 } from '../../utils/contexts'
-
+import Toggler from '../controls/Toogler'
 
 export default _ => {
   return(
@@ -12,14 +12,10 @@ export default _ => {
         <BrightThemeContext.Consumer>
           {theme => 
             <div id="ThemeToggler">
-              <label className="switch">
-                <input 
-                  type="checkbox" 
-                  checked={theme} 
-                  onChange={toggle}
-                />
-                <span className="slider round"></span>
-              </label>
+              <Toggler 
+                checked={theme}
+                onChange={toggle}
+              />
             </div>
           }
         </BrightThemeContext.Consumer>

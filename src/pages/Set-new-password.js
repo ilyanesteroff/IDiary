@@ -19,7 +19,7 @@ export default _ => {
   })
   
   useEffect(_ => {
-    checkForReset()
+    checkForReset.current()
     return _ => controller.abort()
   }, [controller])
 

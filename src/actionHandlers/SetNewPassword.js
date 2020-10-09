@@ -1,4 +1,4 @@
-import passwordValidator from '../utils/validatePasswords'
+import passwordValidator from '../validators/validatePassword'
 import resetPassword from '../api/resetpassword/set-new-password'
 import { tokenFromUrl as token } from '../utils/tokens'
 

@@ -1,45 +1,90 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext, useState } from 'react'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
 import InputField from '../components/FormComponents/InputField'
+import Checkbox from '../components/FormComponents/Checkbox'
+import { ErrorContext } from '../utils/contexts'
+import useSignupFormRefs from '../hooks/useSignupForm'
+import DoneMessage from '../components/FormComponents/DoneMessage'
+import signupHandler from '../actionHandlers/SignupForm'
 
 
 export default ({theme}) => {
-  const email = useRef(null)
-  const password1 = useRef(null)
-  const password2 = useRef(null)
-  const firstname = useRef(null)
-  const lastname = useRef(null)
-  const username = useRef(null)
-  //const publicProf = useRef(null)
-  //const accept = useRef(null)
+  const [userCreated, setUserCreated] = useState(false)
+  const [submiting, setSubmiting] = useState(false)
 
-  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm`
+  const Error = _ => useContext(ErrorContext)
+
+  const setError = useRef(Error().setError)
+
+  const [refs] = useSignupFormRefs()
+
+  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
 
   return (
     <form className={formClassName}>
-      <ComplainLog/>
-      <div id="names">
-        <InputField placeholder="Firstname" ref={firstname} required/>
-        <InputField placeholder="Lastname" ref={lastname} required/>
-      </div>
-      <InputField placeholder="Username" ref={username} required/>
-      <p>Your Email address</p>
-      <Email ref={email}/>
-      <p>Password</p>
-      <Password ref={password1}/>
-      <p>Password repeat</p>
-      <Password ref={password2}/>
-      <input 
-        type="checkbox" 
-        id="publicProfile"
-      />
-      <input
-        type="checkbox" 
-        id="Agreement"
-      />
-      <button>Submit</button>
+      {userCreated
+      ? <DoneMessage>
+          Check your email
+        </DoneMessage>
+      : <>
+          <ComplainLog/>
+          <InputField placeholder="Firstname" ref={refs.firstname} required/>
+          <InputField placeholder="Lastname" ref={refs.lastname} required/>
+          <InputField placeholder="Username" ref={refs.username} required/>
+          <p>
+            Your Email address
+            <span className="requiredField">*</span>
+          </p>
+          <Email ref={refs.email}/>
+          <p>
+            Password
+            <span className="requiredField">*</span>
+          </p>
+          <Password ref={refs.password1}/>
+          <p>
+            Password repeat
+            <span className="requiredField">*</span>
+          </p>
+          <Password ref={refs.password2}/>
+          <div>
+            <Checkbox ref={refs.publicProf}> 
+              <p>
+                Your profile is public
+              </p>
+            </Checkbox>
+            <Checkbox ref={refs.accept}>
+              <p>
+                Agree with all of the polices
+                <span className="requiredField">*</span>
+              </p>
+            </Checkbox>
+          </div>
+          <p className="Lowest-warning">
+            Fields marked with 
+            <span className="requiredField">{' * '}</span>
+            are required
+          </p>
+          <button
+            onClick={e => {
+              e.preventDefault()
+              signupHandler({
+                email: refs.email.current.value,
+                password1: refs.password1.current.value,
+                password2: refs.password2.current.value,
+                username: refs.username.current.value,
+                firstname: refs.firstname.current.value,
+                lastname: refs.lastname.current.value,
+                accept: refs.accept.current.checked,
+                public: refs.publicProf.current.checked,
+              }, setError.current, setUserCreated, setSubmiting)
+            }}
+          >
+            Submit
+          </button>
+        </>
+      }
     </form>
   )
 }
