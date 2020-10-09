@@ -12,16 +12,13 @@ export default _ => {
   const [ checked, setChecked ] = useState(false)
   const [ actual, setActual ] = useState(false)
 
-  const checkForReset = useRef(async _ => {
-    const verdict = await checkIfResetPwIsActual(token.current, controller.signal)
-    setActual(verdict)
-    setTimeout(_ => setChecked(true), 2000)
-  })
-  
+  const _controller = useRef(controller)
+  const abort = _controller.current.abort
+
   useEffect(_ => {
-    checkForReset.current()
-    return _ => controller.abort()
-  }, [controller])
+    checkIfResetPwIsActual(token, _controller.current.signal, setChecked, setActual)
+    return _ => abort()
+  }, [abort])
 
   return (
     <>

@@ -10,6 +10,7 @@ export default forwardRef((props, ref) => {
   const togglePw = _ => setRevealPw(!revealPw) 
     
   const setPw = event => {
+    event.target.value = event.target.value.trim()
     setPassword(event.target.value)
     if(password.length === 0) setRevealPw(false)
   }

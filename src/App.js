@@ -3,7 +3,8 @@ import Router from './routes/index'
 import headers from './utils/headers'
 import serverUrl from './utils/serverUrl'
 import loginQuery from './graphql/login'
-import signupQuery from './graphql/create-user'
+import requestEmailAcceptation from './api/acceptEmail'
+import clearStorages from './utils/clearStorages'
 import * as Contexts from './utils/contexts'
 import './styles/App.css'
 
@@ -22,9 +23,9 @@ export default class App extends React.Component{
   abortController = new AbortController()
 
   componentDidMount() {
-    const token = localStorage.getItem('token')
-    const expiryDate = localStorage.getItem('expiryDate')
-    const firstname = localStorage.getItem('firstname')
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+    const firstname = localStorage.getItem('firstname') || sessionStorage.getItem('firstname')
+    const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId')
     const theme = localStorage.getItem('theme')
     if(theme === 'true') this.setState({brightTheme: true})
     else {
@@ -32,16 +33,9 @@ export default class App extends React.Component{
       document.body.style.backgroundColor = '#232323'
     }
     if(!theme) window.localStorage.setItem('theme', this.state.brightTheme)
-    if (!token || !expiryDate || !theme || !firstname ) {
+    if (!token || !theme || !firstname || !userId) {
       return
     }
-    if (new Date(expiryDate) <= new Date()) {
-      this.logoutHandler()
-      return
-    }
-    const userId = localStorage.getItem('userId')
-    //const remainingMilliseconds =
-      //new Date(expiryDate).getTime() - new Date().getTime()
     this.setState({ 
       isAuth: true, 
       token: token, 
@@ -64,13 +58,10 @@ export default class App extends React.Component{
         firstname: null
       }
     )
-    localStorage.removeItem('token')
-    localStorage.removeItem('expiryDate')
-    localStorage.removeItem('userId')
-    localStorage.removeItem('firstname')
+    clearStorages()
   }
 
-  loginHandler = (email, password, cb) => {
+  loginHandler = (email, password, session, cb) => {
     this.setState({loading: true})
 
     fetch(serverUrl, {
@@ -92,13 +83,15 @@ export default class App extends React.Component{
           isAuth: true,
           loading: false
         })
-        window.localStorage.setItem('token', token)
-        window.localStorage.setItem('userId', userId)
-        window.localStorage.setItem('firstname', firstname)
-        const expiryDate = new Date(
-          new Date().getTime() + 3 * 24 * 60 * 60 * 1000
-        )
-        window.localStorage.setItem('expiryDate', expiryDate.toISOString())
+        if(session) {
+          window.sessionStorage.setItem('token', token)
+          window.sessionStorage.setItem('userId', userId)
+          window.sessionStorage.setItem('firstname', firstname)
+        } else {
+          window.localStorage.setItem('token', token)
+          window.localStorage.setItem('userId', userId)
+          window.localStorage.setItem('firstname', firstname)
+        }
       })
       .catch(err => {
         this.setState({
@@ -109,26 +102,32 @@ export default class App extends React.Component{
       })
   }
 
-  signupHandler = (data) => {
-    this.setState({loading: true})
-
-    fetch(serverUrl, {
-      signal: this.abortController.signal,
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(signupQuery(data))
-    })
-    .then(res => res.json())
-    .then(res => {
-      if(res.errors) throw new Error(res.errors[0].message)
-      this.setState({ loading: false })
-    })
-    .catch(err => {
-      this.setState({
-        error: err.message,
-        loading: false
+  acceptEmailHandler = (token, failureCb) => {
+    requestEmailAcceptation(token, this.abortController.signal)
+      .then(res => res.json())
+      .then(res => {
+        if(res.errors) throw new Error(res.errors[0].message)
+        clearStorages()
+        const { userId, token, firstname } = res.data.acceptEmail
+        this.setState({
+          userId: userId,
+          token: token, 
+          firstname: firstname,
+          isAuth: true,
+          loading: false
+        })
+        window.localStorage.setItem('token', token)
+        window.localStorage.setItem('userId', userId)
+        window.localStorage.setItem('firstname', firstname)
+        window.location.pathname = '/'
       })
-    })
+      .catch(err => {
+        this.setState({
+          error: err.message,
+          loading: false
+        })
+        failureCb()
+      })
   }
   
   toggleTheme = () => {
@@ -153,11 +152,11 @@ export default class App extends React.Component{
                   <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
                     <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
                       <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
-                        <Contexts.SignupHandlerContext.Provider value={this.signupHandler}>
-                          <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
+                        <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
+                          <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
                             <Router isAuth={this.state.isAuth}/>
-                          </Contexts.ToggleThemeContext.Provider>
-                        </Contexts.SignupHandlerContext.Provider>
+                          </Contexts.AcceptEmailContext.Provider>
+                        </Contexts.ToggleThemeContext.Provider>
                       </Contexts.LoginHandlerContext.Provider>
                     </Contexts.LogoutHandlerContext.Provider>
                   </Contexts.IsAuthContext.Provider>

@@ -10,7 +10,7 @@ export default _ => {
   const timeToShow = 2000
   
   let updateStuff = _ => 
-    stuffToShow === options.length - 1
+    stuffToShow === options.current.length - 1
       ? setStuffToShow(0)
       : setStuffToShow(stuffToShow + 1)
 

@@ -6,6 +6,7 @@ import ResetPassword from '../pages/Reset-password-page'
 import SetNewPassword from '../pages/Set-new-password'
 import PageNotFound from '../pages/Page-not-found'
 import Signup from '../pages/Signup'
+import AcceptEmail from '../pages/AcceptEmail'
 
 export default ({isAuth}) => (
   <Router>
@@ -25,6 +26,10 @@ export default ({isAuth}) => (
       <Route 
         path="/resetpassword/:token" 
         render={_ => isAuth ? <PageNotFound/> : <SetNewPassword/>}  
+      />
+      <Route
+        path="/acceptemail/:token"
+        render={_ => <AcceptEmail/>}
       />
       <Route path="*" render={_ => <PageNotFound/>}/>
     </Switch>

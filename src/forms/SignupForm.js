@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from 'react'
+import React, { useRef, useContext, useState, useEffect } from 'react'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
@@ -11,6 +11,7 @@ import signupHandler from '../actionHandlers/SignupForm'
 
 
 export default ({theme}) => {
+  const controller = new AbortController()
   const [userCreated, setUserCreated] = useState(false)
   const [submiting, setSubmiting] = useState(false)
 
@@ -19,20 +20,32 @@ export default ({theme}) => {
   const setError = useRef(Error().setError)
 
   const [refs] = useSignupFormRefs()
+  //fix controllers
+  useEffect(_ => {
+    return _ => { 
+      console.log('aborted')
+      controller.abort()
+    }
+  })
 
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
 
   return (
     <form className={formClassName}>
       {userCreated
-      ? <DoneMessage>
+      ? <DoneMessage theme={theme}>
           Check your email
         </DoneMessage>
       : <>
           <ComplainLog/>
           <InputField placeholder="Firstname" ref={refs.firstname} required/>
           <InputField placeholder="Lastname" ref={refs.lastname} required/>
-          <InputField placeholder="Username" ref={refs.username} required/>
+          <InputField 
+            placeholder="Username" 
+            ref={refs.username} 
+            required 
+            strictLowerCase
+          />
           <p>
             Your Email address
             <span className="requiredField">*</span>
@@ -78,7 +91,7 @@ export default ({theme}) => {
                 lastname: refs.lastname.current.value,
                 accept: refs.accept.current.checked,
                 public: refs.publicProf.current.checked,
-              }, setError.current, setUserCreated, setSubmiting)
+              }, setError.current, setUserCreated, setSubmiting, controller.signal)
             }}
           >
             Submit

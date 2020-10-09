@@ -2,14 +2,15 @@ import query from '../../graphql/request-password-reset'
 import headers from '../../utils/headers'
 import serverUrl from '../../utils/serverUrl'
 
-export default email => 
+export default (email, signal) => 
   fetch(serverUrl, {
     body: JSON.stringify(query(email)),
     headers: headers,
-    method: 'POST'
+    method: 'POST',
+    signal: signal
   })
     .then(res => res.json())
     .then(_ => true)
-    .catch(_ => {
+    .catch(err => {
       return false
     })

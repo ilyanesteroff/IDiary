@@ -4,6 +4,7 @@ import { LoginHandlerContext } from '../utils/contexts'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
+import Checkbox from '../components/FormComponents/Checkbox'
 import handleClick from '../actionHandlers/LoginForm'
 
 
@@ -12,6 +13,7 @@ export default ({theme}) => {
 
   const password = useRef(null)
   const email = useRef(null)
+  const session = useRef(null)
   const setError = useRef(Error().setError)
 
   const [submiting, setSubmiting] = useState(false)  
@@ -23,13 +25,17 @@ export default ({theme}) => {
       <ComplainLog/>
       <Email ref={email}/>
       <Password ref={password}/>
-      <LoginHandlerContext.Consumer>
+      <Checkbox ref={session}>
+        <p>Logout when browser closes</p>
+      </Checkbox>
+      <LoginHandlerContext.Consumer> 
         {loginHandler => 
           <button onClick={(e) => 
             handleClick(
               e,
               email.current.value,
               password.current.value,
+              session.current.checked,
               loginHandler,
               setSubmiting,
               setError.current

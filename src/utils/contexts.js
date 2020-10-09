@@ -29,7 +29,7 @@ export const LogoutHandlerContext = createContext(_ => {})
 
 export const LoginHandlerContext = createContext(_ => {})
 
-export const SignupHandlerContext = createContext(_ => {})
+export const AcceptEmailContext = createContext(_ => {})
 
 export const ToggleThemeContext = createContext(_ => {}) 
 
