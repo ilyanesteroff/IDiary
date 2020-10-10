@@ -6,7 +6,7 @@ import resetPaswordHandler from '../actionHandlers/ResetPassword'
 import { ErrorContext } from '../utils/contexts'
 
 
-export default memo(({theme, signal}) => {
+export default memo(({theme}) => {
   const Error = _ => useContext(ErrorContext)
 
   const [ mailSent, setMailSent ] = useState(false)
@@ -36,8 +36,7 @@ export default memo(({theme, signal}) => {
                   email.current.value, 
                   setSubmiting, 
                   setMailSent,
-                  setError.current,
-                  signal
+                  setError.current
                 )
               }
             >

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import Spinner from '../components/spiners/BigSpinner'
 import InactiveLink from '../components/FormComponents/InactiveLink'
 import ResetPasswordForm from '../forms/SetNewPassword'
@@ -8,17 +8,12 @@ import { tokenFromUrl as token } from '../utils/tokens'
 
 export default memo(_ => {
   document.title = 'TooDooDoo - Set new password'
-  const controller = new AbortController()
   const [ checked, setChecked ] = useState(false)
   const [ actual, setActual ] = useState(false)
 
-  const _controller = useRef(controller)
-  const abort = _controller.current.abort
-
   useEffect(_ => {
-    checkIfResetPwIsActual(token, _controller.current.signal, setChecked, setActual)
-    return _ => abort()
-  }, [abort])
+    checkIfResetPwIsActual(token, setChecked, setActual)
+  }, [])
 
   return (
     <>
@@ -32,7 +27,6 @@ export default memo(_ => {
                 </h1>
                 <ResetPasswordForm 
                   theme={theme}
-                  signal={controller.signal}
                 />
               </div>
             }

@@ -10,7 +10,7 @@ import DoneMessage from '../components/FormComponents/DoneMessage'
 import signupHandler from '../actionHandlers/SignupForm'
 
 
-export default memo(({theme, signal}) => {
+export default memo(({theme}) => {
   const [userCreated, setUserCreated] = useState(false)
   const [submiting, setSubmiting] = useState(false)
 
@@ -83,7 +83,7 @@ export default memo(({theme, signal}) => {
                 lastname: refs.lastname.current.value,
                 accept: refs.accept.current.checked,
                 public: refs.publicProf.current.checked,
-              }, setError.current, setUserCreated, setSubmiting, signal)
+              }, setError.current, setUserCreated, setSubmiting)
             }}
           >
             Submit
