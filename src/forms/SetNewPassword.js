@@ -1,10 +1,10 @@
-import React, { useState, useRef, useContext } from 'react'
+import React, { useState, useRef, useContext, memo } from 'react'
 import Password from '../components/FormComponents/Password'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import setNewPassword from '../actionHandlers/SetNewPassword'
 import { ErrorContext } from '../utils/contexts'
 
-export default ({theme, signal}) => {
+export default memo(({theme}) => {
   const Error = _ => useContext(ErrorContext)
 
   const [ errorResetingPw, setErrorResetingPw ] = useState(false)
@@ -30,7 +30,6 @@ export default ({theme, signal}) => {
               password2.current.value,
               setErrorResetingPw,
               setSubmiting,
-              signal,
               setError.current
             )
           }>Reset</button>
@@ -38,4 +37,4 @@ export default ({theme, signal}) => {
       }
     </form>
   )
-}
+})

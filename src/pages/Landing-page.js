@@ -1,8 +1,8 @@
-import React from 'react'
+import React, {memo} from 'react'
 import Navbar from '../components/navbar/index'
 import { ViewForVisitors } from '../components/mainsection/Main-Unit'
 
-export default ({isAuth}) => {
+export default memo(({isAuth}) => {
   return (
     <>
       <Navbar/>
@@ -11,4 +11,4 @@ export default ({isAuth}) => {
       }
     </>
   )
-}
+})

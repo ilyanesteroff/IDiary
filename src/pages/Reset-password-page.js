@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect, memo } from 'react'
 import Navbar from '../components/navbar/index'
 import { BrightThemeContext } from '../utils/contexts'
 import RequestPasswordResetForm from '../forms/RequestPasswordResetForm'
 
 
-export default _ => {
+export default memo(_ => {
+  const controller = new AbortController()
   document.title = 'TooDooDoo - Request password reset'
+
+  useEffect(_ => controller.abort())
 
   return (
     <>
@@ -19,10 +22,10 @@ export default _ => {
             >
               Request password reset
             </h2>
-            <RequestPasswordResetForm theme={theme}/>
+            <RequestPasswordResetForm theme={theme} signal={controller.signal}/>
           </div>
         }
       </BrightThemeContext.Consumer>
     </>
   )
-}
+})

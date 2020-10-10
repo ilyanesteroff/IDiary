@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {memo} from 'react'
 import { BrightThemeContext } from '../utils/contexts'
 import Navbar from '../components/navbar/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 
-export default _ => {
+export default memo(_ => {
   document.title = 'Page Not Found'
   return (
     <BrightThemeContext.Consumer>
@@ -32,4 +32,4 @@ export default _ => {
       }
     </BrightThemeContext.Consumer>
   )
-}
+})

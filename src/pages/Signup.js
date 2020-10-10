@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect, memo } from 'react'
 import Navbar from '../components/navbar/index'
 import SignupForm from '../forms/SignupForm'
 import { BrightThemeContext } from '../utils/contexts'
 
-export default _ => {
+export default memo(_ => {
   document.title = 'TooDooDoo - Create account'
+  let controller = new AbortController()
+
+  useEffect(_ => controller.abort())
+
   return(
     <BrightThemeContext.Consumer>
       {theme =>
@@ -17,10 +21,10 @@ export default _ => {
             >
               Create your account
             </h1>
-            <SignupForm theme={theme}/>
+            <SignupForm theme={theme} signal={controller.signal}/>
           </div>
         </>
       }
     </BrightThemeContext.Consumer>
   )
-}
+})

@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState, useEffect } from 'react'
+import React, { useRef, useContext, useState, memo } from 'react'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
@@ -10,8 +10,7 @@ import DoneMessage from '../components/FormComponents/DoneMessage'
 import signupHandler from '../actionHandlers/SignupForm'
 
 
-export default ({theme}) => {
-  const controller = new AbortController()
+export default memo(({theme, signal}) => {
   const [userCreated, setUserCreated] = useState(false)
   const [submiting, setSubmiting] = useState(false)
 
@@ -20,13 +19,6 @@ export default ({theme}) => {
   const setError = useRef(Error().setError)
 
   const [refs] = useSignupFormRefs()
-  //fix controllers
-  useEffect(_ => {
-    return _ => { 
-      console.log('aborted')
-      controller.abort()
-    }
-  })
 
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
 
@@ -91,7 +83,7 @@ export default ({theme}) => {
                 lastname: refs.lastname.current.value,
                 accept: refs.accept.current.checked,
                 public: refs.publicProf.current.checked,
-              }, setError.current, setUserCreated, setSubmiting, controller.signal)
+              }, setError.current, setUserCreated, setSubmiting, signal)
             }}
           >
             Submit
@@ -100,4 +92,4 @@ export default ({theme}) => {
       }
     </form>
   )
-}
+})

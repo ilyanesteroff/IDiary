@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {memo} from 'react'
 import Navbar from '../components/navbar/index'
 import LoginForm from '../forms/LoginForm'
 import { BrightThemeContext } from '../utils/contexts'
 
 
-export default _ => {  
+export default memo(_ => {  
   document.title = 'TooDooDoo - Login'
 
   return(    
@@ -24,4 +24,4 @@ export default _ => {
       </div>
     </>
   )
-}
+})

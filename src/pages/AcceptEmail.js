@@ -1,10 +1,11 @@
-import React, { useContext, useRef, useState, useEffect } from 'react'
+import React, { useContext, useRef, useState, useEffect, memo } from 'react'
 import { tokenFromUrl as token } from '../utils/tokens'
 import { AcceptEmailContext } from '../utils/contexts'
 import PageNotFound from './Page-not-found'
 import Spinner from '../components/spiners/BigSpinner'
 
-export default _ => {
+
+export default memo(_ => {
   const AcceptEmail = _ => useContext(AcceptEmailContext)
   const [ checked, setChecked ] = useState(false)
   const [ valid, setValid ] = useState(false)
@@ -26,4 +27,4 @@ export default _ => {
      {!checked && <Spinner/>}
     </>
   )
-}
+})

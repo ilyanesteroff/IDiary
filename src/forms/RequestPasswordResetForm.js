@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useEffect } from 'react'
+import React, { useState, useRef, useContext, memo } from 'react'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import DoneMessage from '../components/FormComponents/DoneMessage'
@@ -6,8 +6,7 @@ import resetPaswordHandler from '../actionHandlers/ResetPassword'
 import { ErrorContext } from '../utils/contexts'
 
 
-export default ({theme}) => {
-  const controller = new AbortController()
+export default memo(({theme, signal}) => {
   const Error = _ => useContext(ErrorContext)
 
   const [ mailSent, setMailSent ] = useState(false)
@@ -15,8 +14,6 @@ export default ({theme}) => {
 
   const setError = useRef(Error().setError)
   const email = useRef(null)
-
-  useEffect(_ => controller.abort())
 
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
   
@@ -40,7 +37,7 @@ export default ({theme}) => {
                   setSubmiting, 
                   setMailSent,
                   setError.current,
-                  controller.signal
+                  signal
                 )
               }
             >
@@ -52,4 +49,4 @@ export default ({theme}) => {
       }
     </form>
   )
-}
+})

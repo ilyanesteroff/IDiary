@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react'
+import React, { useRef, useState, useContext, memo } from 'react'
 import { ErrorContext } from '../utils/contexts'
 import { LoginHandlerContext } from '../utils/contexts'
 import ComplainLog from '../components/FormComponents/ComplainLog'
@@ -8,7 +8,7 @@ import Checkbox from '../components/FormComponents/Checkbox'
 import handleClick from '../actionHandlers/LoginForm'
 
 
-export default ({theme}) => {
+export default memo(({theme}) => {
   const Error = _ => useContext(ErrorContext)
 
   const password = useRef(null)
@@ -50,5 +50,5 @@ export default ({theme}) => {
       <a id="buttonLikeAnchor" href="/create-user">Create account</a>
     </form>
   )
-}
+})
   
