@@ -11,7 +11,7 @@ export default memo(_ => {
       {theme =>
         <>
           <Navbar/>
-          <div className="formPage">
+          <div className="signupFormPage">
             <h1
               id="headline"
               className={`${theme ? 'Bright' : 'Dark'}Headline`}

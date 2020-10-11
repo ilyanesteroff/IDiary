@@ -12,6 +12,7 @@ import './styles/portal-menu.css'
 import './styles/signup.css'
 import './styles/theme-toggler.css'
 import './styles/spinners.css'
+import './styles/pages.css'
 
 ReactDOM.render(
   <React.StrictMode>

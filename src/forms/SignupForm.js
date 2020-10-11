@@ -23,73 +23,60 @@ export default memo(({theme}) => {
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
 
   return (
-    <form className={formClassName}>
-      {userCreated
-      ? <DoneMessage theme={theme}>
-          Check your email
-        </DoneMessage>
-      : <>
-          <ComplainLog/>
-          <InputField placeholder="Firstname" ref={refs.firstname} required/>
-          <InputField placeholder="Lastname" ref={refs.lastname} required/>
-          <InputField 
-            placeholder="Username" 
-            ref={refs.username} 
-            required 
-            strictLowerCase
-          />
-          <p>
-            Your Email address
-            <span className="requiredField">*</span>
-          </p>
-          <Email ref={refs.email}/>
-          <p>
-            Password
-            <span className="requiredField">*</span>
-          </p>
-          <Password ref={refs.password1}/>
-          <p>
-            Password repeat
-            <span className="requiredField">*</span>
-          </p>
-          <Password ref={refs.password2}/>
-          <div>
-            <Checkbox ref={refs.publicProf}> 
-              <p>
-                Your profile is public
-              </p>
-            </Checkbox>
-            <Checkbox ref={refs.accept}>
-              <p>
-                Agree with all of the polices
-                <span className="requiredField">*</span>
-              </p>
-            </Checkbox>
-          </div>
-          <p className="Lowest-warning">
-            Fields marked with 
-            <span className="requiredField">{' * '}</span>
-            are required
-          </p>
-          <button
-            onClick={e => {
-              e.preventDefault()
-              signupHandler({
-                email: refs.email.current.value,
-                password1: refs.password1.current.value,
-                password2: refs.password2.current.value,
-                username: refs.username.current.value,
-                firstname: refs.firstname.current.value,
-                lastname: refs.lastname.current.value,
-                accept: refs.accept.current.checked,
-                public: refs.publicProf.current.checked,
-              }, setError.current, setUserCreated, setSubmiting)
-            }}
-          >
-            Submit
-          </button>
-        </>
-      }
-    </form>
+    <>  
+      <form className={formClassName}>
+          {userCreated
+        ? <DoneMessage theme={theme}>
+            Check your email
+          </DoneMessage>
+        : <>
+            <ComplainLog/>
+            <div className="SignupFields">
+              <InputField placeholder="Firstname" ref={refs.firstname} required signup name/>
+              <InputField placeholder="Lastname" ref={refs.lastname} required signup name/>
+              <InputField placeholder="Username" ref={refs.username} required signup username strictLowerCase/>
+              <Email ref={refs.email} signup label="Your email address"/>
+              <Password ref={refs.password1} signup label="Password"/>
+              <Password ref={refs.password2} signup label="Password repeat"/>
+            </div>
+            <div>
+              <Checkbox ref={refs.publicProf}> 
+                <p className="InputLabel">
+                  Your profile is public
+                </p>
+              </Checkbox>
+              <Checkbox ref={refs.accept}>
+                <p className="InputLabel">
+                  Agree with all of the polices
+                  <span className="requiredField">*</span>
+                </p>
+              </Checkbox>
+            </div>
+            <button
+              onClick={e => {
+                e.preventDefault()
+                signupHandler({
+                  email: refs.email.current.value,
+                  password1: refs.password1.current.value,
+                  password2: refs.password2.current.value,
+                  username: refs.username.current.value,
+                  firstname: refs.firstname.current.value,
+                  lastname: refs.lastname.current.value,
+                  accept: refs.accept.current.checked,
+                  public: refs.publicProf.current.checked,
+                }, setError.current, setUserCreated, setSubmiting)
+              }}
+            >
+             Submit
+             </button>
+          </>
+        }
+      </form>
+      <p className="Lowest-warning">
+        Fields marked with 
+        <span className="requiredField">{' * '}</span>
+        are required
+      </p>
+    </>
   )
 })

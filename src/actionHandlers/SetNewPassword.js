@@ -6,7 +6,9 @@ export default async (e, password1, password2, setErrorResetingPw, setSubmiting,
   e.preventDefault()
   setSubmiting(true)
   setError('')
+  console.log(password1, password2)
   const verdict = passwordValidator(password1, password2, setError)
+  console.log(verdict)
   if(verdict) {
     const resetPw = await resetPassword(token, password1)
     if(!resetPw) {

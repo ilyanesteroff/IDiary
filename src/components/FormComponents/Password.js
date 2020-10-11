@@ -1,7 +1,7 @@
 import React, { useState, forwardRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
-
+import InputLabel from './InputLabel'
 
 export default forwardRef((props, ref) => {
   const [revealPw, setRevealPw] = useState(false)
@@ -17,6 +17,9 @@ export default forwardRef((props, ref) => {
     
   return (
     <div id="pwField">
+      {props.signup &&
+        <InputLabel required label={props.label}/>
+      }
       <input 
         type={revealPw? 'test' : 'password'} 
         onChange={setPw}

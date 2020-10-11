@@ -26,7 +26,7 @@ export default memo(({theme}) => {
       <Email ref={email}/>
       <Password ref={password}/>
       <Checkbox ref={session}>
-        <p>Logout when browser closes</p>
+        <p className="InputLabel">Logout when browser closes</p>
       </Checkbox>
       <LoginHandlerContext.Consumer> 
         {loginHandler => 

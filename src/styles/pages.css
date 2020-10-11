@@ -1,0 +1,6 @@
+/*Common rules for all pages*/
+
+
+.formPage, .signupFormPage{
+  padding-top: 10vh;
+}
