@@ -1,72 +1,33 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, { useState, useEffect, useContext, useRef, memo } from 'react'
 import Navbar from '../components/navbar/index'
 import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/AddTodoBtn'
-import { TokenContext, BrightThemeContext } from '../utils/contexts'
-import FetchTodos from '../api/todos/fetch-todos'
-import FetchTodoStats from '../api/todos/fetch-todo-stats'
+import { TokenContext, BrightThemeContext, ErrorContext } from '../utils/contexts'
+import useTodoLoader from '../hooks/useTodoLoader'
+import TodoStats from '../components/todos/TodoStats'
+import Todo from '../components/todos/Todo'
 
 
-export default _ => {
+export default memo(_ => {
   document.title = 'TooDooDoo - Your Todos'
-  const [mounted, setMounted] = useState(false)
-  const [fullfilledTodos, setFullfilledTodos] = useState(null)
-  const [activeTodos, setActiveTodos] = useState(null)
   const [page, setPage] = useState(1)
-  const [todos, setTodos] = useState([])
-  const [loadingTodos, setLoadingTodos] = useState(false)
-  
   const Token = _ => useContext(TokenContext)
-
+  const Error = _ => useContext(ErrorContext)
   const token = useRef(Token())
+  const setError = useRef(Error().setError)
+  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError.current)
 
-  const definePosition = e => {
-    e.stopPropagation()
-  }
-
-  const LoadTodos = _ => {
-    if(!fullfilledTodos && !activeTodos)
-      return FetchTodoStats(token.current)
-        .then(res => {
-          console.log(res)
-          if(res.data.user.FullfilledTodos + res.data.user.ActiveTodos !== 0){
-            setActiveTodos(res.data.user.ActiveTodos)
-            setFullfilledTodos(res.data.user.FullfilledTodos)
-            return FetchTodos(token.current, page)
-              .then(res => {
-                console.log(res)
-                if(!mounted) setMounted(true)
-                setLoadingTodos(false)
-                if(res.data.todos.length !== 0){
-                  setTodos(...todos, ...res.data.todos)
-                }
-              })
-              .catch(err => console.log(err.message))
-          } else {
-            if(!mounted) setMounted(true)
-            setLoadingTodos(false)
-          }
-        })
-    else return FetchTodos(token.current, page)
-      .then(res => {
-        console.log(res)
-        if(!mounted) setMounted(true)
-        setLoadingTodos(false)
-        if(res.data.todos.length !== 0){
-          setTodos(...todos, ...res.data.todos)
-        }
-      })
+  const definePosition = _ => {
+    if((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight + 1 && nextPage) {
+      setPage(page + 1)
+      setNextPage(false)
+    }
   }
 
   useEffect(_ => {
     window.addEventListener('scroll', definePosition)
-    return window.removeEventListener('scroll', definePosition)
+    return _ => window.removeEventListener('scroll', definePosition)
   })
-
-  useEffect(_ => {
-    setLoadingTodos(true)
-    LoadTodos()
-  }, [page])
 
   return(
     <>
@@ -75,14 +36,20 @@ export default _ => {
         {theme =>
           <div id="TodosPage" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
             <h1>Your Todos</h1>
-             {mounted && page === 1 && todos.length === 0 &&
+             {fullfilledTodos === 0 && activeTodos === 0 &&
                <h3>It seems like you have no todos yet</h3>
              }
-             {loadingTodos && <Spinner/>}
+             {todos.length > 0 &&
+                <>
+                  <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos}/> 
+                  {todos.map((todo, index) => <Todo todoData={todo} key={index+'todo'}/>)}
+                </>
+             } 
+             {loading && <Spinner/>}
              <AddTodoBtn clickHandler/>
           </div>
         }
       </BrightThemeContext.Consumer>
     </>
   )
-}
+})

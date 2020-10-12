@@ -5,7 +5,7 @@ import Password from '../components/FormComponents/Password'
 import InputField from '../components/FormComponents/InputField'
 import Checkbox from '../components/FormComponents/Checkbox'
 import { ErrorContext, SignalContext } from '../utils/contexts'
-import useSignupFormRefs from '../hooks/useSignupForm'
+import useSignupFormRefs from '../hooks/useSignupFormRefs'
 import DoneMessage from '../components/FormComponents/DoneMessage'
 import signupHandler from '../actionHandlers/SignupForm'
 
