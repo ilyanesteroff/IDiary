@@ -9,7 +9,7 @@ import * as Contexts from './utils/contexts'
 import './styles/App.css'
 
 
-export default class App extends React.Component{
+export default class App extends React.PureComponent{
   state = {
     userId: null,
     firstname: null,
@@ -104,7 +104,6 @@ export default class App extends React.Component{
 
   acceptEmailHandler = (token, failureCb) => {
     requestEmailAcceptation(token, this.abortController.signal)
-      .then(res => res.json())
       .then(res => {
         if(res.errors) throw new Error(res.errors[0].message)
         clearStorages()
@@ -150,15 +149,17 @@ export default class App extends React.Component{
               <Contexts.TokenContext.Provider value={this.state.token}>
                 <Contexts.LoadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
                   <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
-                    <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
-                      <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
-                        <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
-                          <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
-                            <Router isAuth={this.state.isAuth}/>
-                          </Contexts.AcceptEmailContext.Provider>
-                        </Contexts.ToggleThemeContext.Provider>
-                      </Contexts.LoginHandlerContext.Provider>
-                    </Contexts.LogoutHandlerContext.Provider>
+                    <Contexts.SignalContext.Provider value={this.abortController.signal}>
+                      <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
+                        <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
+                          <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
+                            <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
+                              <Router isAuth={this.state.isAuth}/>
+                            </Contexts.AcceptEmailContext.Provider>
+                          </Contexts.ToggleThemeContext.Provider>
+                        </Contexts.LoginHandlerContext.Provider>
+                      </Contexts.LogoutHandlerContext.Provider>
+                    </Contexts.SignalContext.Provider>
                   </Contexts.IsAuthContext.Provider>
                 </Contexts.LoadingContext.Provider>
               </Contexts.TokenContext.Provider>

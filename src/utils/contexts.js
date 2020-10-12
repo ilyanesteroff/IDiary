@@ -33,4 +33,6 @@ export const AcceptEmailContext = createContext(_ => {})
 
 export const ToggleThemeContext = createContext(_ => {}) 
 
+export const SignalContext = createContext(null)
+
 //

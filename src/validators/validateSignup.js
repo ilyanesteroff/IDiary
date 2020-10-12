@@ -2,7 +2,7 @@ import usernameValidator from './validateUsername'
 import passwordValidator from './validatePassword'
 import emailValidator from './validateEmail'
 
-export default async (data, setError) => {
+export default async (data, setError, signal) => {
   if(data.firstname.length < 2) {
     data.firstname.length === 0 
       ? setError('Please enter firstname')
@@ -15,9 +15,9 @@ export default async (data, setError) => {
     : setError('Lastname should be at least 4 characters long')
     return false
   }
-  const usernameValidated = await usernameValidator(data.username, setError)
+  const usernameValidated = await usernameValidator(data.username, setError, signal)
   if(!usernameValidated) return false
-  const isEmailValid = await emailValidator(data.email, setError, false)
+  const isEmailValid = await emailValidator(data.email, setError, false, signal)
   if(!isEmailValid) return false
     
   const pwValidated = passwordValidator(

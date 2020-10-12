@@ -9,3 +9,4 @@ export default (token, signal) =>
     body: JSON.stringify(query(token)),
     signal: signal
   }) 
+    .then(res => res.json())

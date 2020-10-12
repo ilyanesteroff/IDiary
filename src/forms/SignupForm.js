@@ -4,7 +4,7 @@ import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
 import InputField from '../components/FormComponents/InputField'
 import Checkbox from '../components/FormComponents/Checkbox'
-import { ErrorContext } from '../utils/contexts'
+import { ErrorContext, SignalContext } from '../utils/contexts'
 import useSignupFormRefs from '../hooks/useSignupForm'
 import DoneMessage from '../components/FormComponents/DoneMessage'
 import signupHandler from '../actionHandlers/SignupForm'
@@ -52,31 +52,37 @@ export default memo(({theme}) => {
                 </p>
               </Checkbox>
             </div>
-            <button
-              onClick={e => {
-                e.preventDefault()
-                signupHandler({
-                  email: refs.email.current.value,
-                  password1: refs.password1.current.value,
-                  password2: refs.password2.current.value,
-                  username: refs.username.current.value,
-                  firstname: refs.firstname.current.value,
-                  lastname: refs.lastname.current.value,
-                  accept: refs.accept.current.checked,
-                  public: refs.publicProf.current.checked,
-                }, setError.current, setUserCreated, setSubmiting)
-              }}
-            >
-             Submit
-             </button>
+            <SignalContext.Consumer>
+              {signal =>
+                <button
+                  onClick={e => {
+                    e.preventDefault()
+                    signupHandler({
+                      email: refs.email.current.value,
+                      password1: refs.password1.current.value,
+                      password2: refs.password2.current.value,
+                      username: refs.username.current.value,
+                      firstname: refs.firstname.current.value,
+                      lastname: refs.lastname.current.value,
+                      accept: refs.accept.current.checked,
+                      public: refs.publicProf.current.checked,
+                    }, setError.current, setUserCreated, setSubmiting, signal)
+                  }}
+                >
+                  Submit
+                </button>
+              }
+            </SignalContext.Consumer>
           </>
         }
       </form>
-      <p className="Lowest-warning">
-        Fields marked with 
-        <span className="requiredField">{' * '}</span>
-        are required
-      </p>
+      {!userCreated &&
+        <p className="Lowest-warning">
+          Fields marked with 
+          <span className="requiredField">{' * '}</span>
+          are required
+        </p>
+      }
     </>
   )
 })

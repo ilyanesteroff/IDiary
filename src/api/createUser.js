@@ -10,10 +10,7 @@ export default (data, signal) =>
     signal: signal
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res
-    })
+    .then(res => res.data.createUser || false)
     .catch(err => {
       return false
     })

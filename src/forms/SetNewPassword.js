@@ -2,7 +2,7 @@ import React, { useState, useRef, useContext, memo } from 'react'
 import Password from '../components/FormComponents/Password'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import setNewPassword from '../actionHandlers/SetNewPassword'
-import { ErrorContext } from '../utils/contexts'
+import { ErrorContext, SignalContext } from '../utils/contexts'
 
 export default memo(({theme}) => {
   const Error = _ => useContext(ErrorContext)
@@ -23,16 +23,23 @@ export default memo(({theme}) => {
         <>
           <Password ref={password1}/>
           <Password ref={password2}/>
-          <button onClick={e =>
-            setNewPassword(
-              e,
-              password1.current.value,
-              password2.current.value,
-              setErrorResetingPw,
-              setSubmiting,
-              setError.current
-            )
-          }>Reset</button>
+          <SignalContext.Consumer>
+            {signal =>
+              <button onClick={e =>
+                setNewPassword(
+                  e,
+                  password1.current.value,
+                  password2.current.value,
+                  setErrorResetingPw,
+                  setSubmiting,
+                  setError.current,
+                  signal
+                )
+              }>
+                Reset
+              </button>
+            }
+          </SignalContext.Consumer>
         </>
       }
     </form>

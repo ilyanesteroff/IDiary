@@ -2,7 +2,7 @@ import passwordValidator from '../validators/validatePassword'
 import resetPassword from '../api/resetpassword/set-new-password'
 import { tokenFromUrl as token } from '../utils/tokens'
 
-export default async (e, password1, password2, setErrorResetingPw, setSubmiting, setError) => {
+export default async (e, password1, password2, setErrorResetingPw, setSubmiting, setError, signal) => {
   e.preventDefault()
   setSubmiting(true)
   setError('')
@@ -10,7 +10,7 @@ export default async (e, password1, password2, setErrorResetingPw, setSubmiting,
   const verdict = passwordValidator(password1, password2, setError)
   console.log(verdict)
   if(verdict) {
-    const resetPw = await resetPassword(token, password1)
+    const resetPw = await resetPassword(token, password1, signal)
     if(!resetPw) {
       setErrorResetingPw(true)
       setError('Reseting password failed try later')

@@ -2,7 +2,7 @@ import validator from 'validator'
 import ifUserExists from '../api/checks/if-user-exists'
 
 
-export default async (email, setError, userShouldExist) => {
+export default async (email, setError, userShouldExist, signal) => {
   if(email.length === 0) {
     setError('please enter email')
     return false
@@ -11,7 +11,8 @@ export default async (email, setError, userShouldExist) => {
     setError('Input does not seem to be an email')
     return false
   }
-  const verdict = await ifUserExists(email, true)
+  const verdict = await ifUserExists(email, true, signal)
+  console.log(verdict, userShouldExist)
   if(verdict && !userShouldExist) { 
     setError('User with this email already exists')
     return false

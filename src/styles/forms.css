@@ -90,8 +90,15 @@ form {
 .revealPwIcon{
   position: absolute;
   right: 3%;
-  top: 35%;
   font-size: 1rem;
+}
+
+#withSignup {
+  top: 45%;
+}
+
+#withoutSignup {
+  top: 35%;
 }
 
 .DarkLoginForm .revealPwIcon{

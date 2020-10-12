@@ -10,9 +10,8 @@ export default (token, setChecked, setActual) =>
   })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       setChecked(true)
-      setActual(res.data.getResetPassword)
+      setActual(res.data.getResetPassword || false)
     })
     .catch(err => {
       console.log(err.message)

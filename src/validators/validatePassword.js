@@ -10,7 +10,7 @@ export default (password1, password2, setError) => {
     setError('please repeat password')
     return false
   }
-  if(password1.length !== password2.length){
+  if(password1 !== password2){
     setError('passwords should be the same')
     return false
   }

@@ -14,7 +14,7 @@ export default async (signupData, setError, setUserCreated, setSubmiting, signal
     password: signupData.password1,
     email: signupData.email,
     public: signupData.public
-  })
+  }, signal)
   userCreated
     ? setUserCreated(true)
     : setError('Technical error, please try later')

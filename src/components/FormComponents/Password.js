@@ -29,8 +29,8 @@ export default forwardRef((props, ref) => {
       {password.length > 0 &&
         <span onClick={togglePw}>
           {revealPw 
-            ? <FontAwesomeIcon icon={faEyeSlash} className="revealPwIcon"/>
-            : <FontAwesomeIcon icon={faEye} className="revealPwIcon"/>
+            ? <FontAwesomeIcon icon={faEyeSlash} className="revealPwIcon" id={props.signup ? 'withSignup' : 'withoutSignup'}/>
+            : <FontAwesomeIcon icon={faEye} className="revealPwIcon" id={props.signup ? 'withSignup' : 'withoutSignup'}/>
           }
         </span>
       }
