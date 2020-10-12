@@ -41,7 +41,7 @@ export default memo(_ => {
              }
              {todos.length > 0 &&
                 <>
-                  <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos}/> 
+                  <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos} theme={theme}/> 
                   {todos.map((todo, index) => <Todo todoData={todo} key={index+'todo'}/>)}
                 </>
              } 
