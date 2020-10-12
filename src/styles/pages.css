@@ -21,7 +21,6 @@
   margin: 5vh 20%;
   text-align: center;
   border-radius: 0.5vh;  
-  border: solid 1px #aeaeae;
 }
 
 .BrightPage h1{
@@ -71,22 +70,23 @@
   position: fixed;
   right: 0;
   top: 10%;
-  padding: 4vh 3%;
+  padding: 4vh 2%;
   height: 90%;
+  width: 15vw;
 }
 
 .BrightTodoStats{
   background-color: #fafaff;
-  box-shadow: 0 0 0.2vh #222227;
+  box-shadow: 0 0 0.3vh #222227;
 }
 
 .DarkTodoStats{
   background-color: #232327;
-  box-shadow: 0 0 0.2vh #fafaff;
+  box-shadow: 0 0 0.3vh #fafaff;
 }
 
 #TodoStats h2{
-  font-size: 3vh;
+  font-size: 1.6vw;
   font-weight: 700;
   margin-bottom: 2vh;
 }
@@ -100,8 +100,8 @@
 }
 
 #TodoStats h4{
-  font-size: 2.3vh;
-  font-weight: 700;
+  font-size: 1.3vw;
+  font-weight: 600;
   margin-bottom: 1vh;
 }
 
@@ -121,6 +121,115 @@
   color: #22cc55;
 }
 
+#Todos{
+  display: flex;
+  flex-wrap: wrap;
+  width: 75vw;
+  margin-top: 5vh;
+}
+
+#Todo{
+  width: 25vw !important;
+  padding: 1vh 1%;
+}
+
+.BrightTodo {
+  background-color: #f1f1ff;
+  box-shadow: 0 0 .3vh #212122;
+}
+
+.DarkTodo {
+  background-color: #212122;
+  box-shadow: 0 0 .3vh #f1f1ff;
+}
+
+#Todo h2{
+  padding: 1vh 3%;
+  font-size: 2.5vh;
+}
+
+.BrightTodo h2{
+  color: #323232;
+}
+
+.DarkTodo h2{
+  color: #ccc;
+}
+
+#Todo h3{
+  background-color: transparent;
+  box-shadow: none;
+  text-align: left;
+  margin: auto;
+  font-size: 2vh;
+  padding: 1vh 3%
+}
+
+#Todo p{
+  font-weight: 600;
+  padding: .5vh 3%;
+  font-size: 2vh;
+}
+
+#red{
+  color: #993030;
+}
+
+.BrightTodo p{
+  color: #222222;
+}
+
+.DarkTodo p{
+  color: #fff;
+}
+
+#DoneTodo{
+  color: #22cc55;
+}
+
+#NeedToCompleteTodo{
+  color: #ff7722;
+}
+
+@media only screen and (min-height: 1000px){
+  #TodoStats{
+    position: fixed;
+    top: 7.5%;
+    height: 92.5%;
+    padding: 2.5vh 2%;
+  }
+}
+
+@media only screen and (max-width: 1100px){
+  #TodoStats{
+    position: static;
+    height: auto;
+    text-align: center;
+    width: auto;
+  }
+  #TodoStats h2{
+    font-size: 3vh;
+  }
+  #TodoStats h4{
+    font-size: 2.3vh;
+  }
+  #Todos{
+    width: 100%;
+  }
+  #Todo{
+    width: 50% !important;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  #TodoStats{
+    position: sticky;
+    padding: 2.5vh 3%;
+    height: auto;
+    text-align: center;
+  }
+}
+
 @media only screen and (max-width: 540px) and (max-height: 830px){
   .Page{
     margin: auto 0;
@@ -129,6 +238,19 @@
     font-size: 3vh;
     padding: 2vh 2%;
     margin: 3vh 5%;
+  }
+  #TodoStats h2{
+    font-size: 3.8vh;
+  }
+  #TodoStats h4{
+    font-size: 3vh;
+  }
+  #Todos{
+    display: block;
+  }
+  #Todo{
+    width: 80% !important;
+    margin-left: 10%;
   }
 }
 
@@ -143,6 +265,28 @@
     font-size: 4vh;
     padding: 3vh 2%;
   }
+  #TodoStats h2{
+    font-size: 5vh;
+  }
+  #TodoStats h4{
+    font-size: 3.7vh;
+  }
+  #Todos{
+    display: block;
+  }
+  #Todo{
+    width: 90% !important;
+    margin-left: 5%;
+  }
+  #Todo h2{
+    font-size: 4vh;
+  }
+  #Todo h3{
+    font-size: 3.5vh;
+  }
+  #Todo p{
+    font-size: 2.8vh;
+  }
 }
 
 @media only screen and (max-height: 330px){
@@ -154,6 +298,15 @@
     font-size: 6vh;
     padding: 3vh 2%;
     margin: 4vh 5%;
+  }
+  #TodoStats h2{
+    font-size: 6vh;
+  }
+  #TodoStats h4{
+    font-size: 4.3vh;
+  }
+  #Todo p{
+    font-size: 3.5vh;
   }
 }
 

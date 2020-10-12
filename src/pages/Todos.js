@@ -18,7 +18,7 @@ export default memo(_ => {
   const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError.current)
 
   const definePosition = _ => {
-    if((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight + 1 && nextPage) {
+    if((window.innerHeight + window.pageYOffset + 10) >= document.body.offsetHeight && nextPage) {
       setPage(page + 1)
       setNextPage(false)
     }
@@ -42,7 +42,20 @@ export default memo(_ => {
              {todos.length > 0 &&
                 <>
                   <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos} theme={theme}/> 
-                  {todos.map((todo, index) => <Todo todoData={todo} key={index+'todo'}/>)}
+                  <div id="Todos">
+                    {
+                      todos.map((todo, index) => 
+                        <Todo 
+                          todoData={{
+                            ...todo,
+                            createdAt: new Date(todo.createdAt)
+                          }} 
+                          key={index+'todo'} 
+                          theme={theme}
+                        />
+                      )
+                    }
+                  </div>
                 </>
              } 
              {loading && <Spinner/>}
