@@ -6,6 +6,10 @@ export default forwardRef((props, ref) => {
       <input
         type="checkbox"
         ref={ref}
+        onChange={e => {
+          if(props.onChange)
+            props.onChange(e)
+        }}
       />
       {props.children}
     </div>

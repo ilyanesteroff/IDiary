@@ -23,7 +23,7 @@ export default ({todoData, theme}) => {
         }  
       </h3>
       <TimeString time={createdAt}/>
-      {timeToComplete !== null && timeToComplete + createdAt < now && 
+      {timeToComplete !== null && timeToComplete + createdAt.getTime() < now && 
         <p id="red">The time limit for this todo is elapsed</p>
       }
     </div>

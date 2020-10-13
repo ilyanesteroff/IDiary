@@ -1,0 +1,27 @@
+#AddTodoSidebar textarea, input {
+  width: 100%;
+  padding: 1vh 5%;
+  font-size: 2vh;
+  line-height: 3vh;
+  font-family: Ubuntu, sans-serif;
+  border: none;
+  border-radius: 0.5vh;
+}
+#AddTodoSidebar textarea:focus, input:focus{
+  outline: none;
+  box-shadow: 0 0 .7vh #2377fe;
+}
+#AddTodoSidebar form{
+  padding: 1vh auto;
+}
+#AddTodoSidebar textarea {
+  resize: none;
+}
+@media only screen and (min-width: 1300px){
+  #AddTodoSidebar textarea, input {
+    width: 12vw;
+    font-size: 2vh;
+    line-height: 3vh;
+    font-family: Ubuntu, sans-serif;
+  }
+}

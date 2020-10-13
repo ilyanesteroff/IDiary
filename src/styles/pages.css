@@ -67,12 +67,21 @@
 }
 
 #TodoStats{
-  position: fixed;
   right: 0;
+  width: 15vw;
+}
+
+#FilterTodos{
+  left: 0;
+  width: 16vw;
+}
+
+#FilterTodos,
+#TodoStats{
   top: 10%;
   padding: 4vh 2%;
   height: 90%;
-  width: 15vw;
+  position: fixed;
 }
 
 .BrightTodoStats{
@@ -85,7 +94,8 @@
   box-shadow: 0 0 0.3vh #fafaff;
 }
 
-#TodoStats h2{
+#TodoStats h2,
+#FilterTodos h2{
   font-size: 1.6vw;
   font-weight: 700;
   margin-bottom: 2vh;
@@ -99,7 +109,8 @@
   color: #eaeaff;
 }
 
-#TodoStats h4{
+#TodoStats h4,
+#FilterTodos h4{
   font-size: 1.3vw;
   font-weight: 600;
   margin-bottom: 1vh;
@@ -146,6 +157,7 @@
 #Todo h2{
   padding: 1vh 3%;
   font-size: 2.5vh;
+  font-weight: 500;
 }
 
 .BrightTodo h2{
@@ -162,11 +174,12 @@
   text-align: left;
   margin: auto;
   font-size: 2vh;
-  padding: 1vh 3%
+  padding: 1vh 3%;
 }
 
 #Todo p{
-  font-weight: 600;
+  font-weight: 400;
+  font-family: Roboto;
   padding: .5vh 3%;
   font-size: 2vh;
 }
@@ -176,7 +189,7 @@
 }
 
 .BrightTodo p{
-  color: #222222;
+  color: #333;
 }
 
 .DarkTodo p{
@@ -191,26 +204,35 @@
   color: #ff7722;
 }
 
-@media only screen and (min-height: 1000px){
-  #TodoStats{
-    position: fixed;
+@media only screen and (min-height: 1000px) and (min-width: 1100px){
+  #TodoStats, #FilterTodos{
     top: 7.5%;
-    height: 92.5%;
+    height: 92.5vh;
     padding: 2.5vh 2%;
   }
 }
 
+@media only screen and (min-width: 1100px){
+  #Todos{
+    width: 69vw;
+    margin-left: 6vw;
+  }
+  #Todo{
+    width: 23vw !important;
+  }
+}
+
 @media only screen and (max-width: 1100px){
-  #TodoStats{
+  #TodoStats, #FilterTodos{
     position: static;
     height: auto;
     text-align: center;
     width: auto;
   }
-  #TodoStats h2{
+  #TodoStats h2, #FilterTodos h2{
     font-size: 3vh;
   }
-  #TodoStats h4{
+  #TodoStats h4, #FilterTodos h4{
     font-size: 2.3vh;
   }
   #Todos{
@@ -224,9 +246,14 @@
 @media only screen and (max-width: 540px) {
   #TodoStats{
     position: sticky;
-    padding: 2.5vh 3%;
+  }
+  #FilterTodos{
+    position: static;
+  }
+  #FilterTodos, #TodoStats{
     height: auto;
     text-align: center;
+    padding: 2.5vh 3%;
   }
 }
 
@@ -239,10 +266,10 @@
     padding: 2vh 2%;
     margin: 3vh 5%;
   }
-  #TodoStats h2{
+  #TodoStats h2, #FilterTodos h2{
     font-size: 3.8vh;
   }
-  #TodoStats h4{
+  #TodoStats h4, #FilterTodosh4{
     font-size: 3vh;
   }
   #Todos{
@@ -265,10 +292,10 @@
     font-size: 4vh;
     padding: 3vh 2%;
   }
-  #TodoStats h2{
+  #TodoStats h2, #FilterTodos h2{
     font-size: 5vh;
   }
-  #TodoStats h4{
+  #TodoStats h4, #FilterTodos h2{
     font-size: 3.7vh;
   }
   #Todos{
@@ -299,10 +326,10 @@
     padding: 3vh 2%;
     margin: 4vh 5%;
   }
-  #TodoStats h2{
+  #TodoStats h2, #FilterTodos h2{
     font-size: 6vh;
   }
-  #TodoStats h4{
+  #TodoStats h4, #FilterTodos h4{
     font-size: 4.3vh;
   }
   #Todo p{

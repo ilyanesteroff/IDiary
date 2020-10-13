@@ -4,8 +4,7 @@ import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/AddTodoBtn'
 import { TokenContext, BrightThemeContext, ErrorContext } from '../utils/contexts'
 import useTodoLoader from '../hooks/useTodoLoader'
-import TodoStats from '../components/todos/TodoStats'
-import Todo from '../components/todos/Todo'
+import Todos from '../components/todos/Todos'
 
 
 export default memo(_ => {
@@ -36,30 +35,19 @@ export default memo(_ => {
         {theme =>
           <div id="TodosPage" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
             <h1>Your Todos</h1>
-             {fullfilledTodos === 0 && activeTodos === 0 &&
-               <h3>It seems like you have no todos yet</h3>
-             }
-             {todos.length > 0 &&
-                <>
-                  <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos} theme={theme}/> 
-                  <div id="Todos">
-                    {
-                      todos.map((todo, index) => 
-                        <Todo 
-                          todoData={{
-                            ...todo,
-                            createdAt: new Date(todo.createdAt)
-                          }} 
-                          key={index+'todo'} 
-                          theme={theme}
-                        />
-                      )
-                    }
-                  </div>
-                </>
-             } 
-             {loading && <Spinner/>}
-             <AddTodoBtn clickHandler/>
+            {fullfilledTodos === 0 && activeTodos === 0 &&
+              <h3>It seems like you have no todos yet</h3>
+            }
+            {todos.length > 0 &&
+              <Todos
+                theme={theme}
+                todos={todos}
+                activeTodos={activeTodos}
+                fullfilledTodos={fullfilledTodos}
+              />
+            } 
+            {loading && <Spinner/>}
+            <AddTodoBtn clickHandler/>
           </div>
         }
       </BrightThemeContext.Consumer>

@@ -21,7 +21,7 @@ export default (token, page, setError) => {
               .then(res => {
                 setLoadingTodos(false)
                 setTodos([...res.data.todos])
-                if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > todos.length) setNextPage(true)
+                if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.data.todos.length) setNextPage(true)
               })
               .catch(err => setError(err.message))
           } else {

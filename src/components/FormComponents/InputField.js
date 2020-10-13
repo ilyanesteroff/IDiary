@@ -14,12 +14,19 @@ const input = forwardRef((props, ref) => {
 
   return( 
     <div>
-      {props.signup &&
-        <InputLabel required={props.required} label={'Your ' + props.placeholder}/>
+      {props.withLabel &&
+        <InputLabel 
+          required={props.required} 
+          label={
+            props.name || props.username 
+              ? 'Your ' + props.placeholder 
+              : props.placeholder
+          }
+        />
       }
       <input 
         type="text"
-        placeholder={props.placeholder}
+        placeholder={props.placeholderplaceholder}
         ref={ref}
         onChange={validateInput}
       />

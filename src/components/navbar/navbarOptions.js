@@ -5,9 +5,9 @@ import {
   faUser,
   faBlog,
   faQuestion,
-  faChess,
   faUserAstronaut
 } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
   
 
 export const optionsForUsers = [
@@ -40,14 +40,9 @@ export const optionsForVisitors = [
     icon: faBlog
   },
   {
-    value: 'Why TooDooDoo?', 
-    link: '/whytoodoodoo',
-    icon: faQuestion
-  },
-  {
     value: 'About',
     link: '/about',
-    icon: faChess
+    icon: faQuestion
   }, 
   {
     value: 'Login',
@@ -58,5 +53,10 @@ export const optionsForVisitors = [
     value: 'Signup',
     link: '/create-user',
     icon: faUserAstronaut
+  },
+  {
+    value: 'Source',
+    link: 'https://github.com/IlyaNesterow/TodoListFrontend',
+    icon: faGithub
   }
 ]

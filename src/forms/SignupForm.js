@@ -32,9 +32,9 @@ export default memo(({theme}) => {
         : <>
             <ComplainLog/>
             <div className="SignupFields">
-              <InputField placeholder="Firstname" ref={refs.firstname} required signup name/>
-              <InputField placeholder="Lastname" ref={refs.lastname} required signup name/>
-              <InputField placeholder="Username" ref={refs.username} required signup username strictLowerCase/>
+              <InputField placeholder="Firstname" ref={refs.firstname} required withLabel name/>
+              <InputField placeholder="Lastname" ref={refs.lastname} required  withLabel name/>
+              <InputField placeholder="Username" ref={refs.username} required  withLabel username strictLowerCase/>
               <Email ref={refs.email} signup label="Your email address"/>
               <Password ref={refs.password1} signup label="Password"/>
               <Password ref={refs.password2} signup label="Password repeat"/>

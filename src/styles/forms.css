@@ -7,17 +7,14 @@ form {
   margin: 3vh 32.5%;
   width: 35%;
 }
-
 .signupFormPage form {
   margin: 2vh 10%;
   width: 80%;
 }
-
 .DarkLoginForm{
   background-color: #121212;
   box-shadow: #eee 0 0 0.75vh;
 }
-
 .DarkSubmitingForm{
   transition: all 0.5s;
   animation: darkForm 1.5s infinite;
@@ -257,7 +254,6 @@ hr {
     margin-left: 10%;
   }
 }
-
 @media only screen and (max-height: 1100px) and (max-width: 800px){
   .formPage form{
     margin-left: 10%;
