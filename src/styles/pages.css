@@ -115,15 +115,85 @@
   font-weight: 600;
   margin-bottom: 1vh;
 }
-
+button:focus{
+  outline: none;
+}
 .BrightTodoStats h4{
   color: #22223f;
 }
-
 .DarkTodoStats h4{
   color: #c5c5ff;
 }
-
+#FilterTodos p, 
+#TodoStats p{
+  font-size: 1.1vw;
+  padding-left: .1vw;
+}
+#FilterTodos > #CheckboxUnit{
+  margin-bottom: 2vh;
+}
+#FilterTodos input[type="text"],
+#FilterTodos input[type="number"], 
+#FilterTodos input[type="date"]{
+  margin: .5vh auto;
+  border-radius: 5.3vh;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#FilterTodos button{
+  border-radius: 5.3vh;
+  padding: 1vh 2%;
+  text-align: center;
+  border: solid 2px #3377ff;
+  color: #3377ff;
+  background-color: transparent;
+  font-family: Ubuntu, sans-serif;
+  transition: all .2s;
+}
+#FilterTodos button:hover{
+  background-color: rgba(33, 77, 255, 0.1);
+}
+#FilterTodos button:active{
+  background-color:  #3377ff;
+  color: #fff;
+}
+#FilterTodos input{
+  padding-left: 8%;
+  font-weight: 600;
+  font-family: Noto Sans KR, sans-serif;
+}
+#FilterTodos > #input{
+  margin: 1vh auto;
+}
+.DarkTodoStats input{
+  background-color: #42424f;
+  border: solid 1px  #42424f;
+  color: #eeeeff;
+}
+.BrightTodoStats input{
+  background-color: #d3d3ee;
+  border: solid 1px  #d3d3ee;
+  color: #222;
+}
+.DarkTodoStats input:focus{
+  background-color: #222222;
+  border-color: #3377ff;
+  box-shadow: 0 0 .3vh #3377ff;
+}
+.BrightTodoStats input:focus{
+  background-color: #fbfbff;
+  box-shadow: 0 0 .3vh #3377ff;
+  border-color: #3377ff;
+}
+.BrightTodoStats p{
+  color: #222232;
+}
+.DarkTodoStats p{
+  color: #efeaff;
+}
 #ActiveTodos{
   color:  #ff7722;
 }

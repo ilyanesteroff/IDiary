@@ -26,7 +26,7 @@ const input = forwardRef((props, ref) => {
       }
       <input 
         type="text"
-        placeholder={props.placeholderplaceholder}
+        placeholder={props.placeholder}
         ref={ref}
         onChange={validateInput}
       />
