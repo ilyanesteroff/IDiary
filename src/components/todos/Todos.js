@@ -5,7 +5,7 @@ import FilterTodos from './FilterTodo'
 import useTodoFilterForm from '../../hooks/Todos/useTodoFilterForm'
 
 
-export default ({activeTodos, fullfilledTodos, todos, theme}) => {
+export default ({activeTodos, fullfilledTodos, todos, theme, yourTodos}) => {
   const [todoToDelete, setTodoToDelete] = useState(null)
 
   const [todosToExpose, refs, changeHandlers] = useTodoFilterForm(todos, todoToDelete, _ => setTodoToDelete(null))
@@ -22,6 +22,7 @@ export default ({activeTodos, fullfilledTodos, todos, theme}) => {
         {
           todosToExpose.map((todo, index) => 
             <Todo 
+              yourTodo={yourTodos}
               todoData={{
                 ...todo,
                 createdAt: new Date(todo.createdAt)

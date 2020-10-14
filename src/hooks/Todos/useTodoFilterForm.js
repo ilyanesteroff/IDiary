@@ -5,8 +5,10 @@ import useUnsetFilter from './useUnsetTodoFilter'
 /*Todo filter main behaviour here */
 
 export default (todos, todoToDelete, onDeleted) => {
+  //filter params
   const [showOnlyCompletedTodos, setShowOnlyCompletedTodos] = useState(false)
   const [showOnlyActiveTodos, setShowOnlyActiveTodos] = useState(false)
+  const [showElapsedTodos, setShowElapsedTodos] = useState(false)
   const [hashtag, setHashtag] = useState('')
   const [taskIncludes, setTaskIncludes] = useState('')
   const [timeToComplete, setTimeToComplete] = useState(0)
@@ -24,6 +26,7 @@ export default (todos, todoToDelete, onDeleted) => {
   const [todosToExpose] = useTodoFilter(
     _todos.current, 
     showOnlyCompletedTodos, 
+    showElapsedTodos,
     showOnlyActiveTodos, 
     hashtag,
     taskIncludes,
@@ -34,6 +37,7 @@ export default (todos, todoToDelete, onDeleted) => {
   const [refs] = useUnsetFilter(unsetFilter, _ => {
     setShowOnlyActiveTodos(false)
     setShowOnlyCompletedTodos(false)
+    setShowElapsedTodos(false)
     setHashtag('')
     setTaskIncludes('')
     setTimeToComplete(0)
@@ -53,6 +57,7 @@ export default (todos, todoToDelete, onDeleted) => {
   const changeHandlers = {
     showOnlyCompletedOnChange: e => setShowOnlyCompletedTodos(e.target.checked),
     showOnlyActiveOnChange: e => setShowOnlyActiveTodos(e.target.checked),
+    showElapsedOnChange: e => setShowElapsedTodos(e.target.checked),
     tagsOnChange: e => setHashtag(e.target.value),
     taskOnChange: e => setTaskIncludes(e.target.value),
     timeToCompleteOnChange: e => setTimeToComplete(e.target.value),

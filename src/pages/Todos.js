@@ -45,6 +45,7 @@ export default memo(_ => {
                 todos={todos}
                 activeTodos={activeTodos}
                 fullfilledTodos={fullfilledTodos}
+                yourTodos
               />
             } 
             {loading && <Spinner/>}

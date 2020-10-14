@@ -15,6 +15,11 @@ export default forwardRef((props, refs) => {
           Completed Todos
         </p>
       </Checkbox>
+      <Checkbox onChange={props.cHandlers.showElapsedOnChange} ref={refs.elapsedTodos}>
+        <p className="InputLabel">
+          Elapsed Todos
+        </p>
+      </Checkbox>
       <input 
         type="text" 
         placeholder="Tags" 

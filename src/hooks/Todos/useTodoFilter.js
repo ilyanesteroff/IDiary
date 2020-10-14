@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 
 
-export default (allTodos, showOnlyCompletedTodos, showOnlyActiveTodos, hashtag, taskIncludes, timeToComplete, createdAt) => {
+export default (allTodos, showOnlyCompletedTodos, showElapsedTodos, showOnlyActiveTodos, hashtag, taskIncludes, timeToComplete, createdAt) => {
   const [todosToExpose, setTodosToExpose] = useState(allTodos)
 
   useEffect(_ => {
     setTodosToExpose(allTodos)
-  }, [allTodos, showOnlyCompletedTodos, showOnlyActiveTodos, hashtag, taskIncludes, timeToComplete, createdAt])
+  }, [allTodos, showOnlyCompletedTodos, showElapsedTodos, showOnlyActiveTodos, hashtag, taskIncludes, timeToComplete, createdAt])
   
   useEffect(_ => {
     //of course can use allTodos directly, but this looks better :D
@@ -16,6 +16,13 @@ export default (allTodos, showOnlyCompletedTodos, showOnlyActiveTodos, hashtag, 
     }
     if(showOnlyCompletedTodos){
       _filteredTodos = _filteredTodos.filter(todo => todo.completed)
+    }
+    if(showElapsedTodos){
+      _filteredTodos = _filteredTodos.filter(todo => 
+        todo.timeToComplete && 
+        !todo.completed && 
+        todo.timeToComplete + new Date(todo.createdAt).getTime() < new Date().getTime()
+      )
     }
     if(hashtag !== ''){
       _filteredTodos = _filteredTodos.filter(todo =>  todo.tags && todo.tags.some(tag => tag.toLowerCase().includes(hashtag.toLowerCase())))
@@ -36,7 +43,7 @@ export default (allTodos, showOnlyCompletedTodos, showOnlyActiveTodos, hashtag, 
     }
     
     setTodosToExpose(_filteredTodos)
-  }, [showOnlyActiveTodos, showOnlyCompletedTodos, hashtag, taskIncludes, timeToComplete, createdAt, allTodos])
+  }, [showOnlyActiveTodos, showOnlyCompletedTodos, showElapsedTodos, hashtag, taskIncludes, timeToComplete, createdAt, allTodos])
   
   return [todosToExpose]
 }

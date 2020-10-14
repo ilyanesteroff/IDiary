@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react'
 export default (unset, cb) => {
   const activeTodos = useRef(null)
   const completedTodos = useRef(null)
+  const elapsedTodos = useRef(null)
   const tags = useRef(null)
   const task = useRef(null)
   const createdAt = useRef(null)
@@ -12,6 +13,7 @@ export default (unset, cb) => {
   useEffect(_ => {
     activeTodos.current.checked = false
     completedTodos.current.checked = false
+    elapsedTodos.current.checked = false
     tags.current.value = ''
     task.current.value = ''
     createdAt.current.value = ''
@@ -24,6 +26,7 @@ export default (unset, cb) => {
     {
       activeTodos : activeTodos, 
       completedTodos: completedTodos,
+      elapsedTodos: elapsedTodos,
       tags: tags,
       task: task,
       createdAt: createdAt, 
