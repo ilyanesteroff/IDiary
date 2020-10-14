@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import useTodoFilter from './useTodoFilter'
 import useUnsetFilter from './useUnsetTodoFilter'
 
 /*Todo filter main behaviour here */
 
-export default todos => {
+export default (todos, todoToDelete, onDeleted) => {
   const [showOnlyCompletedTodos, setShowOnlyCompletedTodos] = useState(false)
   const [showOnlyActiveTodos, setShowOnlyActiveTodos] = useState(false)
   const [hashtag, setHashtag] = useState('')
@@ -12,9 +12,17 @@ export default todos => {
   const [timeToComplete, setTimeToComplete] = useState(0)
   const [createdAt, setCreatedAt] = useState('')
   const [unsetFilter, setUnsetFilter] = useState(false)
+  const _todos = useRef(todos)
+
+  useEffect(_ => {
+    if(todoToDelete !== null){
+      _todos.current = _todos.current.filter(todo => todo._id !== todoToDelete)
+      onDeleted()
+    }
+  }, [todoToDelete, onDeleted])
 
   const [todosToExpose] = useTodoFilter(
-    todos, 
+    _todos.current, 
     showOnlyCompletedTodos, 
     showOnlyActiveTodos, 
     hashtag,

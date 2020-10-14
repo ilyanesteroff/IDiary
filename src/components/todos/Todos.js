@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Todo from './Todo'
 import TodoStats from './TodoStats'
 import FilterTodos from './FilterTodo'
@@ -6,7 +6,9 @@ import useTodoFilterForm from '../../hooks/Todos/useTodoFilterForm'
 
 
 export default ({activeTodos, fullfilledTodos, todos, theme}) => {
-  const [todosToExpose, refs, changeHandlers] = useTodoFilterForm(todos)
+  const [todoToDelete, setTodoToDelete] = useState(null)
+
+  const [todosToExpose, refs, changeHandlers] = useTodoFilterForm(todos, todoToDelete, _ => setTodoToDelete(null))
 
   return(
     <>
@@ -26,6 +28,7 @@ export default ({activeTodos, fullfilledTodos, todos, theme}) => {
               }} 
               key={index+'todo'} 
               theme={theme}
+              setTodoToDelete={todoId => setTodoToDelete(todoId)}
             />
           )
         }

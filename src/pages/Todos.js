@@ -5,11 +5,12 @@ import AddTodoBtn from '../components/todos/AddTodoBtn'
 import { TokenContext, BrightThemeContext, ErrorContext } from '../utils/contexts'
 import useTodoLoader from '../hooks/useTodoLoader'
 import Todos from '../components/todos/Todos'
-
+import CreateTodoModal from '../components/todos/AddTodoModal'
 
 export default memo(_ => {
   document.title = 'TooDooDoo - Your Todos'
   const [page, setPage] = useState(1)
+  const [addTodoModalOpened, setAddTodoModalOpened] = useState(false)
   const Token = _ => useContext(TokenContext)
   const Error = _ => useContext(ErrorContext)
   const token = useRef(Token())
@@ -47,7 +48,8 @@ export default memo(_ => {
               />
             } 
             {loading && <Spinner/>}
-            <AddTodoBtn clickHandler/>
+            {addTodoModalOpened && <CreateTodoModal/>}
+            <AddTodoBtn clickHandler={_ => setAddTodoModalOpened(true)}/>
           </div>
         }
       </BrightThemeContext.Consumer>

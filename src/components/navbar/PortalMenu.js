@@ -1,35 +1,14 @@
-import React, { useLayoutEffect, useContext } from 'react'
-import ReactDOM from 'react-dom'
+import React, { useContext } from 'react'
 import { 
   IsAuthContext, 
   FirstnameContext,
   BrightThemeContext
 } from '../../utils/contexts'
+import SideMenuPortal from '../portals/index'
 import NavbarElement from './NavbarElement'
 import Logout from './LogoutButton'
 import * as na from './navbarOptions'
 
-
-const sideMenu = document.getElementById('side-menu');
-
-const SideMenuPortal = props => {
-  let element = document.createElement('div')
-  
-  useLayoutEffect(() => {
-    sideMenu.appendChild(element)
-    document.body.style.overflowY = 'hidden'
-    
-    return _ => {
-      sideMenu.removeChild(element)
-      document.body.style.overflowY = 'auto'
-    }
-  })
-
-  return  ReactDOM.createPortal(
-    props.children,
-    element
-  )
-}
 
 const SideMenu = ({opened}) => {
   const IsAuth = _ => useContext(IsAuthContext)
@@ -57,7 +36,7 @@ const SideMenu = ({opened}) => {
   return (
     <BrightThemeContext.Consumer>
       {theme =>
-        <SideMenuPortal>
+        <SideMenuPortal parent="side-menu">
           <div 
             id="SideMenu" 
             className={theme? 'brightSideMenu' : 'darkSideMenu'}

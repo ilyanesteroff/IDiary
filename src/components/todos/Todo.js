@@ -1,31 +1,37 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import { faClock } from '@fortawesome/free-regular-svg-icons'
+import React, { useState } from 'react'
 import TimeString from './TimeString'
+import DeleteTodoBtn from './DeleteTodoBtn'
+import { TokenContext } from '../../utils/contexts'
+import deleteTodo from '../../actionHandlers/DeleteTodo'
+import CompletedLabel from './CompletedLabel'
 
-export default ({todoData, theme}) => {
-  const now = new Date().getHours()
-  const { createdAt, timeToComplete, task, completed } = todoData
+
+export default ({todoData, theme, setTodoToDelete}) => {
+  const now = new Date().getTime()
+  const { createdAt, timeToComplete, task, completed, _id } = todoData
+  const [deleting, setDeleting] = useState(false)
+
   return(
-    <div id="Todo" className={`${theme ? 'Bright' : 'Dark'}Todo`}>
+    <div id="Todo" className={`${theme ? 'Bright' : 'Dark'}${deleting ? 'Deleting' : ''}Todo`}>
       <h2>{task}</h2>
-      <h3>
-        {completed ? 'Done ': 'Need to complete '}
-        {
-          completed 
-            ? <span id="DoneTodo">
-                <FontAwesomeIcon icon={faCheck}/>
-              </span>
-            : <span id="NeedToCompleteTodo">
-                <FontAwesomeIcon icon={faClock}/>
-              </span>
-        }  
-      </h3>
+      <CompletedLabel completed={completed}/>
       <TimeString time={createdAt}/>
-      {timeToComplete !== null && timeToComplete + createdAt.getTime() < now && 
+      {timeToComplete !== null && !completed && timeToComplete + createdAt.getTime() < now && 
         <p id="red">The time limit for this todo is elapsed</p>
       }
+      <TokenContext.Consumer>
+        {token => 
+          <DeleteTodoBtn 
+            clickHandler={async e => {
+              e.preventDefault()
+              setDeleting(true)
+              await deleteTodo(_id, token, _ => setTodoToDelete(_id))
+              setDeleting(false)
+            }}
+            deleting={deleting}
+          />
+        }
+      </TokenContext.Consumer>
     </div>
   )
 }
