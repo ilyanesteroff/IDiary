@@ -1,31 +1,46 @@
-import React, { useState } from 'react'
+import React, { forwardRef } from 'react'
 import Checkbox from '../FormComponents/Checkbox'
-import useFilterForm from '../../hooks/useFilterForm'
-//import InputField from '../FormComponents/InputField'
                                    
-export default (props) => {
-  const [unset, setUnset] = useState(false)
-
-  const [activeTodos, completedTodos, tags, task, date, number] = useFilterForm(unset, _ => setUnset(false))
-
+export default forwardRef((props, refs) => {
   return (
     <div id="FilterTodos" className={`${props.theme? 'Bright' : 'Dark'}TodoStats`}>
       <h2>Filter</h2>
-      <Checkbox onChange={props.showOnlyActiveOnChange} ref={activeTodos}> 
+      <Checkbox onChange={props.cHandlers.showOnlyActiveOnChange} ref={refs.activeTodos}> 
         <p className="InputLabel">
           Active Todos
         </p>
       </Checkbox>
-      <Checkbox onChange={props.showOnlyCompletedOnChange} ref={completedTodos}>
+      <Checkbox onChange={props.cHandlers.showOnlyCompletedOnChange} ref={refs.completedTodos}>
         <p className="InputLabel">
           Completed Todos
         </p>
       </Checkbox>
-      <input type="text" placeholder="Tags" onChange={props.tagsOnChange} ref={tags}/>
-      <input type="text" placeholder="Task" onChange={props.taskOnChange} ref={task}/>
-      <input type="date" onChange={props.createdAtOnChange} ref={date}/>
-      <input type="number" defaultValue="0" step="0.1" max="3000" onChange={props.timeToCompleteOnChange} ref={number}/>
-      <button onClick={_ => setUnset(true)}>Unset filter</button>
+      <input 
+        type="text" 
+        placeholder="Tags" 
+        onChange={props.cHandlers.tagsOnChange} 
+        ref={refs.tags}
+      />
+      <input 
+        type="text" 
+        placeholder="Task" 
+        onChange={props.cHandlers.taskOnChange} 
+        ref={refs.task}
+      />
+      <input 
+        type="date" 
+        onChange={props.cHandlers.createdAtOnChange} 
+        ref={refs.createdAt}
+      />
+      <input 
+        type="number" 
+        defaultValue="0" 
+        step="0.1" 
+        max="3000" 
+        onChange={props.cHandlers.timeToCompleteOnChange} 
+        ref={refs.timeToComplete}
+      />                     
+      <button onClick={props.cHandlers.onUnsetFilter}>Unset filter</button>
     </div>
   )
-}
+})
