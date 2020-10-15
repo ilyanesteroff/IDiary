@@ -7,6 +7,6 @@ export default ({checked, onChange}) => (
       checked={checked} 
       onChange={onChange}
     />
-    <span className="slider round"></span>
+    <span className="slider round toggler"></span>
   </label>
 )

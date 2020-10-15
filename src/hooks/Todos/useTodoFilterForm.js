@@ -62,7 +62,10 @@ export default (todos, todoToDelete, onDeleted) => {
     taskOnChange: e => setTaskIncludes(e.target.value),
     timeToCompleteOnChange: e => setTimeToComplete(e.target.value),
     createdAtOnChange: e => setCreatedAt(e.target.value),
-    onUnsetFilter: _ => setUnsetFilter(true)
+    onUnsetFilter: e => {
+      e.preventDefault()
+      setUnsetFilter(true)
+    }
   }
 
   return [todosToExpose, refs, changeHandlers]

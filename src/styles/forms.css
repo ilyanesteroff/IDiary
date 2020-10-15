@@ -7,7 +7,6 @@ form {
   margin: 3vh 32.5%;
   width: 35%;
 }
-
 .signupFormPage form {
   margin: 2vh 10%;
   width: 80%;
@@ -188,15 +187,13 @@ form {
   text-align: center;
   color: #2323F3;
 }
-
-#CheckboxUnit p{
-  display: inline;
+#CheckboxUnit {
+  display: flex;
+  margin: 2vh 1%;
 }
-
-#CheckboxUnit input[type="checkbox"] {
-  display: inline-block;
-  width: auto;
+#CheckboxUnit label {
   margin-right: 2%;
+  margin-top: 1vh;
   background: #11cc13;
 }
 
@@ -276,6 +273,9 @@ hr {
   }
   .signupFormPage button{
     margin-top: 1vh;
+  }
+  #CheckboxUnit {
+    margin: 1.25vh 1%;
   }
 }
 

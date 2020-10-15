@@ -12,12 +12,12 @@ export default ({activeTodos, fullfilledTodos, todos, theme, yourTodos}) => {
 
   return(
     <>
-      <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos} theme={theme}/> 
       <FilterTodos 
         theme={theme}
         ref={refs}
         cHandlers={changeHandlers}
       />
+      <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos} theme={theme}/> 
       <div id="Todos">
         {
           todosToExpose.map((todo, index) => 
