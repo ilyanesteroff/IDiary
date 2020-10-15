@@ -1,6 +1,6 @@
 import React, { forwardRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookOpen, faWindowClose } from '@fortawesome/free-solid-svg-icons'
+import { faWindowClose, faFilter } from '@fortawesome/free-solid-svg-icons'
 import Checkbox from '../FormComponents/Checkbox'
 import Input from './Input'
 
@@ -14,7 +14,7 @@ export default forwardRef((props, refs) => {
           id="HideFilter" 
           onClick={_ => setHideForm(!hideForm)}
         >
-          <FontAwesomeIcon icon={hideForm? faBookOpen : faWindowClose}/>
+          <FontAwesomeIcon icon={hideForm? faFilter : faWindowClose}/>
         </div>
       </h2>
       <div id="FilterTodos-form" className={hideForm? 'hiddenForm' : 'normalForm'}>
