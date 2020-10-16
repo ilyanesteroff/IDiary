@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBomb } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import {
   BrightThemeContext,
   LogoutHandlerContext
@@ -38,7 +38,7 @@ export default ({sideMenu}) =>
                   : 'DarkNavbarIcon'
                 }
             >
-              <FontAwesomeIcon icon={faBomb}/>
+              <FontAwesomeIcon icon={faSignOutAlt}/>
             </div>
             <p 
               id={

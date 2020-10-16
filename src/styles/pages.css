@@ -1,4 +1,7 @@
 /*Common rules for all pages*/
+::-webkit-scrollbar { 
+  display: none; 
+}
 .formPage, .signupFormPage, .Page{
   padding-top: 10vh;
 }
@@ -56,6 +59,7 @@
 #TodoStats{
   right: 0;
   width: 15vw;
+  z-index: 1;
 }
 #FilterTodos{
   left: 0;
@@ -220,11 +224,12 @@ input::-webkit-inner-spin-button {
 #Todos{
   display: flex;
   flex-wrap: wrap;
-  width: 75vw;
+  margin-left: 6vw;
+  width: 69vw !important;
   margin-top: 5vh;
 }
 #Todo{
-  width: 25vw !important;
+  width: 23vw !important;
   padding: 1vh 1%;
 }
 .BrightTodo {
@@ -235,10 +240,27 @@ input::-webkit-inner-spin-button {
   background-color: #212122;
   box-shadow: 0 0 .3vh #f1f1ff;
 }
+#TimeLeft{
+  color: #228855;
+}
 #Todo h2{
   padding: 1vh 3%;
-  font-size: 2.5vh;
   font-weight: 500;
+}
+.extraExtraSmallText{
+  font-size: 2vh;
+}
+.extraSmallText{
+  font-size: 2.3vh;
+}
+.smallText{
+  font-size: 2.6vh;
+}
+.mediumText{
+  font-size: 3.05vh;
+}
+.largeText{
+  font-size: 3.6vh;
 }
 .BrightTodo h2{
   color: #323232;
@@ -255,13 +277,54 @@ input::-webkit-inner-spin-button {
   padding: 1vh 3%;
 }
 #Todo p{
-  font-weight: 400;
-  font-family: Roboto;
   padding: .5vh 3%;
-  font-size: 2vh;
+  font-size: 2.3vh;
+}
+#time{
+  font-family: Roboto;
+  font-weight: 200;
 }
 #red{
-  color: #993030;
+  font-family: Noto Sans KR, sans-serif;
+  color: #cc3322;
+}
+#Todo ul{
+  margin-left: 2%;
+}
+#Todo li{
+  display: inline-block;
+  margin: 1vh 1%;
+}
+#Todo a {
+  text-decoration: none;
+  color: #3377ff;
+}
+#LowerSection{
+  position: relative;
+}
+#LowerSection p{
+  padding: 1vh 2%;
+}
+#TodoButtons{
+  position: absolute;
+  bottom: 1vh;
+  right: 2%;
+}
+#EditTodoIcon{
+  margin-right: 1vw;
+  color: #3377ff;
+}
+#todoDeletingSpinner{
+  color: #3377ff;
+  animation: rotating 2s linear;
+}
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .BrightTodo p{
   color: #333;
@@ -298,15 +361,6 @@ input::-webkit-inner-spin-button {
   } 
   .normalForm{
     height: 43vh;
-  }
-}
-@media only screen and (min-width: 1400px){
-  #Todos{
-    width: 69vw;
-    margin-left: 6vw;
-  }
-  #Todo{
-    width: 23vw !important;
   }
 }
 @media only screen and (max-width: 1400px){
@@ -458,11 +512,22 @@ input::-webkit-inner-spin-button {
     font-size: 3vh;
   }
   #Todos{
+    margin: 5vh 0;
     display: block;
+    width: 100%;
   }
   #Todo{
-    width: 80% !important;
-    margin-left: 10%;
+    width: 100vw !important;
+  }
+  hr{
+    margin-left: 2%;
+    width: 96%;
+  }
+  #LowerSection p{
+    margin-left: 1%;
+  }
+  #EditTodoIcon{
+    margin-right: 4vw;
   }
 }
 @media only screen and (max-height: 540px) and (max-width: 830px){

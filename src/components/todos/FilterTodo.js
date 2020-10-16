@@ -4,6 +4,7 @@ import { faWindowClose, faFilter } from '@fortawesome/free-solid-svg-icons'
 import Checkbox from '../FormComponents/Checkbox'
 import Input from './Input'
 
+
 export default forwardRef((props, refs) => {
   const [hideForm, setHideForm] = useState(false)
   return(

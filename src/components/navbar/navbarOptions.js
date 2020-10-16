@@ -1,11 +1,12 @@
 import { 
-  faDiceSix,
+  faUserPlus,
   faTasks, 
-  faAtom,
-  faUser,
-  faBlog,
+  faMailBulk,
+  faUserNinja,
   faQuestion,
-  faUserAstronaut
+  faDoorOpen,
+  faChessBoard,
+  faAtlas
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
   
@@ -14,7 +15,7 @@ export const optionsForUsers = [
   {
     value: 'Main',
     link: '/feed',
-    icon: faDiceSix
+    icon: faChessBoard
   }, 
   {
     value: 'Todos', 
@@ -24,12 +25,12 @@ export const optionsForUsers = [
   {
     value: 'Messages', 
     link: '/messages',
-    icon: faAtom
+    icon: faMailBulk
   },
   {
     value: 'firstname',
     link: '/profile',
-    icon: faUser
+    icon: faUserNinja
   }
 ]
 
@@ -37,7 +38,7 @@ export const optionsForVisitors = [
   {
     value: 'Main', 
     link: '/',
-    icon: faBlog
+    icon: faAtlas
   },
   {
     value: 'About',
@@ -47,12 +48,12 @@ export const optionsForVisitors = [
   {
     value: 'Login',
     link: '/login',
-    icon: faUser 
+    icon: faDoorOpen 
   },
   {
     value: 'Signup',
     link: '/create-user',
-    icon: faUserAstronaut
+    icon: faUserPlus
   },
   {
     value: 'Source',

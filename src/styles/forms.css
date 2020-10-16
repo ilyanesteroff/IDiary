@@ -52,7 +52,6 @@ form {
   font-weight: 600;
 }
 
-
 @media only screen and (min-width: 830px){
   .SignupFields{
     display: flex;

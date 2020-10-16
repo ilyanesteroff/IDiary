@@ -7,7 +7,10 @@ import useTodoFilterForm from '../../hooks/Todos/useTodoFilterForm'
 
 export default ({activeTodos, fullfilledTodos, todos, theme, yourTodos}) => {
   const [todoToDelete, setTodoToDelete] = useState(null)
-
+  const [todoStats, setTodoStats] = useState({
+    completed: fullfilledTodos,
+    active: activeTodos
+  })
   const [todosToExpose, refs, changeHandlers] = useTodoFilterForm(todos, todoToDelete, _ => setTodoToDelete(null))
 
   return(
@@ -17,7 +20,11 @@ export default ({activeTodos, fullfilledTodos, todos, theme, yourTodos}) => {
         ref={refs}
         cHandlers={changeHandlers}
       />
-      <TodoStats activeTodos={activeTodos} fullfilledTodos={fullfilledTodos} theme={theme}/> 
+      <TodoStats 
+        activeTodos={todoStats.active} 
+        fullfilledTodos={todoStats.completed} 
+        theme={theme}
+      /> 
       <div id="Todos">
         {
           todosToExpose.map((todo, index) => 
@@ -29,7 +36,13 @@ export default ({activeTodos, fullfilledTodos, todos, theme, yourTodos}) => {
               }} 
               key={index+'todo'} 
               theme={theme}
-              setTodoToDelete={todoId => setTodoToDelete(todoId)}
+              setTodoToDelete={
+                todoId => {
+                  setTodoToDelete(todoId)
+                  todo.completed
+                    ? setTodoStats({...todoStats, completed: todoStats.completed - 1})
+                    : setTodoStats({ ...todoStats, active: todoStats.active - 1})
+              }}
             />
           )
         }
