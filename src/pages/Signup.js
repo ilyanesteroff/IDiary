@@ -4,7 +4,7 @@ import SignupForm from '../forms/SignupForm'
 import { BrightThemeContext } from '../utils/contexts'
 
 export default memo(_ => {
-  document.title = 'TooDooDoo - Create account'
+  document.title = 'MyDiary - Create account'
 
   return(
     <BrightThemeContext.Consumer>

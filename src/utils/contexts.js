@@ -35,4 +35,8 @@ export const ToggleThemeContext = createContext(_ => {})
 
 export const SignalContext = createContext(null)
 
+export const SetTodoToDeleteContext = createContext(_ => {})
+
+export const YourTodoContext = createContext(null)
+
 //

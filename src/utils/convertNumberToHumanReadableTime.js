@@ -20,7 +20,7 @@ export default (time) => {
   }
   if(time > secs.hour){
     let hours = Math.floor(time / secs.hour)
-    output = output.concat(`${hours} ${pluralizer(hours, 'day')} `)
+    output = output.concat(`${hours} ${pluralizer(hours, 'hour')} `)
     time = time - hours * secs.hour
   }
   if(time > secs.minute){
@@ -28,7 +28,7 @@ export default (time) => {
     output = output.concat(`${minutes} ${pluralizer(minutes, 'minute')} `)
     time = time - minutes * secs.minute
   }
-  if(time > secs.second){
+  if(time > 0){
     let seconds = Math.floor(time / secs.second)
     output = output.concat(`${seconds} ${pluralizer(seconds, 'second')} `)
   } 

@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext, useRef, memo } from 'react'
 import Navbar from '../components/navbar/index'
 import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/AddTodoBtn'
-import { TokenContext, BrightThemeContext, ErrorContext } from '../utils/contexts'
+import { TokenContext, BrightThemeContext, ErrorContext, YourTodoContext } from '../utils/contexts'
 import useTodoLoader from '../hooks/useTodoLoader'
 import Todos from '../components/todos/Todos'
 import CreateTodoModal from '../components/todos/AddTodoModal'
 
 export default memo(_ => {
-  document.title = 'TooDooDoo - Your Todos'
+  document.title = 'MyDiary - Your Todos'
   const [page, setPage] = useState(1)
   const [addTodoModalOpened, setAddTodoModalOpened] = useState(false)
   const Token = _ => useContext(TokenContext)
@@ -40,13 +40,13 @@ export default memo(_ => {
               <h3>It seems like you have no todos yet</h3>
             }
             {todos.length > 0 &&
-              <Todos
-                theme={theme}
-                todos={todos}
-                activeTodos={activeTodos}
-                fullfilledTodos={fullfilledTodos}
-                yourTodos
-              />
+              <YourTodoContext.Provider value={true}>
+                <Todos
+                  todos={todos}
+                  activeTodos={activeTodos}
+                  fullfilledTodos={fullfilledTodos}
+                />
+              </YourTodoContext.Provider>
             } 
             {loading && <Spinner/>}
             {addTodoModalOpened && <CreateTodoModal/>}

@@ -5,7 +5,7 @@ import RequestPasswordResetForm from '../forms/RequestPasswordResetForm'
 
 
 export default memo(_ => {
-  document.title = 'TooDooDoo - Request password reset'
+  document.title = 'MyDiary - Request password reset'
 
   return (
     <>

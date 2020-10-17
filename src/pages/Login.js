@@ -5,7 +5,7 @@ import { BrightThemeContext } from '../utils/contexts'
 
 
 export default memo(_ => {  
-  document.title = 'TooDooDoo - Login'
+  document.title = 'MyDiary - Login'
 
   return(    
     <>

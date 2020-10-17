@@ -46,6 +46,7 @@
   color: #eef;
   font-size: 20px;
   text-align: center;
+  z-index: 1;
 }
 .AddTodoBtn > div{
   padding: 19px 21px;
@@ -97,11 +98,18 @@
 .hiddenForm form{
   top: -55vh;
 }
-.BrightTodoStats{
+.BrightPage #FilterTodos,
+.BrightPage #TodoStats{
   background-color: #fafaff;
   box-shadow: 0 0 0.3vh #222227;
 }
-.DarkTodoStats{
+.DarkPage #FilterTodos,
+.DarkPage #TodoStats{
+  background-color: #222227;
+  box-shadow: 0 0 0.3vh #fafaff;
+}
+.DarkPage #FilterTodos h4,
+.DarkPage #TodoStats h4{
   background-color: #232327;
   box-shadow: 0 0 0.3vh #fafaff;
 }
@@ -111,10 +119,12 @@
   font-weight: 700;
   margin-bottom: 2vh;
 }
-.BrightTodoStats h2{
+.BrightPage #FilterTodos h2,
+.BrightPage #TodoStats h2{
   color: #22222f;
 }
-.DarkTodoStats h2{
+.DarkPage #FilterTodos h2,
+.DarkPage #TodoStats h2{
   color: #eaeaff;
 }
 #TodoStats h4,
@@ -126,11 +136,14 @@
 button:focus{
   outline: none;
 }
-.BrightTodoStats h4{
+.BrightPage #FilterTodos h4,
+.BrightPage #TodoStats h4{
   color: #22223f;
 }
-.DarkTodoStats h4{
+.DarkPage #FilterTodos h4,
+.DarkPage #TodoStats h4{
   color: #c5c5ff;
+  box-shadow: none;
 }
 #FilterTodos p, 
 #TodoStats p{
@@ -189,30 +202,36 @@ input::-webkit-inner-spin-button {
   float: right;
   clear: both;
 }
-.DarkTodoStats input{
+.DarkPage #FilterTodos input,
+.DarkPage #TodoStats input{
   background-color: #42424f;
   border: solid 1px  #42424f;
   color: #eeeeff;
 }
-.BrightTodoStats input{
+.BrightPage #FilterTodos input,
+.BrightPage #TodoStats input{
   background-color: #d3d3ee;
   border: solid 1px  #d3d3ee;
   color: #222;
 }
-.DarkTodoStats input:focus{
+.DarkPage #FilterTodos input:focus,
+.DarkPage #TodoStats input:focus{
   background-color: #222222;
   border-color: #3377ff;
   box-shadow: 0 0 .3vh #3377ff;
 }
-.BrightTodoStats input:focus{
+.BrightPage #FilterTodos input:focus,
+.BrightPage #TodoStats input:focus{
   background-color: #fbfbff;
   box-shadow: 0 0 .3vh #3377ff;
   border-color: #3377ff;
 }
-.BrightTodoStats p{
+.BrightPage #FilterTodos p,
+.BrightPage #TodoStats p{
   color: #222232;
 }
-.DarkTodoStats p{
+.DarkPage #FilterTodos p,
+.DarkPage #TodoStats p{
   color: #efeaff;
 }
 #ActiveTodos{
@@ -232,15 +251,15 @@ input::-webkit-inner-spin-button {
   width: 23vw !important;
   padding: 1vh 1%;
 }
-.BrightTodo {
+.BrightPage #Todo {
   background-color: #f1f1ff;
   box-shadow: 0 0 .3vh #212122;
 }
-.DarkTodo {
+.DarkPage #Todo {
   background-color: #212122;
   box-shadow: 0 0 .3vh #f1f1ff;
 }
-#TimeLeft{
+#Todo #TimeLeft{
   color: #228855;
 }
 #Todo h2{
@@ -262,10 +281,10 @@ input::-webkit-inner-spin-button {
 .largeText{
   font-size: 3.6vh;
 }
-.BrightTodo h2{
+.BrightPage #Todo h2{
   color: #323232;
 }
-.DarkTodo h2{
+.DarkPage #Todo h2{
   color: #ccc;
 }
 #Todo h3{
@@ -284,7 +303,7 @@ input::-webkit-inner-spin-button {
   font-family: Roboto;
   font-weight: 200;
 }
-#red{
+#Todo #red{
   font-family: Noto Sans KR, sans-serif;
   color: #cc3322;
 }
@@ -296,6 +315,7 @@ input::-webkit-inner-spin-button {
   margin: 1vh 1%;
 }
 #Todo a {
+  font-family: Ubuntu, sans-serif;
   text-decoration: none;
   color: #3377ff;
 }
@@ -326,10 +346,10 @@ input::-webkit-inner-spin-button {
     transform: rotate(360deg);
   }
 }
-.BrightTodo p{
+.BrightPage #Todo p{
   color: #333;
 }
-.DarkTodo p{
+.DarkPage #Todo p{
   color: #fff;
 }
 #DoneTodo{
@@ -353,6 +373,21 @@ input::-webkit-inner-spin-button {
   }
   #FilterTodos input::placeholder{
     font-size: 1.7vh;
+  }
+  .extraExtraSmallText{
+    font-size: 1.5vh;
+  }
+  .extraSmallText{
+    font-size: 1.9vh; 
+  }
+  .smallText{
+    font-size: 2.4vh;
+  }
+  .mediumText{
+    font-size: 2.8vh;
+  }
+  .largeText{
+    font-size: 3.2vh;
   }
 }
 @media only screen and (min-height: 1200px) and (min-width: 1000px){
@@ -422,6 +457,30 @@ input::-webkit-inner-spin-button {
   #Todo{
     width: 50% !important;
   }
+  .extraExtraSmallText{
+    font-size: 1.6vh;
+  }
+  .smallText{
+    font-size: 2.3vh;
+  }
+  .mediumText{
+    font-size: 2.7vh;
+  }
+  .largeText{
+    font-size: 3.1vh;
+  }
+  p#TimeLeft, p#red, .extraSmallText{
+    font-size: 1.8vh;
+  }
+}
+@media only screen and (max-width: 700px){
+  #Todos{
+    display: block;
+    width: 100%;
+  }
+  #Todo{
+    width: 100% !important;
+  }
 }
 @media only screen and (min-height: 1000px) and (max-width: 1400px){
   #FilterTodos, #TodoStats{
@@ -454,6 +513,36 @@ input::-webkit-inner-spin-button {
   }
   .normalForm{
     height: 36vh;
+  }
+  #Todo a{
+    font-size: 2vh;
+  }
+  #Todo h3{
+    padding: .5vh 2%;
+  }
+  #Todo h2{
+    padding: .5vh 2%;
+  }
+  #Todo #time{
+    font-size: 1.8vh;
+  }
+  #Todo #TodoButtons{
+    font-size: 2vh;
+  }
+  .extraExtraSmallText{
+    font-size: 1.2vh;
+  }
+  .extraSmallText{
+    font-size: 1.5vh;
+  }
+  .smallText{
+    font-size: 1.8vh;
+  }
+  .mediumText{
+    font-size: 2.2vh;
+  }
+  .largeText{
+    font-size: 2.5vh;
   }
 }
 @media only screen and (max-width: 540px) {
@@ -516,8 +605,18 @@ input::-webkit-inner-spin-button {
     display: block;
     width: 100%;
   }
+  .AddTodoBtn{
+    bottom: 3vh;
+  }
+  .AddTodoBtn > div{
+    padding: 13px 16px;
+  }
   #Todo{
     width: 100vw !important;
+    padding: 2vh 2%;
+  }
+  #Todo h2{
+    font-size: 3vh;
   }
   hr{
     margin-left: 2%;
@@ -525,9 +624,26 @@ input::-webkit-inner-spin-button {
   }
   #LowerSection p{
     margin-left: 1%;
+    padding-top: 1vh;
   }
   #EditTodoIcon{
     margin-right: 4vw;
+  }
+  p#red, p#TimeLeft, #LowerSection p{
+    font-size: 3vh;
+  }
+  p#TimeLeft{
+    font-weight: 600;
+  }
+  p#time{
+    font-weight: 400;
+  }
+  li, #Todo h3, p#time{
+    font-size: 3vh;
+  }
+  #Todo #TodoButtons{
+    font-size: 3.5vh;
+    bottom: 0.5vh;
   }
 }
 @media only screen and (max-height: 540px) and (max-width: 830px){
@@ -580,17 +696,50 @@ input::-webkit-inner-spin-button {
     display: block;
   }
   #Todo{
-    width: 90% !important;
+    width: 100% !important;
     margin-left: 5%;
+    padding: 4vh 1%;
   }
   #Todo h2{
-    font-size: 4vh;
-  }
-  #Todo h3{
-    font-size: 3.5vh;
+    font-size: 5.4vh;
+    padding: 2vh 3%;
   }
   #Todo p{
-    font-size: 2.8vh;
+    font-size: 3vh;
+  }
+  p#red, p#TimeLeft, #time{
+    font-size: 4vh;
+  }
+  #EditTodoIcon{
+    margin-right: 2vw;
+  }
+  #Todo a, #LowerSection p {
+    font-size: 5vh;
+    font-weight: 600;
+    padding-top: 2vh;
+    margin-left: 1%;
+  }
+  li{
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+  }
+  p#TimeLeft{
+    font-weight: 600;
+  }
+  p#time{
+    font-weight: 400;
+  }
+  li, #Todo h3, p#time{
+    font-size: 4vh;
+  }
+  #Todo #TodoButtons{
+    font-size: 5vh;
+    bottom: 0.5vh;
+    right: 5%;
+  }
+  hr{
+    width: 96%;
+    margin-left: 2%;
   }
 }
 @media only screen and (max-height: 330px){
@@ -630,7 +779,21 @@ input::-webkit-inner-spin-button {
   .normalForm{
     height: 78vh;
   }
-  #Todo p{
-    font-size: 3.5vh;
+  #Todo{
+    padding: 5vh 2%;
+  }
+  p#red, p#TimeLeft, p#time{
+    font-size: 5vh;
+  }
+  #Todo h3{
+    font-size: 5vh;
+    padding-bottom: 3vh;
+  }
+  #Todo h2{
+    font-size: 7vh;
+  }
+  #LowerSection p{
+    font-size: 5vh;
+    padding-top: 2vh;
   }
 }

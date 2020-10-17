@@ -7,7 +7,7 @@ import checkIfResetPwIsActual from '../api/checks/if-password-reset-is-actual'
 import { tokenFromUrl as token } from '../utils/tokens'
 
 export default memo(_ => {
-  document.title = 'TooDooDoo - Set new password'
+  document.title = 'MyDiary - Set new password'
   const [ checked, setChecked ] = useState(false)
   const [ actual, setActual ] = useState(false)
 
