@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import { SetTodoToDeleteContext } from '../../utils/contexts'
 import Todo from './Todo'
 import TodoStats from './TodoStats'
@@ -6,7 +6,7 @@ import FilterTodos from './FilterTodo'
 import useTodoFilterForm from '../../hooks/Todos/useTodoFilterForm'
 
 
-export default ({activeTodos, fullfilledTodos, todos}) => {
+export default memo(({activeTodos, fullfilledTodos, todos}) => {
   const [todoToDelete, setTodoToDelete] = useState(null)
   const [todoStats, setTodoStats] = useState({
     completed: fullfilledTodos,
@@ -46,4 +46,4 @@ export default ({activeTodos, fullfilledTodos, todos}) => {
       </div>
     </>
   )
-}
+})

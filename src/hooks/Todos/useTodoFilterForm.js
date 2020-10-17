@@ -16,6 +16,15 @@ export default (todos, todoToDelete, onDeleted) => {
   const [unsetFilter, setUnsetFilter] = useState(false)
   const _todos = useRef(todos)
 
+  //console.log(_todos.current, todos)
+
+  useEffect(_ => {
+    if(todos.length > _todos.current.length){
+      _todos.current = [todos[0], ..._todos.current]
+      console.log(_todos.current)
+    }
+  }, [todos])
+
   useEffect(_ => {
     if(todoToDelete !== null){
       _todos.current = _todos.current.filter(todo => todo._id !== todoToDelete)

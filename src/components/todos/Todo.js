@@ -11,7 +11,7 @@ import TimeLeft from './TimeToComplete'
 export default ({todoData}) => {
   const { createdAt, timeToComplete, task, completed, _id, tags } = todoData
   const [ incompleted, setIncompleted ] = useState(null)
-
+  
   useEffect(_ => {
     const now = new Date().getTime()
     if(

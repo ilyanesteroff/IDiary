@@ -39,4 +39,7 @@ export const SetTodoToDeleteContext = createContext(_ => {})
 
 export const YourTodoContext = createContext(null)
 
+export const CloseModalContext = createContext(_ => {})
+
+export const SetNewTodoContext = createContext(_ => {})
 //

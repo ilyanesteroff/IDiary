@@ -1,0 +1,33 @@
+#createTodo{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  top: 0;
+  backdrop-filter: blur(15px);
+}
+#createTodo h2{
+  margin-top: 15vh;
+  text-align: center;
+  font-family: Ubuntu, sans-serif;
+}
+#createTodo svg{
+  position: absolute;
+  top: 15vh;
+  right: 17vw;
+  font-size: 3vh;
+}
+.DarkModal h2, 
+.DarkModal svg{
+  color: #dfdfff;
+}
+.BrightModal h2,
+.BrightModal svg{
+  color: #22222f;
+}
+.DarkModal p{
+  color: #eee;
+}
+.BrightModal p{
+  color: #323232;
+}

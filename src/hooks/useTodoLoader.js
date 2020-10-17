@@ -3,7 +3,7 @@ import fetchTodos from '../api/todos/fetch-todos'
 import fetchTodoStats from '../api/todos/fetch-todo-stats'
 
 
-export default (token, page, setError) => {
+export default (token, page, setError, newTodo, setNewTodo) => {
   const [fullfilledTodos, setFullfilledTodos] = useState(null)
   const [activeTodos, setActiveTodos] = useState(null)
   const [nextPage, setNextPage] = useState(false)
@@ -43,6 +43,13 @@ export default (token, page, setError) => {
     loadTodos()
     // eslint-disable-next-line
   }, [page])
+
+  useEffect(_ => {
+    if(newTodo){
+      setTodos([newTodo, ...todos])
+      setNewTodo(null)
+    }
+  }, [newTodo, setNewTodo, todos])
 
   return [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loadingTodos]
 }
