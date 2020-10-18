@@ -42,4 +42,6 @@ export const YourTodoContext = createContext(null)
 export const CloseModalContext = createContext(_ => {})
 
 export const SetNewTodoContext = createContext(_ => {})
+
+export const TodoStatsContext = createContext({})
 //

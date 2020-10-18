@@ -14,7 +14,7 @@ import Input from './Input'
 import createTodo from '../../actionHandlers/CreateTodo'
 
 
-export default props => {
+export default _ => {
   const Error = _ => useContext(ErrorContext)
 
   const setError = useRef(Error().setError)
@@ -71,7 +71,6 @@ export default props => {
                               public: publicT.current.checked,
                               completed: completed.current.checked
                             }, token, val => setError.current(val))
-                            console.log(newTodo)
                             setNewTodo({...newTodo})
                             closeModal()
                         }}

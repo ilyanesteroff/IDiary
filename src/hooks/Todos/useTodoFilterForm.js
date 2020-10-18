@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import useTodoFilter from './useTodoFilter'
 import useUnsetFilter from './useUnsetTodoFilter'
 
-/*Todo filter main behaviour here */
 
-export default (todos, todoToDelete, onDeleted) => {
+export default (todos) => {
   //filter params
   const [showOnlyCompletedTodos, setShowOnlyCompletedTodos] = useState(false)
   const [showOnlyActiveTodos, setShowOnlyActiveTodos] = useState(false)
@@ -14,26 +13,14 @@ export default (todos, todoToDelete, onDeleted) => {
   const [timeToComplete, setTimeToComplete] = useState(0)
   const [createdAt, setCreatedAt] = useState('')
   const [unsetFilter, setUnsetFilter] = useState(false)
-  const _todos = useRef(todos)
-
-  //console.log(_todos.current, todos)
+  const [_todos, set_todos] = useState(todos)
 
   useEffect(_ => {
-    if(todos.length > _todos.current.length){
-      _todos.current = [todos[0], ..._todos.current]
-      console.log(_todos.current)
-    }
+    set_todos(todos)
   }, [todos])
 
-  useEffect(_ => {
-    if(todoToDelete !== null){
-      _todos.current = _todos.current.filter(todo => todo._id !== todoToDelete)
-      onDeleted()
-    }
-  }, [todoToDelete, onDeleted])
-
   const [todosToExpose] = useTodoFilter(
-    _todos.current, 
+    _todos, 
     showOnlyCompletedTodos, 
     showElapsedTodos,
     showOnlyActiveTodos, 

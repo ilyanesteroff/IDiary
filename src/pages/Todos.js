@@ -1,31 +1,27 @@
-import React, { useState, useEffect, useContext, useRef, memo } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import Navbar from '../components/navbar/index'
 import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/AddTodoBtn'
-import { 
-  TokenContext, 
-  BrightThemeContext, 
-  ErrorContext, 
-  YourTodoContext,
-  CloseModalContext,
-  SetNewTodoContext 
-} from '../utils/contexts'
-import useTodoLoader from '../hooks/useTodoLoader'
+import * as Ctx from '../utils/contexts'
+import useTodoLoader from '../hooks/Todos/useTodoLoader'
+import useTodoManipulator from '../hooks/Todos/useTodoManipulator'
 import Todos from '../components/todos/Todos'
 import CreateTodoModal from '../components/todos/AddTodoModal'
 
 
-export default memo(_ => {
+export default _ => {
   document.title = 'MyDiary - Your Todos'
   const [page, setPage] = useState(1)
   const [addTodoModalOpened, setAddTodoModalOpened] = useState(false)
-  const [newTodo, setNewTodo] = useState(null)
-  const Token = _ => useContext(TokenContext)
-  const Error = _ => useContext(ErrorContext)
+  const Token = _ => useContext(Ctx.TokenContext)
+  const Error = _ => useContext(Ctx.ErrorContext)
   const token = useRef(Token())
   const setError = useRef(Error().setError)
-  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError.current, newTodo, setNewTodo)
-
+  
+  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError.current)
+  
+  const [sortedTodos, setNewTodo, setTodoToDelete, active, completed] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
+  
   const definePosition = _ => {
     if((window.innerHeight + window.pageYOffset + 10) >= document.body.offsetHeight && nextPage) {
       setPage(page + 1)
@@ -41,36 +37,36 @@ export default memo(_ => {
   return(
     <>
       <Navbar/>
-      <BrightThemeContext.Consumer>
+      <Ctx.BrightThemeContext.Consumer>
         {theme =>
           <div id="TodosPage" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
             <h1>Your Todos</h1>
-            {fullfilledTodos === 0 && activeTodos === 0 &&
+            {completed === 0 && active === 0 &&
               <h3>It seems like you have no todos yet</h3>
             }
-            {todos.length > 0 &&
-              <YourTodoContext.Provider value={true}>
-                <Todos
-                  todos={todos}
-                  activeTodos={activeTodos}
-                  fullfilledTodos={fullfilledTodos}
-                />
-              </YourTodoContext.Provider>
+            {sortedTodos.length > 0 &&
+              <Ctx.YourTodoContext.Provider value={true}>
+                <Ctx.TodoStatsContext.Provider value={{active: active, completed: completed}}>
+                  <Ctx.SetTodoToDeleteContext.Provider value={todoId => setTodoToDelete(todoId)}>
+                    <Todos todos={sortedTodos}/>
+                  </Ctx.SetTodoToDeleteContext.Provider>
+                </Ctx.TodoStatsContext.Provider>
+              </Ctx.YourTodoContext.Provider>
             } 
             {loading && <Spinner/>}
             {addTodoModalOpened && 
-              <SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>
-                <CloseModalContext.Provider value={_ => setAddTodoModalOpened(false)}>
-                  <CreateTodoModal/>
-                </CloseModalContext.Provider>
-              </SetNewTodoContext.Provider>
+              <Ctx.SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>
+                <Ctx.CloseModalContext.Provider value={_ => setAddTodoModalOpened(false)}>
+                    <CreateTodoModal/>
+                </Ctx.CloseModalContext.Provider>
+              </Ctx.SetNewTodoContext.Provider>
             }
             {!addTodoModalOpened && 
               <AddTodoBtn clickHandler={_ => setAddTodoModalOpened(true)}/>
             }
           </div>
         }
-      </BrightThemeContext.Consumer>
+      </Ctx.BrightThemeContext.Consumer>
     </>
   )
-})
+}

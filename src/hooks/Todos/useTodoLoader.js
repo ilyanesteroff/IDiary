@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import fetchTodos from '../api/todos/fetch-todos'
-import fetchTodoStats from '../api/todos/fetch-todo-stats'
+import fetchTodos from '../../api/todos/fetch-todos'
+import fetchTodoStats from '../../api/todos/fetch-todo-stats'
 
 
-export default (token, page, setError, newTodo, setNewTodo) => {
+export default (token, page, setError) => {
   const [fullfilledTodos, setFullfilledTodos] = useState(null)
   const [activeTodos, setActiveTodos] = useState(null)
   const [nextPage, setNextPage] = useState(false)
@@ -31,7 +31,7 @@ export default (token, page, setError, newTodo, setNewTodo) => {
         .catch(err => setError(err.message))
     else return fetchTodos(token, page)
       .then(res => {
-        setLoadingTodos(false)
+        setLoadingTodos(false) 
         setTodos([...todos, ...res.data.todos])
         if(fullfilledTodos + activeTodos > todos.length + res.data.todos.length) setNextPage(true)
       })
@@ -43,13 +43,6 @@ export default (token, page, setError, newTodo, setNewTodo) => {
     loadTodos()
     // eslint-disable-next-line
   }, [page])
-
-  useEffect(_ => {
-    if(newTodo){
-      setTodos([newTodo, ...todos])
-      setNewTodo(null)
-    }
-  }, [newTodo, setNewTodo, todos])
 
   return [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loadingTodos]
 }

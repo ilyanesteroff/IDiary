@@ -12,14 +12,14 @@ export default ({id}) => {
     <TokenContext.Consumer>
       {token => 
         <SetTodoToDeleteContext.Consumer>
-          {cb =>
+          {setTodoToDelete =>
             <FontAwesomeIcon 
               id={deleting? 'todoDeletingSpinner' : 'red'}
               icon={deleting? faSpinner : faTrashAlt}
               onClick={async e => {
                 e.preventDefault()
                 setDeleting(true)
-                await deleteTodo(id, token, _ => cb(id))
+                await deleteTodo(id, token, _ => setTodoToDelete(id))
                 setDeleting(false)
               }}
             />
