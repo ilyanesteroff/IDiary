@@ -133,9 +133,6 @@
   font-weight: 600;
   margin-bottom: 1vh;
 }
-button:focus{
-  outline: none;
-}
 .BrightPage #FilterTodos h4,
 .BrightPage #TodoStats h4{
   color: #22223f;
@@ -144,21 +141,31 @@ button:focus{
 .DarkPage #TodoStats h4{
   color: #c5c5ff;
   box-shadow: none;
+  background-color: transparent;
 }
 #FilterTodos p, 
 #TodoStats p{
   font-size: 1.05vw;
   padding-left: .1vw;
 }
-#FilterTodos input {
+#FilterTodos input,
+#createTodoForm input,  
+#createTodoForm textarea{
   padding: 1vh 1%;
   width: 99%;
   margin-left: 0.5%;
-  font-size: 2vh;
+  font-size: 2vh; 
+  font-weight: 600;
+  font-family: Noto Sans KR, sans-serif;
+}#FilterTodos input{
+  padding-left: 8%;
 }
 #FilterTodos input[type="text"],
 #FilterTodos input[type="number"], 
-#FilterTodos input[type="date"]{
+#FilterTodos input[type="date"], 
+#createTodoForm input[type="text"],
+#createTodoForm input[type="number"], 
+#createTodoForm input[type="date"]{
   margin: .5vh auto;
   border-radius: 5.3vh;
 }
@@ -167,7 +174,8 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-#FilterTodos button{
+#FilterTodos button,
+#createTodoForm button{
   border-radius: 5.3vh;
   padding: 1vh 2%;
   text-align: center;
@@ -178,22 +186,18 @@ input::-webkit-inner-spin-button {
   transition: all .2s;
   margin-top: 1vh;
 }
-#FilterTodos button:hover{
+#FilterTodos button:hover, #createTodoForm button:hover{
   background-color: rgba(33, 77, 255, 0.1);
 }
-#FilterTodos button:active{
+#FilterTodos button:active, #createTodoForm button:active{
   background-color:  #3377ff;
   color: #fff;
 }
-#FilterTodos input::placeholder{
+#FilterTodos input::placeholder,
+#createTodoForm input::placeholder{
   font-family: Ubuntu;
   font-weight: 400;
   font-size: 2.3vh;
-}
-#FilterTodos input{
-  padding-left: 8%;
-  font-weight: 600;
-  font-family: Noto Sans KR, sans-serif;
 }
 #FilterTodos > #input{
   margin: 1vh auto;
@@ -203,25 +207,33 @@ input::-webkit-inner-spin-button {
   clear: both;
 }
 .DarkPage #FilterTodos input,
-.DarkPage #TodoStats input{
+.DarkPage #TodoStats input,
+.DarkModal #createTodoForm input,
+.DarkModal #createTodoForm textarea{
   background-color: #42424f;
   border: solid 1px  #42424f;
   color: #eeeeff;
 }
 .BrightPage #FilterTodos input,
-.BrightPage #TodoStats input{
+.BrightPage #TodoStats input,
+.BrightModal #createTodoForm input,
+.BrightModal #createTodoForm textarea{
   background-color: #d3d3ee;
   border: solid 1px  #d3d3ee;
   color: #222;
 }
 .DarkPage #FilterTodos input:focus,
-.DarkPage #TodoStats input:focus{
+.DarkPage #TodoStats input:focus,
+.DarkModal #createTodoForm input:focus,
+.DarkModal #createTodoForm textarea:focus{
   background-color: #222222;
   border-color: #3377ff;
   box-shadow: 0 0 .3vh #3377ff;
 }
 .BrightPage #FilterTodos input:focus,
-.BrightPage #TodoStats input:focus{
+.BrightPage #TodoStats input:focus,
+.BrightModal #createTodoForm input:focus,
+.BrightModal #createTodoForm textarea:focus{
   background-color: #fbfbff;
   box-shadow: 0 0 .3vh #3377ff;
   border-color: #3377ff;
@@ -367,11 +379,13 @@ input::-webkit-inner-spin-button {
   #FilterTodos h2{
     margin-bottom: 1vh;
   }
-  #FilterTodos input{
+  #FilterTodos input,
+  #createTodoForm input{
     padding: .8vh 1%;
     font-size: 1.6vh;
   }
-  #FilterTodos input::placeholder{
+  #FilterTodos input::placeholder,
+  #createTodoForm input::placeholder{
     font-size: 1.7vh;
   }
   .extraExtraSmallText{
@@ -431,7 +445,8 @@ input::-webkit-inner-spin-button {
     margin-right: 3%;
     margin-bottom: 0.5vh;
   }
-  #FilterTodos input{
+  #FilterTodos input,
+  #createTodoForm input{
     padding: 1vh 4%;
     font-size: 2vh;
   }
@@ -440,7 +455,8 @@ input::-webkit-inner-spin-button {
     font-weight: 600;
     margin-bottom: .5vh;
   }
-  #FilterTodos input::placeholder{
+  #FilterTodos input::placeholder,
+  #createTodoForm input::placeholder{
     font-size: 2vh;
     font-family: Noto Sans KR, sans-serif;
     font-weight: 600;
@@ -492,7 +508,8 @@ input::-webkit-inner-spin-button {
   #TodoStats h4{
     font-size: 2vh;
   }
-  #FilterTodos input{
+  #FilterTodos input,
+  #createTodoForm input{
     padding: .6vh 6%;
     font-size: 1.8vh;
     margin: .5vh 1%;
@@ -505,7 +522,8 @@ input::-webkit-inner-spin-button {
     width: 40%;
     font-size: 2vh;
   }
-  #FilterTodos input::placeholder{
+  #FilterTodos input::placeholder,
+  #createTodoForm input::placeholder{
     font-size: 1.7vh;
   }
   .hiddenForm{
@@ -574,7 +592,8 @@ input::-webkit-inner-spin-button {
     margin-right: 3%;
     margin-bottom: 0.2vh;
   }
-  #FilterTodos input{
+  #FilterTodos input,
+  #createTodoForm input{
     padding: 1vh 4%;
   }
   #FilterTodos p {
@@ -616,7 +635,7 @@ input::-webkit-inner-spin-button {
     padding: 2vh 2%;
   }
   #Todo h2{
-    font-size: 3vh;
+    font-size: 4.5vh;
   }
   hr{
     margin-left: 2%;
@@ -666,7 +685,8 @@ input::-webkit-inner-spin-button {
   #TodoStats h4, #FilterTodos h4{
     font-size: 3.7vh;
   }
-  #FilterTodos input{
+  #FilterTodos input,
+  #createTodoForm input{
     margin-bottom: 2vh;
     padding: 2vh 4%;
     font-size: 3.5vh;
@@ -677,13 +697,15 @@ input::-webkit-inner-spin-button {
   #FilterTodos #input{
     margin-top: 1vh;
   }
-  #FilterTodos input::placeholder{
+  #FilterTodos input::placeholder,
+  #createTodoForm input::placeholder{
     font-size: 3.5vh;
   }
   #FilterTodos p {
     font-size: 3vh;
   }
-  #FilterTodos button {
+  #FilterTodos button,
+  #createTodoForm button {
     width: 30%;
     font-size: 4vh;
     padding: 2vh 1%;
@@ -701,7 +723,7 @@ input::-webkit-inner-spin-button {
     padding: 4vh 1%;
   }
   #Todo h2{
-    font-size: 5.4vh;
+    font-size: 6.4vh;
     padding: 2vh 3%;
   }
   #Todo p{
@@ -714,7 +736,7 @@ input::-webkit-inner-spin-button {
     margin-right: 2vw;
   }
   #Todo a, #LowerSection p {
-    font-size: 5vh;
+    font-size: 4vh;
     font-weight: 600;
     padding-top: 2vh;
     margin-left: 1%;
@@ -733,7 +755,7 @@ input::-webkit-inner-spin-button {
     font-size: 4vh;
   }
   #Todo #TodoButtons{
-    font-size: 5vh;
+    font-size: 5vh; 
     bottom: 0.5vh;
     right: 5%;
   }
@@ -753,13 +775,14 @@ input::-webkit-inner-spin-button {
   #FilterTodos #CheckboxUnit{
     margin: 3vh 2%;
   }
-  #FilterTodos p {
+  #FilterTodos p, #createTodoForm p {
     font-size: 5vh;
   }
   #FilterTodos #input{
     margin-top: 1.5vh;
   }
-  #FilterTodos input::placeholder, #FilterTodos input{
+  #FilterTodos input::placeholder, #FilterTodos input,
+  #createTodoForm input::placeholder, #createTodoForm input{
     font-size: 4vh;
   }
   .Page h3{
@@ -773,7 +796,8 @@ input::-webkit-inner-spin-button {
   #TodoStats h4, #FilterTodos h4{
     font-size: 5vh;
   }
-  #FilterTodos button {
+  #FilterTodos button, 
+  #createTodoForm button {
     font-size: 5vh;
   }
   .normalForm{

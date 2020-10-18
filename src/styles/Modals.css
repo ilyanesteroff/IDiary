@@ -14,8 +14,17 @@
 #createTodo svg{
   position: absolute;
   top: 15vh;
-  right: 17vw;
   font-size: 3vh;
+}
+#createTodo svg:hover,
+#FilterTodos svg:hover{
+  color: #3377ff;
+}
+.NoStats{
+  right: 2vw;
+}
+.Stats{
+  right: 17vw;
 }
 .DarkModal h2, 
 .DarkModal svg{
@@ -30,4 +39,117 @@
 }
 .BrightModal p{
   color: #323232;
+}
+#createTodoForm{
+  margin-top: 5vh;
+  width: 40%;
+  margin-left: 30%;
+  border: solid 2px #3377ff;
+}
+#createTodoForm input{
+  width: 60%;
+  display: inline;
+  padding-left: 3%;
+}
+#TaskTextArea, #createTodoForm button{
+  margin-top: 2vh;
+}
+#createTodoForm textarea{
+  resize: none;
+  border-radius: 2vh;
+  padding: 1vh 2%;
+  margin-top: 2vh;
+}
+#createTodoForm #input{
+  margin-top: 1vh;
+}
+#createTodoForm p{
+  font-weight: 600;
+}
+#createTodoForm button{
+  width: 70%;
+  margin-left: 15%;
+}
+@media only screen and (max-width: 1400px){
+  #createTodo{
+    z-index: 2;
+    backdrop-filter: blur(20px);
+  }
+  #createTodo svg{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 4vh;
+  }
+  #createTodo h2{
+    margin-top: 10vh;
+  }
+  #createTodoForm{
+    margin-top: 7vh;
+    width: 50%;
+    margin-left: 25%;
+  }
+  .DarkModal #createTodoForm input, 
+  .DarkModal #createTodoForm textarea{
+    border: solid 1px #222;
+  }  
+  .BrightModal #createTodoForm input, 
+  .BrightModal #createTodoForm textarea{
+    border: solid 1px #fff;
+  }
+}
+@media only screen and (max-width: 840px){
+  #createTodoForm{
+    width: 70%;
+    margin-left: 15%;
+    padding: 1.5vh 3%;
+  }
+  #createTodoForm input{
+    width: 80%;
+  }
+}
+@media only screen and (max-width: 540px){
+  #createTodoForm{
+    width: 90%;
+    margin-left: 5%;
+    padding: 1vh 3%;
+  }
+  #createTodoForm button,
+  #createTodoForm input{
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-height: 540px) and (max-width: 830px){
+  #createTodo h2{
+    display: none;
+  }  
+  #createTodo svg{
+    font-size: 6vh;
+  }
+  #createTodoForm textarea, 
+  #createTodoForm input{
+    font-size: 4vh;
+  }
+  #CheckboxUnit p{
+    margin-left: 4%;
+  }
+  #createTodoForm textarea{
+    padding: 2vh 2%;
+  }
+  #createTodoForm button{
+    margin-top: 4vh;
+  }
+  #createTodoForm{
+    margin-top: 10vh;
+    padding: 2vh 3%;
+    border-radius: 2vh;
+    max-height: 80vh;
+  }
+  #Checkboxes{
+    display: flex;
+  }
+  #CheckboxUnit{
+    width: 50%;
+  }
 }

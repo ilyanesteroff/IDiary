@@ -39,32 +39,32 @@ export default _ => {
       <Navbar/>
       <Ctx.BrightThemeContext.Consumer>
         {theme =>
-          <div id="TodosPage" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
-            <h1>Your Todos</h1>
-            {completed === 0 && active === 0 &&
-              <h3>It seems like you have no todos yet</h3>
-            }
-            {sortedTodos.length > 0 &&
-              <Ctx.YourTodoContext.Provider value={true}>
-                <Ctx.TodoStatsContext.Provider value={{active: active, completed: completed}}>
+          <Ctx.TodoStatsContext.Provider value={{active: active, completed: completed}}>
+            <div id="TodosPage" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
+              <h1>Your Todos</h1>
+              {completed === 0 && active === 0 &&
+                <h3>It seems like you have no todos yet</h3>
+              }
+              {sortedTodos.length > 0 &&
+                <Ctx.YourTodoContext.Provider value={true}>
                   <Ctx.SetTodoToDeleteContext.Provider value={todoId => setTodoToDelete(todoId)}>
                     <Todos todos={sortedTodos}/>
                   </Ctx.SetTodoToDeleteContext.Provider>
-                </Ctx.TodoStatsContext.Provider>
-              </Ctx.YourTodoContext.Provider>
-            } 
-            {loading && <Spinner/>}
-            {addTodoModalOpened && 
-              <Ctx.SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>
-                <Ctx.CloseModalContext.Provider value={_ => setAddTodoModalOpened(false)}>
+                </Ctx.YourTodoContext.Provider>
+              } 
+              {loading && <Spinner/>}
+              {addTodoModalOpened && 
+                <Ctx.SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>
+                  <Ctx.CloseModalContext.Provider value={_ => setAddTodoModalOpened(false)}>
                     <CreateTodoModal/>
-                </Ctx.CloseModalContext.Provider>
-              </Ctx.SetNewTodoContext.Provider>
-            }
-            {!addTodoModalOpened && 
-              <AddTodoBtn clickHandler={_ => setAddTodoModalOpened(true)}/>
-            }
-          </div>
+                  </Ctx.CloseModalContext.Provider>
+                </Ctx.SetNewTodoContext.Provider>
+              }
+              {!addTodoModalOpened && 
+                <AddTodoBtn clickHandler={_ => setAddTodoModalOpened(true)}/>
+              }
+            </div>
+          </Ctx.TodoStatsContext.Provider>
         }
       </Ctx.BrightThemeContext.Consumer>
     </>

@@ -1,6 +1,6 @@
 import React from 'react'
 import CreateTodoPortal from '../portals/index'
-import CreateTodoForm from './CreateTodoForm'
+import CreateTodoForm from '../../forms/CreateTodoForm'
 
 export default _ => {
   return (
@@ -8,4 +8,4 @@ export default _ => {
       <CreateTodoForm/>
     </CreateTodoPortal>
   )
-}
+} 

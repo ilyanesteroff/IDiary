@@ -1,9 +1,8 @@
 import React, { forwardRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
-import { faTimesCircle} from '@fortawesome/free-regular-svg-icons'
-import Checkbox from '../FormComponents/Checkbox'
-import Input from './Input'
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import FilterForm from '../../forms/FilterForm'
 
 
 export default forwardRef((props, refs) => {
@@ -20,52 +19,7 @@ export default forwardRef((props, refs) => {
         </div>
       </h2>
       <div id="FilterTodos-form" className={hideForm? 'hiddenForm' : 'normalForm'}>
-        <form id="FilterForm">
-          <Checkbox onChange={props.cHandlers.showOnlyActiveOnChange} ref={refs.activeTodos}> 
-            <p className="InputLabel">
-              Active Todos
-            </p>
-          </Checkbox>
-          <Checkbox onChange={props.cHandlers.showOnlyCompletedOnChange} ref={refs.completedTodos}>
-            <p className="InputLabel">
-              Completed Todos
-            </p>
-          </Checkbox>
-          <Checkbox onChange={props.cHandlers.showElapsedOnChange} ref={refs.elapsedTodos}>
-            <p className="InputLabel">
-              Elapsed Todos
-            </p>
-          </Checkbox>
-          <div id="filterInputs">
-            <Input 
-              type="text" 
-              placeholder="Enter a tag" 
-              changeHandler={props.cHandlers.tagsOnChange}
-              ref={refs.tags}
-            />
-            <Input 
-              type="text" 
-              placeholder="Enter a task" 
-              changeHandler={props.cHandlers.taskOnChange}
-              ref={refs.task}
-            />
-            <Input 
-              label="Pick a date"
-              type="date" 
-              changeHandler={props.cHandlers.createdAtOnChange}
-              ref={refs.createdAt}
-            /> 
-            <Input
-              label="Enter hours"
-              type="number" 
-              defaultValue="0" 
-              min="0"
-              changeHandler={props.cHandlers.timeToCompleteOnChange} 
-              ref={refs.timeToComplete}
-            />             
-          </div>      
-          <button onClick={props.cHandlers.onUnsetFilter}>Unset filter</button>
-        </form>
+        <FilterForm refs={refs} cHandlers={props.cHandlers}/>
       </div>
     </div>
   )

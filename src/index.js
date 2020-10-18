@@ -11,7 +11,6 @@ import './styles/portal-menu.css'
 import './styles/theme-toggler.css'
 import './styles/spinners.css'
 import './styles/pages.css'
-import './styles/CreateTodo.css'
 import './styles/Modals.css'
 
 ReactDOM.render(
