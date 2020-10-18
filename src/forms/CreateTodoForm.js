@@ -51,17 +51,14 @@ export default _ => {
                     <Ctx.SetNewTodoContext.Consumer>
                       {setNewTodo =>
                         <button
-                          onClick={async e => {
-                            e.preventDefault()
-                            const newTodo = await createTodo({
+                          onClick={e => 
+                            createTodo(e, {
                               task: task.current.value,
-                              timeToComplete: timeToComplete.current.value,
                               public: publicT.current.checked,
-                              completed: completed.current.checked
-                            }, token, val => setError.current(val))
-                            setNewTodo({...newTodo})
-                            closeModal()
-                        }}
+                              completed: completed.current.checked,
+                              timeToComplete: timeToComplete.current.value
+                            }, token, setError.current, setNewTodo, closeModal) 
+                          }
                       >Create Todo</button>
                       }
                     </Ctx.SetNewTodoContext.Consumer>

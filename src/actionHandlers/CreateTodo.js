@@ -1,19 +1,21 @@
 import createTodo from '../api/todos/create-todo'
+import TodoInputValidator from '../validators/validateTodo'
+import TodoInputFormater from '../utils/formatTodo'
 
-export default async (data, token, setError) => {
-  //ValidateData
-  console.log('executed')
+
+export default async (e, data, token, setError, setNewTodo, closeModal) => {
+  e.preventDefault()
+  setError('')
+  const todoValidationFailed = TodoInputValidator(data, setError)
+  if(todoValidationFailed) return
+  const todoInput = TodoInputFormater(data)
   try {
-    const todoData = {
-      task: data.task,
-      completed: data.completed,
-      public: data.public
+    const newTodo = await createTodo(todoInput, token)
+    if(newTodo.data.createTodo){
+      setNewTodo(newTodo.data.createTodo)
+      closeModal()
     }
-    const newTodo = await createTodo(todoData, token)
-    if(newTodo.data.createTodo) return newTodo.data.createTodo
-    else throw new Error()
-  } catch(err){
-    console.log(err.message)
-    return setError('Failed creating todo')
+  } catch {
+    setError('Creating todo failed')
   }
 }
