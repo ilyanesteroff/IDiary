@@ -289,13 +289,11 @@
   #FilterTodos h2{
     margin-bottom: 1vh;
   }
-  #FilterTodos input,
-  #createTodoForm input{
+  input{
     padding: .8vh 1%;
     font-size: 1.6vh;
   }
-  #FilterTodos input::placeholder,
-  #createTodoForm input::placeholder{
+  input::placeholder{
     font-size: 1.7vh;
   }
   .extraExtraSmallText{
@@ -355,8 +353,7 @@
     margin-right: 3%;
     margin-bottom: 0.5vh;
   }
-  #FilterTodos input,
-  #createTodoForm input{
+  input{
     padding: 1vh 4%;
     font-size: 2vh;
   }
@@ -365,8 +362,7 @@
     font-weight: 600;
     margin-bottom: .5vh;
   }
-  #FilterTodos input::placeholder,
-  #createTodoForm input::placeholder{
+  input::placeholder{
     font-size: 2vh;
     font-family: Noto Sans KR, sans-serif;
     font-weight: 600;
@@ -418,8 +414,7 @@
   #TodoStats h4{
     font-size: 2vh;
   }
-  #FilterTodos input,
-  #createTodoForm input{
+  input{
     padding: .6vh 6%;
     font-size: 1.8vh;
     margin: .5vh 1%;
@@ -432,8 +427,7 @@
     width: 40%;
     font-size: 2vh;
   }
-  #FilterTodos input::placeholder,
-  #createTodoForm input::placeholder{
+  input::placeholder{
     font-size: 1.7vh;
   }
   .hiddenForm{
@@ -501,10 +495,8 @@
     width: 100%;
     margin-right: 3%;
     margin-bottom: 0.2vh;
-  }
-  #FilterTodos input,
-  #createTodoForm input{
-    padding: 1vh 4%;
+  }input{
+    padding: 1vh 3%;
   }
   #FilterTodos p {
     margin-left: 2%;
@@ -579,9 +571,6 @@
   .Page{
     margin: auto 5%;
   }  
-  .normalForm{
-    height: 59vh;
-  }
   .Page h1{
     font-size: 6vh;
   }
@@ -594,11 +583,9 @@
   }
   #TodoStats h4, #FilterTodos h4{
     font-size: 3.7vh;
-  }
-  #FilterTodos input,
-  #createTodoForm input{
+  }input{
     margin-bottom: 2vh;
-    padding: 2vh 4%;
+    padding: 2vh 3%;
     font-size: 3.5vh;
   }
   #FilterTodos #CheckboxUnit{
@@ -606,9 +593,7 @@
   }
   #FilterTodos #input{
     margin-top: 1vh;
-  }
-  #FilterTodos input::placeholder,
-  #createTodoForm input::placeholder{
+  }input::placeholder{
     font-size: 3.5vh;
   }
   #FilterTodos p {
@@ -622,7 +607,7 @@
     margin-top: 2vh;
   }
   .normalForm{
-    height: 66vh;
+    height: 68vh;
   }
   #Todos{
     display: block;
@@ -690,9 +675,7 @@
   }
   #FilterTodos #input{
     margin-top: 1.5vh;
-  }
-  #FilterTodos input::placeholder, #FilterTodos input,
-  #createTodoForm input::placeholder, #createTodoForm input{
+  }input::placeholder, input{
     font-size: 4vh;
   }
   .Page h3{
@@ -705,9 +688,7 @@
   }
   #TodoStats h4, #FilterTodos h4{
     font-size: 5vh;
-  }
-  #FilterTodos button, 
-  #createTodoForm button {
+  }button {
     font-size: 5vh;
   }
   .normalForm{

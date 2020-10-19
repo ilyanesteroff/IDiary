@@ -61,11 +61,7 @@ form {
 .DarkLoginForm .revealPwIcon{
   color: #eee;
 }
-#FilterTodos input,
-#createTodoForm input,  
-.formPage input,
-.signupFormPage input,
-#createTodoForm textarea{
+input, textarea{
   padding: 1vh 1%;
   width: 99%;
   margin-left: 0.5%;
