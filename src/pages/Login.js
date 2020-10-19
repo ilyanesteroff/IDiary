@@ -10,18 +10,18 @@ export default memo(_ => {
   return(    
     <>
       <Navbar/>
-      <div className="formPage">
-        <BrightThemeContext.Consumer>
-          {theme => 
+      <BrightThemeContext.Consumer>
+        {theme => 
+          <div className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
             <>
-              <h2 id="headline" className={`${theme ? 'Bright' : 'Dark'}Headline`}>
+              <h2 id="headline">
                 Login into your existing account
               </h2>
               <LoginForm theme={theme}/>
             </>
-          }
-        </BrightThemeContext.Consumer>
-      </div>
+          </div>
+        }
+      </BrightThemeContext.Consumer>
     </>
   )
 })

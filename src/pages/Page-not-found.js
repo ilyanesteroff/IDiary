@@ -11,10 +11,9 @@ export default memo(_ => {
       {theme =>
         <>
           <Navbar/>
-          <div id="MainBody">
+          <div id="MainBody" className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
             <h2 
               id="headline"
-              className={`${theme ? 'Bright' : 'Dark'}Headline`}
             >
               Page not found
             </h2>

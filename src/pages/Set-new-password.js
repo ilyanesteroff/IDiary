@@ -21,8 +21,8 @@ export default memo(_ => {
         {theme => 
           <>
             {checked && actual &&
-              <div className="formPage">
-                <h1 id="headline" className={`${theme ? 'Bright' : 'Dark'}Headline`}>
+              <div className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
+                <h1 id="headline">
                   Set new password
                 </h1>
                 <ResetPasswordForm 

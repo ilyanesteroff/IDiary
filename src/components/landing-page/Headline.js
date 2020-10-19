@@ -1,8 +1,8 @@
 import React from 'react'
 import DisappearingStuff from './DisappearingStuff'
 
-export default ({theme}) => (
-  <h1 id="headline" className={ theme ? 'BrightHeadline' : 'DarkHeadline'}>
+export default _ => (
+  <h1 id="headline">
     <span>Share</span>
     <span>
       <DisappearingStuff/>

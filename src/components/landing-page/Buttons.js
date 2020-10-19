@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default ({theme}) => (
-  <div id="buttons" className={theme ? 'BrightButtons' : 'DarkButtons'}>
+export default _ => (
+  <div id="buttons">
     <a href='/login'>
       Login
     </a>

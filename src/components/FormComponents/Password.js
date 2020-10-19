@@ -24,6 +24,7 @@ export default forwardRef((props, ref) => {
         type={revealPw? 'test' : 'password'} 
         onChange={setPw}
         placeholder="Your password"
+        required
         ref={ref}
       />
       {password.length > 0 &&

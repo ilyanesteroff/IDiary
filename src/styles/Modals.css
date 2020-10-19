@@ -40,12 +40,6 @@
 .BrightModal p{
   color: #323232;
 }
-#createTodoForm{
-  margin-top: 5vh;
-  width: 40%;
-  margin-left: 30%;
-  border: solid 2px #3377ff;
-}
 #createTodoForm input{
   width: 60%;
   display: inline;
@@ -53,14 +47,6 @@
 }
 #createTodoForm .complain{
   margin-bottom: 2vh;
-}
-#createTodoForm .complain p{
-  display: inline;
-  padding: .5vh 2%;
-  border-radius: 1vh;
-  border: solid 2px #ff4444;
-  font-family: Ubuntu;
-  font-weight: 100;
 }
 .DarkModal .complain p {
   color: #fee;

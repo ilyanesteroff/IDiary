@@ -1,144 +1,113 @@
 #main{
-  padding-top: 15vh;
+  padding-top: 10vh;
   padding-bottom: 15vh;
   z-index: 1;
 }
-
 .BrightMain {
   background-color: #f5f8ff;
 }
-
 .DarkMain {
   background-color: #232325;  
 }
-
 #headline {
   padding: 3vh 6%;
-  padding-top: 10vh;
+  padding-top: 8vh;
   text-align: center;
-  font-size: 6vh;
+  font-size: 4vh;
   font-family: 'Ubuntu', sans-serif;
 }
-
-.BrightHeadline {
+.BrightMain h1 {
   color: #232329;
 }
-/*for dark mode*/
-.DarkHeadline {
+.DarkMain h1 {
   color: #f5f8ff;
 }
-
 #para {
   padding: 5vh 8%;
-  font-size: 3vh;
+  font-size: 2.5vh;
   font-weight: 700;
   font-family: 'Exo 2', sans-serif;
 }
-
-.DarkParagraph{
+.DarkMain p{
   color: #e3e3e3;
 }
-
-.BrightParagraph{
+.BrightMain p{
   color: #222
 }
-
 .pSpan{
   display: block;
 }
-
 #buttons{
   float: right;
   clear: both;
-  padding-top: 7vh;
-  padding-right: 10%;
+  display: flex;
+  padding-top: 1vh;
+  padding-right: 8%;
+  width: 30%;
 }
-
 #buttons a{
   text-decoration: none;
+  display: inline-block;
+  width: 50%;
   margin-left: 2vw;
-  padding: 1.8vh 2.5vw;
-  border-radius: 0.5vh;
-  font-size: 2.5vh;
-  letter-spacing: 1px;
   font-family: Ubuntu, sans-serif;
-  transition: all .5s;
 }
-
-.BrightButtons a{
-  background-color: #dfdfff;
-  color:   #2323F3;
-  border: solid   #2323F3 1.5px;
-}
-
-.DarkButtons a{
-  background-color:   #2323F3;
-  color: #dfdfff;
-  border: solid #232329 1.5px;
-}
-
-.BrightButtons a:hover{
-  background-color: #fff;
-  color: #1f1fff;
-  border-color: #1f1fff;
-}    
-
-.DarkButtons a:hover{
-  background-color: #1f1fff;
-  color: #fff;
-}
-
 #DisappearingStuff{
   color:  #2323F3;
   line-height: 8vh;
 }
-
 @keyframes border{
   0%{ border-bottom: solid 5px #222; }
   50%{ border-bottom: solid 5px  #2323F3; }
   100% { border-bottom: solid 5px #f3f3f3; }
 }
-
 @media only screen and (min-width: 1000px){
   #DisappearingStuff{
     animation: border 2s infinite;
     border-bottom: solid 3px  #2323F3;
   }
 }
-
+@media only screen and (max-width: 1000px){
+  #buttons{
+    width: 60%;
+  }
+}
 @media only screen and (max-width: 500px){
   #main{
     padding-top: 10vh;
-    padding-bottom: 10vh;
+    padding-bottom: 7vh;
   } 
   #headline{
-    font-size: 4.5vh;
-    padding-top: 8vh;
+    font-size: 3.5vh;
+    padding-top: 5vh;
   }
   #buttons{
     float: none;
-    width: 90vw;
-    padding-top: 3vh;
+    display: block;
+    width: 100vw;
+    padding-top: 1vh;
   }
   #buttons a{
     display: block;
     margin-left: 10%;
-    width: 100%;
+    width: 80vw;
     text-align: center;
-    margin-bottom: 3vh;
+    margin-bottom: 2vh;
   }
   .pSpan:last-child{
     font-size: 2vh;
     padding-top: 2vh;
   }
 }
-
 @media only screen and (max-height: 420px){
   #buttons{
     float: none;
     padding-left: 30%;
     width: 100%;
     display: flex;
+  }
+  #headline {
+    font-size: 6vh;
   }
   #buttons a{
     text-align: center;
@@ -156,16 +125,14 @@
     padding-top: 5vh;
   }
 }
-
 @media only screen and (max-height: 300px){
   #headline{
-    font-size: 8vh;
+    font-size: 7vh;
   }
   #para{
-    font-size: 5vh;
+    font-size: 4.5vh;
   } 
 }
-
 @media only screen and (min-height: 1000px){
   #main{
     padding-top: 7vh;

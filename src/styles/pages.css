@@ -21,10 +21,10 @@
   text-align: center;
   border-radius: 0.5vh;  
 }
-.BrightPage h1{
+.BrightPage h1, .BrightPage #headline{
   color: #232323;
 }
-.DarkPage h1{
+.DarkPage h1, .DarkPage #headline{
   color: #f3f3f3;
 }
 .BrightPage h3{
@@ -147,96 +147,6 @@
 #TodoStats p{
   font-size: 1.05vw;
   padding-left: .1vw;
-}
-#FilterTodos input,
-#createTodoForm input,  
-#createTodoForm textarea{
-  padding: 1vh 1%;
-  width: 99%;
-  margin-left: 0.5%;
-  font-size: 2vh; 
-  font-weight: 600;
-  font-family: Noto Sans KR, sans-serif;
-}#FilterTodos input{
-  padding-left: 8%;
-}
-#FilterTodos input[type="text"],
-#FilterTodos input[type="number"], 
-#FilterTodos input[type="date"], 
-#createTodoForm input[type="text"],
-#createTodoForm input[type="number"], 
-#createTodoForm input[type="date"]{
-  margin: .5vh auto;
-  border-radius: 5.3vh;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-#FilterTodos button,
-#createTodoForm button{
-  border-radius: 5.3vh;
-  padding: 1vh 2%;
-  text-align: center;
-  border: solid 2px #3377ff;
-  color: #3377ff;
-  background-color: transparent;
-  font-family: Ubuntu, sans-serif;
-  transition: all .2s;
-  margin-top: 1vh;
-}
-#FilterTodos button:hover, #createTodoForm button:hover{
-  background-color: rgba(33, 77, 255, 0.1);
-}
-#FilterTodos button:active, #createTodoForm button:active{
-  background-color:  #3377ff;
-  color: #fff;
-}
-#FilterTodos input::placeholder,
-#createTodoForm input::placeholder{
-  font-family: Ubuntu;
-  font-weight: 400;
-  font-size: 2.3vh;
-}
-#FilterTodos > #input{
-  margin: 1vh auto;
-}
-#HideFilter {
-  float: right;
-  clear: both;
-}
-.DarkPage #FilterTodos input,
-.DarkPage #TodoStats input,
-.DarkModal #createTodoForm input,
-.DarkModal #createTodoForm textarea{
-  background-color: #42424f;
-  border: solid 1px  #42424f;
-  color: #eeeeff;
-}
-.BrightPage #FilterTodos input,
-.BrightPage #TodoStats input,
-.BrightModal #createTodoForm input,
-.BrightModal #createTodoForm textarea{
-  background-color: #d3d3ee;
-  border: solid 1px  #d3d3ee;
-  color: #222;
-}
-.DarkPage #FilterTodos input:focus,
-.DarkPage #TodoStats input:focus,
-.DarkModal #createTodoForm input:focus,
-.DarkModal #createTodoForm textarea:focus{
-  background-color: #222222;
-  border-color: #3377ff;
-  box-shadow: 0 0 .3vh #3377ff;
-}
-.BrightPage #FilterTodos input:focus,
-.BrightPage #TodoStats input:focus,
-.BrightModal #createTodoForm input:focus,
-.BrightModal #createTodoForm textarea:focus{
-  background-color: #fbfbff;
-  box-shadow: 0 0 .3vh #3377ff;
-  border-color: #3377ff;
 }
 .BrightPage #FilterTodos p,
 .BrightPage #TodoStats p{
@@ -601,7 +511,7 @@ input::-webkit-inner-spin-button {
     margin-bottom: .2vh;
   }
   .normalForm{
-    height: 51vh;
+    height: 53vh;
   }
 }
 @media only screen and (max-width: 540px) and (max-height: 830px){

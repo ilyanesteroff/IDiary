@@ -12,10 +12,9 @@ export default memo(_ => {
       <Navbar/>
       <BrightThemeContext.Consumer>
         {theme =>
-          <div className="formPage">
+          <div className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
             <h2 
               id="headline"
-              className={`${theme ? 'Bright' : 'Dark'}Headline`}
             >
               Request password reset
             </h2>

@@ -66,22 +66,22 @@ export default _ => {
                 />
                 <Ctx.TokenContext.Consumer>
                   {token =>
-                        <button 
-                          onClick={e => 
-                            !todoData.current.value
-                              ? createTodo(e, {
-                                  task: task.current.value,
-                                  public: publicT.current.checked,
-                                  completed: completed.current.checked,
-                                  timeToComplete: timeToComplete.current.value
-                                }, token, setError.current, setNewTodo.current, closeModal) 
-                              : updateTodo(e, {
-                                  task: task.current.value,
-                                  public: publicT.current.checked,
-                                  completed: completed.current.checked,
-                                  timeToComplete: timeToComplete.current.value
-                                }, token, todoData.current.value, setError.current, setTodoToUpdate.current, closeModal, todoData.current.unset)
-                            }
+                      <button 
+                        onClick={e => 
+                          !todoData.current.value
+                            ? createTodo(e, {
+                                task: task.current.value,
+                                public: publicT.current.checked,
+                                completed: completed.current.checked,
+                                timeToComplete: timeToComplete.current.value
+                              }, token, setError.current, setNewTodo.current, closeModal) 
+                            : updateTodo(e, {
+                                task: task.current.value,
+                                public: publicT.current.checked,
+                                completed: completed.current.checked,
+                                timeToComplete: timeToComplete.current.value
+                              }, token, todoData.current.value, setError.current, setTodoToUpdate.current, closeModal, todoData.current.unset)
+                          }
                       >{todoData.current.value ? 'Update Todo' : 'Create Todo'}</button>
                   }
                 </Ctx.TokenContext.Consumer>
