@@ -13,14 +13,15 @@ export default _ => {
   document.title = 'MyDiary - Your Todos'
   const [page, setPage] = useState(1)
   const [addTodoModalOpened, setAddTodoModalOpened] = useState(false)
+  const [todoDataToUpdate, setTodoDataToUpdate] = useState(null)
   const Token = _ => useContext(Ctx.TokenContext)
   const Error = _ => useContext(Ctx.ErrorContext)
   const token = useRef(Token())
   const setError = useRef(Error().setError)
-  
+
   const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError.current)
   
-  const [sortedTodos, setNewTodo, setTodoToDelete, active, completed] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
+  const [sortedTodos, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
   
   const definePosition = _ => {
     if((window.innerHeight + window.pageYOffset + 10) >= document.body.offsetHeight && nextPage) {
@@ -45,24 +46,32 @@ export default _ => {
               {completed === 0 && active === 0 &&
                 <h3>It seems like you have no todos yet</h3>
               }
-              {sortedTodos.length > 0 &&
-                <Ctx.YourTodoContext.Provider value={true}>
-                  <Ctx.SetTodoToDeleteContext.Provider value={todoId => setTodoToDelete(todoId)}>
-                    <Todos todos={sortedTodos}/>
-                  </Ctx.SetTodoToDeleteContext.Provider>
-                </Ctx.YourTodoContext.Provider>
-              } 
               {loading && <Spinner/>}
               {addTodoModalOpened && 
                 <Ctx.SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>
                   <Ctx.CloseModalContext.Provider value={_ => setAddTodoModalOpened(false)}>
-                    <CreateTodoModal/>
+                    <Ctx.SetTodoToUpdateContext.Provider value={todo => setTodoToUpdate(todo)}>
+                      <Ctx.TodoToUpdateContext.Provider value={{value: todoDataToUpdate, unset: _ => setTodoDataToUpdate(null)}}>
+                        <CreateTodoModal/>
+                      </Ctx.TodoToUpdateContext.Provider>
+                    </Ctx.SetTodoToUpdateContext.Provider>
                   </Ctx.CloseModalContext.Provider>
                 </Ctx.SetNewTodoContext.Provider>
               }
-              {!addTodoModalOpened && 
-                <AddTodoBtn clickHandler={_ => setAddTodoModalOpened(true)}/>
-              }
+              <Ctx.OpenModalContext.Provider value ={_ => setAddTodoModalOpened(true)}>
+                {sortedTodos.length > 0 &&
+                  <Ctx.YourTodoContext.Provider value={true}>
+                    <Ctx.SetTodoToDeleteContext.Provider value={todoId => setTodoToDelete(todoId)}>
+                      <Ctx.PassTodoDataContext.Provider value={todoData => setTodoDataToUpdate(todoData)}>
+                        <Todos todos={sortedTodos}/>
+                      </Ctx.PassTodoDataContext.Provider>
+                    </Ctx.SetTodoToDeleteContext.Provider>
+                  </Ctx.YourTodoContext.Provider>
+                } 
+                {!addTodoModalOpened && 
+                  <AddTodoBtn/>
+                }
+              </Ctx.OpenModalContext.Provider>
             </div>
           </Ctx.TodoStatsContext.Provider>
         }

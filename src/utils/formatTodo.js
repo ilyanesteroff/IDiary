@@ -1,3 +1,4 @@
+import validator from 'validator'
 import { timeUnitsInSeconds as hours } from './time'
 
 export default (todoData) => {
@@ -7,13 +8,11 @@ export default (todoData) => {
     completed: completed
   }
   let words = task.split(' ')
-  const tags = words.filter(word => word.startsWith('#')).map(tag => tag.substring(1))
-  if(tags.length > 0) todoInput.tags = tags
-  words = words.map(word => {
-    return word.startsWith('#')
-      ? word.substring(1)
-      : word
-  })
+  let tags = words.filter(word => word.startsWith('#')).map(tag => tag.substring(1))
+  tags = tags.filter(tag => validator.isAlphanumeric(tag))
+  tags.length > 0 
+    ? todoInput.tags = tags
+    : todoInput.tags = null
   todoInput.task = words.join(' ')
   if(timeToComplete !== '' && timeToComplete !== '0') todoInput.timeToComplete =  parseFloat(timeToComplete).toPrecision(3) * hours.hour * 1000
   return todoInput

@@ -44,4 +44,15 @@ export const CloseModalContext = createContext(_ => {})
 export const SetNewTodoContext = createContext(_ => {})
 
 export const TodoStatsContext = createContext({})
+
+export const SetTodoToUpdateContext = createContext({})
+
+export const TodoToUpdateContext = createContext({value : {}, unset: _ => {}})
+
+export const OpenModalContext = createContext(_ => {})
+
+export const PassTodoDataContext = createContext(_ => {})
+
+export const TodoDataContext = createContext({})
+//export
 //

@@ -7,6 +7,7 @@ export default ({clickHandler}) => (
   <TodoStatsContext.Consumer>
     {stats => 
       <FontAwesomeIcon 
+        id="closeIcon"
         icon={faTimesCircle} 
         onClick={clickHandler}
         className={

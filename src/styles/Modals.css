@@ -11,13 +11,13 @@
   text-align: center;
   font-family: Ubuntu, sans-serif;
 }
-#createTodo svg{
+#createTodo svg#closeIcon{
   position: absolute;
   top: 15vh;
   font-size: 3vh;
 }
-#createTodo svg:hover,
-#FilterTodos svg:hover{
+#createTodo svg#closeIcon:hover,
+#FilterTodos svg#closeIcon:hover{
   color: #3377ff;
 }
 .NoStats{
@@ -27,11 +27,11 @@
   right: 17vw;
 }
 .DarkModal h2, 
-.DarkModal svg{
+.DarkModal svg#closeIcon{
   color: #dfdfff;
 }
 .BrightModal h2,
-.BrightModal svg{
+.BrightModal svg#closeIcon{
   color: #22222f;
 }
 .DarkModal p{
@@ -50,6 +50,23 @@
   width: 60%;
   display: inline;
   padding-left: 3%;
+}
+#createTodoForm .complain{
+  margin-bottom: 2vh;
+}
+#createTodoForm .complain p{
+  display: inline;
+  padding: .5vh 2%;
+  border-radius: 1vh;
+  border: solid 2px #ff4444;
+  font-family: Ubuntu;
+  font-weight: 100;
+}
+.DarkModal .complain p {
+  color: #fee;
+}
+.BrightModal .complain p {
+  color: #322;
 }
 #TaskTextArea, #createTodoForm button{
   margin-top: 2vh;
@@ -75,7 +92,7 @@
     z-index: 2;
     backdrop-filter: blur(20px);
   }
-  #createTodo svg{
+  #createTodo svg#closeIcon{
     position: absolute;
     top: 20px;
     right: 20px;
@@ -124,7 +141,7 @@
   #createTodo h2{
     display: none;
   }  
-  #createTodo svg{
+  #createTodo svg#closeIcon{
     font-size: 6vh;
   }
   #createTodoForm textarea, 
@@ -141,10 +158,10 @@
     margin-top: 4vh;
   }
   #createTodoForm{
-    margin-top: 10vh;
+    margin-top: 5vh;
     padding: 2vh 3%;
     border-radius: 2vh;
-    max-height: 80vh;
+    max-height: 90vh;
   }
   #Checkboxes{
     display: flex;

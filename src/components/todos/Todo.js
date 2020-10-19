@@ -9,7 +9,7 @@ import TimeLeft from './TimeToComplete'
 
 //TODO: complete todo component
 export default ({todoData}) => {
-  const { createdAt, timeToComplete, task, completed, _id, tags } = todoData
+  const { createdAt, timeToComplete, task, completed, tags } = todoData
   const [ incompleted, setIncompleted ] = useState(null)
   
   useEffect(_ => {
@@ -41,7 +41,7 @@ export default ({todoData}) => {
           }
           {tags && tags.length !== 0 && <Tags tags={tags}/>}
           {yourTodo &&
-            <TodoLowerSection id={_id} tPublic={todoData.public}/>
+              <TodoLowerSection todoData={todoData}/>
           }
         </div>
       }

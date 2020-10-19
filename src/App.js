@@ -138,7 +138,7 @@ export default class App extends React.PureComponent{
   }
 
   render(){
-    return(
+    return( 
       <Contexts.BrightThemeContext.Provider value={this.state.brightTheme}>
         <Contexts.UserIdContext.Provider value={this.state.userId}>
           <Contexts.FirstnameContext.Provider value={{

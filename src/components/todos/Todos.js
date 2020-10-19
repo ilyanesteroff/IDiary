@@ -1,17 +1,17 @@
-import React, { memo } from 'react'
+import React from 'react'
 import Todo from './Todo'
 import TodoStats from './TodoStats'
 import FilterTodos from './FilterTodo'
 import useTodoFilterForm from '../../hooks/Todos/useTodoFilterForm'
 
 
-export default memo(({todos}) => {
+export default ({todos}) => {
   const [todosToExpose, refs, changeHandlers] = useTodoFilterForm(todos)
   
   return(
     <>
       <FilterTodos 
-        ref={refs}
+        ref={refs} 
         cHandlers={changeHandlers}
       />
       <TodoStats/> 
@@ -30,4 +30,4 @@ export default memo(({todos}) => {
       </div>
     </>
   )
-})
+}

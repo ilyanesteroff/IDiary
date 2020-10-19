@@ -10,10 +10,12 @@ export default _ => (
         {error.value !== '' && 
           <>
             <span>
-              <FontAwesomeIcon icon={faExclamation}/>
-            </span>
-            <span>
-              {' ' + error.value}
+              <p>
+                <span>
+                  <FontAwesomeIcon icon={faExclamation}/>
+                </span>
+                {' ' + error.value}
+              </p>
             </span>
           </>
         }

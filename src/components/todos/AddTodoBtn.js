@@ -1,13 +1,18 @@
 import React from 'react'
+import { OpenModalContext } from '../../utils/contexts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-export default ({clickHandler}) => {
+export default _ => {
   return(
-    <div className="AddTodoBtn" onClick={clickHandler}>
-      <div>
-        <FontAwesomeIcon icon={faPlus}/>
-      </div>
-    </div>
+    <OpenModalContext.Consumer>
+      {openModal =>
+        <div className="AddTodoBtn" onClick={openModal}>
+          <div>
+            <FontAwesomeIcon icon={faPlus}/>
+          </div>
+        </div>
+      }
+    </OpenModalContext.Consumer>
   )
 }
