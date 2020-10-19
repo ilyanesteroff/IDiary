@@ -14,6 +14,8 @@ export default (todoData) => {
     ? todoInput.tags = tags
     : todoInput.tags = null
   todoInput.task = words.join(' ')
-  if(timeToComplete !== '' && timeToComplete !== '0') todoInput.timeToComplete =  parseFloat(timeToComplete).toPrecision(3) * hours.hour * 1000
+  timeToComplete !== '' && timeToComplete !== '0'
+    ? todoInput.timeToComplete =  parseFloat(timeToComplete).toPrecision(3) * hours.hour * 1000
+    : todoInput.timeToComplete = null
   return todoInput
 }

@@ -80,7 +80,7 @@ export default _ => {
                                   public: publicT.current.checked,
                                   completed: completed.current.checked,
                                   timeToComplete: timeToComplete.current.value
-                                }, token, todoData.current.value._id, setError.current, setTodoToUpdate.current, closeModal)
+                                }, token, todoData.current.value, setError.current, setTodoToUpdate.current, closeModal, todoData.current.unset)
                             }
                       >{todoData.current.value ? 'Update Todo' : 'Create Todo'}</button>
                   }
