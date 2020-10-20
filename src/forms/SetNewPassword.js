@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext, memo } from 'react'
+import FormSpinner from '../components/spiners/FormSpinner'
 import Password from '../components/FormComponents/Password'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import setNewPassword from '../actionHandlers/SetNewPassword'
@@ -14,11 +15,12 @@ export default memo(({theme}) => {
   const password1 = useRef(null)
   const password2 = useRef(null)
   
-  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
+  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
 
   return(
     <form className={formClassName}>
       <ComplainLog/>
+      <FormSpinner/>
       {!errorResetingPw &&
         <>
           <Password ref={password1}/>

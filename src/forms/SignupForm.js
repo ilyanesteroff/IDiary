@@ -1,4 +1,5 @@
 import React, { useRef, useContext, useState, memo } from 'react'
+import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
@@ -20,7 +21,7 @@ export default memo(({theme}) => {
 
   const [refs] = useSignupFormRefs()
 
-  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
+  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
 
   return (
     <>  
@@ -31,6 +32,7 @@ export default memo(({theme}) => {
           </DoneMessage>
         : <>
             <ComplainLog/>
+            <FormSpinner/>
             <div className="SignupFields">
               <InputField placeholder="Firstname" ref={refs.firstname} required withLabel name/>
               <InputField placeholder="Lastname" ref={refs.lastname} required  withLabel name/>

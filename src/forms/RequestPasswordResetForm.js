@@ -1,4 +1,5 @@
 import React, { useState, useRef, useContext, memo } from 'react'
+import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import DoneMessage from '../components/FormComponents/DoneMessage'
@@ -15,7 +16,7 @@ export default memo(({theme}) => {
   const setError = useRef(Error().setError)
   const email = useRef(null)
 
-  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
+  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
   
   return (
     <form className={formClassName}>
@@ -25,6 +26,7 @@ export default memo(({theme}) => {
           </DoneMessage>
         : <>
             <ComplainLog/>
+            <FormSpinner/>
             <p className={`${theme? 'Bright' : 'Dark'}Text margin-bottom`}>
               We will send you password reset link on your email
             </p>

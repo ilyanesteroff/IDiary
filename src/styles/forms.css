@@ -2,6 +2,7 @@ form {
   padding: 3vh 2%;
   border-radius: 1vh;
   font-family: Ubuntu, sans-serif;
+  position: relative;
 }
 #createTodoForm, .signupFormPage form, .formPage form{
   border: solid 2px #3377ff;
@@ -46,6 +47,32 @@ form {
 } 
 #pwField{
   position: relative;
+}
+#FormSubmitting{
+  display: none;
+  position: absolute;
+  top: -4vh;
+  left: 0;
+  font-size: 3.5vh;
+  color: #3377ff;
+  transition: all 1s;
+  animation: formSubmiting 12s linear infinite;
+}
+#FormSubmitting svg{
+  animation: compassRotating 12s linear infinite;
+}
+.FormWithSpinner #FormSubmitting{
+  display: block;
+} 
+@keyframes compassRotating{
+  0% {transform: rotate(0deg);}
+  50% {transform: rotate(1080deg);}
+  100% {transform: rotate(0deg);}
+}
+@keyframes formSubmiting {
+  0%{left: 0;}
+  50%{left: 95%;}
+  100%{left: 0;}
 }
 .revealPwIcon{
   position: absolute;
@@ -165,6 +192,10 @@ input::placeholder{
   font-size: 2vh;
   padding: 1.5vh 1%;
 }
+.complain{
+  margin-bottom: 2vh;
+  text-align: center;
+}
 .complain p{
   text-align: center;
   display: inline;
@@ -173,11 +204,6 @@ input::placeholder{
   border: solid 2px #ff4444;
   font-family: Ubuntu;
   font-weight: 100;
-}
-.formPage .complain,
-.signupFormPage .complain{
-  margin-bottom: 2vh;
-  text-align: center;
 }
 .BrightLoginForm a{
   color: #333;

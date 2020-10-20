@@ -261,12 +261,8 @@
   animation: rotating 2s linear;
 }
 @keyframes rotating {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
 }
 .BrightPage #Todo p{
   color: #333;

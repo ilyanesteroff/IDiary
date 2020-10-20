@@ -1,6 +1,7 @@
 import React, { useRef, useState, useContext, memo } from 'react'
 import { ErrorContext } from '../utils/contexts'
 import { LoginHandlerContext } from '../utils/contexts'
+import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
@@ -18,10 +19,11 @@ export default memo(({theme}) => {
 
   const [submiting, setSubmiting] = useState(false)  
   
-  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? theme? 'BrightSubmitingForm': 'DarkSubmitingForm' : ''}`
+  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
   
   return(
     <form className={formClassName}>
+      <FormSpinner/>
       <ComplainLog/>
       <Email ref={email}/>
       <Password ref={password}/>
