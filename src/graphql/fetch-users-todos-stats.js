@@ -4,13 +4,13 @@ export default _ => {
   return {
     query: `
       query GetUsersTodoStats {
-        user {
+        getAuthUser {
           FullfilledTodos
           ActiveTodos
-          _id
+          _id 
           public
         }
       }
-      `
-    }
+    `
+  }
 }

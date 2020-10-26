@@ -1,16 +1,18 @@
-import serverUrl from '../../utils/serverUrl'
+import { apiLink } from '../../utils/serverUrl'
 import headers from '../../utils/headers'
-import query from '../../graphql/set-new-password'
 
 export default (token, newPw, signal) =>
-  fetch(serverUrl, {
-    body: JSON.stringify(query(token, newPw)),
+  fetch(apiLink + '/setNewPassword', {
+    body: JSON.stringify({
+      token: token,
+      newPassword: newPw
+    }),
     headers: headers,
-    method: 'POST',
+    method: 'PATCH',
     signal: signal
   })
     .then(res => res.json())
-    .then(res => res.data.setNewPassword || false)
+    .then(res => res.reset || false)
     .catch(_ => {
       return false
     })

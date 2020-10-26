@@ -1,9 +1,9 @@
-import serverUrl from '../utils/serverUrl'
+import { graphqlLink } from '../utils/serverUrl'
 import headers from '../utils/headers'
 import query from '../graphql/create-user'
 
 export default (data, signal) => 
-  fetch(serverUrl, {
+  fetch(graphqlLink, {
     headers: headers, 
     method: 'POST',
     body: JSON.stringify(query(data)),

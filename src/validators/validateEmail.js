@@ -11,8 +11,7 @@ export default async (email, setError, userShouldExist, signal) => {
     setError('Input does not seem to be an email')
     return false
   }
-  const verdict = await ifUserExists(email, true, signal)
-  console.log(verdict, userShouldExist)
+  const verdict = await ifUserExists(email, signal)
   if(verdict && !userShouldExist) { 
     setError('User with this email already exists')
     return false

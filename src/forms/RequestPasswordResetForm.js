@@ -15,7 +15,7 @@ export default memo(({theme}) => {
 
   const setError = useRef(Error().setError)
   const email = useRef(null)
-
+  
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
   
   return (

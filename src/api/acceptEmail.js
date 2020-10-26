@@ -1,12 +1,12 @@
-import query from '../graphql/accept-email'
-import serverUrl from '../utils/serverUrl'
+import { apiLink } from '../utils/serverUrl'
 import headers from '../utils/headers'
 
+
 export default (token, signal) => 
-  fetch(serverUrl, {
+  fetch(apiLink + '/acceptEmail', {
     headers: headers,
-    method: 'POST',
-    body: JSON.stringify(query(token)),
+    method: 'PATCH',
+    body: JSON.stringify({ token: token }),
     signal: signal
   }) 
     .then(res => res.json())

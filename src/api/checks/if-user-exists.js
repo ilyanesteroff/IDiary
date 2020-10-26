@@ -1,19 +1,20 @@
-import query from '../../graphql/check-email-and-username'
-import serverUrl from '../../utils/serverUrl'
+import { apiLink } from '../../utils/serverUrl'
 import headers from '../../utils/headers'
 
-export default (val, isEmail, signal) => 
-  fetch(serverUrl, {
-      method: 'POST',
+
+export default (val, signal) => 
+  fetch(apiLink + '/checkUsernameAndEmail', {
+      method: 'PATCH',
       headers: headers,
-      body: JSON.stringify(query(isEmail, val)),
+      body: JSON.stringify({
+        field: val
+      }),
       signal: signal
     }
   )
     .then(res => res.json())
-    .then(res => res.data.checkEmailAndUsername || false)
+    .then(res => res.userExists || false)
     .catch(err => {
       return false
     })
-
-  
+ 

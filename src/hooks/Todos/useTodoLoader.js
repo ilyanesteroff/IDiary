@@ -14,21 +14,25 @@ export default (token, page, setError) => {
     if(!fullfilledTodos && !activeTodos)
       return fetchTodoStats(token)
         .then(res1 => {
-          setActiveTodos(res1.data.user.ActiveTodos)
-          setFullfilledTodos(res1.data.user.FullfilledTodos)          
-          if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos !== 0) {
+          setActiveTodos(res1.data.getAuthUser.ActiveTodos)
+          setFullfilledTodos(res1.data.getAuthUser.FullfilledTodos)          
+          if(res1.data.getAuthUser.FullfilledTodos + res1.data.getAuthUser.ActiveTodos !== 0) {
             return fetchTodos(token, page)
               .then(res => {
                 setLoadingTodos(false)
                 setTodos([...res.data.todos])
-                if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.data.todos.length) setNextPage(true)
+                if(res1.data.getAuthUser.FullfilledTodos + res1.data.getAuthUser.ActiveTodos > res.data.todos.length) setNextPage(true)
               })
-              .catch(err => setError(err.message))
+              .catch(err => {
+                setError(err.message)
+              })
           } else {
             setLoadingTodos(false)
           }
         })
-        .catch(err => setError(err.message))
+        .catch(err => {
+          setError(err.message)
+        })
     else return fetchTodos(token, page)
       .then(res => {
         setLoadingTodos(false) 

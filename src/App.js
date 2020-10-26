@@ -1,8 +1,7 @@
 import React from 'react'
 import Router from './routes/index'
 import headers from './utils/headers'
-import serverUrl from './utils/serverUrl'
-import loginQuery from './graphql/login'
+import { apiLink } from './utils/serverUrl'
 import requestEmailAcceptation from './api/acceptEmail'
 import clearStorages from './utils/clearStorages'
 import * as Contexts from './utils/contexts'
@@ -64,18 +63,21 @@ export default class App extends React.PureComponent{
   loginHandler = (email, password, session, cb) => {
     this.setState({loading: true})
 
-    fetch(serverUrl, {
+    fetch(apiLink + '/login', {
       signal: this.abortController.signal,
-      method: 'Post',
+      method: 'PATCH',
       headers: headers,
-      body: JSON.stringify(loginQuery(email, password))
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
     })
       .then(res => res.json())
       .then(res => {
-        if(res.errors) throw new Error(res.errors[0].message)
+        if(res.error) throw new Error(res.error)
         window.location.pathname = '/'
         cb()
-        const { userId, token, firstname } = res.data.login
+        const { userId, token, firstname } = res
         this.setState({
           userId: userId,
           token: token, 
@@ -105,9 +107,9 @@ export default class App extends React.PureComponent{
   acceptEmailHandler = (token, failureCb) => {
     requestEmailAcceptation(token, this.abortController.signal)
       .then(res => {
-        if(res.errors) throw new Error(res.errors[0].message)
+        if(res.error) throw new Error(res.errors)
         clearStorages()
-        const { userId, token, firstname } = res.data.acceptEmail
+        const { userId, token, firstname } = res
         this.setState({
           userId: userId,
           token: token, 

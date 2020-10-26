@@ -1,11 +1,11 @@
-import serverUrl from '../../utils/serverUrl'
+import { graphqlLink } from '../../utils/serverUrl'
 import headers from '../../utils/headers'
 import query from '../../graphql/fetch-users-todos-stats'
 
 
 export default token => {
   headers.set('Authorization', `Bearer ${token}`)
-  return fetch(serverUrl, {
+  return fetch(graphqlLink, {
     headers: headers,
     method: 'POST',
     body: JSON.stringify(query()),
