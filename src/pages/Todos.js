@@ -7,19 +7,19 @@ import useTodoLoader from '../hooks/Todos/useTodoLoader'
 import useTodoManipulator from '../hooks/Todos/useTodoManipulator'
 import Todos from '../components/todos/Todos'
 import CreateTodoModal from '../components/todos/AddTodoModal'
+import Chapter from '../components/todos/Chapter'
 
 
 export default _ => {
-  document.title = 'MyDiary - Your Todos'
-  const [page, setPage] = useState(1)
-  const [addTodoModalOpened, setAddTodoModalOpened] = useState(false)
-  const [todoDataToUpdate, setTodoDataToUpdate] = useState(null)
+  document.title = 'IDiary - Your Todos'
+  const [ error, setError ] = useState('')
+  const [ page, setPage ] = useState(1)
+  const [ addTodoModalOpened, setAddTodoModalOpened ] = useState(false)
+  const [ todoDataToUpdate, setTodoDataToUpdate ] = useState(null)
   const Token = _ => useContext(Ctx.TokenContext)
-  const Error = _ => useContext(Ctx.ErrorContext)
   const token = useRef(Token())
-  const setError = useRef(Error().setError)
 
-  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError.current)
+  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError)
   
   const [sortedTodos, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
   
@@ -42,10 +42,12 @@ export default _ => {
         {theme =>
           <Ctx.TodoStatsContext.Provider value={{active: active, completed: completed}}>
             <div id="TodosPage" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
-              <h1>Your Todos</h1>
-              {completed === 0 && active === 0 &&
+              <Chapter/>
+              {error.length > 0 && <h3>{error}</h3>}
+              {completed === 0 && active === 0 && error.length === 0 &&
                 <h3>It seems like you have no todos yet</h3>
-              }
+              }     
+              {error.length > 0 && <h3>Technical error occured</h3>}
               {loading && <Spinner/>}
               {addTodoModalOpened && 
                 <Ctx.SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>

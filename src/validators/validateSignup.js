@@ -2,6 +2,7 @@ import usernameValidator from './validateUsername'
 import passwordValidator from './validatePassword'
 import emailValidator from './validateEmail'
 
+
 export default async (data, setError, signal) => {
   if(data.firstname.length < 2) {
     data.firstname.length === 0 

@@ -1,12 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default _ => (
   <div id="buttons">
-    <a href='/login'>
+    <Link to='/login'>
       Login
-    </a>
-    <a href='/create-user'>
+    </Link>
+    <Link to='/create-user'>
       Signup
-    </a>
+    </Link>
   </div>
 )

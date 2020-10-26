@@ -24,6 +24,7 @@ export default (token, page, setError) => {
                 if(res1.data.getAuthUser.FullfilledTodos + res1.data.getAuthUser.ActiveTodos > res.data.todos.length) setNextPage(true)
               })
               .catch(err => {
+                setLoadingTodos(false)
                 setError(err.message)
               })
           } else {

@@ -9,7 +9,7 @@ export default forwardRef((props, ref) =>
     <input 
       type="email" 
       ref={ref}
-      placeholder="Your email address"
+      placeholder={props.placeholder ? props.placeholder : 'Your email address'}
     />
   </div>
 )

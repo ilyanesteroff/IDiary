@@ -10,7 +10,6 @@ export default (token, setChecked, setActual) =>
   })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       setChecked(true)
       setActual(res.resetPasswordIsActual || false)
     })

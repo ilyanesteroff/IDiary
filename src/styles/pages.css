@@ -12,7 +12,16 @@
 .Page h1{
   margin: 3vh auto;
   text-align: center;
-  font-size: 4vh;
+  font-size: 3.5vh;
+}
+.Page #h1-Icon{
+  color: #3377ff;
+  margin-left: 1vw;
+}
+@media only screen and (max-width: 1200px) and (min-width: 830px){
+  .Page #h1-Icon{
+    display: none;
+  }
 }
 .Page h3{
   font-size: 2.5vh;

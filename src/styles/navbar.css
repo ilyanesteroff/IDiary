@@ -5,31 +5,28 @@
   width: 100%;
   z-index: 2;
 }
-
 .brightNavbar{
   background-color: #eee;
-  box-shadow: #222 0 0 1vh;
+  box-shadow: #222 0 0 .3vh;
 }
-
 .darkNavbar{
   background-color: #222;
-  box-shadow: #eee 0 0 1vh;
+  box-shadow: #eee 0 0 .3vh;
 }
-
 #navbarOptions {
-  margin-top: 2.3vh;
+  margin-top: 2.8vh;
+  margin-left: 18vw;
+  width: 70vw;
 }
-
 li#navbarOption{
   display: inline;
+  margin-right: 6vw;
   transition: all .5s;
   cursor: pointer;
 }
-
 #navbarOption div{
   display: inline;
 }
-
 #link{
   text-decoration: none;
 }
@@ -39,7 +36,7 @@ ul{
 }
 
 #navbarOptionText{
-  font-size: 1.6rem;
+  font-size: 3.3vh;
   display: inline;
   margin: 2%;
   font-family: 'Barlow Semi Condensed', sans-serif;
@@ -54,14 +51,12 @@ ul{
   color: #eee;
 }
 
-
 .ActiveNavbarOption {
   color: #2323F3;
 }
 
 #navbarOptionIcon {
-  display: inline;
-  font-size: 4vh;
+  display: none;
 }
 
 .BrightNavbarIcon {
@@ -90,8 +85,14 @@ li#navbarOption:hover .DarkNavbarOptionText{
   #navbarOptionText{
     display: none;
   }
+  #navbarOptions{
+    width: 80vw;
+    margin-left: 13vw;
+  }
   #navbarOptionIcon{
-    margin: auto 5%;
+    margin: auto 3%;
+    display: inline;
+    font-size: 4vh;
   }
 }
 

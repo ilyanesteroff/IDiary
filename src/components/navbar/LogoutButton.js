@@ -26,7 +26,7 @@ export default ({sideMenu}) =>
             }
             onClick={logoutHandler}
           >
-            <div 
+            <FontAwesomeIcon icon={faSignOutAlt}
               id={
                 sideMenu
                   ? 'SideMenuNavbarOptionIcon'
@@ -37,9 +37,7 @@ export default ({sideMenu}) =>
                   ? 'BrightNavbarIcon'
                   : 'DarkNavbarIcon'
                 }
-            >
-              <FontAwesomeIcon icon={faSignOutAlt}/>
-            </div>
+            />
             <p 
               id={
                 sideMenu

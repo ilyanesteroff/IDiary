@@ -54,5 +54,7 @@ export const OpenModalContext = createContext(_ => {})
 export const PassTodoDataContext = createContext(_ => {})
 
 export const TodoDataContext = createContext({})
+
+export const UserDataContext = createContext({})
 //export
 //

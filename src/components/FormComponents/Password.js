@@ -21,10 +21,9 @@ export default forwardRef((props, ref) => {
         <InputLabel required label={props.label}/>
       }
       <input 
-        type={revealPw? 'test' : 'password'} 
+        type={revealPw? 'text' : 'password'} 
         onChange={setPw}
         placeholder="Your password"
-        required
         ref={ref}
       />
       {password.length > 0 &&

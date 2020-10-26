@@ -30,7 +30,10 @@ export default memo(({theme}) => {
             <p className={`${theme? 'Bright' : 'Dark'}Text margin-bottom`}>
               We will send you password reset link on your email
             </p>
-            <Email ref={email}/>
+            <Email 
+              placeholder="Your email or username"
+              ref={email}
+            />
             <SignalContext.Consumer>
               {signal =>
                 <button onClick=

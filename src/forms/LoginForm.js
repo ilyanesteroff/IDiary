@@ -25,7 +25,10 @@ export default memo(({theme}) => {
     <form className={formClassName}>
       <FormSpinner/>
       <ComplainLog/>
-      <Email ref={email}/>
+      <Email 
+        placeholder="Your email or username"
+        ref={email}
+      />
       <Password ref={password}/>
       <Checkbox ref={session}>
         <p className="InputLabel">Logout when browser closes</p>

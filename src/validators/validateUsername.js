@@ -10,8 +10,7 @@ export default async (username, setError, signal) => {
     setError('Username can contain numbers and letters only')
     return false
   }
-  const verdict = await ifUserExists(username, false, signal)
-  //because it will be true if user exists
+  const verdict = await ifUserExists(username, signal)
   if(verdict){
     setError('Username is already taken')
     return false

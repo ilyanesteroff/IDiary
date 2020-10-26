@@ -54,7 +54,8 @@ export default class App extends React.PureComponent{
         isAuth: false, 
         token: null,
         userId: null,
-        firstname: null
+        firstname: null,
+        error: ''
       }
     )
     clearStorages()
@@ -75,7 +76,7 @@ export default class App extends React.PureComponent{
       .then(res => res.json())
       .then(res => {
         if(res.error) throw new Error(res.error)
-        window.location.pathname = '/'
+        //window.location.pathname = '/'
         cb()
         const { userId, token, firstname } = res
         this.setState({
