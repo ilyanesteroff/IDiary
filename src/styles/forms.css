@@ -4,10 +4,10 @@ form {
   font-family: Ubuntu, sans-serif;
   position: relative;
 }
-#createTodoForm, .signupFormPage form, .formPage form{
+#FormInModal, .signupFormPage form, .formPage form{
   border: solid 2px #3377ff;
 }
-#createTodoForm{
+#FormInModal{
   width: 40%;
   margin-left: 30%;
   margin-top: 5vh;
@@ -88,7 +88,7 @@ form {
 .DarkLoginForm .revealPwIcon{
   color: #eee;
 }
-input, textarea{
+input, textarea, select{
   padding: 1vh 1%;
   width: 99%;
   margin-left: 0.5%;
@@ -102,7 +102,10 @@ input[type="text"],
 input[type="number"], 
 input[type="date"],
 input[type="email"],
-input[type="password"]{
+input[type="password"],
+input[type="url"],
+input[type="tel"],
+select{
   margin: .5vh auto;
   border-radius: 5.3vh;
 }
@@ -151,26 +154,29 @@ input::placeholder{
 }
 .DarkPage #FilterTodos input,
 .DarkPage #TodoStats input,
-.DarkModal #createTodoForm input,
-.DarkModal #createTodoForm textarea,
-.DarkLoginForm input{
+.DarkModal #FormInModal input,
+.DarkModal #FormInModal textarea,
+.DarkLoginForm input,
+.DarkModal select{
   background-color: #42424f;
   border: solid 1px  #42424f;
   color: #eeeeff;
 }
 .BrightPage #FilterTodos input,
 .BrightPage #TodoStats input,
-.BrightModal #createTodoForm input,
+.BrightModal #FormInModal input,
 .BrightLoginForm input,
-.BrightModal #createTodoForm textarea{
+.BrightModal select,
+.BrightModal #FormInModal textarea{
   background-color: #d3d3ee;
   border: solid 1px  #d3d3ee;
   color: #222;
 }
 .DarkPage #FilterTodos input:focus,
 .DarkPage #TodoStats input:focus,
-.DarkModal #createTodoForm input:focus,
-.DarkModal #createTodoForm textarea:focus,
+.DarkModal #FormInModal input:focus,
+.DarkModal #FormInModal textarea:focus,
+.DarkModal select:focus,
 .DarkLoginForm input:focus{
   background-color: #222222;
   border-color: #3377ff;
@@ -178,8 +184,9 @@ input::placeholder{
 }
 .BrightPage #FilterTodos input:focus,
 .BrightPage #TodoStats input:focus,
-.BrightModal #createTodoForm input:focus,
-.BrightModal #createTodoForm textarea:focus,
+.BrightModal #FormInModal input:focus,
+.BrightModal #FormInModal textarea:focus,
+.BrightModal select:focus,
 .BrightLoginForm input:focus{
   background-color: #fbfbff;
   box-shadow: 0 0 .3vh #3377ff;

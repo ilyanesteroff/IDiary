@@ -40,12 +40,12 @@
 .BrightModal p{
   color: #323232;
 }
-#createTodoForm input{
+#FormInModal input, select{
   width: 60%;
   display: inline;
   padding-left: 3%;
 }
-#createTodoForm .complain{
+#FormInModal .complain{
   margin-bottom: 2vh;
 }
 .DarkModal .complain p {
@@ -54,24 +54,27 @@
 .BrightModal .complain p {
   color: #322;
 }
-#TaskTextArea, #createTodoForm button{
+#TaskTextArea, #FormInModal button{
   margin-top: 2vh;
 }
-#createTodoForm textarea{
+#FormInModal textarea{
   resize: none;
   border-radius: 2vh;
   padding: 1vh 2%;
   margin-top: 2vh;
 }
-#createTodoForm #input{
+#FormInModal #input{
   margin-top: 1vh;
 }
-#createTodoForm p{
+#FormInModal p{
   font-weight: 600;
 }
-#createTodoForm button{
+#FormInModal button{
   width: 70%;
   margin-left: 15%;
+}
+#FormInModal input[type="url"]{
+  width: 100%;
 }
 @media only screen and (max-width: 1400px){
   #createTodo{
@@ -87,38 +90,42 @@
   #createTodo h2{
     margin-top: 10vh;
   }
-  #createTodoForm{
+  #FormInModal{
     margin-top: 7vh;
     width: 50%;
     margin-left: 25%;
   }
-  .DarkModal #createTodoForm input, 
-  .DarkModal #createTodoForm textarea{
+  .DarkModal #FormInModal input, 
+  .BrightModal #FormInModal select,
+  .DarkModal #FormInModal textarea{
     border: solid 1px #222;
   }  
-  .BrightModal #createTodoForm input, 
-  .BrightModal #createTodoForm textarea{
+  .BrightModal #FormInModal input, 
+  .BrightModal #FormInModal select,
+  .BrightModal #FormInModal textarea{
     border: solid 1px #fff;
   }
 }
 @media only screen and (max-width: 840px){
-  #createTodoForm{
+  #FormInModal{
     width: 70%;
     margin-left: 15%;
     padding: 1.5vh 3%;
   }
-  #createTodoForm input{
+  #FormInModal input,
+  #FormInModal select{
     width: 80%;
   }
 }
 @media only screen and (max-width: 540px){
-  #createTodoForm{
+  #FormInModal{
     width: 90%;
     margin-left: 5%;
     padding: 1vh 3%;
   }
-  #createTodoForm button,
-  #createTodoForm input{
+  #FormInModal button,
+  #FormInModal input,
+  #FormInModal select{
     width: 100%;
     margin-left: 0;
   }
@@ -130,20 +137,21 @@
   #createTodo svg#closeIcon{
     font-size: 6vh;
   }
-  #createTodoForm textarea, 
-  #createTodoForm input{
+  #FormInModal textarea, 
+  #FormInModal input, 
+  #FormInModal select{
     font-size: 4vh;
   }
   #CheckboxUnit p{
     margin-left: 4%;
   }
-  #createTodoForm textarea{
+  #FormInModal textarea{
     padding: 2vh 2%;
   }
-  #createTodoForm button{
+  #FormInModal button{
     margin-top: 4vh;
   }
-  #createTodoForm{
+  #FormInModal{
     margin-top: 5vh;
     padding: 2vh 3%;
     border-radius: 2vh;

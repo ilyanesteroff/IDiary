@@ -22,7 +22,7 @@ export default ({closeModal, todoData, setError}) => {
   const [submiting, setSubmiting] = useState(false)
 
   return (
-    <form id="createTodoForm" className={`${submiting? 'FormWithSpinner' : ''}`}> 
+    <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}> 
       <FormSpinner/>
       <ComplainLog/>
       <div id="Checkboxes">

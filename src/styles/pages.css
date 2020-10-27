@@ -14,8 +14,14 @@
   text-align: center;
   font-size: 3.5vh;
 }
-.Page #h1-Icon{
+#editOption-Icon{
+  float: right; 
+  clear: both;
+}
+.Page #h1-Icon, #editOption-Icon{
   color: #3377ff;
+}
+#h1-Icon{
   margin-left: 1vw;
 }
 @media only screen and (max-width: 1200px) and (min-width: 830px){
@@ -75,8 +81,33 @@
   left: 0;
   width: 16vw;
 }
+#EditProfile{
+  left: 0;
+  width: 20vw;
+  z-index: 1;
+}
+#editOptions{
+  text-align: left;
+  font-size: 3vh;
+  transition: all .5s;
+  overflow: hidden;
+}
+#editOptions li:first-child{
+  margin-top: 5vh;
+}
+#editOptions li{
+  margin: 4vh auto;
+  overflow: hidden;
+}
+.hidden{
+  display: none;
+}
+.visible{
+  display: block;
+}
 #FilterTodos,
-#TodoStats{
+#TodoStats,
+#EditProfile{
   top: 10%;
   padding: 4vh 2%;
   height: 90%;
@@ -107,62 +138,75 @@
 .hiddenForm form{
   top: -55vh;
 }
+.BrightPage #EditProfile,
 .BrightPage #FilterTodos,
 .BrightPage #TodoStats{
   background-color: #fafaff;
   box-shadow: 0 0 0.3vh #222227;
 }
+.DarkPage #EditProfile,
 .DarkPage #FilterTodos,
 .DarkPage #TodoStats{
   background-color: #222227;
   box-shadow: 0 0 0.3vh #fafaff;
 }
+.DarkPage #EditProfile h4,
 .DarkPage #FilterTodos h4,
 .DarkPage #TodoStats h4{
   background-color: #232327;
   box-shadow: 0 0 0.3vh #fafaff;
 }
 #TodoStats h2,
-#FilterTodos h2{
+#FilterTodos h2,
+#EditProfile h2
+{
   font-size: 1.6vw;
   font-weight: 700;
   margin-bottom: 2vh;
 }
 .BrightPage #FilterTodos h2,
-.BrightPage #TodoStats h2{
+.BrightPage #TodoStats h2,
+.BrightPage #EditProfile h2{
   color: #22222f;
 }
 .DarkPage #FilterTodos h2,
-.DarkPage #TodoStats h2{
+.DarkPage #TodoStats h2,
+.DarkPage #EditProfile h2{
   color: #eaeaff;
 }
 #TodoStats h4,
-#FilterTodos h4{
+#FilterTodos h4,
+#EditProfile h4{
   font-size: 1.3vw;
   font-weight: 600;
   margin-bottom: 1vh;
 }
 .BrightPage #FilterTodos h4,
-.BrightPage #TodoStats h4{
+.BrightPage #TodoStats h4,
+.BrightPage #EditProfile h4{
   color: #22223f;
 }
 .DarkPage #FilterTodos h4,
-.DarkPage #TodoStats h4{
+.DarkPage #TodoStats h4,
+.DarkPage #EditProfile h4{
   color: #c5c5ff;
   box-shadow: none;
   background-color: transparent;
 }
 #FilterTodos p, 
-#TodoStats p{
+#TodoStats p,
+#EditProfile p{
   font-size: 1.05vw;
   padding-left: .1vw;
 }
 .BrightPage #FilterTodos p,
-.BrightPage #TodoStats p{
+.BrightPage #TodoStats p
+.BrightPage #EditProfile{
   color: #222232;
 }
 .DarkPage #FilterTodos p,
-.DarkPage #TodoStats p{
+.DarkPage #TodoStats p,
+.DarkPage #EditProfile p{
   color: #efeaff;
 }
 #ActiveTodos{
@@ -286,7 +330,7 @@
   color: #ff7722;
 }
 @media only screen and (min-height: 1000px) and (min-width: 1400px){
-  #TodoStats, #FilterTodos{
+  #TodoStats, #FilterTodos, #EditProfile{
     top: 7.5%;
     height: 92.5vh;
     padding: 2.5vh 2%;
@@ -326,20 +370,23 @@
   }
 }
 @media only screen and (max-width: 1400px){
-  #TodoStats, #FilterTodos{
+  #TodoStats, #FilterTodos, #EditProfile{
     position: static;
     height: auto;
     text-align: center;
     width: auto;
     transition: height .5s ease;
   }
+  #EditProfile{
+    margin: 2vh auto;
+  }
   .hiddenForm{
     height: .01vh;
   }
-  #TodoStats h2, #FilterTodos h2{
+  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
     font-size: 3vh;
   }
-  #TodoStats h4, #FilterTodos h4{
+  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 2.3vh;
   }
   #filterInputs{
@@ -362,7 +409,7 @@
     padding: 1vh 4%;
     font-size: 2vh;
   }
-  #FilterTodos p {
+  #FilterTodos p, #EditProfile p {
     font-size: 2vh;
     font-weight: 600;
     margin-bottom: .5vh;
@@ -410,10 +457,10 @@
   }
 }
 @media only screen and (min-height: 1000px) and (max-width: 1400px){
-  #FilterTodos, #TodoStats{
+  #FilterTodos, #TodoStats, #EditProfile{
     padding: 1.5vh 2%;
   }
-  #FilterTodos h2, #TodoStats h2{
+  #FilterTodos h2, #TodoStats h2, #EditProfile h2{
     font-size: 2.5vh;
   }
   #TodoStats h4{
@@ -479,15 +526,15 @@
   #FilterTodos{
     position: static;
   }
-  #FilterTodos, #TodoStats{
+  #FilterTodos, #TodoStats, #EditProfile{
     height: auto;
     text-align: center;
     padding: 2.5vh 3%;
   }
-  #TodoStats h2, #FilterTodos h2{
+  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
     font-size: 2.3vh;
   }
-  #TodoStats h4, #FilterTodos h4{
+  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 2vh;
   }
   #filterInputs{
@@ -520,10 +567,10 @@
     padding: 2vh 2%;
     margin: 3vh 5%;
   }
-  #TodoStats h2, #FilterTodos h2{
-    font-size: 3.8vh;
+  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
+    font-size: 3.4vh;
   }
-  #TodoStats h4, #FilterTodosh4{
+  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 3vh;
   }
   #Todos{
@@ -583,10 +630,10 @@
     font-size: 4vh;
     padding: 3vh 2%;
   }
-  #TodoStats h2, #FilterTodos h2{
+  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
     font-size: 5vh;
   }
-  #TodoStats h4, #FilterTodos h4{
+  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 3.7vh;
   }input{
     margin-bottom: 2vh;
@@ -688,10 +735,10 @@
     padding: 3vh 2%;
     margin: 4vh 5%;
   }
-  #TodoStats h2, #FilterTodos h2{
+  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
     font-size: 7vh;
   }
-  #TodoStats h4, #FilterTodos h4{
+  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 5vh;
   }button {
     font-size: 5vh;

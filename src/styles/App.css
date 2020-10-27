@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
 }
-input:focus, button:focus, textarea:focus{
+input:focus, button:focus, textarea:focus, select:focus{
   outline: none;
 }
 svg {

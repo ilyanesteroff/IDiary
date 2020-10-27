@@ -4,17 +4,20 @@ import Navbar from '../components/navbar/index'
 import useLoader from '../hooks/Profile/useLoader'
 import Spinner from '../components/spiners/BigSpinner'
 import User from '../components/profile-page/User'
+import EditProfileForm from '../components/profile-page/EditProfileModal'
+import Portal from '../components/portals'
 
 
 export default _ => {
   const [ error, setError ] = useState('')
+  const [ editUser, setEditUser ] = useState('')
 
   const Firstname = _ => useContext(Ctx.FirstnameContext)
   const Token = _ => useContext(Ctx.TokenContext)
 
   const token = useRef(Token())
   const firstname = useRef(Firstname().firstname)
-
+  
   const [ loading, info ] = useLoader(token.current, setError)
 
   document.title = firstname.current
@@ -26,12 +29,19 @@ export default _ => {
         {theme =>
           <div className={`${theme? 'Bright' : 'Dark'}Page Page`}>
             {loading && <Spinner/>}
-            {error.length > 0 && <h3>{error}</h3>}
-            {info._id && !loading &&
-              <Ctx.UserDataContext.Provider value={info}>
-                <User/>
-              </Ctx.UserDataContext.Provider>
-            }
+            {error.length > 0 && <h3>{error}</h3>}   
+            <Ctx.setEditUserContext.Provider value={{ value: editUser, set: val => setEditUser(val) }}>
+              {info._id && !loading &&
+                <Ctx.UserDataContext.Provider value={info}>
+                  <User/>
+                </Ctx.UserDataContext.Provider>
+              }
+              {(editUser === 'Profile' || editUser === 'Info' || editUser === 'Privacy' || editUser === 'Password') &&
+                <Portal parent="edit-user">
+                  <EditProfileForm/>
+                </Portal>
+              }
+            </Ctx.setEditUserContext.Provider>
           </div>
         }
       </Ctx.BrightThemeContext.Consumer>
