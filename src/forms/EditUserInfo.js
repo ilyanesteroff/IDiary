@@ -8,12 +8,12 @@ import Textarea from '../components/todos/Textarea'
 
 export default _ => {
   const [submiting, setSubmiting] = useState(false)
-
+  const [error, setError] = useState('')
 
   return(
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
       <FormSpinner/>
-      <ComplainLog/>
+      <ComplainLog message={error}/>
       <Textarea
         label="Tell us about yourself?"
         placeholder="Everything you wish"

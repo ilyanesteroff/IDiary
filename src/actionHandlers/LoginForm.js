@@ -1,4 +1,6 @@
 
+
+
 export default (event, email, password, session, loginHandler, setSubmiting, setError) => {
   event.preventDefault()
   if(email.length === 0 || password.length === 0) return setError('Fill both fields')
@@ -6,4 +8,4 @@ export default (event, email, password, session, loginHandler, setSubmiting, set
   setSubmiting(true)
   setError('')
   loginHandler(email, password, session, () => setSubmiting(false))
-}
+}       

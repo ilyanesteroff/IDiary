@@ -1,12 +1,10 @@
 import { apiLink } from '../../utils/serverUrl'
 import headers from '../../utils/headers'
 
-export default (token, newPw, signal) =>
+
+export default (body, signal) =>
   fetch(apiLink + '/setNewPassword', {
-    body: JSON.stringify({
-      token: token,
-      newPassword: newPw
-    }),
+    body: JSON.stringify(body),
     headers: headers,
     method: 'PATCH',
     signal: signal

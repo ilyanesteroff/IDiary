@@ -1,14 +1,14 @@
-import React, { useState, forwardRef } from 'react'
+import React, { useState, forwardRef, memo } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import InputLabel from './InputLabel'
 
-export default forwardRef((props, ref) => {
+export default memo(forwardRef((props, ref) => {
   const [revealPw, setRevealPw] = useState(false)
   const [password, setPassword] = useState('')
   
   const togglePw = _ => setRevealPw(!revealPw) 
-    
+
   const setPw = event => {
     event.target.value = event.target.value.trim()
     setPassword(event.target.value)
@@ -18,7 +18,7 @@ export default forwardRef((props, ref) => {
   return (
     <div id="pwField">
       {props.signup &&
-        <InputLabel required label={props.label}/>
+        <InputLabel required label={props.label}/> 
       }
       <input 
         type={revealPw? 'text' : 'password'} 
@@ -36,5 +36,5 @@ export default forwardRef((props, ref) => {
       }
     </div>
   )
-})
+}))
   

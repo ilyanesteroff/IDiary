@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react'
+import React from 'react'
 import * as Ctx from '../../utils/contexts'
 import CloseModalBtn from '../portals/CloseModalBtn'
 import EditUserInfoForm from '../../forms/EditUserInfo'
@@ -8,9 +8,6 @@ import EditPasswordForm from '../../forms/ChangePasswordForm'
 
 
 export default _ => {
-  const Error = _ => useContext(Ctx.ErrorContext)
-  const setError = useRef(Error().setError)
-
   return(
     <Ctx.setEditUserContext.Consumer>
       {({value, set}) => 
@@ -21,8 +18,7 @@ export default _ => {
               <CloseModalBtn 
                 clickHandler={_ => {
                   set('')
-                  setError.current('')
-                }} 
+                }}  
                 className="NoStats"
               />
               {value === 'Info' && <EditUserInfoForm/>}

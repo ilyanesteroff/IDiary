@@ -1,17 +1,16 @@
-import React, { useState, useRef, useContext, memo } from 'react'
+import React, { useState, useRef, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Password from '../components/FormComponents/Password'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import setNewPassword from '../actionHandlers/SetNewPassword'
-import { ErrorContext, SignalContext } from '../utils/contexts'
+import { SignalContext } from '../utils/contexts'
+
 
 export default memo(({theme}) => {
-  const Error = _ => useContext(ErrorContext)
-
   const [ errorResetingPw, setErrorResetingPw ] = useState(false)
   const [ submiting, setSubmiting ] = useState(false)
+  const [ error, setError ] = useState('')
   
-  const setError = useRef(Error().setError)
   const password1 = useRef(null)
   const password2 = useRef(null)
   
@@ -19,7 +18,7 @@ export default memo(({theme}) => {
 
   return(
     <form className={formClassName}>
-      <ComplainLog/>
+      <ComplainLog message={error}/>
       <FormSpinner/>
       {!errorResetingPw &&
         <>
@@ -34,7 +33,7 @@ export default memo(({theme}) => {
                   password2.current.value,
                   setErrorResetingPw,
                   setSubmiting,
-                  setError.current,
+                  setError,
                   signal
                 )
               }>

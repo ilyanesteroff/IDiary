@@ -1,11 +1,11 @@
-import React, { useRef, useContext, useState, memo } from 'react'
+import React, { useState, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
 import InputField from '../components/FormComponents/InputField'
 import Checkbox from '../components/FormComponents/Checkbox'
-import { ErrorContext, SignalContext } from '../utils/contexts'
+import { SignalContext } from '../utils/contexts'
 import useSignupFormRefs from '../hooks/useSignupFormRefs'
 import DoneMessage from '../components/FormComponents/DoneMessage'
 import signupHandler from '../actionHandlers/SignupForm'
@@ -14,10 +14,7 @@ import signupHandler from '../actionHandlers/SignupForm'
 export default memo(({theme}) => {
   const [userCreated, setUserCreated] = useState(false)
   const [submiting, setSubmiting] = useState(false)
-
-  const Error = _ => useContext(ErrorContext)
-
-  const setError = useRef(Error().setError)
+  const [error, setError] = useState('')
 
   const [refs] = useSignupFormRefs()
 
@@ -31,7 +28,7 @@ export default memo(({theme}) => {
             Check your email
           </DoneMessage>
         : <>
-            <ComplainLog/>
+            <ComplainLog message={error}/>
             <FormSpinner/>
             <div className="SignupFields">
               <InputField placeholder="Firstname" ref={refs.firstname} required withLabel name/>
@@ -68,7 +65,7 @@ export default memo(({theme}) => {
                       lastname: refs.lastname.current.value,
                       accept: refs.accept.current.checked,
                       public: refs.publicProf.current.checked,
-                    }, setError.current, setUserCreated, setSubmiting, signal)
+                    }, setError, setUserCreated, setSubmiting, signal)
                   }}
                 >
                   Submit

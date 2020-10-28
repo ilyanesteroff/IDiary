@@ -5,10 +5,8 @@ import CreateOrUpdateTodoFrom from '../../forms/CreateOrUpdateTodoForm'
 
 
 export default _ => {
-  const Error = _ => useContext(Ctx.ErrorContext)
   const TodoToUpdateContext = _ => useContext(Ctx.TodoToUpdateContext)
   const todoData = useRef(TodoToUpdateContext())
-  const setError = useRef(Error().setError)
 
   return(
     <Ctx.CloseModalContext.Consumer>
@@ -21,7 +19,6 @@ export default _ => {
                 {stats => 
                   <CloseModalBtn clickHandler={_ => {
                     closeModal()
-                    setError.current('')
                     if(todoData.current.value !== null) todoData.current.unset()
                   }}
                     className={
@@ -35,7 +32,6 @@ export default _ => {
               <CreateOrUpdateTodoFrom 
                 todoData={todoData.current}
                 closeModal={closeModal}
-                setError={setError.current}
               />
             </div>
           }

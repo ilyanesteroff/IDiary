@@ -40,10 +40,17 @@
 .BrightModal p{
   color: #323232;
 }
-#FormInModal input, select{
+#FormInModal input, 
+#FormInModal select{
   width: 60%;
   display: inline;
   padding-left: 3%;
+}
+#FormInModal #pwField input{
+  width: 100%;
+}
+#FormInModal #pwField{
+  width: 60%;
 }
 #FormInModal .complain{
   margin-bottom: 2vh;

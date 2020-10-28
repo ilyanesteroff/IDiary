@@ -11,11 +11,6 @@ export const FirstnameContext = createContext({
 
 export const UserIdContext = createContext(null)
 
-export const ErrorContext = createContext({
-  value: false,
-  setError: _ => {}
-})
-
 export const TokenContext = createContext(null)
 
 export const LoadingContext = createContext({

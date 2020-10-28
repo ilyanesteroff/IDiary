@@ -3,7 +3,7 @@ import createUser from '../api/createUser'
 
 
 export default async (signupData, setError, setUserCreated, setSubmiting, signal) => {
-  setError('')
+  setError('') 
   setSubmiting(true)
   const validationSucceded = await signupDataValidator(signupData, setError, signal)
   if(!validationSucceded) return setSubmiting(false)

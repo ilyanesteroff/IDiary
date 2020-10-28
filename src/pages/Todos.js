@@ -6,7 +6,8 @@ import * as Ctx from '../utils/contexts'
 import useTodoLoader from '../hooks/Todos/useTodoLoader'
 import useTodoManipulator from '../hooks/Todos/useTodoManipulator'
 import Todos from '../components/todos/Todos'
-import CreateTodoModal from '../components/todos/AddTodoModal'
+import CreateOrUpdateTodoModal from '../components/todos/CreateOrUpdateModal'
+import Portal from '../components/portals/index'
 import Chapter from '../components/todos/Chapter'
 
 
@@ -54,7 +55,9 @@ export default _ => {
                   <Ctx.CloseModalContext.Provider value={_ => setAddTodoModalOpened(false)}>
                     <Ctx.SetTodoToUpdateContext.Provider value={todo => setTodoToUpdate(todo)}>
                       <Ctx.TodoToUpdateContext.Provider value={{value: todoDataToUpdate, unset: _ => setTodoDataToUpdate(null)}}>
-                        <CreateTodoModal/>
+                        <Portal parent="create-todo">
+                          <CreateOrUpdateTodoModal/>
+                        </Portal>
                       </Ctx.TodoToUpdateContext.Provider>
                     </Ctx.SetTodoToUpdateContext.Provider>
                   </Ctx.CloseModalContext.Provider>

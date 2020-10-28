@@ -31,16 +31,16 @@ export default _ => {
             {loading && <Spinner/>}
             {error.length > 0 && <h3>{error}</h3>}   
             <Ctx.setEditUserContext.Provider value={{ value: editUser, set: val => setEditUser(val) }}>
-              {info._id && !loading &&
-                <Ctx.UserDataContext.Provider value={info}>
+              <Ctx.UserDataContext.Provider value={info}>
+                {info._id && !loading &&
                   <User/>
-                </Ctx.UserDataContext.Provider>
-              }
-              {(editUser === 'Profile' || editUser === 'Info' || editUser === 'Privacy' || editUser === 'Password') &&
-                <Portal parent="edit-user">
-                  <EditProfileForm/>
-                </Portal>
-              }
+                }
+                {(editUser === 'Profile' || editUser === 'Info' || editUser === 'Privacy' || editUser === 'Password') &&
+                  <Portal parent="edit-user">
+                    <EditProfileForm/>
+                  </Portal>
+                }
+              </Ctx.UserDataContext.Provider>
             </Ctx.setEditUserContext.Provider>
           </div>
         }

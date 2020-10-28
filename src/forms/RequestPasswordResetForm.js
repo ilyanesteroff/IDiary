@@ -1,19 +1,17 @@
-import React, { useState, useRef, useContext, memo } from 'react'
+import React, { useState, useRef, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import DoneMessage from '../components/FormComponents/DoneMessage'
 import resetPaswordHandler from '../actionHandlers/ResetPassword'
-import { ErrorContext, SignalContext } from '../utils/contexts'
+import { SignalContext } from '../utils/contexts'
 
 
 export default memo(({theme}) => {
-  const Error = _ => useContext(ErrorContext)
-
   const [ mailSent, setMailSent ] = useState(false)
   const [ submiting, setSubmiting ] = useState(false)
+  const [ error, setError ] = useState('')
 
-  const setError = useRef(Error().setError)
   const email = useRef(null)
   
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
@@ -25,7 +23,7 @@ export default memo(({theme}) => {
             Check your email
           </DoneMessage>
         : <>
-            <ComplainLog/>
+            <ComplainLog message={error}/>
             <FormSpinner/>
             <p className={`${theme? 'Bright' : 'Dark'}Text margin-bottom`}>
               We will send you password reset link on your email
@@ -43,7 +41,7 @@ export default memo(({theme}) => {
                       email.current.value, 
                       setSubmiting, 
                       setMailSent,
-                      setError.current,
+                      setError,
                       signal
                     )
                   }

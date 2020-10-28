@@ -85,7 +85,8 @@ form {
 #withoutSignup {
   top: 35%;
 }
-.DarkLoginForm .revealPwIcon{
+.DarkLoginForm .revealPwIcon,
+.DarkModal .revealPwIcon{
   color: #eee;
 }
 input, textarea, select{

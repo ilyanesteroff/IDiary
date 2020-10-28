@@ -8,7 +8,7 @@ import Textarea from '../components/todos/Textarea'
 import updateTodo from '../actionHandlers/CreateOrUpdateTodo'
 
 
-export default ({closeModal, todoData, setError}) => {
+export default ({closeModal, todoData}) => {
   const SetNewTodo = _ => useContext(Ctx.SetNewTodoContext)
   const SetTodoToUpdate = _ => useContext(Ctx.SetTodoToUpdateContext)
 
@@ -20,11 +20,12 @@ export default ({closeModal, todoData, setError}) => {
   const setTodoToUpdate = useRef(SetTodoToUpdate())
 
   const [submiting, setSubmiting] = useState(false)
+  const [error, setError] = useState('')
 
   return (
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}> 
       <FormSpinner/>
-      <ComplainLog/>
+      <ComplainLog message={error}/>
       <div id="Checkboxes">
         <Checkbox ref={completed} defaultChecked={todoData.value && todoData.value.completed ? true : false}>
           <p className="InputLabel">Todo is completed</p>

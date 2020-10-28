@@ -8,7 +8,7 @@ export default async (e, password1, password2, setErrorResetingPw, setSubmiting,
   setError('')
   const verdict = passwordValidator(password1, password2, setError)
   if(verdict) {
-    const resetPw = await resetPassword(token, password1, signal)
+    const resetPw = await resetPassword({ token: token, newPassword: password1 }, signal)
     if(!resetPw) {
       setErrorResetingPw(true)
       setError('Reseting password failed try later')

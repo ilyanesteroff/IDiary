@@ -1,5 +1,4 @@
-import React, { useRef, useState, useContext, memo } from 'react'
-import { ErrorContext } from '../utils/contexts'
+import React, { useRef, useState, memo } from 'react'
 import { LoginHandlerContext } from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
@@ -10,24 +9,22 @@ import handleClick from '../actionHandlers/LoginForm'
 
 
 export default memo(({theme}) => {
-  const Error = _ => useContext(ErrorContext)
-
   const password = useRef(null)
   const email = useRef(null)
   const session = useRef(null)
-  const setError = useRef(Error().setError)
 
   const [submiting, setSubmiting] = useState(false)  
+  const [error, setError] = useState('')
   
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
   
   return(
     <form className={formClassName}>
       <FormSpinner/>
-      <ComplainLog/>
+      <ComplainLog message={error}/>
       <Email 
         placeholder="Your email or username"
-        ref={email}
+        ref={email}    
       />
       <Password ref={password}/>
       <Checkbox ref={session}>
@@ -36,14 +33,14 @@ export default memo(({theme}) => {
       <LoginHandlerContext.Consumer> 
         {loginHandler => 
           <button onClick={(e) => 
-            handleClick(
-              e,
-              email.current.value,
-              password.current.value,
-              session.current.checked,
-              loginHandler,
+            handleClick( 
+              e, 
+              email.current.value, 
+              password.current.value, 
+              session.current.checked, 
+              loginHandler, 
               setSubmiting,
-              setError.current
+              setError
             )
           }>
             Login

@@ -8,12 +8,13 @@ import Checkbox from '../components/FormComponents/Checkbox'
 
 export default _ => {
   const [submiting, setSubmiting] = useState(false)
+  const [error, setError] = useState('')
 
 
   return(
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
       <FormSpinner/>
-      <ComplainLog/>
+      <ComplainLog message={error}/>
       <Input
         type="tel"
         label="Your Phone number"
