@@ -1,45 +1,85 @@
-import React, { useState } from 'react'
-//import * as Ctx from '../utils/contexts'
+import React, { useState, useRef } from 'react'
+import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import Input from '../components/FormComponents/TodoInput'
 import Textarea from '../components/todos/Textarea'
+import clickHandler from '../actionHandlers/updateuser/UpdateUserInfo'
 
 
 export default _ => {
-  const [submiting, setSubmiting] = useState(false)
-  const [error, setError] = useState('')
+  const [ submiting, setSubmiting ] = useState(false)
+  const [ error, setError ] = useState('')
+  const [ status, setStatus ] = useState('')
+
+  const about = useRef(null)
+  const website = useRef(null)
+  const company = useRef(null)
 
   return(
-    <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
-      <FormSpinner/>
-      <ComplainLog message={error}/>
-      <Textarea
-        label="Tell us about yourself?"
-        placeholder="Everything you wish"
-      />
-      <Input
-        type="url"
-        label="Your Webpage"
-        placeholder="URL"
-      />
-      <Input
-        type="text"
-        label="Your Company"
-        placeholder="Where you are working"
-      />
-      <p style={{marginTop: '1vh'}}>Your relationship status</p>
-      <select>
-        <option selected></option>
-        <option value="single">Single</option>
-        <option value="married">Married</option>
-        <option value="civil union">In civil union</option>
-        <option value="complicated">It's complicated</option>
-        <option value="divorced">Divorced</option>
-      </select>
-      <button>
-        Edit
-      </button>
-    </form>
+    <Ctx.UserDataContext.Consumer>
+      {data =>
+        <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
+          <FormSpinner/>
+          <ComplainLog message={error}/>
+          <Textarea
+            label="Tell us about yourself?"
+            placeholder="Everything you wish"
+            ref={about}
+            defaultValue={data.about || ''}
+          />
+          <Input
+            type="url"
+            label="Your Webpage"
+            placeholder="URL"
+            ref={website}
+            defaultValue={data.website || ''}
+          />
+          <Input
+            type="text"
+            label="Your Company"
+            placeholder="Where you are working"
+            ref={company}
+            defaultValue={data.company || ''}
+          />
+          <p style={{marginTop: '1vh'}}>Your relationship status</p>
+          <select defaultValue={data.status || ''} onChange={e => setStatus(e.target.value)}>
+            <option value="single">Single</option>
+            <option value="married">Married</option>
+            <option value="civil union">In civil union</option>
+            <option value="complicated">It's complicated</option>
+            <option value="divorced">Divorced</option>
+          </select>
+          <Ctx.SetUpdatedUser.Consumer>
+            {update =>
+              <Ctx.SetEditUserContext.Consumer>
+                {({set}) =>
+                  <button 
+                    onClick={async e =>
+                      await clickHandler(
+                        e, 
+                        {
+                          about: about.current.value,
+                          website: website.current.value,
+                          company: company.current.value,
+                          relationshipStatus: status
+                        }, 
+                        data, 
+                        setError, 
+                        setSubmiting, 
+                        _ => set(''),
+                        val => update.setInfo(val)
+                      )
+                    }
+                  >
+                    Edit
+                  </button>
+                }
+              </Ctx.SetEditUserContext.Consumer>
+            }
+          </Ctx.SetUpdatedUser.Consumer>
+        </form>
+      }
+    </Ctx.UserDataContext.Consumer>
   )
 }

@@ -8,7 +8,7 @@ export default props => {
   useLayoutEffect(() => {
     parent.appendChild(element)
     document.body.style.overflowY = 'hidden'
-    
+    console.log('mounts')
     return _ => {
       parent.removeChild(element)
       document.body.style.overflowY = 'auto'

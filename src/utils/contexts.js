@@ -54,6 +54,8 @@ export const UserDataContext = createContext({})
 
 export const EditUserContext = createContext('')
 
-export const setEditUserContext = createContext({ value: '', set: _ => {} })
+export const SetEditUserContext = createContext({ value: '', set: _ => {} })
+
+export const SetUpdatedUser = createContext({})
 //export
 //

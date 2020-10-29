@@ -84,7 +84,7 @@
 #EditProfile{
   left: 0;
   width: 20vw;
-  z-index: 1;
+  z-index: 2;
 }
 #editOptions{
   text-align: left;
@@ -296,6 +296,7 @@
 }
 #LowerSection{
   position: relative;
+  z-index: 0;
 }
 #LowerSection p{
   padding: 1vh 2%;

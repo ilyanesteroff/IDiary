@@ -3,7 +3,6 @@ import FormSpinner from '../components/spiners/FormSpinner'
 import Password from '../components/FormComponents/Password'
 import ComplainLog from '../components/FormComponents/ComplainLog'
 import setNewPassword from '../actionHandlers/SetNewPassword'
-import { SignalContext } from '../utils/contexts'
 
 
 export default memo(({theme}) => {
@@ -24,23 +23,18 @@ export default memo(({theme}) => {
         <>
           <Password ref={password1}/>
           <Password ref={password2}/>
-          <SignalContext.Consumer>
-            {signal =>
-              <button onClick={e =>
-                setNewPassword(
-                  e,
-                  password1.current.value,
-                  password2.current.value,
-                  setErrorResetingPw,
-                  setSubmiting,
-                  setError,
-                  signal
-                )
-              }>
-                Reset
-              </button>
-            }
-          </SignalContext.Consumer>
+          <button onClick={e =>
+            setNewPassword(
+              e,
+              password1.current.value,
+              password2.current.value,
+              setErrorResetingPw,
+              setSubmiting,
+              setError
+            )
+          }>
+            Reset
+          </button>
         </>
       }
     </form>

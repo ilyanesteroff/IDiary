@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faUserShield, faUserTag, faUserEdit, faUsersCog } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import { setEditUserContext } from '../../utils/contexts'
+import { SetEditUserContext } from '../../utils/contexts'
 
 
 export default forwardRef((props, refs) => {
@@ -18,7 +18,7 @@ export default forwardRef((props, refs) => {
           <FontAwesomeIcon icon={hidden ? faCog : faTimesCircle } onClick={_ => setHidden(!hidden)}/>
         </div>
       </h2>
-      <setEditUserContext.Consumer>
+      <SetEditUserContext.Consumer>
         {({ set }) => 
           <ul id="editOptions" className={hidden? 'hidden': 'visible'}>
             <li onClick={_ => set('Profile')}>
@@ -39,7 +39,7 @@ export default forwardRef((props, refs) => {
             </li>
           </ul>
         }
-      </setEditUserContext.Consumer>
+      </SetEditUserContext.Consumer>
     </div>
   )
 })

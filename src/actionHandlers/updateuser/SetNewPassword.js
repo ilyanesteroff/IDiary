@@ -4,11 +4,12 @@ import verifyPassword from '../../api/profile/updateuser/verify-password'
 import passwordsValidator from '../../validators/validatePasswordChange'
 
 
-export default async (e, oldPw, newPw1, newPw2, setSubmiting, closeModal, userId, setError) => {
+export default async (e, data, setSubmiting, closeModal, userId, setError) => {
   e.preventDefault()
   setSubmiting(true)
   setError('')
   
+  const { oldPw, newPw1, newPw2 } = data
   const someInputsAreEmpty = passwordsValidator(oldPw, newPw1, newPw2, setError)
   if(someInputsAreEmpty) return setSubmiting(false)
 

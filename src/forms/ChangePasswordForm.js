@@ -33,7 +33,7 @@ export default memo(_ => {
         placeholder="new password repeat"
         ref={newPw2}
       />
-      <Ctx.setEditUserContext.Consumer>
+      <Ctx.SetEditUserContext.Consumer>
         {({set}) =>
           <Ctx.UserDataContext.Consumer>
             {data =>
@@ -41,9 +41,11 @@ export default memo(_ => {
                 onClick={async e => 
                   await setNewPassword(
                     e, 
-                    oldPw.current.value, 
-                    newPw.current.value, 
-                    newPw2.current.value, 
+                    {
+                      oldPw: oldPw.current.value, 
+                      newPw1: newPw.current.value, 
+                      newPw2: newPw2.current.value,
+                    }, 
                     setSubmiting, 
                     _ => set(''),
                     data._id,
@@ -56,7 +58,7 @@ export default memo(_ => {
             }
           </Ctx.UserDataContext.Consumer>
         }
-      </Ctx.setEditUserContext.Consumer>
+      </Ctx.SetEditUserContext.Consumer>
     </form>
   )
 })

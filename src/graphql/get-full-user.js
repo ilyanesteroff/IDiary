@@ -16,6 +16,11 @@ export default {
         requestsFrom
         createdAt
         public
+        phone 
+        website
+        company
+        about
+        relationshipStatus
       }
     }`
 }
