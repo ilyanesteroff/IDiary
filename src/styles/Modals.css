@@ -1,16 +1,51 @@
-#createTodo{
+#AreYouSure, #createTodo{
   height: 100vh;
   width: 100vw;
-  position: fixed;
-  z-index: 1;
+  position: fixed;  
   left: 0;
   top: 0;
+}
+#createTodo{
+  z-index: 1;
+  backdrop-filter: blur(15px);
+}
+#AreYouSure {
+  z-index: 3;
   backdrop-filter: blur(15px);
 }
 #createTodo h2{
   margin-top: 15vh;
   text-align: center;
   font-family: Ubuntu, sans-serif;
+}
+#AreYouSure form{
+  margin-top: 20vh;
+  padding: 3vh 2%;
+}
+#AreYouSure #NoBtn{
+  border: solid 2px #11f315;
+  color: #777;
+}
+#AreYouSure #YesBtn{
+  border: solid 2px #f31131;
+  color: #777;
+}
+#AreYouSure button{
+  margin: 0;
+  width: 100%;
+}
+#AreYouSure h2{
+  text-align: center;
+  margin: .5rem;
+}
+#AreYouSure p{
+  text-align: center;
+  margin: 1rem auto;
+}
+#AreYouSure svg{
+  margin-left: 1rem;
+  color: #f31131;
+  font-size: 2rem;
 }
 #createTodo svg#closeIcon{
   position: absolute;
@@ -34,6 +69,12 @@
 .BrightModal h2,
 .BrightModal svg#closeIcon{
   color: #22222f;
+}
+.TopRightCorner{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.5rem;
 }
 .DarkModal p{
   color: #eee;

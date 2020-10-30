@@ -13,7 +13,6 @@ export default class App extends React.PureComponent{
     userId: null,
     firstname: null,
     brightTheme: true,
-    loading: false,
     isAuth: false
   }
 
@@ -57,8 +56,8 @@ export default class App extends React.PureComponent{
     clearStorages()
   }
 
-  loginHandler = (email, password, session, cb) => {
-    this.setState({loading: true})
+  loginHandler = (email, password, session, setError, cb) => {
+    this.setState({loading: true}) 
 
     fetch(apiLink + '/login', {
       signal: this.abortController.signal,
@@ -69,7 +68,10 @@ export default class App extends React.PureComponent{
         password: password
       })
     })
-      .then(res => res.json())
+      .then(res => {
+        if(res.status === 404) throw new Error('User does not exist')
+        return res.json()
+      })
       .then(res => {
         if(res.error) throw new Error(res.error)
         cb()
@@ -77,8 +79,7 @@ export default class App extends React.PureComponent{
         this.setState({
           userId: userId,
           firstname: firstname,
-          isAuth: true,
-          loading: false
+          isAuth: true
         })
         if(session) {
           window.sessionStorage.setItem('token', token)
@@ -90,11 +91,9 @@ export default class App extends React.PureComponent{
           window.localStorage.setItem('firstname', firstname)
         }
       })
-      .catch(_ => {
-        this.setState({
-          loading: false
-        })
+      .catch(err => {
         cb()
+        setError(err.message)
       })
   }
 
@@ -107,8 +106,7 @@ export default class App extends React.PureComponent{
         this.setState({
           userId: userId,
           firstname: firstname,
-          isAuth: true,
-          loading: false
+          isAuth: true
         })
         window.localStorage.setItem('token', token)
         window.localStorage.setItem('userId', userId)
@@ -116,9 +114,6 @@ export default class App extends React.PureComponent{
         window.location.pathname = '/'
       })
       .catch(_ => {
-        this.setState({
-          loading: false
-        })
         failureCb()
       })
   }
@@ -139,21 +134,19 @@ export default class App extends React.PureComponent{
             firstname: this.state.firstname,
             setFirstname: val => this.setState({ firstname: val })
           }}>
-            <Contexts.LoadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
-              <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
-                <Contexts.SignalContext.Provider value={this.abortController.signal}>
-                  <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
-                    <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
-                      <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
-                        <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
-                          <Router isAuth={this.state.isAuth}/>
-                        </Contexts.AcceptEmailContext.Provider>
-                      </Contexts.ToggleThemeContext.Provider>
-                    </Contexts.LoginHandlerContext.Provider>
-                  </Contexts.LogoutHandlerContext.Provider>
-                </Contexts.SignalContext.Provider>
-              </Contexts.IsAuthContext.Provider>
-            </Contexts.LoadingContext.Provider>
+            <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
+              <Contexts.SignalContext.Provider value={this.abortController.signal}>
+                <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
+                  <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
+                    <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
+                      <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
+                        <Router isAuth={this.state.isAuth}/>
+                      </Contexts.AcceptEmailContext.Provider>
+                    </Contexts.ToggleThemeContext.Provider>
+                  </Contexts.LoginHandlerContext.Provider>
+                </Contexts.LogoutHandlerContext.Provider>
+              </Contexts.SignalContext.Provider>
+            </Contexts.IsAuthContext.Provider>
           </Contexts.FirstnameContext.Provider>
         </Contexts.UserIdContext.Provider>
       </Contexts.BrightThemeContext.Provider>

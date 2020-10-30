@@ -7,7 +7,7 @@ import Checkbox from '../components/FormComponents/Checkbox'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserSettings'
 
 
-export default memo(_ => {
+export default memo(({ unsetEditing }) => {
   const [submiting, setSubmiting] = useState(false)
   const [error, setError] = useState('')
  
@@ -24,29 +24,25 @@ export default memo(_ => {
           <Checkbox ref={_public} defaultChecked={data.public}>
             <p>Your profile is public</p>
           </Checkbox>
-          <Ctx.SetEditUserContext.Consumer>
-            {({set}) =>
-              <Ctx.SetUpdatedUser.Consumer>
-                {update => 
-                  <button 
-                    onClick={async e =>  
-                      await clickHandler(
-                        e, 
-                        _public.current.checked, 
-                        phone.current.value, 
-                        data,  
-                        setError, 
-                        setSubmiting, 
-                        _ => set(''), 
-                        val => update.setSettings(val))
-                    }
-                  >
-                    Edit
-                  </button>
+          <Ctx.SetUpdatedUser.Consumer>
+            {update => 
+              <button 
+                onClick={async e =>  
+                  await clickHandler(
+                    e, 
+                    _public.current.checked, 
+                    phone.current.value, 
+                    data,  
+                    setError, 
+                    setSubmiting, 
+                    unsetEditing, 
+                    val => update.setSettings(val))
                 }
-              </Ctx.SetUpdatedUser.Consumer>
+              >
+                Edit
+              </button>
             }
-          </Ctx.SetEditUserContext.Consumer>
+          </Ctx.SetUpdatedUser.Consumer>
         </form>
       }
     </Ctx.UserDataContext.Consumer>

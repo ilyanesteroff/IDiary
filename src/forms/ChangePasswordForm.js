@@ -6,7 +6,7 @@ import Password from '../components/FormComponents/Password'
 import setNewPassword from '../actionHandlers/updateuser/SetNewPassword'
 
 
-export default memo(_ => {
+export default memo(({unsetEditing}) => {
   const [submiting, setSubmiting] = useState(false)
   const [error, setError] = useState('')
 
@@ -19,46 +19,33 @@ export default memo(_ => {
       <FormSpinner/>
       <ComplainLog message={error}/>
       <p>Enter your old password</p>
-      <Password 
-        placeholder="old password"
-        ref={oldPw}
-      />
+      <Password placeholder="old password" ref={oldPw}/>
       <p>Enter your new password</p>
-      <Password 
-        placeholder="new password"
-        ref={newPw}
-      />
+      <Password placeholder="new password" ref={newPw}/>
       <p>Repeat your new password</p>
-      <Password 
-        placeholder="new password repeat"
-        ref={newPw2}
-      />
-      <Ctx.SetEditUserContext.Consumer>
-        {({set}) =>
-          <Ctx.UserDataContext.Consumer>
-            {data =>
-              <button
-                onClick={async e => 
-                  await setNewPassword(
-                    e, 
-                    {
-                      oldPw: oldPw.current.value, 
-                      newPw1: newPw.current.value, 
-                      newPw2: newPw2.current.value,
-                    }, 
-                    setSubmiting, 
-                    _ => set(''),
-                    data._id,
-                    setError
-                  )
-                }
-              >
-                Edit
-              </button>
+      <Password placeholder="new password repeat" ref={newPw2}/>
+      <Ctx.UserDataContext.Consumer>
+        {data =>
+          <button
+            onClick={async e => 
+              await setNewPassword(
+                e, 
+                {
+                  oldPw: oldPw.current.value, 
+                  newPw1: newPw.current.value, 
+                  newPw2: newPw2.current.value,
+                }, 
+                setSubmiting, 
+                unsetEditing,
+                data._id,
+                setError
+              )
             }
-          </Ctx.UserDataContext.Consumer>
+          >
+            Edit
+          </button>
         }
-      </Ctx.SetEditUserContext.Consumer>
+      </Ctx.UserDataContext.Consumer>
     </form>
   )
 })

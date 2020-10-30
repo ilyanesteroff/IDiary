@@ -3,7 +3,7 @@ import usernameValidator from '../../validators/validateUsername'
 import formatUser from '../../utils/formatUser'
 
 
-export default async (e, data, user, setError, setLoading, closeModal, setInfo) => {
+export default async (e, data, user, setError, setLoading, closeModal, setInfo, setFirstname) => {
   e.preventDefault()
   setLoading(true)
   
@@ -15,9 +15,10 @@ export default async (e, data, user, setError, setLoading, closeModal, setInfo) 
   const body = formatUser(data, user)
 
   const updatedInfo = await update(body)
-  console.log(updatedInfo)
+  
   if(updatedInfo){
     setInfo(updatedInfo)
+    if(body.firstname) setFirstname(body.firstname)
     closeModal()
   } else setError('Technical error occured')
 

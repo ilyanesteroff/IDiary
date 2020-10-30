@@ -6,7 +6,7 @@ import InputField from '../components/FormComponents/InputField'
 import clickHandler from '../actionHandlers/updateuser/UpdateUser'
 
 
-export default _ => {
+export default ({ unsetEditing }) => {
   const [submiting, setSubmiting] = useState(false)
   const [error, setError] = useState('')
 
@@ -25,8 +25,8 @@ export default _ => {
           <InputField placeholder="Username" ref={username} defaultVal={data.username} withLabel username strictLowerCase/>
           <Ctx.SetUpdatedUser.Consumer>
             {update => 
-              <Ctx.SetEditUserContext.Consumer>
-                {({set}) =>
+              <Ctx.FirstnameContext.Consumer>
+                {({setFirstname}) =>
                   <button
                     onClick={e => 
                       clickHandler(
@@ -39,15 +39,16 @@ export default _ => {
                         data,
                         setError, 
                         setSubmiting,
-                        _ => set(''),                
-                        val => update.setUser(val)
+                        unsetEditing,                
+                        val => update.setUser(val),
+                        setFirstname
                       )
                     }
                   >
                     Edit
                   </button>
                 }
-              </Ctx.SetEditUserContext.Consumer>
+              </Ctx.FirstnameContext.Consumer>
             }
           </Ctx.SetUpdatedUser.Consumer>
         </form>

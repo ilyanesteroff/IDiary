@@ -7,7 +7,7 @@ import Textarea from '../components/todos/Textarea'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserInfo'
 
 
-export default _ => {
+export default ({ unsetEditing }) => {
   const [ submiting, setSubmiting ] = useState(false)
   const [ error, setError ] = useState('')
   const [ status, setStatus ] = useState('')
@@ -36,30 +36,26 @@ export default _ => {
           </select>
           <Ctx.SetUpdatedUser.Consumer>
             {update =>
-              <Ctx.SetEditUserContext.Consumer>
-                {({set}) =>
-                  <button 
-                    onClick={async e =>
-                      await clickHandler(
-                        e, 
-                        {
-                          about: about.current.value,
-                          website: website.current.value,
-                          company: company.current.value,
-                          relationshipStatus: status
-                        }, 
-                        data, 
-                        setError, 
-                        setSubmiting, 
-                        _ => set(''),
-                        val => update.setInfo(val)
-                      )
-                    }
-                  >
-                    Edit
-                  </button>
+              <button 
+                onClick={async e =>
+                  await clickHandler(
+                    e, 
+                    {
+                      about: about.current.value,
+                      website: website.current.value,
+                      company: company.current.value,
+                      relationshipStatus: status
+                    }, 
+                    data, 
+                    setError, 
+                    setSubmiting, 
+                    unsetEditing,
+                    val => update.setInfo(val)
+                  )
                 }
-              </Ctx.SetEditUserContext.Consumer>
+              >
+                Edit
+              </button>
             }
           </Ctx.SetUpdatedUser.Consumer>
         </form>

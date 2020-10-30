@@ -20,6 +20,10 @@
 }
 .Page #h1-Icon, #editOption-Icon{
   color: #3377ff;
+  transition: all .5s;
+}
+#editOption-Icon:hover{
+  transform: scale(0.9);
 }
 #h1-Icon{
   margin-left: 1vw;
@@ -209,6 +213,9 @@
 .DarkPage #EditProfile p{
   color: #efeaff;
 }
+#deleteAccountOption svg{
+  color:  #ff4444;
+}
 #ActiveTodos{
   color:  #ff7722;
 }
@@ -329,6 +336,17 @@
 }
 #NeedToCompleteTodo{
   color: #ff7722;
+}
+@media only screen and (min-width: 1400px){
+  #deleteAccountOption{
+    position: absolute;
+    bottom: 2vh;
+    left: 2vw;
+    font-size: 2.5vh;
+  }
+  #deleteAccountOption svg{
+    margin-left: 1vw;
+  }
 }
 @media only screen and (min-height: 1000px) and (min-width: 1400px){
   #TodoStats, #FilterTodos, #EditProfile{

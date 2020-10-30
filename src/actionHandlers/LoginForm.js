@@ -7,5 +7,5 @@ export default (event, email, password, session, loginHandler, setSubmiting, set
   if(password.length < 8) return setError('password must be at least 8 characters')
   setSubmiting(true)
   setError('')
-  loginHandler(email, password, session, () => setSubmiting(false))
+  loginHandler(email, password, session, val => setError(val), () => setSubmiting(false))
 }       

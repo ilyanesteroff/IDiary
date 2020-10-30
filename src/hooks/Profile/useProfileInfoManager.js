@@ -21,7 +21,7 @@ export default (info) => {
       })
       setUpdatedUser(null)
     } 
-  }, [ updatedUser ])
+  }, [ updatedUser, userInfo ])
 
   useEffect(_ => {
     if(updatedUserInfo !== null) {
@@ -34,7 +34,7 @@ export default (info) => {
       })
       setUpdatedUserInfo(null)
     }
-  }, [ updatedUserInfo ])
+  }, [ updatedUserInfo, userInfo ])
 
   useEffect(_ => {
     if(updatedUserSettings !== null) {
@@ -45,7 +45,7 @@ export default (info) => {
       })
       setUpdatedUserSettings(null)
     }
-  }, [ updatedUserSettings ])
+  }, [ updatedUserSettings, userInfo ])
 
   return [ setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, userInfo ]
 }

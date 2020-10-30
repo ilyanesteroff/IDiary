@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/navbar/index'
 import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/AddTodoBtn'
