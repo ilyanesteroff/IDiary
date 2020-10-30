@@ -34,12 +34,7 @@ export default ({closeModal, todoData}) => {
           <p className="InputLabel">Todo is public</p>
         </Checkbox>
       </div>
-      <Textarea
-        label="What you need to do?"
-        placeholder="Anything you need"
-        value={todoData.value && todoData.value.task}
-        ref={task}
-      />
+      <Textarea label="What you need to do?" placeholder="Anything you need" value={todoData.value && todoData.value.task} ref={task}/>
       <Input
         ref={timeToComplete}
         type="number"
@@ -51,21 +46,19 @@ export default ({closeModal, todoData}) => {
             : ''
         }
       />
-      <Ctx.TokenContext.Consumer>
-        {token =>
-          <button
-            onClick={async e => {
-              e.preventDefault()
-              await updateTodo({
-                task: task.current.value,
-                public: publicT.current.checked,
-                completed: completed.current.checked,
-                timeToComplete: timeToComplete.current.value
-              }, token, setError, todoData.value? setTodoToUpdate.current : setNewTodo.current, closeModal, setSubmiting, todoData.value && todoData.value, todoData.value && todoData.unset)
-            }}
-          >{todoData.value ? 'Update Todo' : 'Create Todo'}</button>
-        }
-      </Ctx.TokenContext.Consumer>
+      <button
+        onClick={async e => {
+          e.preventDefault()
+          await updateTodo({
+            task: task.current.value,
+            public: publicT.current.checked,
+            completed: completed.current.checked,
+            timeToComplete: timeToComplete.current.value
+          }, setError, todoData.value? setTodoToUpdate.current : setNewTodo.current, closeModal, setSubmiting, todoData.value && todoData.value, todoData.value && todoData.unset)
+        }}
+      >
+        {todoData.value ? 'Update Todo' : 'Create Todo'}
+      </button>
     </form>
   )
 }

@@ -4,19 +4,11 @@ import { createContext } from 'react'
 
 export const BrightThemeContext = createContext(false)
 
-export const FirstnameContext = createContext({
-  firstname: null, 
-  setFirstname: _ => {}
-})
+export const FirstnameContext = createContext({ firstname: null, setFirstname: _ => {} })
 
 export const UserIdContext = createContext(null)
 
-export const TokenContext = createContext(null)
-
-export const LoadingContext = createContext({
-  value: false,
-  setValue: _ => {}
-})
+export const LoadingContext = createContext({ value: false, setValue: _ => {} })
 
 export const IsAuthContext = createContext(false)
 

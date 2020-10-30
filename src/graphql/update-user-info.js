@@ -3,8 +3,8 @@
 export default userInput => {
   return {
     query: `
-      mutation UpdateUserInfo($data: UpdatedUserInfoData!) {
-        updateUserSettings(userInput: $data) {
+      mutation UpdateUserInfo($data: UpdateUserInfoData) {
+        updateUserInfo(userInput: $data) {
           website
           company
           about

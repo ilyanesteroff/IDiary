@@ -1,20 +1,21 @@
-import update from '../../api/profile/updateuser/update-user-settings'
-import { tokenFromStorage as token } from '../../utils/tokens'
+import update from '../../api/profile/updateuser/update-user-info'
+import userInfoValidator from '../../validators/validateUserInfo'
+import prepareBody from '../../utils/formatUserInfo'
 
 
 export default async (e, data, user, setError, setLoading, closeModal, updateInfo) => {
   e.preventDefault()
   setLoading(true)
-  //validation
-  
-  const body = {}
-  if(data.website !== '') body.website = data.website
-  if(data.about !== '') body.about = data.about
-  if(data.company !== '') body.company = data.company
-  if(data.relationshipStatus !== '') body.relationshipStatus = data.relationshipStatus
 
-  const updatedInfo = await update(token, body)
-  console.log(updatedInfo)
+  const body = prepareBody(data, user)
+
+  if(Object.keys(body).length === 0) return closeModal()
+  
+  const validationSucceded = userInfoValidator(body, setError)
+  if(!validationSucceded) return setLoading(false)
+
+  const updatedInfo = await update(body)
+  
   if(updatedInfo){
     updateInfo(updatedInfo)
     setImmediate(_ => closeModal())

@@ -16,10 +16,8 @@ export default _ => {
   const [ page, setPage ] = useState(1)
   const [ addTodoModalOpened, setAddTodoModalOpened ] = useState(false)
   const [ todoDataToUpdate, setTodoDataToUpdate ] = useState(null)
-  const Token = _ => useContext(Ctx.TokenContext)
-  const token = useRef(Token())
 
-  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(token.current, page, setError)
+  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(page, setError)
   
   const [sortedTodos, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
   

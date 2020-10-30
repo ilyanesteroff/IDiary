@@ -1,7 +1,7 @@
 import validator from 'validator'
 import ifUserExists from '../api/checks/if-user-exists'
 
-export default async (username, setError, signal) => {
+export default async (username, setError) => {
   if(username.length === 0){
     setError('Please enter username')
     return false
@@ -10,7 +10,7 @@ export default async (username, setError, signal) => {
     setError('Username can contain numbers and letters only')
     return false
   }
-  const verdict = await ifUserExists(username, signal)
+  const verdict = await ifUserExists(username)
   if(verdict){
     setError('Username is already taken')
     return false

@@ -1,11 +1,11 @@
-import React, { forwardRef, useState } from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCog, faUserShield, faUserTag, faUserEdit, faUsersCog } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { SetEditUserContext } from '../../utils/contexts'
 
 
-export default forwardRef((props, refs) => {
+export default _ => {
   const [ hidden, setHidden ] = useState(false)
 
   return(
@@ -42,4 +42,4 @@ export default forwardRef((props, refs) => {
       </SetEditUserContext.Consumer>
     </div>
   )
-})
+}

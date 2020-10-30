@@ -29,6 +29,7 @@ const input = forwardRef((props, ref) => {
         placeholder={props.placeholder}
         ref={ref}
         onChange={validateInput}
+        defaultValue={props.defaultVal || ''}
       />
     </div>
   )

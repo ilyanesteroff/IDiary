@@ -1,10 +1,11 @@
 import { graphqlLink } from '../../utils/serverUrl'
 import headers from '../../utils/headers'
 import query from '../../graphql/find-todos-for-user'
+import { tokenFromStorage as token } from '../../utils/tokens'
 
 
-export default (token, page) => {
-  headers.set('authorization', `Bearer ${token}`)
+export default page => {
+  headers.set('authorization', `Bearer ${token()}`)
   return fetch(graphqlLink, {
     headers: headers,
     method: 'POST',

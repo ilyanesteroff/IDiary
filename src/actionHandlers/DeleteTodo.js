@@ -1,6 +1,6 @@
 import deleteTodo from '../api/todos/delete-todo'
 
-export default async (todoId, token, cb) => {
-  const todoDeleted = await deleteTodo(todoId, token)
+export default async (todoId, cb) => {
+  const todoDeleted = await deleteTodo(todoId)
   todoDeleted.data.deleteTodo && cb()
 }

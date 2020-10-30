@@ -1,5 +1,5 @@
 import { graphqlLink } from '../../../utils/serverUrl'
-import query from '../../../graphql/update-user-info'
+import query from '../../../graphql/update-user'
 import headers from '../../../utils/headers'
 import { tokenFromStorage as token } from '../../../utils/tokens'
 
@@ -12,7 +12,7 @@ export default (data) => {
     method: 'POST'
   })
   .then(res => res.json())
-  .then(res => res.data.updateUserInfo)
+  .then(res => res.data.updateUser)
   .catch(_ => {
     return false
   })

@@ -23,7 +23,7 @@ export default (info) => {
     } 
   }, [ updatedUser ])
 
-  useState(_ => {
+  useEffect(_ => {
     if(updatedUserInfo !== null) {
       setUserInfo({
         ...userInfo,

@@ -13,7 +13,6 @@ export default class App extends React.PureComponent{
     userId: null,
     firstname: null,
     brightTheme: true,
-    token: null,
     loading: false,
     isAuth: false
   }
@@ -36,7 +35,6 @@ export default class App extends React.PureComponent{
     }
     this.setState({ 
       isAuth: true, 
-      token: token, 
       userId: userId,
       firstname: firstname,
       brightTheme: theme === 'true' ? true : false
@@ -78,7 +76,6 @@ export default class App extends React.PureComponent{
         const { userId, token, firstname } = res
         this.setState({
           userId: userId,
-          token: token, 
           firstname: firstname,
           isAuth: true,
           loading: false
@@ -93,7 +90,7 @@ export default class App extends React.PureComponent{
           window.localStorage.setItem('firstname', firstname)
         }
       })
-      .catch(err => {
+      .catch(_ => {
         this.setState({
           loading: false
         })
@@ -109,7 +106,6 @@ export default class App extends React.PureComponent{
         const { userId, token, firstname } = res
         this.setState({
           userId: userId,
-          token: token, 
           firstname: firstname,
           isAuth: true,
           loading: false
@@ -143,23 +139,21 @@ export default class App extends React.PureComponent{
             firstname: this.state.firstname,
             setFirstname: val => this.setState({ firstname: val })
           }}>
-            <Contexts.TokenContext.Provider value={this.state.token}>
-              <Contexts.LoadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
-                <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
-                  <Contexts.SignalContext.Provider value={this.abortController.signal}>
-                    <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
-                      <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
-                        <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
-                          <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
-                            <Router isAuth={this.state.isAuth}/>
-                          </Contexts.AcceptEmailContext.Provider>
-                        </Contexts.ToggleThemeContext.Provider>
-                      </Contexts.LoginHandlerContext.Provider>
-                    </Contexts.LogoutHandlerContext.Provider>
-                  </Contexts.SignalContext.Provider>
-                </Contexts.IsAuthContext.Provider>
-              </Contexts.LoadingContext.Provider>
-            </Contexts.TokenContext.Provider>
+            <Contexts.LoadingContext.Provider value={{ value: this.state.loading, setValue: val => this.setState({loading: val})}}>
+              <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
+                <Contexts.SignalContext.Provider value={this.abortController.signal}>
+                  <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
+                    <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
+                      <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
+                        <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
+                          <Router isAuth={this.state.isAuth}/>
+                        </Contexts.AcceptEmailContext.Provider>
+                      </Contexts.ToggleThemeContext.Provider>
+                    </Contexts.LoginHandlerContext.Provider>
+                  </Contexts.LogoutHandlerContext.Provider>
+                </Contexts.SignalContext.Provider>
+              </Contexts.IsAuthContext.Provider>
+            </Contexts.LoadingContext.Provider>
           </Contexts.FirstnameContext.Provider>
         </Contexts.UserIdContext.Provider>
       </Contexts.BrightThemeContext.Provider>

@@ -1,37 +1,57 @@
-import React, { useState } from 'react'
-//import * as Ctx from '../utils/contexts'
+import React, { useState, useRef } from 'react'
+import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import ComplainLog from '../components/FormComponents/ComplainLog'
-import Input from '../components/FormComponents/TodoInput'
+import InputField from '../components/FormComponents/InputField'
+import clickHandler from '../actionHandlers/updateuser/UpdateUser'
 
 
 export default _ => {
   const [submiting, setSubmiting] = useState(false)
   const [error, setError] = useState('')
 
+  const firstname = useRef(null)
+  const lastname = useRef(null)
+  const username = useRef(null)
 
   return(
-    <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
-      <FormSpinner/>
-      <ComplainLog message={error}/>
-      <Input
-        type="text"
-        label="Your Username"
-        placeholder="Your username"
-      />
-      <Input
-        type="text"
-        label="Your Firstname"
-        placeholder="What is your name?"
-      />
-      <Input
-        type="text"
-        label="Your Lastname"
-        placeholder="What is your surname?"
-      />
-      <button>
-        Edit
-      </button>
-    </form>
+    <Ctx.UserDataContext.Consumer>
+      {data =>
+        <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
+          <FormSpinner/>
+          <ComplainLog message={error}/>
+          <InputField placeholder="Firstname" ref={firstname} defaultVal={data.firstname} withLabel name/>
+          <InputField placeholder="Lastname" ref={lastname} defaultVal={data.lastname} withLabel name/>
+          <InputField placeholder="Username" ref={username} defaultVal={data.username} withLabel username strictLowerCase/>
+          <Ctx.SetUpdatedUser.Consumer>
+            {update => 
+              <Ctx.SetEditUserContext.Consumer>
+                {({set}) =>
+                  <button
+                    onClick={e => 
+                      clickHandler(
+                        e, 
+                        {
+                          firstname: firstname.current.value,
+                          lastname: lastname.current.value,
+                          username: username.current.value
+                        },
+                        data,
+                        setError, 
+                        setSubmiting,
+                        _ => set(''),                
+                        val => update.setUser(val)
+                      )
+                    }
+                  >
+                    Edit
+                  </button>
+                }
+              </Ctx.SetEditUserContext.Consumer>
+            }
+          </Ctx.SetUpdatedUser.Consumer>
+        </form>
+      }
+    </Ctx.UserDataContext.Consumer>
   )
 }

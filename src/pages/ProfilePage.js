@@ -13,12 +13,10 @@ export default memo(_ => {
   const [ editUser, setEditUser ] = useState('')
   
   const Firstname = _ => useContext(Ctx.FirstnameContext)
-  const Token = _ => useContext(Ctx.TokenContext)
 
-  const token = useRef(Token())
   const firstname = useRef(Firstname().firstname)
   
-  const [ loading, info ] = useLoader(token.current, setError)
+  const [ loading, info ] = useLoader(setError)
   const [ setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, userInfo ] = useUserInfoManager(info)
 
   document.title = firstname.current

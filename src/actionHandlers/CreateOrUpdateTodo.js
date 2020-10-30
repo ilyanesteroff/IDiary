@@ -5,7 +5,7 @@ import TodoUpdateValidator from '../validators/validateTodoUpdate'
 import TodoInputFormater from '../utils/formatTodo'
 
 
-export default async (data, token, setError, setTodo, closeModal, setSubmiting, todoData = null, unsetTodoData = null) => {
+export default async (data, setError, setTodo, closeModal, setSubmiting, todoData = null, unsetTodoData = null) => {
   setError('')
   setSubmiting(true)
   if(todoData){
@@ -22,8 +22,8 @@ export default async (data, token, setError, setTodo, closeModal, setSubmiting, 
   try {
     let Todo
     todoData
-      ? Todo = await updateTodo(todoInput, todoData._id, token)
-      : Todo = await createTodo(todoInput, token)
+      ? Todo = await updateTodo(todoInput, todoData._id)
+      : Todo = await createTodo(todoInput)
     if(Todo.data){
       if(Todo.data.updateTodo){
         setTodo(Todo.data.updateTodo)

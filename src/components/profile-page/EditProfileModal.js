@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React from 'react'
 import * as Ctx from '../../utils/contexts'
 import CloseModalBtn from '../portals/CloseModalBtn'
 import EditUserInfoForm from '../../forms/EditUserInfo'
@@ -7,7 +7,7 @@ import EditUserProfileForm from '../../forms/EditUserProfile'
 import EditPasswordForm from '../../forms/ChangePasswordForm'
 
 
-export default memo(({theme}) => {
+export default ({theme}) => {
   return(
     <Ctx.SetEditUserContext.Consumer>
       {({value, set}) => 
@@ -27,4 +27,4 @@ export default memo(({theme}) => {
       }
     </Ctx.SetEditUserContext.Consumer>
   )
-})
+}

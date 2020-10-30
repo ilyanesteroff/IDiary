@@ -5,7 +5,6 @@ import ComplainLog from '../components/FormComponents/ComplainLog'
 import Input from '../components/FormComponents/TodoInput'
 import Checkbox from '../components/FormComponents/Checkbox'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserSettings'
-import { tokenFromStorage as token} from '../utils/tokens'
 
 
 export default memo(_ => {
@@ -21,13 +20,7 @@ export default memo(_ => {
         <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
           <FormSpinner/>
           <ComplainLog message={error}/>
-          <Input
-            type="tel"
-            label="Your Phone number"
-            placeholder="333333333"
-            defaultVal={data.phone}
-            ref={phone}
-          />
+          <Input type="tel" label="Your Phone number" placeholder="333333333" defaultVal={data.phone} ref={phone}/>
           <Checkbox ref={_public} defaultChecked={data.public}>
             <p>Your profile is public</p>
           </Checkbox>
@@ -36,13 +29,12 @@ export default memo(_ => {
               <Ctx.SetUpdatedUser.Consumer>
                 {update => 
                   <button 
-                    onClick={async e => 
+                    onClick={async e =>  
                       await clickHandler(
                         e, 
                         _public.current.checked, 
                         phone.current.value, 
-                        data, 
-                        token(), 
+                        data,  
                         setError, 
                         setSubmiting, 
                         _ => set(''), 

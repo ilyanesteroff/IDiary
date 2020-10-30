@@ -3,7 +3,7 @@ import fetchTodos from '../../api/todos/fetch-todos'
 import fetchTodoStats from '../../api/todos/fetch-todo-stats'
 
 
-export default (token, page, setError) => {
+export default (page, setError) => {
   const [fullfilledTodos, setFullfilledTodos] = useState(null)
   const [activeTodos, setActiveTodos] = useState(null)
   const [nextPage, setNextPage] = useState(false)
@@ -12,12 +12,12 @@ export default (token, page, setError) => {
   
   const loadTodos = _ => {
     if(!fullfilledTodos && !activeTodos)
-      return fetchTodoStats(token)
+      return fetchTodoStats()
         .then(res1 => {
           setActiveTodos(res1.data.getAuthUser.ActiveTodos)
           setFullfilledTodos(res1.data.getAuthUser.FullfilledTodos)          
           if(res1.data.getAuthUser.FullfilledTodos + res1.data.getAuthUser.ActiveTodos !== 0) {
-            return fetchTodos(token, page)
+            return fetchTodos(page)
               .then(res => {
                 setLoadingTodos(false)
                 setTodos([...res.data.todos])
@@ -34,7 +34,7 @@ export default (token, page, setError) => {
         .catch(err => {
           setError(err.message)
         })
-    else return fetchTodos(token, page)
+    else return fetchTodos(page)
       .then(res => {
         setLoadingTodos(false) 
         setTodos([...todos, ...res.data.todos])

@@ -1,6 +1,5 @@
 import phoneValidator from '../../validators/validatePhone'
 import update from '../../api/profile/updateuser/update-user-settings'
-import { tokenFromStorage as token } from '../../utils/tokens'
 
 
 export default async (e, _public, phone, user, setError, setLoading, closeModal, updateSettings) => {
@@ -25,7 +24,7 @@ export default async (e, _public, phone, user, setError, setLoading, closeModal,
   if(phone !== '' && phone !== user.phone) body.phone = phone
   if(_public !== user.public) body.public = _public
   
-  const updatedSettings = await update(token(), body)
+  const updatedSettings = await update(body)
   if(updatedSettings){
     updateSettings(updatedSettings)
     setImmediate(_ => closeModal())
