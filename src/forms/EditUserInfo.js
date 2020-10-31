@@ -34,7 +34,7 @@ export default ({ unsetEditing }) => {
             <option value="complicated">It's complicated</option>
             <option value="divorced">Divorced</option>
           </select>
-          <Ctx.SetUpdatedUser.Consumer>
+          <Ctx.SetUpdatedUserContext.Consumer>
             {update =>
               <button 
                 onClick={async e =>
@@ -57,7 +57,7 @@ export default ({ unsetEditing }) => {
                 Edit
               </button>
             }
-          </Ctx.SetUpdatedUser.Consumer>
+          </Ctx.SetUpdatedUserContext.Consumer>
         </form>
       }
     </Ctx.UserDataContext.Consumer>

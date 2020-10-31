@@ -21,6 +21,7 @@ export default {
         company
         about
         relationshipStatus
+        conversations
       }
     }`
 }

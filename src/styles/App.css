@@ -9,3 +9,9 @@ input:focus, button:focus, textarea:focus, select:focus{
 svg {
   transition: all .5s;
 }
+a{
+  text-decoration: none;
+}
+li{
+  list-style-type: none;
+}

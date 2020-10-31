@@ -19,8 +19,9 @@ export default (setError) => {
       if(res.status === 500){
         throw new Error('Technical error occured')
       }
-      return res.formData.deleteUser
+      return res.json()
     })
+    .then(res => res.data.deleteUser)
     .catch(err => {
       return setError(err.message)
     })

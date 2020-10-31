@@ -1,7 +1,7 @@
 #navbar {
   position: fixed;
   text-align: center;
-  height: 10vh;
+  height: 4.7rem;
   width: 100%;
   z-index: 3;
 }
@@ -14,7 +14,7 @@
   box-shadow: #eee 0 0 .3vh;
 }
 #navbarOptions {
-  margin-top: 2.8vh;
+  margin-top: 1.6rem;
   margin-left: 18vw;
   width: 70vw;
 }
@@ -30,57 +30,100 @@ li#navbarOption{
 #link{
   text-decoration: none;
 }
-
 ul{
   display: inline;
 }
-
 #navbarOptionText{
-  font-size: 3.3vh;
+  font-size: 1.3rem;
   display: inline;
-  margin: 2%;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-family: Ubuntu, sans-serif;
+  font-weight: 600;
   transition: color .7s;
 }
-
 .BrightNavbarOptionText {
   color: #333;
 }
-
 .DarkNavbarOptionText {
   color: #eee;
 }
-
 .ActiveNavbarOption {
   color: #2323F3;
 }
-
 #navbarOptionIcon {
   display: none;
 }
-
 .BrightNavbarIcon {
   color: #232323;
 }
-
 li#navbarOption:hover .BrightNavbarOptionText{
   color: #888;
 }
 li#navbarOption:hover .DarkNavbarOptionText{
   color: #888;
 }
-
 .DarkNavbarIcon {
   color: #eee;
 }
-
 #ThemeToggler {
-  top: 3.3vh;
+  top: 1.6rem;
   right: 2%;
   position: absolute;
 }
-
-/* media queries */
+.darkLogo {
+  color: #333;
+}
+.brightLogo {
+  color: #bbb;
+}
+#logo {
+  float: left;
+  font-size: 2.4rem;
+  margin: 1rem 2%;
+}#SideMenu{
+  position: fixed;
+  top: 4.7rem;
+  width: 100vw;
+  height: calc(100% - 4.7rem);
+  z-index: 1;
+}
+.brightSideMenu{
+  background-color: rgba(44, 44, 44, 0.1);
+  backdrop-filter: blur(15px);
+}
+.darkSideMenu{
+  background-color: rgba(230, 230, 250, 0.1);
+  backdrop-filter: blur(15px);
+}
+#SideMenuNavbarOption{
+  width: 100%;
+  height: auto;
+  text-align: left;
+  transition: all 0.5s ease-in-out;
+  padding: 6vh 6%;
+  cursor: pointer;
+}
+.BrightSideMenuNavbarOption:active,
+.BrightSideMenuNavbarOption:hover{
+  background-color: rgba(3, 3, 3, 0.3);
+}
+.DarkSideMenuNavbarOption:active,
+.DarkSideMenuNavbarOption:hover{
+  background-color: rgba(252, 252, 252, 0.3);
+}
+#SideMenuNavbarOptionIcon{
+  display: inline-block;
+  margin-right: 7%;
+  font-size: 4vh;
+  transition: all .5s;
+}
+#SideMenuNavbarOptionText{
+  transition: all .5s; 
+  position: relative;
+  float: right;
+  font-size: 3vh;
+  font-weight: 600;
+  font-family: 'Ubuntu', sans-serif;
+}
 @media only screen and (max-width: 1200px){
   #navbarOptionText{
     display: none;
@@ -92,39 +135,35 @@ li#navbarOption:hover .DarkNavbarOptionText{
   #navbarOptionIcon{
     margin: auto 3%;
     display: inline;
-    font-size: 4vh;
+    font-size: 1.6rem;
   }
 }
-
-@media only screen and (min-height: 1000px){
+@media only screen and (max-height: 540px) and (max-width: 830px){
   #navbar{
-    height: 7.5vh;
+    height: 3.7rem;
   }
-  #navbarOptions {
-    margin-top: 1.8vh;
+  #ThemeToggler{
+    top: 1.1rem;
   }
-  #navbarOptionIcon {
-    font-size: 3vh;
-  }  
-  #ThemeToggler {
-    top: 2.7vh;
+  #logo{
+    font-size: 2rem;
+    margin: .8rem 3%;
+  }#SideMenu{  
+    top: 3.7rem;
+    height: calc(100% - 3.7rem);
   }
-}
-
-@media only screen and (max-height: 420px){
-  #ThemeToggler {
-    top: 2vh;
+  .SideMenuOptions{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
   }
-}
-
-@media only screen and (max-height: 350px){
-  #ThemeToggler {
-    top: 1.5vh;
+  #SideMenuNavbarOption{
+    width: 50%;
   }
-}
-
-@media only screen and (max-height: 300px){
-  #ThemeToggler {
-    top: 0.5vh;
+  #SideMenuNavbarOptionIcon{
+    font-size: 6vh;   
+  }
+  #SideMenuNavbarOptionText{
+    font-size: 4.5vh;
   }
 }

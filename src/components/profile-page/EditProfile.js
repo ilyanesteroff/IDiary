@@ -10,7 +10,7 @@ export default _ => {
     <div id="EditProfile">
       <h2>
         Edit profile 
-        <HideEditOptions clickHandler={_ => setHidden(!hidden)} hedden={hidden}/>
+        <HideEditOptions clickHandler={_ => setHidden(!hidden)} hidden={hidden}/>
       </h2>
       <ul id="editOptions" className={hidden? 'hidden': 'visible'}>
         <EditOptions/>

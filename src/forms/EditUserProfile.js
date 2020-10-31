@@ -23,7 +23,7 @@ export default ({ unsetEditing }) => {
           <InputField placeholder="Firstname" ref={firstname} defaultVal={data.firstname} withLabel name/>
           <InputField placeholder="Lastname" ref={lastname} defaultVal={data.lastname} withLabel name/>
           <InputField placeholder="Username" ref={username} defaultVal={data.username} withLabel username strictLowerCase/>
-          <Ctx.SetUpdatedUser.Consumer>
+          <Ctx.SetUpdatedUserContext.Consumer>
             {update => 
               <Ctx.FirstnameContext.Consumer>
                 {({setFirstname}) =>
@@ -50,7 +50,7 @@ export default ({ unsetEditing }) => {
                 }
               </Ctx.FirstnameContext.Consumer>
             }
-          </Ctx.SetUpdatedUser.Consumer>
+          </Ctx.SetUpdatedUserContext.Consumer>
         </form>
       }
     </Ctx.UserDataContext.Consumer>

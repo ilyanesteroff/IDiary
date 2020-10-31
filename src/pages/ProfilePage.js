@@ -14,6 +14,7 @@ import AreYouSure from '../components/controls/AreYouSure'
 export default memo(_ => {
   const [ error, setError ] = useState('')
   const [ editUser, setEditUser ] = useState('')
+  const [ possibleEditOptions ] = useState([ 'Profile', 'Info', 'Privacy', 'Password', 'Delete' ])
   
   const Firstname = _ => useContext(Ctx.FirstnameContext)
 
@@ -37,10 +38,10 @@ export default memo(_ => {
                 {info._id && !loading &&
                   <User/>
                 }
-                {(editUser === 'Profile' || editUser === 'Info' || editUser === 'Privacy' || editUser === 'Password' || editUser === 'Delete') &&
-                  <Ctx.SetUpdatedUser.Provider value={{setSettings: setUpdatedUserSettings, setUser: setUpdatedUser, setInfo: setUpdatedUserInfo}}>
+                {possibleEditOptions.some(p => p === editUser) &&
+                  <Ctx.SetUpdatedUserContext.Provider value={{setSettings: setUpdatedUserSettings, setUser: setUpdatedUser, setInfo: setUpdatedUserInfo}}>
                     <EditProfileModal theme={theme}/>
-                  </Ctx.SetUpdatedUser.Provider>
+                  </Ctx.SetUpdatedUserContext.Provider>
                 }
                 {editUser === 'AreYouSure' &&
                   <AreYouSure 

@@ -42,7 +42,6 @@
   input:focus + .slider {
     box-shadow: 0 0 1px #222;
   }
-
   input:checked + .RegCheckbox{
     background-color: #777;
   }  

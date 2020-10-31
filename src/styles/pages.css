@@ -3,7 +3,7 @@
   display: none; 
 }
 .formPage, .signupFormPage, .Page{
-  padding-top: 10vh;
+  padding-top: 4.7rem;
 }
 .Page{
   margin: auto 10%;
@@ -67,6 +67,50 @@
   text-align: center;
   z-index: 1;
 }
+#UserSection{
+  margin: auto 10vw;
+  padding: 1rem 2%;
+  text-align: left;
+}
+#UserSection #UserNames{
+  font-size: 1.5rem;
+}
+#UserSection #flex{
+  display: flex;
+}
+#UserSection #username{
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  margin: .6rem auto;
+}
+#UserSection #userSection-flexItem{
+  margin-right: 1vw;
+}
+#UserSection #Main-flex{
+  display: flex;
+  justify-content: space-between;
+}
+#UserSection h4{
+  color: #888;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  margin: .3rem 0;
+}
+#UserSection #count{
+  margin-left: .5rem;
+  font-weight: 600;
+}
+#UserSection #contrast{
+  margin: .4rem 0;
+}
+.DarkPage #UserSection{
+  background-color: #22222a;
+  box-shadow: 0 0 .1rem #eef;
+}
+.BrightPage #UserSection{
+  background-color: #eef;
+  box-shadow: 0 0 .1rem #22222a;
+}
 .AddTodoBtn > div{
   padding: 19px 21px;
 }
@@ -81,6 +125,10 @@
   width: 15vw;
   z-index: 1;
 }
+#UserFriendBar{
+  right: 0;
+  width: 20vw;
+}
 #FilterTodos{
   left: 0;
   width: 16vw;
@@ -89,18 +137,19 @@
   left: 0;
   width: 20vw;
   z-index: 2;
+  min-height: 20rem;
+  overflow-y: scroll;
 }
 #editOptions{
   text-align: left;
-  font-size: 3vh;
+  font-size: 1.2rem;
   transition: all .5s;
-  overflow: hidden;
 }
 #editOptions li:first-child{
-  margin-top: 5vh;
+  margin-top: 1.6rem;
 }
 #editOptions li{
-  margin: 4vh auto;
+  margin: 1.2rem auto;
   overflow: hidden;
 }
 .hidden{
@@ -111,10 +160,11 @@
 }
 #FilterTodos,
 #TodoStats,
-#EditProfile{
-  top: 10%;
-  padding: 4vh 2%;
-  height: 90%;
+#EditProfile, 
+#UserFriendBar{
+  top: 4.7rem;
+  padding: 2rem 2%;
+  height: calc(100% - 4.7rem);
   position: fixed;
 }
 #FilterTodos-form{
@@ -144,13 +194,15 @@
 }
 .BrightPage #EditProfile,
 .BrightPage #FilterTodos,
-.BrightPage #TodoStats{
+.BrightPage #TodoStats,
+.BrightPage #UserFriendBar{
   background-color: #fafaff;
   box-shadow: 0 0 0.3vh #222227;
 }
 .DarkPage #EditProfile,
 .DarkPage #FilterTodos,
-.DarkPage #TodoStats{
+.DarkPage #TodoStats,
+.DarkPage #UserFriendBar{
   background-color: #222227;
   box-shadow: 0 0 0.3vh #fafaff;
 }
@@ -162,55 +214,57 @@
 }
 #TodoStats h2,
 #FilterTodos h2,
-#EditProfile h2
-{
-  font-size: 1.6vw;
+#EditProfile h2,
+#UserFriendBar h2{
+  font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 2vh;
 }
 .BrightPage #FilterTodos h2,
 .BrightPage #TodoStats h2,
-.BrightPage #EditProfile h2{
+.BrightPage #EditProfile h2,
+.BrightPage #UserFriendBar h2,
+.BrightPage #count,
+.BrightPage #contrast{
   color: #22222f;
 }
 .DarkPage #FilterTodos h2,
 .DarkPage #TodoStats h2,
-.DarkPage #EditProfile h2{
+.DarkPage #EditProfile h2,
+.DarkPage #UserFriendBar h2,
+.DarkPage #count,
+.DarkPage #contrast{
   color: #eaeaff;
 }
 #TodoStats h4,
-#FilterTodos h4,
-#EditProfile h4{
+#FilterTodos h4{
   font-size: 1.3vw;
   font-weight: 600;
   margin-bottom: 1vh;
 }
 .BrightPage #FilterTodos h4,
-.BrightPage #TodoStats h4,
-.BrightPage #EditProfile h4{
+.BrightPage #TodoStats h4{
   color: #22223f;
 }
 .DarkPage #FilterTodos h4,
-.DarkPage #TodoStats h4,
-.DarkPage #EditProfile h4{
+.DarkPage #TodoStats h4{
   color: #c5c5ff;
   box-shadow: none;
   background-color: transparent;
 }
 #FilterTodos p, 
-#TodoStats p,
-#EditProfile p{
+#TodoStats p{
   font-size: 1.05vw;
   padding-left: .1vw;
 }
 .BrightPage #FilterTodos p,
-.BrightPage #TodoStats p
-.BrightPage #EditProfile{
+.BrightPage #TodoStats p,
+.BrightPage #EditProfile li{
   color: #222232;
 }
 .DarkPage #FilterTodos p,
 .DarkPage #TodoStats p,
-.DarkPage #EditProfile p{
+.DarkPage #EditProfile li{
   color: #efeaff;
 }
 #deleteAccountOption svg{
@@ -337,23 +391,18 @@
 #NeedToCompleteTodo{
   color: #ff7722;
 }
-@media only screen and (min-width: 1400px){
+@media only screen and (min-width: 1401px){
   #deleteAccountOption{
     position: absolute;
-    bottom: 2vh;
+    bottom: .9rem;
     left: 2vw;
-    font-size: 2.5vh;
+    font-size: 1.1rem;
   }
   #deleteAccountOption svg{
     margin-left: 1vw;
   }
 }
 @media only screen and (min-height: 1000px) and (min-width: 1400px){
-  #TodoStats, #FilterTodos, #EditProfile{
-    top: 7.5%;
-    height: 92.5vh;
-    padding: 2.5vh 2%;
-  }
   #FilterTodos h2{
     margin-bottom: 1vh;
   }
@@ -389,21 +438,27 @@
   }
 }
 @media only screen and (max-width: 1400px){
-  #TodoStats, #FilterTodos, #EditProfile{
+  #TodoStats, #FilterTodos, #EditProfile, #UserFriendBar{
     position: static;
     height: auto;
     text-align: center;
     width: auto;
     transition: height .5s ease;
   }
+  #UserSection{
+    margin: 2rem auto;
+  }
+  #UserSection #flex {
+    display: block;
+  }
+  #UserSection #Main-flex{
+    display: block;
+  }
   #EditProfile{
     margin: 2vh auto;
   }
   .hiddenForm{
     height: .01vh;
-  }
-  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
-    font-size: 3vh;
   }
   #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 2.3vh;
@@ -476,11 +531,8 @@
   }
 }
 @media only screen and (min-height: 1000px) and (max-width: 1400px){
-  #FilterTodos, #TodoStats, #EditProfile{
+  #FilterTodos, #TodoStats, #EditProfile, #UserFriendBar{
     padding: 1.5vh 2%;
-  }
-  #FilterTodos h2, #TodoStats h2, #EditProfile h2{
-    font-size: 2.5vh;
   }
   #TodoStats h4{
     font-size: 2vh;
@@ -545,13 +597,10 @@
   #FilterTodos{
     position: static;
   }
-  #FilterTodos, #TodoStats, #EditProfile{
+  #FilterTodos, #TodoStats, #EditProfile, #UserFriendBar{
     height: auto;
     text-align: center;
     padding: 2.5vh 3%;
-  }
-  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
-    font-size: 2.3vh;
   }
   #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 2vh;
@@ -585,9 +634,6 @@
     font-size: 3vh;
     padding: 2vh 2%;
     margin: 3vh 5%;
-  }
-  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
-    font-size: 3.4vh;
   }
   #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 3vh;
@@ -648,9 +694,6 @@
   .Page h3{
     font-size: 4vh;
     padding: 3vh 2%;
-  }
-  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
-    font-size: 5vh;
   }
   #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 3.7vh;
@@ -753,9 +796,6 @@
     font-size: 6vh;
     padding: 3vh 2%;
     margin: 4vh 5%;
-  }
-  #TodoStats h2, #FilterTodos h2, #EditProfile h2{
-    font-size: 7vh;
   }
   #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 5vh;

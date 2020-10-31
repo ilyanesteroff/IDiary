@@ -24,7 +24,7 @@ export default memo(({ unsetEditing }) => {
           <Checkbox ref={_public} defaultChecked={data.public}>
             <p>Your profile is public</p>
           </Checkbox>
-          <Ctx.SetUpdatedUser.Consumer>
+          <Ctx.SetUpdatedUserContext.Consumer>
             {update => 
               <button 
                 onClick={async e =>  
@@ -42,7 +42,7 @@ export default memo(({ unsetEditing }) => {
                 Edit
               </button>
             }
-          </Ctx.SetUpdatedUser.Consumer>
+          </Ctx.SetUpdatedUserContext.Consumer>
         </form>
       }
     </Ctx.UserDataContext.Consumer>
