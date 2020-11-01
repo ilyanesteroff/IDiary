@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { YourTodoContext } from '../../utils/contexts'
 import TimeString from './TimeString'
 import TodoLowerSection from './TodoLowerSection'
@@ -10,16 +10,9 @@ import TimeLeft from './TimeToComplete'
 //TODO: complete todo component
 export default ({todoData}) => {
   const { createdAt, timeToComplete, task, completed, tags } = todoData
-  const [ incompleted, setIncompleted ] = useState(null)
-  
-  useEffect(_ => {
-    const now = new Date().getTime()
-    if(
-      timeToComplete !== null && 
-      !completed && 
-      timeToComplete + createdAt.getTime() < now
-    ) setIncompleted(true)
-  }, [timeToComplete, completed, createdAt])
+  const [ incompleted, setIncompleted ] = useState(
+    timeToComplete !== null && !completed && timeToComplete + createdAt.getTime() < new Date().getTime()
+  )
 
   return(
     <YourTodoContext.Consumer>
@@ -41,7 +34,7 @@ export default ({todoData}) => {
           }
           {tags && tags.length !== 0 && <Tags tags={tags}/>}
           {yourTodo &&
-              <TodoLowerSection todoData={todoData}/>
+            <TodoLowerSection todoData={todoData}/>
           }
         </div>
       }

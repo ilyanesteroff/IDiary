@@ -17,9 +17,9 @@ export default _ => {
   const [ addTodoModalOpened, setAddTodoModalOpened ] = useState(false)
   const [ todoDataToUpdate, setTodoDataToUpdate ] = useState(null)
 
-  const [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading] = useTodoLoader(page, setError)
-  
-  const [sortedTodos, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
+  const [ fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading ] = useTodoLoader(page, setError)
+
+  const [ todosToExpose, refs, changeHandlers, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed ] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
   
   const definePosition = _ => {
     if((window.innerHeight + window.pageYOffset + 10) >= document.body.offsetHeight && nextPage) {
@@ -59,11 +59,11 @@ export default _ => {
                 </Ctx.SetNewTodoContext.Provider>
               }
               <Ctx.OpenModalContext.Provider value ={_ => setAddTodoModalOpened(true)}>
-                {sortedTodos.length > 0 &&
+                {active + completed > 0 &&
                   <Ctx.YourTodoContext.Provider value={true}>
                     <Ctx.SetTodoToDeleteContext.Provider value={todoId => setTodoToDelete(todoId)}>
                       <Ctx.PassTodoDataContext.Provider value={todoData => setTodoDataToUpdate(todoData)}>
-                        <Todos todos={sortedTodos}/>
+                        <Todos todos={todosToExpose} changeHandlers={changeHandlers} refs={refs}/>
                       </Ctx.PassTodoDataContext.Provider>
                     </Ctx.SetTodoToDeleteContext.Provider>
                   </Ctx.YourTodoContext.Provider>

@@ -1,16 +1,17 @@
 import React, { useState, useRef, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
-import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import DoneMessage from '../components/FormComponents/DoneMessage'
 import resetPaswordHandler from '../actionHandlers/ResetPassword'
 import { SignalContext } from '../utils/contexts'
+import useComplainLog from '../hooks/useComplainLog'
 
 
 export default memo(({theme}) => {
   const [ mailSent, setMailSent ] = useState(false)
   const [ submiting, setSubmiting ] = useState(false)
-  const [ error, setError ] = useState('')
+
+  const [ setError, complainLog ] = useComplainLog()
 
   const email = useRef(null)
   
@@ -23,7 +24,7 @@ export default memo(({theme}) => {
             Check your email
           </DoneMessage>
         : <>
-            <ComplainLog message={error}/>
+            { complainLog }
             <FormSpinner/>
             <p className={`${theme? 'Bright' : 'Dark'}Text margin-bottom`}>
               We will send you password reset link on your email

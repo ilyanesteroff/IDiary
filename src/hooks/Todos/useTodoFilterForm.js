@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react'
-import useTodoFilter from './useTodoFilter'
+import useTodoFilter from './useTodoFilter' 
 import useUnsetFilter from './useUnsetTodoFilter'
 
 
 export default (todos) => {
   //filter params
-  const [showOnlyCompletedTodos, setShowOnlyCompletedTodos] = useState(false)
-  const [showOnlyActiveTodos, setShowOnlyActiveTodos] = useState(false)
-  const [showElapsedTodos, setShowElapsedTodos] = useState(false)
-  const [hashtag, setHashtag] = useState('')
-  const [taskIncludes, setTaskIncludes] = useState('')
-  const [timeToComplete, setTimeToComplete] = useState(0)
-  const [createdAt, setCreatedAt] = useState('')
-  const [unsetFilter, setUnsetFilter] = useState(false)
-  const [_todos, set_todos] = useState(todos)
+  const [ showOnlyCompletedTodos, setShowOnlyCompletedTodos ] = useState(false)
+  const [ showOnlyActiveTodos, setShowOnlyActiveTodos ] = useState(false)
+  const [ showElapsedTodos, setShowElapsedTodos ] = useState(false)
+  const [ hashtag, setHashtag ] = useState('')
+  const [ taskIncludes, setTaskIncludes ] = useState('')
+  const [ timeToComplete, setTimeToComplete ] = useState(0)
+  const [ createdAt, setCreatedAt ] = useState('')
+  const [ unsetFilter, setUnsetFilter ] = useState(false)
+  const [ _todos, set_todos ] = useState(todos)
 
   useEffect(_ => {
     set_todos(todos)
-  }, [todos])
+  }, [ todos ])
 
   const [todosToExpose] = useTodoFilter(
     _todos, 
@@ -41,13 +41,15 @@ export default (todos) => {
     setUnsetFilter(false)
   })
 
-  useEffect(_ => {    
-    showOnlyActiveTodos
-      ? refs.completedTodos.current.disabled = true
-      : refs.completedTodos.current.disabled = false
-    showOnlyCompletedTodos
-      ? refs.activeTodos.current.disabled = true
-      : refs.activeTodos.current.disabled = false
+  useEffect(_ => {   
+    if(refs.completedTodos.current && refs.activeTodos.current){
+      showOnlyActiveTodos
+        ? refs.completedTodos.current.disabled = true
+        : refs.completedTodos.current.disabled = false
+      showOnlyCompletedTodos
+        ? refs.activeTodos.current.disabled = true
+        : refs.activeTodos.current.disabled = false
+    }
   }, [showOnlyActiveTodos, showOnlyCompletedTodos, refs.completedTodos, refs.activeTodos])
 
   const changeHandlers = {

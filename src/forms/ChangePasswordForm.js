@@ -1,14 +1,14 @@
 import React, { useState, useRef, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
-import ComplainLog from '../components/FormComponents/ComplainLog'
+import useComplainLog from '../hooks/useComplainLog'
 import Password from '../components/FormComponents/Password'
 import setNewPassword from '../actionHandlers/updateuser/SetNewPassword'
 
 
 export default memo(({unsetEditing}) => {
-  const [submiting, setSubmiting] = useState(false)
-  const [error, setError] = useState('')
+  const [ submiting, setSubmiting ] = useState(false)
+  const [ setError, complainLog ] = useComplainLog()
 
   const oldPw = useRef(null)
   const newPw = useRef(null)
@@ -17,7 +17,7 @@ export default memo(({unsetEditing}) => {
   return(
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
       <FormSpinner/>
-      <ComplainLog message={error}/>
+      { complainLog }
       <p>Enter your old password</p>
       <Password placeholder="old password" ref={oldPw}/>
       <p>Enter your new password</p>

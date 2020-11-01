@@ -1,14 +1,15 @@
 import React, { useState, useRef, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Password from '../components/FormComponents/Password'
-import ComplainLog from '../components/FormComponents/ComplainLog'
 import setNewPassword from '../actionHandlers/SetNewPassword'
+import useComplainLog from '../hooks/useComplainLog'
 
 
 export default memo(({theme}) => {
   const [ errorResetingPw, setErrorResetingPw ] = useState(false)
   const [ submiting, setSubmiting ] = useState(false)
-  const [ error, setError ] = useState('')
+
+  const [ setError, complainLog ] = useComplainLog()
   
   const password1 = useRef(null)
   const password2 = useRef(null)
@@ -17,7 +18,7 @@ export default memo(({theme}) => {
 
   return(
     <form className={formClassName}>
-      <ComplainLog message={error}/>
+      { complainLog }
       <FormSpinner/>
       {!errorResetingPw &&
         <>

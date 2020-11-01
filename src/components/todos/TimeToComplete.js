@@ -5,7 +5,7 @@ import convertNumberToHRTime from '../../utils/convertNumberToHumanReadableTime'
 export default ({timeToComplete, createdAt, setIncompleted}) => {
   const [timeLeft, setTimeLeft] = useState('')
 
-  const handleTimeChange = _ => {
+  const handleTimeChange = _ => { 
     const now = new Date().getTime()
     const shouldBeCompletedAt = createdAt + timeToComplete
     const timeInSeconds = Math.floor((shouldBeCompletedAt - now) / 1000)

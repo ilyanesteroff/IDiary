@@ -1,16 +1,17 @@
 import React, { useState, useRef, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
-import ComplainLog from '../components/FormComponents/ComplainLog'
 import Input from '../components/FormComponents/TodoInput'
 import Checkbox from '../components/FormComponents/Checkbox'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserSettings'
+import useComplainLog from '../hooks/useComplainLog'
 
 
 export default memo(({ unsetEditing }) => {
   const [submiting, setSubmiting] = useState(false)
-  const [error, setError] = useState('')
- 
+
+  const [ setError, complainLog ] = useComplainLog()
+  
   const _public = useRef(null)
   const phone = useRef(null)
 
@@ -19,7 +20,7 @@ export default memo(({ unsetEditing }) => {
       {data => 
         <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
           <FormSpinner/>
-          <ComplainLog message={error}/>
+          { complainLog }
           <Input type="tel" label="Your Phone number" placeholder="333333333" defaultVal={data.phone} ref={phone}/>
           <Checkbox ref={_public} defaultChecked={data.public}>
             <p>Your profile is public</p>

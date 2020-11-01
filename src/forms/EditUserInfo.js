@@ -1,16 +1,17 @@
 import React, { useState, useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
-import ComplainLog from '../components/FormComponents/ComplainLog'
 import Input from '../components/FormComponents/TodoInput'
 import Textarea from '../components/todos/Textarea'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserInfo'
+import useComplainLog from '../hooks/useComplainLog'
 
 
 export default ({ unsetEditing }) => {
   const [ submiting, setSubmiting ] = useState(false)
-  const [ error, setError ] = useState('')
   const [ status, setStatus ] = useState('')
+
+  const [ setError, complainLog ] = useComplainLog()
 
   const about = useRef(null)
   const website = useRef(null)
@@ -21,7 +22,7 @@ export default ({ unsetEditing }) => {
       {data =>
         <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
           <FormSpinner/>
-          <ComplainLog message={error}/>
+          { complainLog }
           <Textarea label="Tell us about yourself?" placeholder="Everything you wish" ref={about} value={data.about || ''}/>
           <Input type="url" label="Your Webpage" placeholder="URL" ref={website} defaultVal={data.website || ''}/>
           <Input type="text" label="Your Company" placeholder="Where you are working" ref={company} defaultVal={data.company || ''}/>

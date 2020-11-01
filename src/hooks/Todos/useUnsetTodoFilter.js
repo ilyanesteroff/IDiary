@@ -11,16 +11,16 @@ export default (unset, cb) => {
   const timeToComplete = useRef(null)
   
   useEffect(_ => {
-    activeTodos.current.checked = false
-    completedTodos.current.checked = false
-    elapsedTodos.current.checked = false
-    tags.current.value = ''
-    task.current.value = ''
-    createdAt.current.value = ''
-    timeToComplete.current.value = 0
+    if(activeTodos.current) activeTodos.current.checked = false
+    if(completedTodos.current) completedTodos.current.checked = false
+    if(elapsedTodos.current) elapsedTodos.current.checked = false
+    if(tags.current) tags.current.value = ''
+    if(task.current) task.current.value = ''
+    if(createdAt.current) createdAt.current.value = ''
+    if(timeToComplete.current) timeToComplete.current.value = 0
     cb()
     // eslint-disable-next-line
-  }, [unset])
+  }, [ unset ])
 
   return [
     {

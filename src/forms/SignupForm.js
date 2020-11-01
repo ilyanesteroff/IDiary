@@ -1,6 +1,5 @@
 import React, { useState, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
-import ComplainLog from '../components/FormComponents/ComplainLog'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
 import InputField from '../components/FormComponents/InputField'
@@ -9,12 +8,14 @@ import { SignalContext } from '../utils/contexts'
 import useSignupFormRefs from '../hooks/useSignupFormRefs'
 import DoneMessage from '../components/FormComponents/DoneMessage'
 import signupHandler from '../actionHandlers/SignupForm'
+import useComplainLog from '../hooks/useComplainLog'
 
 
 export default memo(({theme}) => {
   const [userCreated, setUserCreated] = useState(false)
   const [submiting, setSubmiting] = useState(false)
-  const [error, setError] = useState('')
+
+  const [ setError, complainLog ] = useComplainLog() 
 
   const [refs] = useSignupFormRefs()
 
@@ -28,7 +29,7 @@ export default memo(({theme}) => {
             Check your email
           </DoneMessage>
         : <>
-            <ComplainLog message={error}/>
+            { complainLog }
             <FormSpinner/>
             <div className="SignupFields">
               <InputField placeholder="Firstname" ref={refs.firstname} required withLabel name/>

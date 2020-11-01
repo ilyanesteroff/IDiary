@@ -1,17 +1,17 @@
-import React, {useRef, useState, useContext} from 'react'
+import React, { useRef, useState, useContext } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Checkbox from '../components/FormComponents/Checkbox'
-import ComplainLog from '../components/FormComponents/ComplainLog'
 import Input from '../components/FormComponents/TodoInput'
 import Textarea from '../components/todos/Textarea'
 import updateTodo from '../actionHandlers/CreateOrUpdateTodo'
+import useComplainLog from '../hooks/useComplainLog'
 
 
 export default ({closeModal, todoData}) => {
   const SetNewTodo = _ => useContext(Ctx.SetNewTodoContext)
   const SetTodoToUpdate = _ => useContext(Ctx.SetTodoToUpdateContext)
-
+  
   const completed = useRef(null)
   const publicT = useRef(null)
   const timeToComplete = useRef(null)
@@ -19,13 +19,13 @@ export default ({closeModal, todoData}) => {
   const setNewTodo = useRef(SetNewTodo())
   const setTodoToUpdate = useRef(SetTodoToUpdate())
 
-  const [submiting, setSubmiting] = useState(false)
-  const [error, setError] = useState('')
+  const [ submiting, setSubmiting ] = useState(false)
+  const [ setError, complainLog ] = useComplainLog()
 
   return (
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}> 
       <FormSpinner/>
-      <ComplainLog message={error}/>
+      { complainLog }
       <div id="Checkboxes">
         <Checkbox ref={completed} defaultChecked={todoData.value && todoData.value.completed ? true : false}>
           <p className="InputLabel">Todo is completed</p>

@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react'
+import useTodoFilter from './useTodoFilterForm'
+
 
 export default (todos, activeTodos, completedTodos) => {
-  const [newTodo, setNewTodo] = useState(null)
-  const [todoToDelete, setTodoToDelete] = useState(null)
-  const [todoToUpdate, setTodoToUpdate] = useState(null)
-  const [sortedTodos, setSortedTodos] = useState(todos)
-  const [active, setActive] = useState(activeTodos)
-  const [completed, setCompleted] = useState(completedTodos)
+  const [ newTodo, setNewTodo ] = useState(null)
+  const [ todoToDelete, setTodoToDelete ] = useState(null)
+  const [ todoToUpdate, setTodoToUpdate ] = useState(null)
+  const [ sortedTodos, setSortedTodos ] = useState(todos)
+  const [ active, setActive ] = useState(activeTodos)
+  const [ completed, setCompleted ] = useState(completedTodos)
+
+  const [ todosToExpose, refs, changeHandlers ] = useTodoFilter(sortedTodos, todoToUpdate)
 
   useEffect(_ => {
     setActive(activeTodos)
     setCompleted(completedTodos)
     setSortedTodos(todos)
-  }, [activeTodos, completedTodos, todos])
+  }, [ activeTodos, completedTodos, todos ])
 
   useEffect(_ => {
     if(newTodo !==  null){
@@ -23,7 +27,7 @@ export default (todos, activeTodos, completedTodos) => {
       setNewTodo(null)
     }
     // eslint-disable-next-line
-  }, [newTodo])
+  }, [ newTodo ])
 
   useEffect(_ => {
     if(todoToDelete !== null){
@@ -35,7 +39,7 @@ export default (todos, activeTodos, completedTodos) => {
       setTodoToDelete(null)
     }
     // eslint-disable-next-line
-  }, [todoToDelete])
+  }, [ todoToDelete ])
 
   useEffect(_ => {
     if(todoToUpdate !== null) {
@@ -52,10 +56,11 @@ export default (todos, activeTodos, completedTodos) => {
       const updatedTodos = sortedTodos
       updatedTodos[indexOfTodoToUpdate] = todoToUpdate
       setSortedTodos(updatedTodos)
+      changeHandlers.onUnsetFilter({ preventDefault :_ => {} })
       setTodoToUpdate(null)
     }
     // eslint-disable-next-line
-  }, [todoToUpdate])
+  }, [ todoToUpdate ])
 
-  return [sortedTodos, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed]
+  return [ todosToExpose, refs, changeHandlers, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed ]
 }

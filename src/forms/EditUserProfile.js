@@ -1,14 +1,15 @@
 import React, { useState, useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
-import ComplainLog from '../components/FormComponents/ComplainLog'
+import useComplainLog from '../hooks/useComplainLog'
 import InputField from '../components/FormComponents/InputField'
 import clickHandler from '../actionHandlers/updateuser/UpdateUser'
 
 
 export default ({ unsetEditing }) => {
-  const [submiting, setSubmiting] = useState(false)
-  const [error, setError] = useState('')
+  const [ submiting, setSubmiting ] = useState(false)
+ 
+  const [ setError, complainLog ] = useComplainLog()
 
   const firstname = useRef(null)
   const lastname = useRef(null)
@@ -19,7 +20,7 @@ export default ({ unsetEditing }) => {
       {data =>
         <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
           <FormSpinner/>
-          <ComplainLog message={error}/>
+          { complainLog }
           <InputField placeholder="Firstname" ref={firstname} defaultVal={data.firstname} withLabel name/>
           <InputField placeholder="Lastname" ref={lastname} defaultVal={data.lastname} withLabel name/>
           <InputField placeholder="Username" ref={username} defaultVal={data.username} withLabel username strictLowerCase/>

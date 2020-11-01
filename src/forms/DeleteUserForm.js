@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
-import ComplainLog from '../components/FormComponents/ComplainLog'
 import Password from '../components/FormComponents/Password'
 import clickHandler from '../actionHandlers/DeleteUser'
+import useComplainLog from '../hooks/useComplainLog'
 
 
 export default _ => {
-  const [ error, setError ] = useState('')
+  const [ setError, complainLog ] = useComplainLog()
   const [ submiting, setSubmitting ] = useState(false)
 
   const password = useRef(null)
@@ -15,7 +15,7 @@ export default _ => {
   return(
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
       <FormSpinner/>
-      <ComplainLog message={error}/>
+      { complainLog }
       <p>Enter your password</p>
       <Password placeholder="new password" ref={password}/>
       <Ctx.LogoutHandlerContext.Consumer>
