@@ -10,10 +10,10 @@
   background-color: #232325;  
 }
 #headline {
-  padding: 3vh 6%;
-  padding-top: 8vh;
+  padding: 1rem 6%;
+  padding-top: 3rem;
   text-align: center;
-  font-size: 4vh;
+  font-size: 2rem;
   font-family: 'Ubuntu', sans-serif;
 }
 .BrightMain h1 {
@@ -23,10 +23,10 @@
   color: #f5f8ff;
 }
 #para {
-  padding: 5vh 8%;
-  font-size: 2.5vh;
+  padding: 1rem 8%;
+  font-size: 1.2rem;
   font-weight: 700;
-  font-family: 'Exo 2', sans-serif;
+  font-family: Ubuntu, sans-serif;
 }
 .DarkMain p{
   color: #e3e3e3;
@@ -41,7 +41,7 @@
   float: right;
   clear: both;
   display: flex;
-  padding-top: 1vh;
+  padding-top: .5rem;
   padding-right: 8%;
   width: 30%;
 }
@@ -74,76 +74,49 @@
 }
 @media only screen and (max-width: 500px){
   #main{
-    padding-top: 10vh;
-    padding-bottom: 7vh;
+    padding-top: 4rem;
+    padding-bottom: 3rem;
   } 
   #headline{
-    font-size: 3.5vh;
-    padding-top: 5vh;
+    font-size: 1.3rem;
+    padding-top: 2rem;
+  }
+  #para{
+    font-size: 1.1rem;
   }
   #buttons{
     float: none;
     display: block;
     width: 100vw;
-    padding-top: 1vh;
+    padding-top: .4rem;
   }
   #buttons a{
     display: block;
     margin-left: 10%;
     width: 80vw;
     text-align: center;
-    margin-bottom: 2vh;
+    margin-bottom: .9rem;
   }
   .pSpan:last-child{
-    font-size: 2vh;
-    padding-top: 2vh;
+    font-size: .9rem;
+    padding-top: .9rem;
   }
 }
 @media only screen and (max-height: 420px){
   #buttons{
     float: none;
-    padding-left: 30%;
-    width: 100%;
+    margin-left: 30%;
+    width: 70%;
     display: flex;
-  }
-  #headline {
-    font-size: 6vh;
   }
   #buttons a{
     text-align: center;
-    width: 30%;
-    padding: 3vh 5%;
-    font-size: 4vh;
+    width: 50%;
   }
   .BrightButtons a{
     color: #222;
   }
-  #para{
-    font-size: 4vh;
-  } 
   .pSpan:last-child{
-    padding-top: 5vh;
-  }
-}
-@media only screen and (max-height: 300px){
-  #headline{
-    font-size: 7vh;
-  }
-  #para{
-    font-size: 4.5vh;
-  } 
-}
-@media only screen and (min-height: 1000px){
-  #main{
-    padding-top: 7vh;
-  }
-  #headline{
-    font-size: 4vh;
-  }
-  #para{
-    font-size: 2vh;
-  }
-  #buttons a{
-    padding: 1vh 5vw;
+    margin-top: 2.2rem;
   }
 }

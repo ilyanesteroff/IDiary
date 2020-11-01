@@ -78,7 +78,7 @@ li#navbarOption:hover .DarkNavbarOptionText{
 #logo {
   float: left;
   font-size: 2.4rem;
-  margin: 1rem 2%;
+  margin: 1rem 1.2rem;
 }#SideMenu{
   position: fixed;
   top: 4.7rem;

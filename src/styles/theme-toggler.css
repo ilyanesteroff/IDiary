@@ -36,6 +36,9 @@
     -webkit-transition: .4s;
     transition: .4s;
   }  
+  input:disabled + .slider:before{
+    background-color: #888;
+  }
   input:checked + .slider {
     background-color: #222;
   }  

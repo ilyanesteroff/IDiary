@@ -10,9 +10,9 @@
   font-family: Ubuntu, sans-serif;
 }
 .Page h1{
-  margin: 3vh auto;
+  margin: 1.5rem auto;
   text-align: center;
-  font-size: 3.5vh;
+  font-size: 1.6rem;
 }
 #editOption-Icon{
   float: right; 
@@ -26,7 +26,7 @@
   transform: scale(0.9);
 }
 #h1-Icon{
-  margin-left: 1vw;
+  margin-left: .7rem;
 }
 @media only screen and (max-width: 1200px) and (min-width: 830px){
   .Page #h1-Icon{
@@ -34,9 +34,9 @@
   }
 }
 .Page h3{
-  font-size: 2.5vh;
-  padding: 2vh 3%;
-  margin: 5vh 20%;
+  font-size: 1.2rem;
+  padding: 1rem 3%;
+  margin: 2.5rem 20%;
   text-align: center;
   border-radius: 0.5vh;  
 }
@@ -128,6 +128,12 @@
 #UserFriendBar{
   right: 0;
   width: 20vw;
+  overflow: hidden;
+}
+#scrollableList{
+  margin-top: 1.5rem;
+  height: calc(100% - 4rem);
+  overflow: scroll;
 }
 #FilterTodos{
   left: 0;
@@ -138,7 +144,6 @@
   width: 20vw;
   z-index: 2;
   min-height: 20rem;
-  overflow-y: scroll;
 }
 #editOptions{
   text-align: left;
@@ -150,7 +155,6 @@
 }
 #editOptions li{
   margin: 1.2rem auto;
-  overflow: hidden;
 }
 .hidden{
   display: none;
@@ -218,7 +222,7 @@
 #UserFriendBar h2{
   font-size: 1.3rem;
   font-weight: 700;
-  margin-bottom: 2vh;
+  margin-bottom: 1rem;
 }
 .BrightPage #FilterTodos h2,
 .BrightPage #TodoStats h2,
@@ -240,7 +244,7 @@
 #FilterTodos h4{
   font-size: 1.3vw;
   font-weight: 600;
-  margin-bottom: 1vh;
+  margin-bottom: .5rem;
 }
 .BrightPage #FilterTodos h4,
 .BrightPage #TodoStats h4{
@@ -281,11 +285,11 @@
   flex-wrap: wrap;
   margin-left: 6vw;
   width: 69vw !important;
-  margin-top: 5vh;
+  margin-top: 2.5rem;
 }
 #Todo{
   width: 23vw !important;
-  padding: 1vh 1%;
+  padding: .5rem;
 }
 .BrightPage #Todo {
   background-color: #f1f1ff;
@@ -299,23 +303,24 @@
   color: #228855;
 }
 #Todo h2{
-  padding: 1vh 3%;
+  padding: .5rem;
   font-weight: 500;
+  word-wrap: break-word;
 }
 .extraExtraSmallText{
-  font-size: 2vh;
+  font-size: .9rem;
 }
 .extraSmallText{
-  font-size: 2.3vh;
+  font-size: 1rem;
 }
 .smallText{
-  font-size: 2.6vh;
+  font-size: 1.2rem;
 }
 .mediumText{
-  font-size: 3.05vh;
+  font-size: 1.4rem;
 }
 .largeText{
-  font-size: 3.6vh;
+  font-size: 1.7rem;
 }
 .BrightPage #Todo h2{
   color: #323232;
@@ -328,12 +333,12 @@
   box-shadow: none;
   text-align: left;
   margin: auto;
-  font-size: 2vh;
-  padding: 1vh 3%;
+  font-size: 1rem;
+  padding: .5rem;
 }
 #Todo p{
-  padding: .5vh 3%;
-  font-size: 2.3vh;
+  padding: .2rem .5rem;
+  font-size: 1.1rem;
 }
 #time{
   font-family: Roboto;
@@ -344,11 +349,11 @@
   color: #cc3322;
 }
 #Todo ul{
-  margin-left: 2%;
+  margin-left: .2rem;
 }
 #Todo li{
   display: inline-block;
-  margin: 1vh 1%;
+  margin: .3rem 1%;
 }
 #Todo a {
   font-family: Ubuntu, sans-serif;
@@ -360,11 +365,11 @@
   z-index: 0;
 }
 #LowerSection p{
-  padding: 1vh 2%;
+  padding: .5rem 2%;
 }
 #TodoButtons{
   position: absolute;
-  bottom: 1vh;
+  bottom: .5rem;
   right: 2%;
 }
 #EditTodoIcon{
@@ -404,34 +409,12 @@
 }
 @media only screen and (min-height: 1000px) and (min-width: 1400px){
   #FilterTodos h2{
-    margin-bottom: 1vh;
-  }
-  input{
-    padding: .8vh 1%;
-    font-size: 1.6vh;
-  }
-  input::placeholder{
-    font-size: 1.7vh;
-  }
-  .extraExtraSmallText{
-    font-size: 1.5vh;
-  }
-  .extraSmallText{
-    font-size: 1.9vh; 
-  }
-  .smallText{
-    font-size: 2.4vh;
-  }
-  .mediumText{
-    font-size: 2.8vh;
-  }
-  .largeText{
-    font-size: 3.2vh;
+    margin-bottom: .5rem;
   }
 }
 @media only screen and (min-height: 1200px) and (min-width: 1000px){
   .Page h3{
-    margin: 4vh 5%;
+    margin: 1.7rem 2.2rem;
   } 
   .normalForm{
     height: 43vh;
@@ -455,13 +438,13 @@
     display: block;
   }
   #EditProfile{
-    margin: 2vh auto;
+    margin: 1rem auto;
   }
   .hiddenForm{
     height: .01vh;
   }
   #TodoStats h4, #FilterTodos h4, #EditProfile h4{
-    font-size: 2.3vh;
+    font-size: 1.1rem;
   }
   #filterInputs{
     display: flex;
@@ -477,24 +460,15 @@
   #FilterTodos #input{
     width: 45%;
     margin-right: 3%;
-    margin-bottom: 0.5vh;
-  }
-  input{
-    padding: 1vh 4%;
-    font-size: 2vh;
+    margin-bottom: .3rem;
   }
   #FilterTodos p, #EditProfile p {
-    font-size: 2vh;
+    font-size: 1rem;
     font-weight: 600;
-    margin-bottom: .5vh;
-  }
-  input::placeholder{
-    font-size: 2vh;
-    font-family: Noto Sans KR, sans-serif;
-    font-weight: 600;
+    margin-bottom: .4rem;
   }
   .normalForm{
-    height: 40vh;
+    height: 19rem;
   }
   #FilterTodos button{
     width: 50%;
@@ -504,21 +478,6 @@
   }
   #Todo{
     width: 50% !important;
-  }
-  .extraExtraSmallText{
-    font-size: 1.6vh;
-  }
-  .smallText{
-    font-size: 2.3vh;
-  }
-  .mediumText{
-    font-size: 2.7vh;
-  }
-  .largeText{
-    font-size: 3.1vh;
-  }
-  p#TimeLeft, p#red, .extraSmallText{
-    font-size: 1.8vh;
   }
 }
 @media only screen and (max-width: 700px){
@@ -531,79 +490,23 @@
   }
 }
 @media only screen and (min-height: 1000px) and (max-width: 1400px){
-  #FilterTodos, #TodoStats, #EditProfile, #UserFriendBar{
-    padding: 1.5vh 2%;
-  }
-  #TodoStats h4{
-    font-size: 2vh;
-  }
-  input{
-    padding: .6vh 6%;
-    font-size: 1.8vh;
-    margin: .5vh 1%;
-  }
-  #FilterTodos p {
-    font-size: 1.8vh;
-    margin-bottom: .5vh;
-  }
   #FilterTodos button{
     width: 40%;
-    font-size: 2vh;
-  }
-  input::placeholder{
-    font-size: 1.7vh;
   }
   .hiddenForm{
     height: 1px;
   }
   .normalForm{
-    height: 36vh;
-  }
-  #Todo a{
-    font-size: 2vh;
-  }
-  #Todo h3{
-    padding: .5vh 2%;
-  }
-  #Todo h2{
-    padding: .5vh 2%;
-  }
-  #Todo #time{
-    font-size: 1.8vh;
-  }
-  #Todo #TodoButtons{
-    font-size: 2vh;
-  }
-  .extraExtraSmallText{
-    font-size: 1.2vh;
-  }
-  .extraSmallText{
-    font-size: 1.5vh;
-  }
-  .smallText{
-    font-size: 1.8vh;
-  }
-  .mediumText{
-    font-size: 2.2vh;
-  }
-  .largeText{
-    font-size: 2.5vh;
+    height: 18rem;
   }
 }
 @media only screen and (max-width: 540px) {
-  #TodoStats{
+  #TodoStats, #FilterTodos{
     position: sticky;
+    padding: .4rem;
   }
   #FilterTodos{
     position: static;
-  }
-  #FilterTodos, #TodoStats, #EditProfile, #UserFriendBar{
-    height: auto;
-    text-align: center;
-    padding: 2.5vh 3%;
-  }
-  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
-    font-size: 2vh;
   }
   #filterInputs{
     display: block;
@@ -615,33 +518,22 @@
     width: 100%;
     margin-right: 3%;
     margin-bottom: 0.2vh;
-  }input{
-    padding: 1vh 3%;
-  }
-  #FilterTodos p {
-    margin-left: 2%;
-    margin-bottom: .2vh;
   }
   .normalForm{
-    height: 53vh;
+    height: 25rem;
   }
 }
 @media only screen and (max-width: 540px) and (max-height: 830px){
   .Page{
     margin: auto 0;
   }
-  .Page h3{
-    font-size: 3vh;
-    padding: 2vh 2%;
-    margin: 3vh 5%;
-  }
-  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
-    font-size: 3vh;
-  }
   #Todos{
-    margin: 5vh 0;
+    margin: 2.3rem 0;
     display: block;
     width: 100%;
+  }
+  #FilterTodos button{
+    width: 80%;
   }
   .AddTodoBtn{
     bottom: 3vh;
@@ -651,24 +543,13 @@
   }
   #Todo{
     width: 100vw !important;
-    padding: 2vh 2%;
-  }
-  #Todo h2{
-    font-size: 4.5vh;
   }
   hr{
     margin-left: 2%;
     width: 96%;
   }
-  #LowerSection p{
-    margin-left: 1%;
-    padding-top: 1vh;
-  }
   #EditTodoIcon{
     margin-right: 4vw;
-  }
-  p#red, p#TimeLeft, #LowerSection p{
-    font-size: 3vh;
   }
   p#TimeLeft{
     font-weight: 600;
@@ -676,52 +557,20 @@
   p#time{
     font-weight: 400;
   }
-  li, #Todo h3, p#time{
-    font-size: 3vh;
-  }
-  #Todo #TodoButtons{
-    font-size: 3.5vh;
-    bottom: 0.5vh;
-  }
 }
 @media only screen and (max-height: 540px) and (max-width: 830px){
+  #TodoStats, #FilterTodos{
+    padding: .4rem;
+  }
   .Page{
     margin: auto 5%;
   }  
-  .Page h1{
-    font-size: 6vh;
-  }
-  .Page h3{
-    font-size: 4vh;
-    padding: 3vh 2%;
-  }
-  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
-    font-size: 3.7vh;
-  }input{
-    margin-bottom: 2vh;
-    padding: 2vh 3%;
-    font-size: 3.5vh;
-  }
-  #FilterTodos #CheckboxUnit{
-    margin-bottom: 4vh;
-  }
-  #FilterTodos #input{
-    margin-top: 1vh;
-  }input::placeholder{
-    font-size: 3.5vh;
-  }
-  #FilterTodos p {
-    font-size: 3vh;
-  }
   #FilterTodos button,
   #createTodoForm button {
-    width: 30%;
-    font-size: 4vh;
-    padding: 2vh 1%;
-    margin-top: 2vh;
+    width: 70%;
   }
   .normalForm{
-    height: 68vh;
+    height: 19rem;
   }
   #Todos{
     display: block;
@@ -729,30 +578,12 @@
   #Todo{
     width: 100% !important;
     margin-left: 5%;
-    padding: 4vh 1%;
   }
   #Todo h2{
-    font-size: 6.4vh;
-    padding: 2vh 3%;
-  }
-  #Todo p{
-    font-size: 3vh;
-  }
-  p#red, p#TimeLeft, #time{
-    font-size: 4vh;
-  }
+    font-size: 1.5rem;
+  }  
   #EditTodoIcon{
     margin-right: 2vw;
-  }
-  #Todo a, #LowerSection p {
-    font-size: 4vh;
-    font-weight: 600;
-    padding-top: 2vh;
-    margin-left: 1%;
-  }
-  li{
-    padding-top: 1vh;
-    padding-bottom: 1vh;
   }
   p#TimeLeft{
     font-weight: 600;
@@ -760,66 +591,8 @@
   p#time{
     font-weight: 400;
   }
-  li, #Todo h3, p#time{
-    font-size: 4vh;
-  }
-  #Todo #TodoButtons{
-    font-size: 5vh; 
-    bottom: 0.5vh;
-    right: 5%;
-  }
   hr{
     width: 96%;
     margin-left: 2%;
-  }
-}
-@media only screen and (max-height: 330px){
-  .Page h1{
-    font-size: 8vh;
-    margin: 4vh auto;
-  }
-  .normalForm{
-    height: 61vh;
-  }
-  #FilterTodos #CheckboxUnit{
-    margin: 3vh 2%;
-  }
-  #FilterTodos p, #createTodoForm p {
-    font-size: 5vh;
-  }
-  #FilterTodos #input{
-    margin-top: 1.5vh;
-  }input::placeholder, input{
-    font-size: 4vh;
-  }
-  .Page h3{
-    font-size: 6vh;
-    padding: 3vh 2%;
-    margin: 4vh 5%;
-  }
-  #TodoStats h4, #FilterTodos h4, #EditProfile h4{
-    font-size: 5vh;
-  }button {
-    font-size: 5vh;
-  }
-  .normalForm{
-    height: 78vh;
-  }
-  #Todo{
-    padding: 5vh 2%;
-  }
-  p#red, p#TimeLeft, p#time{
-    font-size: 5vh;
-  }
-  #Todo h3{
-    font-size: 5vh;
-    padding-bottom: 3vh;
-  }
-  #Todo h2{
-    font-size: 7vh;
-  }
-  #LowerSection p{
-    font-size: 5vh;
-    padding-top: 2vh;
   }
 }

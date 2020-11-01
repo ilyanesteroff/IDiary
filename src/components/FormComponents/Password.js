@@ -7,7 +7,9 @@ export default memo(forwardRef((props, ref) => {
   const [revealPw, setRevealPw] = useState(false)
   const [password, setPassword] = useState('')
   
-  const togglePw = _ => setRevealPw(!revealPw) 
+  const togglePw = e => {
+    setRevealPw(!revealPw) 
+  }
 
   const setPw = event => {
     event.target.value = event.target.value.trim()

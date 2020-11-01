@@ -14,13 +14,13 @@
   backdrop-filter: blur(15px);
 }
 #createTodo h2{
-  margin-top: 15vh;
+  margin-top: 7rem;
   text-align: center;
   font-family: Ubuntu, sans-serif;
 }
 #AreYouSure form{
-  margin-top: 20vh;
-  padding: 3vh 2%;
+  margin-top: 9rem;
+  padding: 1.3rem;
 }
 #AreYouSure #NoBtn{
   border: solid 2px #11f315;
@@ -49,8 +49,8 @@
 }
 #createTodo svg#closeIcon{
   position: absolute;
-  top: 15vh;
-  font-size: 3vh;
+  top: 7rem;
+  font-size: 1.4rem;
 }
 #createTodo svg#closeIcon:hover,
 #FilterTodos svg#closeIcon:hover{
@@ -95,7 +95,7 @@
   width: 60%;
 }
 #FormInModal .complain{
-  margin-bottom: 2vh;
+  margin-bottom: 1rem;
 }
 .DarkModal .complain p {
   color: #fee;
@@ -104,16 +104,16 @@
   color: #322;
 }
 #TaskTextArea, #FormInModal button{
-  margin-top: 2vh;
+  margin-top: .9rem;
 }
 #FormInModal textarea{
   resize: none;
   border-radius: 2vh;
-  padding: 1vh 2%;
-  margin-top: 2vh;
+  padding: .5rem 2%;
+  margin-top: .9rem;
 }
 #FormInModal #input{
-  margin-top: 1vh;
+  margin-top: .5rem;
 }
 #FormInModal p{
   font-weight: 600;
@@ -134,13 +134,12 @@
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 4vh;
   }
   #createTodo h2{
-    margin-top: 10vh;
+    margin-top: 5rem;
   }
   #FormInModal{
-    margin-top: 7vh;
+    margin-top: 3rem;
     width: 50%;
     margin-left: 25%;
   }
@@ -159,7 +158,6 @@
   #FormInModal{
     width: 70%;
     margin-left: 15%;
-    padding: 1.5vh 3%;
   }
   #FormInModal input,
   #FormInModal select{
@@ -170,7 +168,6 @@
   #FormInModal{
     width: 90%;
     margin-left: 5%;
-    padding: 1vh 3%;
   }
   #FormInModal button,
   #FormInModal input,
@@ -178,31 +175,26 @@
     width: 100%;
     margin-left: 0;
   }
+  #FormInModal #pwField input{
+    width: 100%;
+  }
+  #FormInModal #pwField{
+    width: 100%;
+  }
 }
 @media only screen and (max-height: 540px) and (max-width: 830px){
   #createTodo h2{
     display: none;
   }  
-  #createTodo svg#closeIcon{
-    font-size: 6vh;
-  }
-  #FormInModal textarea, 
-  #FormInModal input, 
-  #FormInModal select{
-    font-size: 4vh;
-  }
   #CheckboxUnit p{
     margin-left: 4%;
-  }
-  #FormInModal textarea{
-    padding: 2vh 2%;
   }
   #FormInModal button{
     margin-top: 4vh;
   }
   #FormInModal{
-    margin-top: 5vh;
-    padding: 2vh 3%;
+    margin-top: 2rem;
+    padding: .9rem 3%;
     border-radius: 2vh;
     max-height: 90vh;
   }
