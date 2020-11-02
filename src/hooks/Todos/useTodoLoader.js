@@ -4,11 +4,12 @@ import fetchTodoStats from '../../api/todos/fetch-todo-stats'
 
 
 export default (page, setError) => {
-  const [fullfilledTodos, setFullfilledTodos] = useState(null)
-  const [activeTodos, setActiveTodos] = useState(null)
-  const [nextPage, setNextPage] = useState(false)
-  const [todos, setTodos] = useState([])
-  const [loadingTodos, setLoadingTodos] = useState(false)
+  const [ fullfilledTodos, setFullfilledTodos ] = useState(null)
+  const [ activeTodos, setActiveTodos ] = useState(null)
+  const [ nextPage, setNextPage ] = useState(false)
+  const [ todos, setTodos ] = useState([])
+  const [ loadingTodos, setLoadingTodos ] = useState(false)
+  
   
   const loadTodos = _ => {
     if(!fullfilledTodos && !activeTodos)

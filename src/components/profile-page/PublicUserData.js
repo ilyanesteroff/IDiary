@@ -7,7 +7,7 @@ import { ViewUserStatsContext } from '../../utils/contexts'
 export default ({ userData }) => (
   <>
     <ViewUserStatsContext.Consumer>
-      {({set}) =>
+      {({set}) => 
         <div id="flex">
           <h4 id="userSection-flexItem" onClick={_ => set('Followers')}>
             Followers: 

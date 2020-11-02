@@ -14,7 +14,7 @@ export default _ => {
       <Ctx.UserDataContext.Consumer>
         {userData =>
           <>
-            <div id="UserSection">
+            <div id="UserSection"> 
               <h1 id="UserNames">
                 {`${userData.firstname} ${userData.lastname}`}
                 <RandomIcon/>

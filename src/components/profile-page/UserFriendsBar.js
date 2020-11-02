@@ -1,5 +1,6 @@
 import React from 'react'
 import { ViewUserStatsContext, UserIdContext } from '../../utils/contexts'
+import ScrollableList from './ScrollableList'
 
 
 export default ({ userId, username }) => (
@@ -15,17 +16,13 @@ export default ({ userId, username }) => (
                   : `${username} stats`
                 :  _userId === userId 
                   ? `Your ${value}` 
-                  : `${username} ${value}`
+                  : `${username} ${value}` 
               }
             </h2>
           }
         </UserIdContext.Consumer>
         {value !== '' &&
-          <div id="scrollableList">
-            <ul>
-              { 'a a a a a a a a a a a a a a a a a a a a a a a a'.split(' ').map((s, i) => <li key={i+'k'} style={{margin: '3vh auto'}}>{s * 10}</li>) }
-            </ul>
-          </div>
+          <ScrollableList userId={ userId } category={ value }/>
         }
       </div>
     }
