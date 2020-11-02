@@ -240,7 +240,7 @@ input::placeholder{
 }
 #CheckboxUnit p{
   white-space: nowrap;
-  margin-left: 1rem;
+  margin-left: .9rem;
 }
 #buttonLikeAnchor{
   border-radius: 1vh;

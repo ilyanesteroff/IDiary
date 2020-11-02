@@ -259,7 +259,6 @@
 #FilterTodos p, 
 #TodoStats p{
   font-size: 1.05vw;
-  padding-left: .1vw;
 }
 .BrightPage #FilterTodos p,
 .BrightPage #TodoStats p,
