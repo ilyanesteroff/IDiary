@@ -1,11 +1,13 @@
 import React from 'react'
+import Following from './FollowingUser'
 
 
-export default ({ followingCount, data }) => {
-  
-  return(
-    <>
-      { followingCount === 0 && <p>You do not follow anyone yet, when you will, you will see him here</p> }
-    </>
-  )
-}
+export default ({ followingCount, data }) => (
+  <>
+    { followingCount === 0 
+        ? <p>You do not follow anyone yet, when you will, you will see him here</p> 
+        : <p>You are following<span>{` ${followingCount} `}</span>users</p>
+    }
+    { data.length > 0 && data.map((d, i) => <Following data={d} key={'req' + i}/>) }
+  </>
+)

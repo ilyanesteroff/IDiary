@@ -48,7 +48,7 @@ export default (page, setError) => {
     setLoadingTodos(true)
     loadTodos()
     // eslint-disable-next-line
-  }, [page])
+  }, [ page ])
 
   return [fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loadingTodos]
 }

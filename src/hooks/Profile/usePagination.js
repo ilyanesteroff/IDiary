@@ -1,29 +1,40 @@
-import { useState, useEffect } from 'react'
-//import fetchRequests from '../../api/profile/stats/fetch-requests'
-//import fetchFollowers from '../../api/profile/stats/fetch-followers-following'
+import { useState, useEffect, useLayoutEffect, useCallback } from 'react'
+import fetchRequests from '../../api/profile/stats/fetch-requests'
+import fetchFollowers from '../../api/profile/stats/fetch-followers-following'
 
 
-export default (category, userData, userId) => {
-  const [ page, setPage ] = useState(1)
+export default (category, userData, userId, page, setPage) => {
   const [ hasNextPage, setHasNextPage ] = useState(false)
-  const [ _userData, setUserData ] = useState(userData)
-  const [ loading, setLoading ] = useState(false)
   const [ info, setInfo ] = useState([])
+  const [ loading, setLoading ] = useState(false)
 
-  useEffect(_ => {
-    setUserData(userData)
-  }, [ userData ])
-
-  useEffect(_ => {
+  useLayoutEffect(_ => {
     setPage(1)
-    if(_userData[ category ] > 100) setHasNextPage(true)
+    setInfo([])
+    if(userData[ category ] > 100) setHasNextPage(true)
     // eslint-disable-next-line
   }, [ category ])
 
-  useEffect(_ => {
+  const fetchInfo = useCallback(func => {
     setLoading(true)
-    //decide what to fetch and 
-  }, [ page ])
+    func()
+      .then(res => {
+        setInfo([...info, ...res])
+        setLoading(false)
+        if(info.length + res.length < userData[ category ])
+          setHasNextPage(true)
+      })
+  }, [ info, userData, category ])
 
-  return [ page, setPage, hasNextPage, setHasNextPage, loading, info ]
+  useEffect(_ => {
+    if(userData[category] > 0){
+      if(category === 'Sent Requests') fetchInfo(_ => fetchRequests(page, false))
+      if(category === 'Incoming Requests') fetchInfo(_ => fetchRequests(page, true))
+      if(category === 'Followers') fetchInfo(_ => fetchFollowers(page, userId, true))
+      if(category === 'Following') fetchInfo(_ => fetchFollowers(page, userId, false))
+    }
+    // eslint-disable-next-line
+  }, [ page, category ])
+
+  return [ hasNextPage, setHasNextPage, info, loading ]
 }
