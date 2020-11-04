@@ -10,7 +10,7 @@ import User from '../components/profile-page/User'
 import EditProfileModal from '../components/profile-page/EditProfileModal'
 import AreYouSure from '../components/controls/AreYouSure'
 
-
+ 
 export default memo(_ => {
   const [ error, setError ] = useState('')
   const [ editUser, setEditUser ] = useState('')
@@ -21,7 +21,7 @@ export default memo(_ => {
   const firstname = useRef(Firstname().firstname)
   
   const [ loading, info ] = useLoader(setError)
-  const [ setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, userInfo ] = useUserInfoManager(info)
+  const [ userInfo, setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, setDecreaseUserStats ] = useUserInfoManager(info)
 
   document.title = firstname.current
 
@@ -36,7 +36,9 @@ export default memo(_ => {
             <Ctx.SetEditUserContext.Provider value={{ value: editUser, set: val => setEditUser(val) }}>
               <Ctx.UserDataContext.Provider value={userInfo}>
                 {info._id && !loading &&
-                  <User/>
+                  <Ctx.DecreaseUserStatsContext.Provider value={setDecreaseUserStats}>
+                    <User/>
+                  </Ctx.DecreaseUserStatsContext.Provider>
                 }
                 {possibleEditOptions.some(p => p === editUser) &&
                   <Ctx.SetUpdatedUserContext.Provider value={{setSettings: setUpdatedUserSettings, setUser: setUpdatedUser, setInfo: setUpdatedUserInfo}}>

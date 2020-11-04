@@ -8,6 +8,8 @@ export default ({ followingCount, data }) => (
         ? <p>You do not follow anyone yet, when you will, you will see him here</p> 
         : <p>You are following<span>{` ${followingCount} `}</span>users</p>
     }
-    { data.length > 0 && data.map((d, i) => <Following data={d} key={'req' + i}/>) }
+    { data.length > 0 && data[0].followingSince &&
+      data.map((d, i) => <Following data={d} key={'req' + i}/>) 
+    }
   </>
 )

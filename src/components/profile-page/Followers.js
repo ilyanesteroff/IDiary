@@ -8,6 +8,8 @@ export default ({ followersCount, data }) => (
       ? <p>You have no followers yet, when you have them you will see them here</p> 
       : <p>You have<span>{` ${followersCount} `}</span>folllowers</p>
     }
-    { data.length > 0 && data.map((d, i) => <Follower data={d} key={'req' + i}/>) }
+    { data.length > 0 && data[0].followingSince &&
+      data.map((d, i) => <Follower data={d} key={'req' + i}/>) 
+    }
   </>
 )
