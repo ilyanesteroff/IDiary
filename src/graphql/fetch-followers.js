@@ -6,7 +6,7 @@ export default (page, _id) => {
       query GetYourFollowers($page: Int!, $id: ID!) {
         followers(page: $page, userId: $id){
           _id
-          user: {
+          user {
             _id
             username
             firstname

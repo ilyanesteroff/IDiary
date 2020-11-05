@@ -7,6 +7,7 @@ export default (info) => {
   const [ updatedUserSettings, setUpdatedUserSettings ] = useState(null)
   const [ userInfo, setUserInfo ] = useState(info)
   const [ decreaseUserStats, setDecreaseUserStats ] = useState(null)
+  const [ increaseUserStats, setIncreaseUserStats ] = useState(null)
 
   useEffect(_ => {
     setUserInfo(info)
@@ -50,7 +51,7 @@ export default (info) => {
 
   useEffect(_ => {
     if(decreaseUserStats !== null) {
-      if(userInfo[decreaseUserStats] && userInfo[decreaseUserStats] > 0){
+      if(userInfo[decreaseUserStats] !== null && userInfo[decreaseUserStats] > 0){
         setUserInfo({
           ...userInfo,
           [decreaseUserStats] : userInfo[decreaseUserStats] - 1
@@ -60,5 +61,24 @@ export default (info) => {
     }
   }, [ decreaseUserStats, userInfo ])
 
-  return [ userInfo, setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, category => setDecreaseUserStats(category) ]
+  useEffect(_ => {
+    if(increaseUserStats !== null) {
+      if(userInfo[increaseUserStats] !== null){
+        setUserInfo({
+          ...userInfo,
+          [increaseUserStats] : userInfo[increaseUserStats] + 1
+        })
+      }
+      setIncreaseUserStats(null)
+    }
+  }, [ increaseUserStats, userInfo ])
+
+  return [ 
+    userInfo, 
+    setUpdatedUser, 
+    setUpdatedUserInfo, 
+    setUpdatedUserSettings, 
+    category => setDecreaseUserStats(category),
+    category => setIncreaseUserStats(category)
+  ]
 }

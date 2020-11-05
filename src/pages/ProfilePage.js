@@ -21,7 +21,7 @@ export default memo(_ => {
   const firstname = useRef(Firstname().firstname)
   
   const [ loading, info ] = useLoader(setError)
-  const [ userInfo, setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, setDecreaseUserStats ] = useUserInfoManager(info)
+  const [ userInfo, setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, setDecreaseUserStats, setIncreaseUserStats ] = useUserInfoManager(info)
 
   document.title = firstname.current
 
@@ -37,7 +37,9 @@ export default memo(_ => {
               <Ctx.UserDataContext.Provider value={userInfo}>
                 {info._id && !loading &&
                   <Ctx.DecreaseUserStatsContext.Provider value={setDecreaseUserStats}>
-                    <User/>
+                    <Ctx.IncreaseUserStatsContext.Provider value={setIncreaseUserStats}>
+                      <User/>
+                    </Ctx.IncreaseUserStatsContext.Provider>
                   </Ctx.DecreaseUserStatsContext.Provider>
                 }
                 {possibleEditOptions.some(p => p === editUser) &&

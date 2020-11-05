@@ -6,7 +6,7 @@ import { SetTodoToDeleteContext } from '../../utils/contexts'
 import deleteTodo from '../../actionHandlers/DeleteTodo'
 
 export default memo(({id}) => {
-  const [deleting, setDeleting] = useState(false)
+  const [ deleting, setDeleting ] = useState(false)
 
   return (
     <SetTodoToDeleteContext.Consumer>

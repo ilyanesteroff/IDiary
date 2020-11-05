@@ -52,8 +52,10 @@ export const SetUpdatedUserContext = createContext({})
 
 export const ViewUserStatsContext = createContext({ value: '', set: _ => {} })
 
-export const SetItemToDeleteContext = createContext('')
+export const SetItemToDeleteContext = createContext(_ => {})
 
 export const DecreaseUserStatsContext = createContext(_ => {})
+
+export const IncreaseUserStatsContext = createContext(_ => {})
 //export
 //

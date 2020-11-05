@@ -7,7 +7,7 @@ import SentReqs from './SentReqs'
 import Spinner from '../spiners/BigSpinner'
 import usePaginator from '../../hooks/Profile/usePagination'
 
-//TODO fix request bug
+
 export default ({ category, userId }) => {
   const UserData = _ => useContext(UserDataContext)
   

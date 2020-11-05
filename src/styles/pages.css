@@ -132,8 +132,17 @@
 }
 #scrollableList{
   margin-top: 1.5rem;
+  padding: .5rem;
   height: calc(100% - 4rem);
   overflow: scroll;
+}
+.DarkPage #scrollableList,
+.DarkPage #scrollableList a{
+  color: #efefff; 
+}
+.BrightPage #scrollableList, 
+.BrightPage #scrollableList a{
+  color: #22222a;
 }
 #FilterTodos{
   left: 0;
@@ -196,6 +205,44 @@
 .hiddenForm form{
   top: -55vh;
 }
+#request{
+  padding: .5rem;
+}
+#request #username{
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.DarkPage #request{
+  background-color: #22222a;
+  box-shadow: 0 0 .1vh #eaeaff;
+}
+.BrightPage #request{
+  background-color: #eaeaff;
+  box-shadow: 0 0 .1vh #22222a;
+}
+#request #reqButtons{
+  float: right;
+  clear: both;
+}
+#request svg{
+  font-size: 1.4rem;
+  margin: 0 .1rem;
+}
+#request svg:hover{
+  transform: scale(1.2);
+}
+#request #names{
+  font-size: .9rem;
+}
+#request #RejectRequest{
+  color: #cc3322;
+}
+#request #AcceptRequest{
+  color: #228855;
+}
+#request #BlueIcon{
+  color: #3377ff;
+}
 .BrightPage #EditProfile,
 .BrightPage #FilterTodos,
 .BrightPage #TodoStats,
@@ -252,7 +299,7 @@
 }
 .DarkPage #FilterTodos h4,
 .DarkPage #TodoStats h4{
-  color: #c5c5ff;
+  color: #c5c5ff; 
   box-shadow: none;
   background-color: transparent;
 }

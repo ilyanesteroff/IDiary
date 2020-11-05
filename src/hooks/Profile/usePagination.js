@@ -44,7 +44,6 @@ export default (category, userData, userId, page, setPage) => {
     if(itemToDelete !== null){
       setInfo(info.filter(i => i._id !== itemToDelete))
       setItemToDelete(null)
-      console.log(itemToDelete)
     }
   }, [ itemToDelete, info ])
 

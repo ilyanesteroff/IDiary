@@ -1,40 +1,68 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimesCircle, faCheckCircle } from '@fortawesome/free-regular-svg-icons'
-import { SetItemToDeleteContext, DecreaseUserStatsContext } from '../../utils/contexts'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import * as Ctx from '../../utils/contexts'
+import RequestTime from './RequestTime'
+import rejectOrAccept from '../../actionHandlers/RejectAcceptReq'
+import Username from './UsernameInReq'
+
 
 export default ({ data }) => {
+  const [ loading, setLoading ] = useState(false)
+
   return(
     <div id="request">
-      <p>{ data.sender.username }</p>
-      <p>{`${data.sender.firstname} ${data.sender.lastname}`}</p>
-      <p>Sent at:{` ${data.sentAt}`}</p>
-      <DecreaseUserStatsContext.Consumer>
+      <Username user={data.sender}/>
+      <Ctx.DecreaseUserStatsContext.Consumer>
         {decrease => 
-          <SetItemToDeleteContext.Consumer>
+          <Ctx.SetItemToDeleteContext.Consumer>
             {deleteItem => 
-              <>
+              <div id="reqButtons">
+                <Ctx.IncreaseUserStatsContext.Consumer>
+                  {increase => 
+                    <FontAwesomeIcon 
+                      id={ loading? 'todoDeletingSpinner' : 'AcceptRequest' }
+                      icon={ loading ? faSpinner : faCheckCircle } 
+                      onClick={_ => 
+                        rejectOrAccept(
+                          data._id,
+                          val => setLoading(val),
+                          _ => {
+                            new Promise((resolve) => resolve(decrease('requestsFrom')))
+                              .then(_ => {
+                                increase('followers')
+                                deleteItem(data._id)
+                              })
+                          },
+                          true
+                        )
+                      }
+                    />
+                  }
+                </Ctx.IncreaseUserStatsContext.Consumer>
                 <FontAwesomeIcon 
-                  id="AcceptRequest" 
-                  icon={ faTimesCircle } 
-                  onClick={_ => {
-                    decrease('requestsFrom')
-                    deleteItem(data._id)
-                  }}
+                  id={ loading? 'todoDeletingSpinner' : 'RejectRequest' }
+                  icon={ loading ? faSpinner : faTimesCircle }
+                  onClick={_ => 
+                    rejectOrAccept(
+                      data._id,
+                      val => setLoading(val), 
+                      _ => {
+                        decrease('requestsFrom')
+                        deleteItem(data._id)
+                      },
+                      false
+                    )
+                  }
                 />
-                <FontAwesomeIcon 
-                  id="RejectRequest" 
-                  icon={ faCheckCircle }
-                  onClick={_ => {
-                    decrease('requestsFrom')
-                    deleteItem(data._id)
-                  }}
-                />
-              </>
+              </div>
             }
-          </SetItemToDeleteContext.Consumer>
+          </Ctx.SetItemToDeleteContext.Consumer>
         }
-      </DecreaseUserStatsContext.Consumer>
+      </Ctx.DecreaseUserStatsContext.Consumer>
+      <p id="names">{`${data.sender.firstname} ${data.sender.lastname}`}</p>
+      <RequestTime date={data.sentAt}/>
     </div>
   )
 }
