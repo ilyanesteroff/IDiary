@@ -9,6 +9,8 @@ import Signup from '../pages/Signup'
 import AcceptEmail from '../pages/AcceptEmail'
 import Todos from '../pages/Todos'
 import Profile from '../pages/ProfilePage'
+import AnotherProfile from '../pages/AnotherProfile'
+
 
 export default ({isAuth}) => (
   <Router>
@@ -40,6 +42,10 @@ export default ({isAuth}) => (
       <Route
         path="/profile"
         render={_ => isAuth ? <Profile/> : <LoginPage/>}
+      />
+      <Route
+        path="/user/:id"
+        render={({match}) => isAuth ? <AnotherProfile userId={match.params.id}/> : <Redirect to="/login"/>}
       />
       <Route path="*" render={_ => <PageNotFound/>}/>
     </Switch>

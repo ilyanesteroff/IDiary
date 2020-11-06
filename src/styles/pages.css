@@ -214,33 +214,38 @@
 }
 .DarkPage #request{
   background-color: #22222a;
-  box-shadow: 0 0 .1vh #eaeaff;
+  box-shadow: 0 0 .1rem #eaeaff;
 }
 .BrightPage #request{
   background-color: #eaeaff;
-  box-shadow: 0 0 .1vh #22222a;
+  box-shadow: 0 0 .1rem #22222a;
 }
 #request #reqButtons{
   float: right;
   clear: both;
 }
-#request svg{
+#request svg,
+#userBtns svg{
   font-size: 1.4rem;
   margin: 0 .1rem;
 }
-#request svg:hover{
+#request svg:hover,
+#userBtns svg:hover{
   transform: scale(1.2);
 }
 #request #names{
   font-size: .9rem;
 }
-#request #RejectRequest{
+#request #RejectRequest,
+#userBtns #RejectRequest{
   color: #cc3322;
 }
-#request #AcceptRequest{
+#request #AcceptRequest,
+#userBtns #AcceptRequest{
   color: #228855;
 }
-#request #BlueIcon{
+#request #BlueIcon,
+#userBtns #BlueIcon{
   color: #3377ff;
 }
 .BrightPage #EditProfile,

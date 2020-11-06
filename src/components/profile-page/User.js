@@ -21,15 +21,17 @@ export default _ => {
               </h1>
               <UserSection userData={ userData }/>   
             </div>
-            {userData.followers !== undefined &&
+            {userData.followers !== null &&
               <UserFriendBar 
                 userId={userData._id} 
                 username={userData.username}
               />
             }
-            <h2>
-              <EditProfile/>
-            </h2> 
+            {userData.requestsFrom !== undefined &&
+              <h2>
+                <EditProfile/>
+              </h2> 
+            }
           </>
         }
       </Ctx.UserDataContext.Consumer>

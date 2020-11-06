@@ -2,6 +2,7 @@ import React from 'react'
 import UserPersonalData from './PersonalUserData'
 import PublicUserData from './PublicUserData'
 import JoinedAt from './JoinedAt'
+import AnotherUserBtns from './AnotherUserBtns'
 
 
 export default ({ userData }) => (
@@ -20,16 +21,22 @@ export default ({ userData }) => (
       {userData.relationshipStatus &&
         <h4 id="contrast">{userData.relationshipStatus}</h4>
       }
-      <JoinedAt date={userData.createdAt}/>
-      {userData.followers !== undefined &&
+      {userData.createdAt !== null &&
+        <JoinedAt date={userData.createdAt}/>
+      }
+      {userData._id && userData.followers !== null &&
         <PublicUserData userData={userData}/>
       }  
+      {userData._id && userData._id !== window.localStorage.getItem('userId') &&
+        <AnotherUserBtns userId={userData._id}/>
+      }
     </div>
     {userData.requestsFrom !== undefined &&
       <UserPersonalData 
         reqsFrom={userData.requestsFrom}
         reqsTo={userData.requestsTo}
         convs={userData.conversations}
+        blockedUsers={userData.blockedUsers}
       />
     }
   </div>

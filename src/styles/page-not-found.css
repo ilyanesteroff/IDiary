@@ -2,33 +2,29 @@
   padding-top: 20vh;
   font-family: Ubuntu, sans-serif;
 }
-
 #Icon {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, 0%);
   text-align: center;
-  font-size: 10vh;
+  font-size: 4rem;
 }
-
 .BrightIcon{
   color: #333;
 }
-
 .DarkIcon{
   color: #ddd;
 }
-
 #linkToHome{
   position: absolute;
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 3vh;
+  font-size: 1.5rem;
   text-decoration: none;
-  padding: 2vh 4%;
+  padding: 1rem 2rem;
   background-color: #2323F3;
   border-radius: 1vh;
   color: #fff;

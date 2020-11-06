@@ -10,6 +10,7 @@ export default {
         lastname
         followers
         following
+        blockedUsers
         FullfilledTodos
         ActiveTodos
         requestsTo
