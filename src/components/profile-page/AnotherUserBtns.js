@@ -6,27 +6,38 @@ import UnfollowBtn from './UnfollowBtn'
 import FollowBtn from './FollowBtn'
 import UnsendReqBtn from './UnsendReq'
 import unfollow from '../../api/profile/unfollow'
+import { UnfollowUserContext } from '../../utils/contexts'
 
 
 export default ({ userId }) => {
-  const [ loading, allowed, following, requested, setFollowing, setRequested ] = useButtons(userId)
+  const [ loading, allowed, following, requested, setFollowing, setRequested, setAllowed ] = useButtons(userId)
   
   return(
     <div id="userBtns">
       { loading   
           ? <Spinner/>
           : <>
-              { allowed && <ContactUser userId={userId}/> }
-              { following !== false &&
-                  <UnfollowBtn
-                    clickHandler={async _ => {
-                      await unfollow(following._id)
-                      setFollowing(null)
-                    }}
-                  />
+              { allowed && <ContactUser withTooltip userId={userId}/> }
+              { following &&
+                  <UnfollowUserContext.Consumer>
+                    {({setUnfollow, publicProfile}) =>
+                      <UnfollowBtn
+                        withTooltip
+                        clickHandler={async _ => {
+                          await unfollow(following)
+                          setFollowing(null)
+                          if(!publicProfile){
+                            setUnfollow()
+                            setAllowed(false)
+                          }
+                        }}
+                      />
+                    }
+                  </UnfollowUserContext.Consumer>
               }
               { !following && !requested &&                  
                   <FollowBtn 
+                    withTooltip
                     userId={userId}
                     setRequested={val => setRequested(val)}
                     callback={ _ => {} }
@@ -34,14 +45,15 @@ export default ({ userId }) => {
               }
               { requested &&
                   <UnsendReqBtn
-                    reqId={requested._id}
+                    withTooltip
+                    reqId={requested}
                     callback={_ => {
                       setRequested(null)
                     }}
                   />
               } 
             </>
-      }
+      } 
     </div>
   )
 }

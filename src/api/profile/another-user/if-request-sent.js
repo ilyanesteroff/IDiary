@@ -11,7 +11,10 @@ export default userId => {
     body: JSON.stringify({ userId: userId })
   })
     .then(res => res.json())
-    .then(res => res) 
+    .then(res => {
+      if(res.requestSent) return res.request
+      return false
+    })
     .catch(_ => {
       return false
     })

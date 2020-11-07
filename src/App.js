@@ -13,7 +13,7 @@ export default class App extends React.PureComponent{
     userId: null,
     firstname: null,
     brightTheme: true,
-    isAuth: false
+    isAuth: null
   }
 
   abortController = new AbortController()
@@ -23,14 +23,14 @@ export default class App extends React.PureComponent{
     const firstname = localStorage.getItem('firstname') || sessionStorage.getItem('firstname')
     const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId')
     const theme = localStorage.getItem('theme')
-    if(theme === 'true') this.setState({brightTheme: true})
+    if(theme === 'true') this.setState({ brightTheme: true })
     else {
       this.setState({brightTheme: false})
       document.body.style.backgroundColor = '#232323'
     }
     if(!theme) window.localStorage.setItem('theme', this.state.brightTheme)
     if (!token || !theme || !firstname || !userId) {
-      return
+      return this.setState({ isAuth: false })
     }
     this.setState({ 
       isAuth: true, 
@@ -57,8 +57,6 @@ export default class App extends React.PureComponent{
   }
 
   loginHandler = (email, password, session, setError, cb) => {
-    this.setState({loading: true}) 
-
     fetch(apiLink + '/login', {
       signal: this.abortController.signal,
       method: 'PATCH',
@@ -140,7 +138,9 @@ export default class App extends React.PureComponent{
                   <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
                     <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
                       <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
-                        <Router isAuth={this.state.isAuth}/>
+                        {this.state.isAuth !== null &&
+                          <Router isAuth={this.state.isAuth}/>
+                        }
                       </Contexts.AcceptEmailContext.Provider>
                     </Contexts.ToggleThemeContext.Provider>
                   </Contexts.LoginHandlerContext.Provider>

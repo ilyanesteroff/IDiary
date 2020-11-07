@@ -10,8 +10,6 @@ import unfollow from '../../actionHandlers/RemoveFollow'
 export default ({ data }) => (
   <div id="request">
     <Username user={data.user}/>
-    <p>{`${data.user.firstname} ${data.user.lastname}`}</p>
-    <Time date={data.followingSince}/>
     <div id="reqButtons">
       <ContactUser userId={data.user._id}/>
       <SetItemToDeleteContext.Consumer>
@@ -34,5 +32,7 @@ export default ({ data }) => (
         }
       </SetItemToDeleteContext.Consumer>
     </div>
+    <p>{`${data.user.firstname} ${data.user.lastname}`}</p>
+    <Time date={data.followingSince}/>
   </div>
 )

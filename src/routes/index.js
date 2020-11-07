@@ -12,13 +12,13 @@ import Profile from '../pages/ProfilePage'
 import AnotherProfile from '../pages/AnotherProfile'
 
 
-export default ({isAuth}) => (
+export default ({ isAuth })  => (
   <Router>
     <Switch>
       <Route exact path="/" render={_ => <MainPage isAuth={isAuth}/>}/>
       <Route 
         path="/login" 
-        render={_ => isAuth ? window.location.pathname='/' : <LoginPage/>}/>
+        render={_ => isAuth ? <Redirect to="/"/> : <LoginPage/>}/>
       <Route
         path='/create-user'
         render={_ => isAuth ? <Redirect to="/"/> : <Signup/>}

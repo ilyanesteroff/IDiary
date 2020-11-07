@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import isAllowed from '../../api/profile/another-user/if-user-allowed'
 import isFollowing from '../../api/profile/another-user/if-user-follows'
 import isRequested from '../../api/profile/another-user/if-request-sent'
@@ -10,7 +10,7 @@ export default userId => {
   const [ following, setFollowing ] = useState(null)
   const [ requested, setRequested ] = useState(null)
 
-  const findOut = _ => {
+  const findOut = useCallback(_ => {
     setLoading(true)
     return isAllowed(userId)
       .then(res => {
@@ -22,20 +22,19 @@ export default userId => {
         if(res === false)
         return isRequested(userId)
             .then(res => {
-              console.log(res.request)
-              res.request
-                ? setRequested(res.request)
+              res
+                ? setRequested(res)
                 : setRequested(false)
               setLoading(false)
             })
+        setLoading(false)
       })
       .catch(_ => setLoading(false))
-  }
+  }, [ userId ])
 
   useEffect(_ => {
     findOut()
-    // eslint-disable-next-line
-  }, [ ])
+  }, [ findOut ])
 
-  return [ loading, allowed, following, requested, setFollowing, setRequested ]
+  return [ loading, allowed, following, requested, setFollowing, setRequested, setAllowed ]
 }

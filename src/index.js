@@ -10,6 +10,7 @@ import './styles/theme-toggler.css'
 import './styles/spinners.css'
 import './styles/pages.css'
 import './styles/Modals.css'
+import './styles/tooltip.css'
 
 
 ReactDOM.render(

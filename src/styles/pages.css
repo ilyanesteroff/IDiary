@@ -224,6 +224,11 @@
   float: right;
   clear: both;
 }
+#userBtns {
+  width: 100%;
+  text-align: center;
+  margin-top: .7rem;
+}
 #request svg,
 #userBtns svg{
   font-size: 1.4rem;

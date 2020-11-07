@@ -57,5 +57,7 @@ export const SetItemToDeleteContext = createContext(_ => {})
 export const DecreaseUserStatsContext = createContext(_ => {})
 
 export const IncreaseUserStatsContext = createContext(_ => {})
+
+export const UnfollowUserContext = createContext(_ => {})
 //export
 //
