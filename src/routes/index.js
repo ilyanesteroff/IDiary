@@ -10,6 +10,7 @@ import AcceptEmail from '../pages/AcceptEmail'
 import Todos from '../pages/Todos'
 import Profile from '../pages/ProfilePage'
 import AnotherProfile from '../pages/AnotherProfile'
+import userIdComparer from '../utils/userIdComparer'
 
 
 export default ({ isAuth })  => (
@@ -45,7 +46,13 @@ export default ({ isAuth })  => (
       />
       <Route
         path="/user/:id"
-        render={({match}) => isAuth ? <AnotherProfile userId={match.params.id}/> : <Redirect to="/login"/>}
+        render={({match}) => 
+          isAuth 
+            ? userIdComparer(match.params.id)
+              ? <Redirect to="/profile"/> 
+              : <AnotherProfile userId={match.params.id}/> 
+            : <Redirect to="/login"/>
+        }
       />
       <Route path="*" render={_ => <PageNotFound/>}/>
     </Switch>

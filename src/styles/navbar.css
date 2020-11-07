@@ -103,11 +103,13 @@ li#navbarOption:hover .DarkNavbarOptionText{
   cursor: pointer;
 }
 .BrightSideMenuNavbarOption:active,
-.BrightSideMenuNavbarOption:hover{
+.BrightSideMenuNavbarOption:hover,
+.BrightPage #UserSection #UserSettingsOptions:hover{
   background-color: rgba(3, 3, 3, 0.3);
 }
 .DarkSideMenuNavbarOption:active,
-.DarkSideMenuNavbarOption:hover{
+.DarkSideMenuNavbarOption:hover,
+.DarkPage #UserSection #UserSettingsOptions:hover{
   background-color: rgba(252, 252, 252, 0.3);
 }
 #SideMenuNavbarOptionIcon{

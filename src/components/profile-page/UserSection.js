@@ -3,6 +3,7 @@ import UserPersonalData from './PersonalUserData'
 import PublicUserData from './PublicUserData'
 import JoinedAt from './JoinedAt'
 import AnotherUserBtns from './AnotherUserBtns'
+import userIdComparer from '../../utils/userIdComparer'
 
 
 export default ({ userData }) => (
@@ -26,9 +27,8 @@ export default ({ userData }) => (
           <JoinedAt date={userData.createdAt}/>
         }
         { userData._id && <PublicUserData userData={userData}/> }
-        
       </div>    
-      {userData.requestsFrom !== undefined &&
+      {userIdComparer(userData._id) &&
         <UserPersonalData 
           reqsFrom={userData.requestsFrom}
           reqsTo={userData.requestsTo}

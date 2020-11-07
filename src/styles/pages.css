@@ -71,6 +71,43 @@
   margin: auto 10vw;
   padding: 1rem 2%;
   text-align: left;
+  position: relative;
+}
+#UserSection #UserSettings{
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  padding: .3rem;
+  border-radius: .6rem;
+  transition: background-color .5s;
+}
+#UserSection #UserSettingsOptions{
+  position: absolute;
+  top: 2.5rem;
+  right: .5rem;
+  padding: .5rem;
+  border-radius: .3rem;
+  transition: background-color .5s;
+}
+#UserSection #UserSettings svg{
+  font-size: 1.1rem;
+}
+#UserSection #UserSettings:hover{
+  background-color: #2255cc45;
+}
+.DarkPage #UserSection #UserSettings svg,
+.DarkPage #UserSection #UserSettingsOptions{
+  color: #eaeaff;
+}
+.DarkPage #UserSection #UserSettingsOptions{
+  box-shadow: 0 0 .2rem #eaeaff;
+}
+.BrightPage #UserSection #UserSettings svg,
+.BrightPage #UserSection #UserSettingsOptions{
+  color: #22222a;
+}
+.BrightPage #UserSection #UserSettingsOptions{
+  box-shadow: 0 0 .2rem #111;
 }
 #UserSection #UserNames{
   font-size: 1.5rem;

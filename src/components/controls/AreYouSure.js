@@ -10,10 +10,22 @@ export default props => (
     />
     <form id="FormInModal">
       {props.children}
-      <button id="NoBtn" onClick={props.no}>
+      <button 
+        id="NoBtn" 
+        onClick={event => {
+          event.preventDefault()
+          props.no()
+        }}
+      >
         Cancel
       </button>
-      <button id="YesBtn" onClick={props.yes}>
+      <button 
+        id="YesBtn" 
+        onClick={event => {
+          event.preventDefault()
+          props.yes()
+        }}
+      >
         Yes
       </button>
     </form>

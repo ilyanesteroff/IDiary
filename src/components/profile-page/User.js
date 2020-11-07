@@ -4,6 +4,8 @@ import * as Ctx from '../../utils/contexts'
 import UserSection from './UserSection'
 import UserFriendBar from './UserFriendsBar'
 import EditProfile from './EditProfile'
+import UserOptions from './Options'
+import userIdComparer from '../../utils/userIdComparer'
 
 
 export default _ => {
@@ -14,7 +16,10 @@ export default _ => {
       <Ctx.UserDataContext.Consumer>
         {userData =>
           <>
-            <div id="UserSection"> 
+            <div id="UserSection">
+              { userData._id && !userIdComparer(userData._id) &&
+                <UserOptions/>
+              }
               <h1 id="UserNames">
                 {`${userData.firstname} ${userData.lastname}`}
                 <RandomIcon/>
@@ -27,7 +32,7 @@ export default _ => {
                 username={userData.username}
               />
             }
-            {userData.requestsFrom !== undefined &&
+            {userIdComparer(userData._id) &&
               <h2>
                 <EditProfile/>
               </h2> 

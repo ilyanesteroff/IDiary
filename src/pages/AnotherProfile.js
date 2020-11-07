@@ -5,11 +5,13 @@ import useLoader from '../hooks/AnotherProfile/useLoader'
 import useUnfollowHandler from '../hooks/AnotherProfile/useUnfollowHandler'
 import Spinner from '../components/spiners/BigSpinner'
 import User from '../components/profile-page/User'
-//import AreYouSure from '../components/controls/AreYouSure'
+import AreYouSure from '../components/controls/AreYouSure'
+import blockHandler from '../actionHandlers/BlockUser'
 
 
 export default memo(({ userId }) => {
   const [ error, setError ] = useState('')
+  const [ blocking, setBlocking ] = useState(false)
 
   const [ loading, info ] = useLoader(userId, setError)
   const [ availableInfo, setUnfollow ] = useUnfollowHandler(info)
@@ -24,9 +26,23 @@ export default memo(({ userId }) => {
             { error.length > 0 && <h3>{error}</h3> } 
             <Ctx.UnfollowUserContext.Provider value={{setUnfollow: setUnfollow, publicProfile: availableInfo.public }}>
               <Ctx.UserDataContext.Provider value={availableInfo}>
-                {availableInfo._id && !loading &&
-                  <User/>
-                }
+                <Ctx.SetBlockingUserContext.Provider value={val => setBlocking(val)}>
+                  {availableInfo._id && !loading &&
+                    <User/>
+                  }
+                  {blocking &&
+                    <AreYouSure 
+                      theme={theme} 
+                      yes={_ => blockHandler(availableInfo._id)} 
+                      no={_ => setBlocking(false)}
+                    >
+                      <h2>Are you sure?</h2>
+                      <p>  
+                        You Want to block<span>{` ${availableInfo.username}`}</span>
+                      </p>
+                    </AreYouSure>
+                  }
+                </Ctx.SetBlockingUserContext.Provider>
               </Ctx.UserDataContext.Provider>
             </Ctx.UnfollowUserContext.Provider>
           </div>

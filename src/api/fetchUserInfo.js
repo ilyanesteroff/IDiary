@@ -11,12 +11,15 @@ export default (userId) => {
     body: JSON.stringify(query(userId)),
     headers: headers
   })
+    .then(res => res.json())
     .then(res => {
-      if(res.status === 500) throw new Error('Technical error occured')
-      return res.json()
-    })
-    .then(res => {
-      if(res.data === null) throw new Error('Technical error occured')      
+      if(res.errors){
+        if(
+          res.errors[0].message === 'User not found' ||
+          res.errors[0].message.includes('Argument passed in') ||
+          res.errors[0].message === 'Unable to view'
+        ) throw new Error('User not found') 
+      }
       return res.data.user
     })
 }
