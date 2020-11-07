@@ -133,6 +133,10 @@
   font-family: 'Montserrat', sans-serif;
   margin: .3rem 0;
 }
+#UserSection h4#green{
+  font-weight: 600;
+  color: #228855;
+}
 #UserSection #count{
   margin-left: .5rem;
   font-weight: 600;
@@ -278,14 +282,6 @@
 #request #names{
   font-size: .9rem;
 }
-#request #RejectRequest,
-#userBtns #RejectRequest{
-  color: #cc3322;
-}
-#request #AcceptRequest,
-#userBtns #AcceptRequest{
-  color: #228855;
-}
 #request #BlueIcon,
 #userBtns #BlueIcon{
   color: #3377ff;
@@ -364,14 +360,20 @@
 .DarkPage #EditProfile li{
   color: #efeaff;
 }
+#request #RejectRequest,
+#userBtns #RejectRequest,
 #deleteAccountOption svg{
-  color:  #ff4444;
+  color:  #cc3322;
 }
-#ActiveTodos{
+#ActiveTodos,
+#NeedToCompleteTodo{
   color:  #ff7722;
 }
-#FullfilledTodos{
-  color: #22cc55;
+#request #AcceptRequest,
+#userBtns #AcceptRequest,
+#FullfilledTodos, #Todo #TimeLeft,
+#DoneTodo{
+  color: #228855;
 }
 #Todos{
   display: flex;
@@ -391,9 +393,6 @@
 .DarkPage #Todo {
   background-color: #212122;
   box-shadow: 0 0 .3vh #f1f1ff;
-}
-#Todo #TimeLeft{
-  color: #228855;
 }
 #Todo h2{
   padding: .5rem;
@@ -482,12 +481,6 @@
 }
 .DarkPage #Todo p{
   color: #fff;
-}
-#DoneTodo{
-  color: #22cc55;
-}
-#NeedToCompleteTodo{
-  color: #ff7722;
 }
 @media only screen and (min-width: 1401px){
   #deleteAccountOption{

@@ -18,7 +18,7 @@ export default (page, incoming) => {
   })
     .then(res => res.json())
     .then(res => {
-      if(res.errors) throw new Error(res.errors.message)
+      if(res.errors) throw new Error(res.errors[0].message)
       return res.data.requests
     })
     .catch(err => {

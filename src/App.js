@@ -66,10 +66,7 @@ export default class App extends React.PureComponent{
         password: password
       })
     })
-      .then(res => {
-        if(res.status === 404) throw new Error('User does not exist')
-        return res.json()
-      })
+      .then(res => res.json())
       .then(res => {
         if(res.error) throw new Error(res.error)
         cb()

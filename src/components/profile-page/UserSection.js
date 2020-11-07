@@ -3,6 +3,7 @@ import UserPersonalData from './PersonalUserData'
 import PublicUserData from './PublicUserData'
 import JoinedAt from './JoinedAt'
 import AnotherUserBtns from './AnotherUserBtns'
+import LastSeen from './LastSeen'
 import userIdComparer from '../../utils/userIdComparer'
 
 
@@ -11,6 +12,9 @@ export default ({ userData }) => (
     <div id="Main-flex">
       <div>
         <h4 id="username">{'@' + userData.username}</h4>
+        {!userIdComparer(userData._id) &&
+          <LastSeen lastSeen={userData.lastSeen}/>
+        }
         {userData.about &&
           <h4 id="contrast">{userData.about}</h4>
         }

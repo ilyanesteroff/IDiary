@@ -20,7 +20,7 @@ export default ({ reqsTo, reqsFrom, convs, blockedUsers }) => (
             </h4>
           </div>
           <h4 onClick={_ => set('Blacklist')}>
-            Blocked users
+            Blocked users:
             <span id="count">{formatNum(blockedUsers)}</span>
           </h4>
         </>

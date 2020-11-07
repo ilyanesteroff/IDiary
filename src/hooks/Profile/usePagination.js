@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import fetchRequests from '../../api/profile/stats/fetch-requests'
 import fetchFollowers from '../../api/profile/stats/fetch-followers-following'
+import fetchBlacklist from '../../api/profile/stats/fetch-blocked-users'
 
 
 export default (category, userData, userId, page, setPage) => {
@@ -36,6 +37,7 @@ export default (category, userData, userId, page, setPage) => {
       if(category === 'Incoming Requests') fetchInfo(_ => fetchRequests(page, true))
       if(category === 'Followers') fetchInfo(_ => fetchFollowers(page, userId, true))
       if(category === 'Following') fetchInfo(_ => fetchFollowers(page, userId, false))
+      if(category === 'Blacklist') fetchInfo(_ => fetchBlacklist(page))
     }
     // eslint-disable-next-line
   }, [ page, category ])

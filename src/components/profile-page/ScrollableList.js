@@ -4,6 +4,7 @@ import Followers from './Followers'
 import Following from './Following'
 import IncomingReqs from './IncomingReqs'
 import SentReqs from './SentReqs'
+import Blacklist from './Blacklist'
 import Spinner from '../spiners/BigSpinner'
 import usePaginator from '../../hooks/Profile/usePagination'
 
@@ -17,7 +18,8 @@ export default ({ category, userId }) => {
     'Followers' : UserData().followers,
     'Following' : UserData().following,
     'Sent Requests' : UserData().requestsTo !== undefined ? UserData().requestsTo : null,
-    'Incoming Requests' : UserData().requestsFrom !== undefined ? UserData().requestsFrom : null
+    'Incoming Requests' : UserData().requestsFrom !== undefined ? UserData().requestsFrom : null,
+    'Blacklist': UserData().blockedUsers !== undefined ? UserData().blockedUsers : null
   }, userId, page, val => setPage(val))
  
   const definePosition = useCallback(e => {
@@ -31,17 +33,32 @@ export default ({ category, userId }) => {
     document.getElementById('scrollableList').addEventListener('scroll', definePosition)
     return _ => document.getElementById('scrollableList').removeEventListener('scroll', definePosition)
   })
-
+  console.log(info)
   return(
     <div id="scrollableList">
       <SetItemToDeleteContext.Provider value={setItemToDelete}>
         <UserDataContext.Consumer>
           {data => 
             <>
-            { category === 'Followers' && <Followers followersCount={data.followers} data={info}/> }
-            { category === 'Following' && <Following followingCount={data.following} data={info}/> }
+            { category === 'Followers' && 
+              <Followers 
+                followersCount={data.followers} 
+                data={info}
+                userId={data._id}
+                username={data.username}
+              />
+            }
+            { category === 'Following' && 
+              <Following 
+                followingCount={data.following} 
+                data={info}                
+                userId={data._id}
+                username={data.username}
+              /> 
+            }
             { category === 'Incoming Requests' && <IncomingReqs incomingReqCount={data.requestsFrom} data={info}/> }
             { category === 'Sent Requests'  && <SentReqs sentReqCount={data.requestsTo} data={info}/> }
+            { category === 'Blacklist' && <Blacklist blacklistLength={data.blockedUsers} data={info}/> }
             </>
           }
         </UserDataContext.Consumer>
