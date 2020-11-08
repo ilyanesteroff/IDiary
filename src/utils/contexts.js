@@ -61,5 +61,7 @@ export const IncreaseUserStatsContext = createContext(_ => {})
 export const UnfollowUserContext = createContext(_ => {})
 
 export const SetBlockingUserContext = createContext(_ => {})
+
+export const FollowControlsContext = createContext(null)
 //export
 //

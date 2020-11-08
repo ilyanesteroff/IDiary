@@ -247,6 +247,7 @@
 }
 #request{
   padding: .5rem;
+  transition: background-color .3s;
 }
 .IncomingRequest{
   display: flex;
@@ -261,8 +262,14 @@
   box-shadow: 0 0 .1rem #eaeaff;
 }
 .BrightPage #request{
+  background-color: #efefff;
+  box-shadow: 0 0 .1rem #222222;
+}
+.BrightPage #request:hover{ 
   background-color: #eaeaff;
-  box-shadow: 0 0 .1rem #22222a;
+}
+.DarkPage #request:hover{
+  background-color: #22222f;
 }
 #request #reqButtons{
   float: right;
@@ -286,6 +293,7 @@
 }
 #request #names{
   font-size: .9rem;
+  margin: .3rem 0;
 }
 #request #BlueIcon,
 #userBtns #BlueIcon{
@@ -528,6 +536,15 @@
   #UserSection #Main-flex{
     display: block;
   }
+  #scrollableList{
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 10rem;
+  }
+  #request{    
+    max-width: 33%;
+    flex-basis: 100%;
+  }
   #EditProfile{
     margin: 1rem auto;
   }
@@ -578,6 +595,12 @@
   }
   #Todo{
     width: 100% !important;
+  }  
+  #request{    
+    max-width: 100%;
+  }  
+  #scrollableList{
+    display: block;
   }
 }
 @media only screen and (min-height: 1000px) and (max-width: 1400px){

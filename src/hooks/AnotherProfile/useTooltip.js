@@ -1,5 +1,5 @@
 import React from 'react'
-import Tooltip from '../../components/profile-page/Tooltip'
+import Tooltip from '../../components/profile-page/scrollable-list/components/Tooltip'
 
 
 export default (component, withToolTip, tooltipLabel, loading) => {

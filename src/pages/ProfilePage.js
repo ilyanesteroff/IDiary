@@ -6,8 +6,8 @@ import Navbar from '../components/navbar/index'
 import useLoader from '../hooks/Profile/useLoader'
 import useUserInfoManager from '../hooks/Profile/useProfileInfoManager'
 import Spinner from '../components/spiners/BigSpinner'
-import User from '../components/profile-page/User'
-import EditProfileModal from '../components/profile-page/EditProfileModal'
+import User from '../components/profile-page/containers/index'
+import EditProfileModal from '../components/profile-page/edit/EditProfileModal'
 import AreYouSure from '../components/controls/AreYouSure'
 
  

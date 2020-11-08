@@ -4,7 +4,7 @@ import Navbar from '../components/navbar/index'
 import useLoader from '../hooks/AnotherProfile/useLoader'
 import useUnfollowHandler from '../hooks/AnotherProfile/useUnfollowHandler'
 import Spinner from '../components/spiners/BigSpinner'
-import User from '../components/profile-page/User'
+import User from '../components/profile-page/containers/index'
 import AreYouSure from '../components/controls/AreYouSure'
 import blockHandler from '../actionHandlers/BlockUser'
 
