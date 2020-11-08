@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/navbar/index'
 import Spinner from '../components/spiners/BigSpinner'
-import AddTodoBtn from '../components/todos/AddTodoBtn'
+import AddTodoBtn from '../components/todos/other/AddTodoBtn'
 import * as Ctx from '../utils/contexts'
 import useTodoLoader from '../hooks/Todos/useTodoLoader'
 import useTodoManipulator from '../hooks/Todos/useTodoManipulator'
-import Todos from '../components/todos/Todos'
-import CreateOrUpdateTodoModal from '../components/todos/CreateOrUpdateModal'
-import Chapter from '../components/todos/Chapter'
+import Todos from '../components/todos/containers/index'
+import CreateOrUpdateTodoModal from '../components/todos/containers/CreateOrUpdateModal'
+import Chapter from '../components/todos/other/Chapter'
 
 
 export default _ => {

@@ -1,7 +1,7 @@
 import React, { useRef, useContext } from 'react'
-import * as Ctx from '../../utils/contexts'
-import CloseModalBtn from '../portals/CloseModalBtn'
-import CreateOrUpdateTodoFrom from '../../forms/CreateOrUpdateTodoForm'
+import * as Ctx from '../../../utils/contexts'
+import CloseModalBtn from '../../portals/CloseModalBtn'
+import CreateOrUpdateTodoFrom from '../../../forms/CreateOrUpdateTodoForm'
 
 
 export default ({theme}) => {

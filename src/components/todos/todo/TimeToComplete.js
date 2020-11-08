@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect} from 'react'
-import convertNumberToHRTime from '../../utils/convertNumberToHumanReadableTime'
+import convertNumberToHRTime from '../../../utils/convertNumberToHumanReadableTime'
 
 
 export default ({timeToComplete, createdAt, setIncompleted}) => {

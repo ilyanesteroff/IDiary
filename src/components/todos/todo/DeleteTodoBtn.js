@@ -2,8 +2,9 @@ import React, { useState, memo } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
-import { SetTodoToDeleteContext } from '../../utils/contexts'
-import deleteTodo from '../../actionHandlers/DeleteTodo'
+import { SetTodoToDeleteContext } from '../../../utils/contexts'
+import deleteTodo from '../../../actionHandlers/DeleteTodo'
+
 
 export default memo(({id}) => {
   const [ deleting, setDeleting ] = useState(false)

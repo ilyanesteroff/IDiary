@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import FilterForm from '../../forms/FilterForm'
+import FilterForm from '../../../forms/FilterForm'
 
 
 export default forwardRef((props, refs) => {

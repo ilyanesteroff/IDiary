@@ -1,5 +1,5 @@
 import React from 'react'
-import { OpenModalContext, PassTodoDataContext } from '../../utils/contexts'
+import { OpenModalContext, PassTodoDataContext } from '../../../utils/contexts'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEdit } from '@fortawesome/free-regular-svg-icons'
 

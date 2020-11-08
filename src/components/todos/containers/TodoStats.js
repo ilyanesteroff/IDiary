@@ -1,5 +1,5 @@
 import React from 'react'
-import { TodoStatsContext } from '../../utils/contexts'
+import { TodoStatsContext } from '../../../utils/contexts'
 
 export default _ => (
   <div id="TodoStats">

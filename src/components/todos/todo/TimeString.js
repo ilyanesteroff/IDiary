@@ -1,5 +1,5 @@
 import React from 'react'
-import { shortFormatedMonths } from '../../utils/months'
+import { shortFormatedMonths } from '../../../utils/months'
 
 export default ({time}) => {
   const date = `${time.getUTCDate()} ${shortFormatedMonths[time.getMonth()]}`

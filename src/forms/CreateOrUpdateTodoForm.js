@@ -3,7 +3,7 @@ import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Checkbox from '../components/FormComponents/Checkbox'
 import Input from '../components/FormComponents/TodoInput'
-import Textarea from '../components/todos/Textarea'
+import Textarea from '../components/todos/other/Textarea'
 import updateTodo from '../actionHandlers/CreateOrUpdateTodo'
 import useComplainLog from '../hooks/useComplainLog'
 

@@ -4,8 +4,8 @@ import Spinner from '../components/spiners/BigSpinner'
 import * as Ctx from '../utils/contexts'
 import useTodoLoader from '../hooks/Todos/useTodoLoader'
 import useTodoManipulator from '../hooks/Todos/useTodoManipulator'
-import Todos from '../components/todos/Todos'
-import Chapter from '../components/todos/Chapter'
+import Todos from '../components/todos/containers/index'
+import Chapter from '../components/todos/other/Chapter'
 
 
 export default ({ userId }) => {
