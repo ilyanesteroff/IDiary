@@ -12,6 +12,7 @@ export default (userId, setError) => {
       .then(res => {
         setLoading(false)
         setInfo(res)
+        document.title = `${res.firstname} ${res.lastname}`
       })
       .catch(err => {
         setLoading(false)

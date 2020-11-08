@@ -6,6 +6,7 @@ import UserFriendBar from './UserFriendsBar'
 import EditProfile from './EditProfile'
 import UserOptions from './Options'
 import userIdComparer from '../../utils/userIdComparer'
+import IncomingRequest from './IncomingRequest'
 
 
 export default _ => {
@@ -16,6 +17,9 @@ export default _ => {
       <Ctx.UserDataContext.Consumer>
         {userData =>
           <>
+            { userData._id && !userIdComparer(userData._id) &&
+              <IncomingRequest username={userData.username} userId={userData._id}/>
+            }
             <div id="UserSection">
               { userData._id && !userIdComparer(userData._id) &&
                 <UserOptions/>

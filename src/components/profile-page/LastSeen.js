@@ -13,12 +13,8 @@ export default ({ lastSeen }) => {
     output = `${shortFormatedMonths[time.getUTCMonth()]} ${time.getDate()}`
   else if(now.getDate() - time.getDate() === 1) output = `Yesterday at ${time.getUTCHours()}:${time.getUTCMinutes()}`
   else if(
-    now.getDate() === time.getDate() && 
-    now.getUTCHours() > time.getUTCHours() ||
-    ( 
-      now.getUTCHours() === time.getUTCHours() &&
-      now.getUTCMinutes() - time.getUTCMinutes() > 1
-    )
+    (now.getDate() === time.getDate() && now.getUTCHours() > time.getUTCHours()) ||
+    (now.getUTCHours() === time.getUTCHours() && now.getUTCMinutes() - time.getUTCMinutes() > 1)
    ) output = `today at ${time.getUTCHours()}:${time.getUTCMinutes()}` 
   else output = 'online'
 

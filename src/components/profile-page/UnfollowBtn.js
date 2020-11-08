@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserSlash, faSpinner } from '@fortawesome/free-solid-svg-icons'
-import Tooltip from './Tooltip'
+import useTooltip from '../../hooks/AnotherProfile/useTooltip'
 
 
 export default ({ clickHandler, withTooltip }) => {
@@ -16,13 +16,8 @@ export default ({ clickHandler, withTooltip }) => {
                         setLoading(false)
                       }}
                     />
-  let output
-  withTooltip
-    ?  output = <div className={ !loading ? 'tooltip' : 'noTooltip' }>
-                  { component }
-                  <Tooltip content="Unfollow"/>
-                </div>
-    :  output = component
+  
+  const output = useTooltip(component, withTooltip, 'Unfollow', loading)
 
   return output
 }

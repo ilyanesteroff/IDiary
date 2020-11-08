@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner, faUserPlus } from '@fortawesome/free-solid-svg-icons'
 import sendFollowRequest from '../../api/profile/send-follow-request'
-import Tooltip from './Tooltip'
+import useTooltip from '../../hooks/AnotherProfile/useTooltip'
 
 
 export default ({ userId, callback, setRequested, withTooltip }) => {
@@ -19,14 +19,8 @@ export default ({ userId, callback, setRequested, withTooltip }) => {
                         setLoading(false)
                       }}
                     />
-
-  let output 
-  withTooltip
-    ?  output = <div className={ !loading ? 'tooltip' : 'noTooltip' }>
-                  { component }
-                  <Tooltip content="Follow"/>
-                </div>
-    :  output = component
+                    
+  const output = useTooltip(component, withTooltip, 'Follow', loading)
 
   return output
 }

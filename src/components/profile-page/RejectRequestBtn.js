@@ -1,27 +1,28 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import rejectOrAccept from '../../actionHandlers/RejectAcceptReq'
 import useTooltip from '../../hooks/AnotherProfile/useTooltip'
-import unsend from '../../actionHandlers/UnsendReq'
 
 
-export default ({ reqId, callback, withTooltip }) => {
+export default ({ reqId, callback, withToolTip }) => {
   const [ loading, setLoading ] = useState(false)
-  
-  const component = <FontAwesomeIcon
+   
+  const component = <FontAwesomeIcon      
                       id={ loading? 'todoDeletingSpinner' : 'RejectRequest' }
                       icon={ loading ? faSpinner : faTimesCircle }
                       onClick={async _ => {
                         setLoading(true)
-                        await unsend(
-                          reqId, 
-                          callback
+                        rejectOrAccept(
+                          reqId,
+                          val => setLoading(val),
+                          callback,
+                          false
                         )
                       }}
                     />
- 
-  const output = useTooltip(component, withTooltip, 'Cancel request', loading)
+  const output = useTooltip(component, withToolTip, 'Reject', loading)
 
   return output
 }

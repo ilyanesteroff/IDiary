@@ -33,7 +33,7 @@ export default ({ category, userId }) => {
     document.getElementById('scrollableList').addEventListener('scroll', definePosition)
     return _ => document.getElementById('scrollableList').removeEventListener('scroll', definePosition)
   })
-  console.log(info)
+
   return(
     <div id="scrollableList">
       <SetItemToDeleteContext.Provider value={setItemToDelete}>
