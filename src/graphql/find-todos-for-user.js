@@ -1,14 +1,19 @@
+import userIdComparer from '../utils/userIdComparer'
 
-//For fetching todos of logged in user
-export default page => { 
+export default (page, userId) => { 
   return {
     query: `
-      query GetYourTodos($page: Int!) {
-        todos(page: $page){
+      query GetYourTodos($page: Int!, $userId: ID) {
+        todos(page: $page, userId: $userId){
           _id,
           task
           completed
           createdAt
+          ${
+            userIdComparer(userId)
+              ? ''
+              : 'creator { username _id }'
+          }
           timeToComplete
           public
           tags
@@ -16,7 +21,8 @@ export default page => {
       }
     `,
     variables: {
-      page: page
+      page: page,
+      userId: userId
     }
   }
 }

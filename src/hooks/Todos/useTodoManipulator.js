@@ -62,5 +62,5 @@ export default (todos, activeTodos, completedTodos) => {
     // eslint-disable-next-line
   }, [ todoToUpdate ])
 
-  return [ todosToExpose, refs, changeHandlers, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed ]
+  return [ todosToExpose, refs, changeHandlers, active, completed, setNewTodo, setTodoToDelete, setTodoToUpdate ]
 }

@@ -4,12 +4,12 @@ import query from '../../graphql/fetch-users-todos-stats'
 import { tokenFromStorage as token } from '../../utils/tokens'
 
 
-export default _ => {
+export default userId => {
   headers.set('Authorization', `Bearer ${token()}`)
   return fetch(graphqlLink, {
     headers: headers,
     method: 'POST',
-    body: JSON.stringify(query()),
+    body: JSON.stringify(query(userId)),
   }) 
     .then(res => res.json())
 }

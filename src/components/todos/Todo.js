@@ -6,8 +6,9 @@ import CompletedLabel from './CompletedLabel'
 import Task from './Task'
 import Tags from './Tags'
 import TimeLeft from './TimeToComplete'
+import LinkOnAuthor from './LinkOnAuthor'
 
-//TODO: complete todo component
+
 export default ({todoData}) => {
   const { createdAt, timeToComplete, task, completed, tags } = todoData
   const [ incompleted, setIncompleted ] = useState(
@@ -18,7 +19,12 @@ export default ({todoData}) => {
     <YourTodoContext.Consumer>
       {yourTodo =>
         <div id="Todo">
-          {!yourTodo && <h3 id="creatorName">{todoData.creator.userName}</h3>}
+          {!yourTodo && 
+            <LinkOnAuthor 
+              userId={todoData.creator._id}
+              username={todoData.creator.username}
+            />
+          }
           <TimeString time={createdAt}/>
           <Task task={task}/>
           <CompletedLabel completed={completed}/>

@@ -17,9 +17,9 @@ export default _ => {
   const [ addTodoModalOpened, setAddTodoModalOpened ] = useState(false)
   const [ todoDataToUpdate, setTodoDataToUpdate ] = useState(null)
 
-  const [ fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading ] = useTodoLoader(page, setError)
+  const [ fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading ] = useTodoLoader(page, setError, window.localStorage.getItem('userId') || window.sessionStorage.getItem('userId'))
 
-  const [ todosToExpose, refs, changeHandlers, setNewTodo, setTodoToDelete, setTodoToUpdate, active, completed ] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
+  const [ todosToExpose, refs, changeHandlers, active, completed, setNewTodo, setTodoToDelete, setTodoToUpdate ] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
   
   const definePosition = _ => {
     if((window.innerHeight + window.pageYOffset + 10) >= document.body.offsetHeight && nextPage) {
@@ -64,6 +64,9 @@ export default _ => {
                     <Ctx.SetTodoToDeleteContext.Provider value={todoId => setTodoToDelete(todoId)}>
                       <Ctx.PassTodoDataContext.Provider value={todoData => setTodoDataToUpdate(todoData)}>
                         <Todos todos={todosToExpose} changeHandlers={changeHandlers} refs={refs}/>
+                        {todos.length > 0 && todosToExpose.length === 0 &&
+                          <h3>No todos found matching your criteria</h3>
+                        }
                       </Ctx.PassTodoDataContext.Provider>
                     </Ctx.SetTodoToDeleteContext.Provider>
                   </Ctx.YourTodoContext.Provider>

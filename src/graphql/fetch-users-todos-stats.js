@@ -1,16 +1,19 @@
 
 
-export default _ => {
+export default userId => {
   return {
     query: `
-      query GetUsersTodoStats {
-        getAuthUser {
+      query ViewUser($userId: ID!) {
+        user(userId: $userId) {
           FullfilledTodos
           ActiveTodos
           _id 
           public
         }
       }
-    `
+    `,
+    variables: {
+      userId: userId
+    }
   }
 }
