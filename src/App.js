@@ -1,81 +1,73 @@
-import React from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import Router from './routes/index'
-import headers from './utils/headers'
-import { apiLink } from './utils/serverUrl'
+import login from './api/login'
 import requestEmailAcceptation from './api/acceptEmail'
 import clearStorages from './utils/clearStorages'
 import * as Contexts from './utils/contexts'
-import './styles/App.css'
 
 
-export default class App extends React.PureComponent{
-  state = {
-    userId: null,
-    firstname: null,
-    brightTheme: true,
-    isAuth: null
-  }
+export default memo(_ => {
+  const [ userId, setUserId ] = useState(null)
+  const [ firstname, setFirstname ] = useState(null)
+  const [ isAuth, setIsAuth ] = useState(null)
+  const [ brightTheme, setBrightTheme ] = useState(true)
+  
+  const abortController = new AbortController()
 
-  abortController = new AbortController()
-
-  componentDidMount() {
+  useEffect(_ => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token')
     const firstname = localStorage.getItem('firstname') || sessionStorage.getItem('firstname')
     const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId')
     const theme = localStorage.getItem('theme')
-    if(theme === 'true') this.setState({ brightTheme: true })
+    if(theme === 'true') setBrightTheme(true)
     else {
-      this.setState({brightTheme: false})
+      setBrightTheme(false)
       document.body.style.backgroundColor = '#232323'
     }
-    if(!theme) window.localStorage.setItem('theme', this.state.brightTheme)
+    if(!theme) window.localStorage.setItem('theme', brightTheme)
     if (!token || !theme || !firstname || !userId) {
-      return this.setState({ isAuth: false })
+      return setIsAuth(false)
     }
-    this.setState({ 
-      isAuth: true, 
-      userId: userId,
-      firstname: firstname,
-      brightTheme: theme === 'true' ? true : false
-    })
+    setIsAuth(true)
+    setUserId(userId)
+    setFirstname(firstname)
+    setBrightTheme(theme === 'true' ? true : false)
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(_ => {
+    window.addEventListener('storage', storageObserver)
+    return _ => {
+      abortController.abort()
+      window.removeEventListener('storage', storageObserver)
+    }
+  })
+
+  const storageObserver = e => {
+    if(!e.key){
+      logoutHandler()
+      window.location.pathname = '/login'
+    }
   }
 
-  componentWillUnmount(){
-    this.abortController.abort()
-  }
-
-  logoutHandler = () => {
-    this.setState(
-      { 
-        isAuth: false, 
-        token: null,
-        userId: null,
-        firstname: null
-      }
-    )
+  const logoutHandler = () => {
+    setIsAuth(null)
+    setUserId(null)
+    setFirstname(null)
     clearStorages()
   }
 
-  loginHandler = (email, password, session, setError, cb) => {
-    fetch(apiLink + '/login', {
-      signal: this.abortController.signal,
-      method: 'PATCH',
-      headers: headers,
-      body: JSON.stringify({
-        email: email,
-        password: password
-      })
-    })
-      .then(res => res.json())
+  const loginHandler = (email, password, session, setError, cb) => {
+    login(abortController.signal, email, password)
       .then(res => {
         if(res.error) throw new Error(res.error)
         cb()
+        return res
+      })
+      .then(res => {        
         const { userId, token, firstname } = res
-        this.setState({
-          userId: userId,
-          firstname: firstname,
-          isAuth: true
-        })
+        setUserId(userId)
+        setFirstname(firstname)
         if(session) {
           window.sessionStorage.setItem('token', token)
           window.sessionStorage.setItem('userId', userId)
@@ -85,6 +77,10 @@ export default class App extends React.PureComponent{
           window.localStorage.setItem('userId', userId)
           window.localStorage.setItem('firstname', firstname)
         }
+        return 
+      })
+      .then(_ => {
+        setIsAuth(true)
       })
       .catch(err => {
         cb()
@@ -92,17 +88,15 @@ export default class App extends React.PureComponent{
       })
   }
 
-  acceptEmailHandler = (token, failureCb) => {
-    requestEmailAcceptation(token, this.abortController.signal)
+  const acceptEmailHandler = (token, failureCb) => {
+    requestEmailAcceptation(token, abortController.signal)
       .then(res => {
         if(res.error) throw new Error(res.errors)
         clearStorages()
         const { userId, token, firstname } = res
-        this.setState({
-          userId: userId,
-          firstname: firstname,
-          isAuth: true
-        })
+        setUserId(userId)
+        setFirstname(firstname)
+        setIsAuth(true)
         window.localStorage.setItem('token', token)
         window.localStorage.setItem('userId', userId)
         window.localStorage.setItem('firstname', firstname)
@@ -112,41 +106,39 @@ export default class App extends React.PureComponent{
         failureCb()
       })
   }
-  
-  toggleTheme = () => {
-    this.setState({brightTheme: !this.state.brightTheme})
-    window.localStorage.setItem('theme', !this.state.brightTheme)
-    !this.state.brightTheme 
+
+  const toggleTheme = () => {
+    setBrightTheme(!brightTheme)
+    window.localStorage.setItem('theme', !brightTheme)
+    !brightTheme 
       ? document.body.style.backgroundColor = '#fff'
       : document.body.style.backgroundColor = '#232323'
   }
 
-  render(){
-    return( 
-      <Contexts.BrightThemeContext.Provider value={this.state.brightTheme}>
-        <Contexts.UserIdContext.Provider value={this.state.userId}>
-          <Contexts.FirstnameContext.Provider value={{
-            firstname: this.state.firstname,
-            setFirstname: val => this.setState({ firstname: val })
-          }}>
-            <Contexts.IsAuthContext.Provider value={this.state.isAuth}>
-              <Contexts.SignalContext.Provider value={this.abortController.signal}>
-                <Contexts.LogoutHandlerContext.Provider value={this.logoutHandler}>
-                  <Contexts.LoginHandlerContext.Provider value={this.loginHandler}>
-                    <Contexts.ToggleThemeContext.Provider value={this.toggleTheme}>
-                      <Contexts.AcceptEmailContext.Provider value={this.acceptEmailHandler}>
-                        {this.state.isAuth !== null &&
-                          <Router isAuth={this.state.isAuth}/>
-                        }
-                      </Contexts.AcceptEmailContext.Provider>
-                    </Contexts.ToggleThemeContext.Provider>
-                  </Contexts.LoginHandlerContext.Provider>
-                </Contexts.LogoutHandlerContext.Provider>
-              </Contexts.SignalContext.Provider>
-            </Contexts.IsAuthContext.Provider>
-          </Contexts.FirstnameContext.Provider>
-        </Contexts.UserIdContext.Provider>
-      </Contexts.BrightThemeContext.Provider>
-    )
-  }
-}
+  return( 
+    <Contexts.BrightThemeContext.Provider value={brightTheme}>
+      <Contexts.UserIdContext.Provider value={userId}>
+        <Contexts.FirstnameContext.Provider value={{
+          firstname: firstname,
+          setFirstname: val => setFirstname(val)
+        }}>
+          <Contexts.IsAuthContext.Provider value={isAuth}>
+            <Contexts.SignalContext.Provider value={abortController.signal}>
+              <Contexts.LogoutHandlerContext.Provider value={logoutHandler}>
+                <Contexts.LoginHandlerContext.Provider value={loginHandler}>
+                  <Contexts.ToggleThemeContext.Provider value={toggleTheme}>
+                    <Contexts.AcceptEmailContext.Provider value={acceptEmailHandler}>
+                      {isAuth !== null &&
+                        <Router isAuth={isAuth}/>
+                      }
+                    </Contexts.AcceptEmailContext.Provider>
+                  </Contexts.ToggleThemeContext.Provider>
+                </Contexts.LoginHandlerContext.Provider>
+              </Contexts.LogoutHandlerContext.Provider>
+            </Contexts.SignalContext.Provider>
+          </Contexts.IsAuthContext.Provider>
+        </Contexts.FirstnameContext.Provider>
+      </Contexts.UserIdContext.Provider>
+    </Contexts.BrightThemeContext.Provider>
+  )
+})

@@ -22,6 +22,8 @@ form {
 }
 .formPage a, input {
   display: block;
+}
+input:hover, textarea:hover{  
   transition: background-color .5s;
 }
 .InputLabel{
@@ -174,7 +176,6 @@ input::placeholder{
   border-color: #3377ff;
   box-shadow: 0 0 .3vh #3377ff;
 }
-.InputLabel
 .BrightPage #FilterTodos input:focus,
 .BrightPage #TodoStats input:focus,
 .BrightModal #FormInModal input:focus,
