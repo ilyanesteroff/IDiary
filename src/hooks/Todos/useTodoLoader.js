@@ -11,38 +11,36 @@ export default (page, setError, userId) => {
   const [ loadingTodos, setLoadingTodos ] = useState(false)
   
   
-  const loadTodos = useCallback(_ => {
-    if(!fullfilledTodos && !activeTodos)
-      return fetchTodoStats(userId)
-        .then(res1 => {
-          setActiveTodos(res1.data.user.ActiveTodos)
-          setFullfilledTodos(res1.data.user.FullfilledTodos)          
-          if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos !== 0) {
-            return fetchTodos(page, userId)
-              .then(res => {
-                setLoadingTodos(false)
-                setTodos([...res.data.todos])
-                if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.data.todos.length) setNextPage(true)
-              })
-              .catch(err => {
-                setLoadingTodos(false)
-                setError(err.message)
-              })
-          } else {
-            setLoadingTodos(false)
-          }
-        })
-        .catch(err => {
-          setError(err.message)
-        })
-    else return fetchTodos(page)
-      .then(res => {
-        setLoadingTodos(false) 
-        setTodos([...todos, ...res.data.todos])
-        if(fullfilledTodos + activeTodos > todos.length + res.data.todos.length) setNextPage(true)
-      })
-      .catch(err => setError(err.message))
-  }, [ userId, activeTodos, fullfilledTodos, page, setError, todos ])
+  const loadTodos = useCallback(_ => 
+    !fullfilledTodos && !activeTodos
+      ? fetchTodoStats(userId)
+          .then(res1 => {
+            setActiveTodos(res1.data.user.ActiveTodos)
+            setFullfilledTodos(res1.data.user.FullfilledTodos)          
+            if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos !== 0) {
+              return fetchTodos(page, userId)
+                .then(res => {
+                  setLoadingTodos(false)
+                  setTodos([...res.data.todos])
+                  if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.data.todos.length) setNextPage(true)
+                })
+                .catch(err => {
+                  setLoadingTodos(false)
+                  setError(err.message)
+                })
+            } else {
+              setLoadingTodos(false)
+            }
+          })
+          .catch(err => setError(err.message))
+      : fetchTodos(page)
+          .then(res => {
+            setLoadingTodos(false) 
+            setTodos([...todos, ...res.data.todos])
+            if(fullfilledTodos + activeTodos > todos.length + res.data.todos.length) setNextPage(true)
+          })
+          .catch(err => setError(err.message))
+  , [ userId, activeTodos, fullfilledTodos, page, setError, todos ])
 
   useEffect(_ => {
     setLoadingTodos(true)

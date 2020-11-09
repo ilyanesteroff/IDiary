@@ -1,6 +1,6 @@
-import { graphqlLink } from '../../../utils/serverUrl'
-import headers from '../../../utils/headers'
-import { tokenFromStorage as token } from '../../../utils/tokens'
+import { graphqlLink } from '../../utils/serverUrl'
+import headers from '../../utils/headers'
+import { tokenFromStorage as token } from '../../utils/tokens'
 
 
 export default query => {
@@ -11,10 +11,7 @@ export default query => {
     body: JSON.stringify(query)
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.data
-    })
+    .then(res => res.data)
     .catch(err => {
       console.log(err.message)
       return []
