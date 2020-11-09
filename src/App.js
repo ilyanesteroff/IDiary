@@ -1,5 +1,6 @@
 import React, { useState, useEffect, memo } from 'react'
 import Router from './routes/index'
+import Head from './Head'
 import login from './api/login'
 import requestEmailAcceptation from './api/acceptEmail'
 import clearStorages from './utils/clearStorages'
@@ -51,7 +52,7 @@ export default memo(_ => {
   }
 
   const logoutHandler = () => {
-    setIsAuth(null)
+    setIsAuth(false)
     setUserId(null)
     setFirstname(null)
     clearStorages()
@@ -129,7 +130,10 @@ export default memo(_ => {
                   <Contexts.ToggleThemeContext.Provider value={toggleTheme}>
                     <Contexts.AcceptEmailContext.Provider value={acceptEmailHandler}>
                       {isAuth !== null &&
-                        <Router isAuth={isAuth}/>
+                        <>
+                          <Head/>
+                          <Router isAuth={isAuth}/>
+                        </>
                       }
                     </Contexts.AcceptEmailContext.Provider>
                   </Contexts.ToggleThemeContext.Provider>
