@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import Navbar from '../components/navbar/index'
 import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/other/AddTodoBtn'
@@ -10,7 +10,7 @@ import CreateOrUpdateTodoModal from '../components/todos/containers/CreateOrUpda
 import Chapter from '../components/todos/other/Chapter'
 
 
-export default _ => {
+export default memo(_ => {
   document.title = 'IDiary - Your Todos'
   const [ error, setError ] = useState('')
   const [ page, setPage ] = useState(1)
@@ -20,7 +20,7 @@ export default _ => {
   const [ fullfilledTodos, activeTodos, nextPage, setNextPage, todos, loading ] = useTodoLoader(page, setError, window.localStorage.getItem('userId') || window.sessionStorage.getItem('userId'))
 
   const [ todosToExpose, refs, changeHandlers, active, completed, setNewTodo, setTodoToDelete, setTodoToUpdate ] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
-  
+
   const definePosition = _ => {
     if((window.innerHeight + window.pageYOffset + 10) >= document.body.offsetHeight && nextPage) {
       setPage(page + 1)
@@ -81,4 +81,4 @@ export default _ => {
       </Ctx.BrightThemeContext.Consumer>
     </>
   )
-}
+})

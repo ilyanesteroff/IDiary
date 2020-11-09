@@ -10,7 +10,7 @@ export default (todos, activeTodos, completedTodos) => {
   const [ active, setActive ] = useState(activeTodos)
   const [ completed, setCompleted ] = useState(completedTodos)
 
-  const [ todosToExpose, refs, changeHandlers ] = useTodoFilter(sortedTodos, todoToUpdate)
+  const [ todosToExpose, refs, changeHandlers ] = useTodoFilter(sortedTodos)
 
   useEffect(_ => {
     setActive(activeTodos)

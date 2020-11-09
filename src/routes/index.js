@@ -11,6 +11,7 @@ import Todos from '../pages/Todos'
 import Profile from '../pages/ProfilePage'
 import AnotherProfile from '../pages/AnotherProfile'
 import OtherTodos from '../pages/TodosOfAnotherUser'
+import Messages from '../pages/Messages'
 import userIdComparer from '../utils/userIdComparer'
 
 
@@ -63,7 +64,11 @@ export default ({ isAuth })  => (
       />
       <Route
         path="/todos"
-        render={_ => isAuth ? <Todos/> : <LoginPage/>}
+        render={_ => isAuth ? <Todos/> : <Redirect to="/login"/>}
+      />
+      <Route
+        path="/messages"
+        render={_ => isAuth ? <Messages/> : <Redirect to="/login"/>}
       />
       <Route path="*" render={_ => <PageNotFound/>}/>
     </Switch>

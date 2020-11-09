@@ -3,7 +3,7 @@ import useTodoFilter from './useTodoFilter'
 import useUnsetFilter from './useUnsetTodoFilter'
 
 
-export default (todos) => {
+export default todos => {
   //filter params
   const [ showOnlyCompletedTodos, setShowOnlyCompletedTodos ] = useState(false)
   const [ showOnlyActiveTodos, setShowOnlyActiveTodos ] = useState(false)
