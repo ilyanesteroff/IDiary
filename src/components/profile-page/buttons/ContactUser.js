@@ -5,8 +5,8 @@ import { faComment } from '@fortawesome/free-regular-svg-icons'
 import useTooltip from '../../../hooks/AnotherProfile/useTooltip'
 
 
-export default ({ userId, withTooltip }) => {
-  const component = <Link to={`/conversations/${userId}`}>
+export default ({ username, withTooltip }) => {
+  const component = <Link to={`/messages/write_or_find/${username}`}>
                       <FontAwesomeIcon
                         icon={ faComment }
                         id="BlueIcon"

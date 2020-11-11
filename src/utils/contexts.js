@@ -8,8 +8,6 @@ export const FirstnameContext = createContext({ firstname: null, setFirstname: _
 
 export const UserIdContext = createContext(null)
 
-export const LoadingContext = createContext({ value: false, setValue: _ => {} })
-
 export const IsAuthContext = createContext(false)
 
 export const LogoutHandlerContext = createContext(_ => {})
@@ -63,5 +61,21 @@ export const UnfollowUserContext = createContext(_ => {})
 export const SetBlockingUserContext = createContext(_ => {})
 
 export const FollowControlsContext = createContext(null)
+
+export const ConversationsContext = createContext({ convs: [], total: null })
+
+export const LoadingContext = createContext(false)
+
+export const PageContext = createContext({ page: 1, setPage: _ => {} })
+
+export const HasNextPageContext = createContext({ has: false, set: _ => {} })
+
+export const SetConvToDeleteContext = createContext(_ => {})
+
+export const SetConvToEditContext = createContext(_ => {})
+
+export const SetConvToAddContext = createContext(_ => {})
+
+export const CurrentlyOpenedConvContext = createContext({ value: null, set: _ => {}})
 //export
 //

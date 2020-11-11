@@ -9,7 +9,7 @@ import unfollow from '../../../api/profile/unfollow'
 import { UnfollowUserContext } from '../../../utils/contexts'
 
 
-export default ({ userId }) => {
+export default ({ userId, username }) => {
   const [ loading, allowed, following, requested, setFollowing, setRequested, setAllowed ] = useButtons(userId)
   
   return(
@@ -17,7 +17,7 @@ export default ({ userId }) => {
       { loading   
           ? <Spinner/>
           : <>
-              { allowed && <ContactUser withTooltip userId={userId}/> }
+              { allowed && <ContactUser withTooltip username={username}/> }
               { following &&
                   <UnfollowUserContext.Consumer>
                     {({setUnfollow, publicProfile}) =>

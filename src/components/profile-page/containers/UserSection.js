@@ -42,7 +42,10 @@ export default ({ userData }) => (
       }
     </div>
     {userData._id && userData._id !== window.localStorage.getItem('userId') &&
-      <AnotherUserBtns userId={userData._id}/>
+      <AnotherUserBtns 
+        userId={userData._id} 
+        username={userData.username}
+      />
     }
   </>
 )

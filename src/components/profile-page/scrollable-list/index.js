@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useCallback } from 'react'
+import React, { useContext, useState } from 'react'
 import { UserDataContext, SetItemToDeleteContext, FollowControlsContext } from '../../../utils/contexts'
 import Followers from './lists/Followers'
 import Following from './lists/Following'
@@ -7,6 +7,7 @@ import SentReqs from './lists/SentReqs'
 import Blacklist from './lists/Blacklist'
 import Spinner from '../../spiners/BigSpinner'
 import usePaginator from '../../../hooks/Profile/usePagination'
+import useScrollableList from '../../../hooks/useScrollableList'
 import userIdComparer from '../../../utils/userIdComparer'
 
 
@@ -23,17 +24,7 @@ export default ({ category, userId }) => {
     'Blacklist': UserData().blockedUsers !== undefined ? UserData().blockedUsers : null
   }, userId, page, val => setPage(val))
   
-  const definePosition = useCallback(e => {
-    if(e.target.scrollHeight === Math.floor(e.target.offsetHeight + e.target.scrollTop + 1) && hasNextPage){
-      setPage(page + 1)
-      setHasNextPage(false)
-    }
-  }, [ page, setHasNextPage, hasNextPage ])
-
-  useEffect(_ => {
-    document.getElementById('scrollableList').addEventListener('scroll', definePosition)
-    return _ => document.getElementById('scrollableList').removeEventListener('scroll', definePosition)
-  })
+  useScrollableList(page, setHasNextPage, hasNextPage, setPage)
 
   return(
     <div id="scrollableList">

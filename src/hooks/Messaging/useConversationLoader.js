@@ -71,5 +71,5 @@ export default (page, setError) => {
     }
   }, [ convToAdd, convLength, convs ])
 
-  return [ loading, convs, hasNextPage, convLength, setConvToDelete, setConvToEdit, setConvToAdd ]
+  return [ loading, convs, hasNextPage, convLength, setConvToDelete, setConvToEdit, setConvToAdd, setHasNextPage ]
 }

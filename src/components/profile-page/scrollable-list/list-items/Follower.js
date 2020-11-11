@@ -14,7 +14,7 @@ export default ({ data }) => (
       {controls => 
         controls &&
           <div id="reqButtons">
-            <ContactUser userId={data.user._id}/>
+            <ContactUser username={data.user.username}/>
             <DecreaseUserStatsContext.Consumer>
               {decrease => 
                 <SetItemToDeleteContext.Consumer>
