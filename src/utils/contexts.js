@@ -77,5 +77,9 @@ export const SetConvToEditContext = createContext(_ => {})
 export const SetConvToAddContext = createContext(_ => {})
 
 export const CurrentlyOpenedConvContext = createContext({ value: null, set: _ => {}})
+
+export const QuitHandlerContext = createContext(_ => {})
+
+export const ReceiverContext = createContext('')
 //export
 //

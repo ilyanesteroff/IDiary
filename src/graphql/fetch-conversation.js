@@ -15,14 +15,6 @@ export default username => {
             }
             updatedAt
           }
-          messages {
-            _id
-            author
-            text
-            writtenAt
-            seen
-            liked
-          }
           exists
           ifUserAllowed
         }

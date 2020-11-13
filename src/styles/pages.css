@@ -66,6 +66,18 @@
   text-align: center;
   z-index: 1;
 }
+#Conversation{
+  margin: auto 10vw;
+  padding: 1rem 2%;
+  height: calc(100vh - 4.7rem);
+  position: relative;
+}
+.DarkPage #Conversation{
+  background-color: #222f2f;
+}
+.BrightPage #Conversation{
+  background-color: #eff;
+}
 #UserSection{
   margin: auto 10vw;
   padding: 1rem 2%;
@@ -177,11 +189,11 @@
   overflow: scroll;
 }
 .DarkPage #scrollableList,
-.DarkPage #scrollableList a{
+.DarkPage a{
   color: #efefff; 
 }
 .BrightPage #scrollableList, 
-.BrightPage #scrollableList a{
+.BrightPage a{
   color: #22222a;
 }
 #FilterTodos{
@@ -526,6 +538,14 @@
     text-align: center;
     width: auto;
     transition: height .5s ease;
+  }
+  #Conversation{
+    width: 100vw;
+    z-index: 2;
+    position: fixed;
+    top: 4.7rem;
+    left: 0;
+    margin: 0;
   }
   #UserSection{
     margin: 2rem auto;

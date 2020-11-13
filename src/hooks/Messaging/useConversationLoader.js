@@ -54,10 +54,9 @@ export default (page, setError) => {
 
   useEffect(_ => {
     if(convToEdit !== null){
-      const index = convs.findIndex(c => c._id === convToEdit._id)
       setConvs([
-        ...convs,
-        convs[index] = convToEdit 
+        convToEdit,
+        ...convs.filter(c => c._id !== convToEdit._id)
       ])
       setConvToEdit(null)
     }

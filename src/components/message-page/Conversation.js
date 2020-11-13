@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons'
-import { CurrentlyOpenedConvContext } from '../../utils/contexts'
+import React, { useEffect, useState, useRef, useContext } from 'react'
+import { Redirect } from 'react-router-dom'
+import * as Ctx from '../../utils/contexts'
+import UpperSection from './UpperSection'
+import WriteMessage from './WriteMessage'
 import _fetch from '../../api/messaging/fetch'
 import query from '../../graphql/fetch-conversation'
+import userIdComparer from '../../utils/userIdComparer'
 
 
 export default _ => {
-  const [ possibleConversation, setPossibleConversation ] = useState(null)
+  const CurrentConv = _ => useContext(Ctx.CurrentlyOpenedConvContext)
+  const setConv = useRef(CurrentConv().set)
+
   const [ warning, setWarning ] = useState(false)
-  const [ _with, setWith ] = useState('')
+  const [ receiver, setReceiver ] = useState('')
 
   useEffect(_ => {
     const potentialUsername = window.location.pathname.split('/')[3]
@@ -20,37 +23,43 @@ export default _ => {
           if(!res.conversation.ifUserAllowed)
             return setWarning(true)
           if(!res.conversation.exists)
-            return setWith(potentialUsername)
-          
-          return setPossibleConversation(res.conversation)
+            return setReceiver(potentialUsername)
+
+          return setConv.current(res.conversation.conversation)
         })
         .catch(err => console.log(err))
     }
   }, [ ])
 
   return(
-    <CurrentlyOpenedConvContext.Consumer>
+    <Ctx.CurrentlyOpenedConvContext.Consumer>
       {({ value, set }) =>     
         <>
-          {(value || possibleConversation) &&
-            <div id="UserSection">
-              <Link to="/messages">
-                <FontAwesomeIcon
-                  icon={faArrowAltCircleLeft}
-                  onClick={_ => {
-                    set(null)
-                    setPossibleConversation(null)
-                  }}
-                />
-              </Link>
-              <h4>{JSON.stringify(value || possibleConversation)}</h4>
-            </div>
-          }
+          <Ctx.QuitHandlerContext.Provider value={_ => {
+            set(null)
+          }}>
+            {value &&
+              <div id="Conversation">
+                <Ctx.ReceiverContext.Provider value={value.participants[value.participants.findIndex(p => !userIdComparer(p._id))].username}>
+                  <UpperSection/>
+                  <WriteMessage/>
+                </Ctx.ReceiverContext.Provider>
+              </div>
+            }
+            {receiver && 
+              <div id="Conversation">
+                <Ctx.ReceiverContext.Provider value={receiver}>
+                  <UpperSection/>
+                  <WriteMessage/>
+                </Ctx.ReceiverContext.Provider>
+              </div>
+            }
+          </Ctx.QuitHandlerContext.Provider>
           {warning  &&
             <Redirect to="/messages"/>
           }
         </>
       }
-    </CurrentlyOpenedConvContext.Consumer>
+    </Ctx.CurrentlyOpenedConvContext.Consumer>
   )
 }
