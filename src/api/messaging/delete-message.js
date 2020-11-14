@@ -4,16 +4,13 @@ import { tokenFromStorage as token } from '../../utils/tokens'
 
 
 export default (messageId) => {
-  headers.set('Authorization', `Bearer ${token}`)
+  headers.set('Authorization', `Bearer ${token()}`)
   return fetch(`${apiLink}/deleteMessage/${messageId}`, {
     method: 'DELETE',
     headers: headers
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.messageDeleted
-    })
+    .then(res => res)
     .catch(err => {
       console.log(err.message)
       return false

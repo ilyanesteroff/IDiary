@@ -257,6 +257,9 @@
 .hiddenForm form{
   top: -55vh;
 }
+#shortcut{
+  padding: .9rem;
+}
 #request{
   padding: .5rem;
   transition: background-color .3s;

@@ -81,5 +81,9 @@ export const CurrentlyOpenedConvContext = createContext({ value: null, set: _ =>
 export const QuitHandlerContext = createContext(_ => {})
 
 export const ReceiverContext = createContext('')
+
+export const SetMessageContext = createContext({})
+
+export const SetMessageToEditLocallyContext = createContext({ value: null, set: _ => {} })
 //export
 //

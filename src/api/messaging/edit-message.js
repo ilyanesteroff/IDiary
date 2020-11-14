@@ -4,7 +4,7 @@ import { tokenFromStorage as token } from '../../utils/tokens'
 
 
 export default ( messageId, newText ) => {
-  headers.set('Authorization', `Bearer ${token}`)
+  headers.set('Authorization', `Bearer ${token()}`)
   return fetch(apiLink + '/updateMessage', {
     method: 'PATCH',
     headers: headers,
@@ -14,7 +14,7 @@ export default ( messageId, newText ) => {
     })
   })
     .then(res => res.json())
-    .then(res => res.messageUpdated)
+    .then(res => res)
     .catch(err => {
       console.log(err.message)
       return false

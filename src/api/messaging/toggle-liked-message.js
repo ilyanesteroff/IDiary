@@ -14,10 +14,7 @@ export default ( messageId, liked ) => {
     method: 'PATCH'
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.liked
-    })
+    .then(res => res.liked)
     .catch(err => {
       console.log(err.message)
       return false

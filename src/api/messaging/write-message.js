@@ -15,10 +15,7 @@ export default (text, receiver, convId) => {
     })
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      res.messageWritten
-    })
+    .then(res => res)
     .catch(err => {
       console.log(err.message)
       return ''

@@ -57,7 +57,7 @@ export default (page, setError) => {
       setConvs([
         convToEdit,
         ...convs.filter(c => c._id !== convToEdit._id)
-      ])
+      ].sort((c1, c2) => new Date(c1.updatedAt).getTime() - new Date(c2.updatedAt).getTime()))
       setConvToEdit(null)
     }
   }, [ convToEdit, convs ])

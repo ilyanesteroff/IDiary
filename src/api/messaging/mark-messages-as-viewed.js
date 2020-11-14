@@ -13,10 +13,7 @@ export default convId => {
     headers: headers
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.messagesViewed
-    })
+    .then(res => res.messagesViewed)
     .catch(err => {
       console.log(err.message)
       return false

@@ -16,6 +16,7 @@ export default page => {
             writtenAt
             seen
             liked
+            to
           }
           updatedAt
           unseenMessages

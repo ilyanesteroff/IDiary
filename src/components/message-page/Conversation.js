@@ -2,9 +2,11 @@ import React, { useEffect, useState, useRef, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
 import * as Ctx from '../../utils/contexts'
 import UpperSection from './UpperSection'
+import MessagingSection from './MessagingSection'
 import WriteMessage from './WriteMessage'
 import _fetch from '../../api/messaging/fetch'
 import query from '../../graphql/fetch-conversation'
+import viewMessages from '../../actionHandlers/ViewMessages'
 import userIdComparer from '../../utils/userIdComparer'
 
 
@@ -42,7 +44,11 @@ export default _ => {
               <div id="Conversation">
                 <Ctx.ReceiverContext.Provider value={value.participants[value.participants.findIndex(p => !userIdComparer(p._id))].username}>
                   <UpperSection/>
-                  <WriteMessage/>
+                  <Ctx.SetConvToEditContext.Consumer>
+                    {edit =>
+                      <MessagingSection convId={value._id} markMessages={async _ => await viewMessages(value, edit)}/>
+                    }
+                  </Ctx.SetConvToEditContext.Consumer>
                 </Ctx.ReceiverContext.Provider>
               </div>
             }

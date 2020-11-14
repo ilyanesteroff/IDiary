@@ -14,10 +14,7 @@ export default (receiver, messageText) => {
     })
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.conversationCreated
-    })
+    .then(res => res.conversationCreated)
     .catch(err => {
       console.log(err.message)
       return false

@@ -19,11 +19,10 @@ export default (page, convID, setError) => {
           .then(res1 => {
             setTotalMessages(res1)
             return _fetch(query(page, convID))
-          })
-          .then(res => {
-            if(res1 > res.data.messages.length) setHasNextPage(true)
-            res.data.messages.shift()
-            return setMessages(res.data.messages)
+              .then(res => {
+                if(res1 > res.messages.length) setHasNextPage(true)
+                return setMessages(res.messages)
+              })
           })
           .catch(err => {
             console.log(err.message)
@@ -40,7 +39,7 @@ export default (page, convID, setError) => {
             return setError(err.message)
           })
           .finally(_ => setLoading(false))
-  , [ page, totalMessages, messages, setError ])
+  , [ page, totalMessages, messages, setError, convID ])
 
   useEffect(_ => {
     setLoading(true)
@@ -50,11 +49,11 @@ export default (page, convID, setError) => {
 
   useEffect(_ => {
     if(messageToAdd !== null){
-      setMessages([ messageToAdd, ...messages ])
+      setMessages([ ...messages, messageToAdd ])
       setTotalMessages(totalMessages + 1)
       setMessageToAdd(null)
     }
-  }, [ messageToAdd ])
+  }, [ messageToAdd, messages, totalMessages ])
 
   useEffect(_ => {
     if(messageToDelete !== null){
@@ -62,15 +61,19 @@ export default (page, convID, setError) => {
       setTotalMessages(totalMessages - 1)
       setMessageToDelete(null)
     }
-  }, [ messageToDelete ])
+  }, [ messageToDelete, messages, totalMessages ])
   
   useEffect(_ => {
     if(messageToEdit !== null){
-      const message = messages.findIndex(m => m._id === messageToEdit)
-      setMessages([ ...messages, [message] = messageToEdit ])
+      const updatedMessages = messages.map(m => 
+        m._id === messageToEdit._id
+          ? messageToEdit
+          : m
+      )
+      setMessages(updatedMessages)
       setMessageToEdit(null)
     }
-  }, [ messageToEdit ])
+  }, [ messageToEdit, messages ])
 
   return [ messages, loading, hasNextPage, setHasNextPage, setMessageToAdd, setMessageToDelete, setMessageToEdit ]
 }

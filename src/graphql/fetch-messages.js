@@ -12,6 +12,7 @@ export default (page, convId) => {
           writtenAt
           seen
           liked
+          to
         }
       }
     `,
