@@ -46,7 +46,7 @@ export default _ => {
                   <UpperSection/>
                   <Ctx.SetConvToEditContext.Consumer>
                     {edit =>
-                      <MessagingSection convId={value._id} markMessages={async _ => await viewMessages(value, edit)}/>
+                      <MessagingSection conv={value} markMessages={async _ => await viewMessages(value, edit)}/>
                     }
                   </Ctx.SetConvToEditContext.Consumer>
                 </Ctx.ReceiverContext.Provider>

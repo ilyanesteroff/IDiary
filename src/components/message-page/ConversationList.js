@@ -13,11 +13,11 @@ export default ({ hasNextPage, setPage, setHasNextPage, page }) => {
       <Ctx.ConversationsContext.Consumer>
         {convs => 
           <>
-            {convs.total && convs.total > 0 &&
-              convs.convs.map((c, i) => <ConversationShortcut info={c} key={'shortcut' + i}/>)
+            {
+              convs.total === 0 && <h4>You have no conversations yet</h4>
             }
-            {convs.total && convs.total === 0 &&
-              <h4>You have no conversations yet</h4>
+            {
+              convs.total > 0 && convs.convs.map((c, i) => <ConversationShortcut info={c} key={'shortcut' + i}/>)
             }
           </>
         }

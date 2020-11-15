@@ -1,8 +1,9 @@
 import deleteMsg from '../api/messaging/delete-message'
 
 
-export default async ( msgId, deleteConv, edit, deleteMessage ) => {
-  const res = await deleteMsg(msgId)
+export default async ( msg, deleteConv, editMsg, edit, deleteMessage ) => {
+  setImmediate(_ => editMsg({ ...msg, loading: true }))
+  const res = await deleteMsg(msg._id)
   if(res.messageDeleted){
     if(res.conversationDeleted){
       setImmediate(_ => deleteConv())
@@ -11,6 +12,6 @@ export default async ( msgId, deleteConv, edit, deleteMessage ) => {
     if(res.conversation){
       edit(res.conversation)
     }
-    deleteMessage(msgId)
+    deleteMessage(msg._id)
   }
 }

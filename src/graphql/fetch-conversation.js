@@ -13,6 +13,14 @@ export default username => {
               lastname
               _id
             }
+            latestMessage {
+              author
+              text
+              writtenAt
+              seen
+              liked
+              to
+            }
             updatedAt
           }
           exists

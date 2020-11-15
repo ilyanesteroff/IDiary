@@ -24,7 +24,7 @@ export default ({ info, handleClick }) => (
                 <Ctx.SetConvToEditContext.Consumer>
                   {edit => 
                     <li onClick={async _ => 
-                      await deleteMsg(info._id, _ => deleteConv(conv._id), res => edit(res), id => setMessage.delete(id))
+                      await deleteMsg(info, _ => deleteConv(conv._id), setMessage.edit, edit, setMessage.delete)
                     }>
                       delete
                     </li>

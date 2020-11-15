@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import * as Ctx from '../../utils/contexts'
@@ -7,8 +7,6 @@ import createConv from '../../actionHandlers/CreateConv'
 
 
 export default ({ messageInput }) => {
-  const [ clicked, setClicked ] = useState(false)
-
   return(
     <Ctx.SetConvToEditContext.Consumer>
       {updateConv =>
@@ -22,25 +20,22 @@ export default ({ messageInput }) => {
                       {receiver => 
                         <FontAwesomeIcon
                           icon={faPaperPlane}
-                          onClick={async _ => {
-                            if(!clicked) {
-                              value 
-                                ? await writeMessage(
-                                    value, 
-                                    messageInput.current.value, 
-                                    val => setClicked(val), 
-                                    msg => setMsg.add(msg), 
-                                    data => updateConv(data)
-                                  )
-                                : await createConv(
-                                    messageInput.current.value, 
-                                    receiver, 
-                                    /*msg => setMsg.add(msg), */
-                                    conv => add(conv), 
-                                    conv => set(conv)
-                                  )
-                            }
-                          }}
+                          onClick={async _ => 
+                            value 
+                              ? await writeMessage(
+                                  value, 
+                                  messageInput, 
+                                  msg => setMsg.add(msg), 
+                                  msg => setMsg.edit(msg),
+                                  data => updateConv(data)
+                                )
+                              : await createConv(
+                                  messageInput, 
+                                  receiver, 
+                                  conv => add(conv), 
+                                  conv => set(conv)
+                                )
+                          }
                         />
                       }
                     </Ctx.ReceiverContext.Consumer>

@@ -8,12 +8,13 @@ export default info => {
   const [ opened, setOpened, ref ] = useOutsideClicker()
   const [ liked, setLiked ] = useState(info.liked || false)
   
-  const dblClickHandler = useCallback(_ => 
-    !userIdComparer(info.to) 
-       ? setOpened(!opened)
-       : toggleLike(info._id, !liked)
-          .then(res => setLiked(res.liked))
-  , [ info, liked, opened, setOpened ])
+  const dblClickHandler = useCallback(_ => {
+    if(!info.loading && info._id)
+      return !userIdComparer(info.to) 
+         ? setOpened(!opened)
+         : toggleLike(info._id, !liked)
+            .then(res => setLiked(res.liked))
+  }, [ info, liked, opened, setOpened ])
 
   return [ opened, val => setOpened(val), dblClickHandler, ref, liked ]
 }

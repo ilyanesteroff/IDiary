@@ -6,12 +6,11 @@ import Message from './Message'
 import * as Ctx from '../../utils/contexts'
 
 
-export default ({ convId, markMessages }) => {
+export default ({ conv, markMessages }) => {
   const [ page, setPage ] = useState(1)
   const [ msgToEditLocally, setMsgToEditLocally ] = useState(null)
-  
-  const [ messages, loading, hasNextPage, setHasNextPage, setMessageToAdd, setMessageToDelete, setMessageToEdit ] = useMessages(page, convId, val => {})
-  
+
+  const [ messages, loading, hasNextPage, setHasNextPage, setMessageToAdd, setMessageToDelete, setMessageToEdit ] = useMessages(page, conv, val => {})
   const definePosition = useCallback(e => {
     if(e.target.scrollTop === 0 && hasNextPage){
       setPage(page + 1)
@@ -31,6 +30,10 @@ export default ({ convId, markMessages }) => {
     markMessages()
   }, [ markMessages ])
 
+  useEffect(_ => {
+    setImmediate(_ => setPage(1))
+  }, [ conv._id ])
+
   return(    
     <Ctx.SetMessageContext.Provider value={
       { 
@@ -44,7 +47,7 @@ export default ({ convId, markMessages }) => {
           <div id="reversed-ScrollableList">
             { loading && <Spinner/> }
             {messages.length > 0 &&
-              messages.map(m => <Message key={m._id} info={m}/>)
+              messages.map((m, i) => <Message key={m._id || 'm' + i} info={m}/>)
             }
           </div>
           <WriteMessage/>

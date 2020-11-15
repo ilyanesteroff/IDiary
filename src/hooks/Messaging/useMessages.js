@@ -4,7 +4,7 @@ import _fetch from '../../api/messaging/fetch'
 import countMessages from '../../api/messaging/count-messages'
 
 
-export default (page, convID, setError) => {
+export default (page, conv, setError) => {
   const [ messages, setMessages ] = useState([]) 
   const [ totalMessages, setTotalMessages ] = useState(null)
   const [ messageToEdit, setMessageToEdit ] = useState(null)
@@ -13,12 +13,17 @@ export default (page, convID, setError) => {
   const [ loading, setLoading ] = useState(false)
   const [ hasNextPage, setHasNextPage ] = useState(false)
 
-  const fetchMessages = useCallback(_ => 
-    !totalMessages && page === 1 
-      ? countMessages(convID)
+  const fetchMessages = useCallback(_ => {   
+    if(conv.new){
+      setTotalMessages(1)
+      return setMessages([ ...messages, conv.latestMessage ])
+    }
+    setLoading(true)
+    return page === 1 
+      ? countMessages(conv._id)
           .then(res1 => {
             setTotalMessages(res1)
-            return _fetch(query(page, convID))
+            return _fetch(query(page, conv._id))
               .then(res => {
                 if(res1 > res.messages.length) setHasNextPage(true)
                 return setMessages(res.messages)
@@ -29,7 +34,7 @@ export default (page, convID, setError) => {
             return setError(err.message)
           })
           .finally(_ => setLoading(false))
-      : _fetch(query(page, convID))
+      : _fetch(query(page, conv._id))
           .then(res => {
             if(totalMessages > res.data.messages.length + messages.length) setHasNextPage(true)
             return setMessages(res.data.messages)
@@ -39,10 +44,18 @@ export default (page, convID, setError) => {
             return setError(err.message)
           })
           .finally(_ => setLoading(false))
-  , [ page, totalMessages, messages, setError, convID ])
+  }, [ page, totalMessages, messages, setError, conv._id, conv.latestMessage, conv.new ])
 
   useEffect(_ => {
-    setLoading(true)
+    if(!conv.new) {
+      setImmediate(_ => setMessages([]))
+      setImmediate(_ => setTotalMessages(null))
+      fetchMessages()
+    }
+  // eslint-disable-next-line
+  }, [ conv._id ])
+
+  useEffect(_ => {
     fetchMessages()
     // eslint-disable-next-line
   }, [ page ])
@@ -65,12 +78,21 @@ export default (page, convID, setError) => {
   
   useEffect(_ => {
     if(messageToEdit !== null){
-      const updatedMessages = messages.map(m => 
-        m._id === messageToEdit._id
-          ? messageToEdit
-          : m
-      )
-      setMessages(updatedMessages)
+      if(messageToEdit._id){
+        const updatedMessages = messages.map(m => 
+          m._id === messageToEdit._id
+            ? messageToEdit
+            : m
+        )
+        setMessages(updatedMessages)
+      } else if (messageToEdit.oldMessage) {
+        const mIndex = messages.findIndex(m => {
+          return (m.loading && m.writtenAt === messageToEdit.oldMessage.writtenAt && m.text === messageToEdit.oldMessage.text)
+        })
+        let updatedMessages = messages
+        updatedMessages[ mIndex ] = messageToEdit.verifiedMessage
+        setMessages(updatedMessages)
+      }
       setMessageToEdit(null)
     }
   }, [ messageToEdit, messages ])
