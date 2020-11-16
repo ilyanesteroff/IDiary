@@ -18,8 +18,8 @@ export default ({ messageInput }) => {
                   {add => 
                     <Ctx.ReceiverContext.Consumer>
                       {receiver => 
-                        <FontAwesomeIcon
-                          icon={faPaperPlane}
+                        <div 
+                          id="SendMsgBtn"
                           onClick={async _ => 
                             value 
                               ? await writeMessage(
@@ -36,7 +36,9 @@ export default ({ messageInput }) => {
                                   conv => set(conv)
                                 )
                           }
-                        />
+                        >
+                          <FontAwesomeIcon icon={faPaperPlane}/>
+                        </div>
                       }
                     </Ctx.ReceiverContext.Consumer>
                   }

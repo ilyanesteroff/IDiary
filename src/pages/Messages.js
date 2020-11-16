@@ -23,7 +23,7 @@ export default memo(_ => {
             <Ctx.SetConvToAddContext.Provider value={setConvToAdd}>
               <Ctx.SetConvToEditContext.Provider value={setConvToEdit}>
                 <Ctx.SetConvToDeleteContext.Provider value={setConvToDelete}>
-                  <div className={`${theme? 'Bright' : 'Dark'}Page Page`}>
+                  <div className={`${theme? 'Bright' : 'Dark'}Page Page`} id="messagingPage">
                     { error !== ''  && <h3>{error}</h3> }
                     { error === '' && 
                       <Ctx.CurrentlyOpenedConvContext.Provider value={{ value: currentConv, set: setCurrentConv }}>

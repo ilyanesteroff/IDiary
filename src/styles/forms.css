@@ -151,7 +151,8 @@ input::placeholder{
 .DarkModal #FormInModal input,
 .DarkModal #FormInModal textarea,
 .DarkLoginForm input,
-.DarkModal select{
+.DarkModal select,
+.DarkPage #WriteMessageSection textarea{
   background-color: #42424f;
   border: solid 1px  #42424f;
   color: #eeeeff;
@@ -161,7 +162,8 @@ input::placeholder{
 .BrightModal #FormInModal input,
 .BrightLoginForm input,
 .BrightModal select,
-.BrightModal #FormInModal textarea{
+.BrightModal #FormInModal textarea,
+.BrightPage #WriteMessageSection textarea{
   background-color: #d3d3ee;
   border: solid 1px  #d3d3ee;
   color: #222;
@@ -171,7 +173,8 @@ input::placeholder{
 .DarkModal #FormInModal input:focus,
 .DarkModal #FormInModal textarea:focus,
 .DarkModal select:focus,
-.DarkLoginForm input:focus{
+.DarkLoginForm input:focus,
+.DarkPage #WriteMessageSection textarea:focus{
   background-color: #222222;
   border-color: #3377ff;
   box-shadow: 0 0 .3vh #3377ff;
@@ -181,7 +184,8 @@ input::placeholder{
 .BrightModal #FormInModal input:focus,
 .BrightModal #FormInModal textarea:focus,
 .BrightModal select:focus,
-.BrightLoginForm input:focus{
+.BrightLoginForm input:focus,
+.BrightPage #WriteMessageSection textarea:focus{
   background-color: #fbfbff;
   box-shadow: 0 0 .3vh #3377ff;
   border-color: #3377ff;

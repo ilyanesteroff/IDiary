@@ -68,15 +68,143 @@
 }
 #Conversation{
   margin: auto 10vw;
-  padding: 1rem 2%;
   height: calc(100vh - 4.7rem);
   position: relative;
+  min-height: 270px;
+}
+#Conversation #Conversation-UpperSection{
+  display: flex;
+  justify-content: space-between;
+  padding: .5rem 2%;
+}
+#quitConversation{
+  margin-top: .2rem;
+  margin-left: 0.1rem;
+  transition: all .5s;
+}
+#quitConversation:hover{
+  margin-left: -0.1rem;
+  padding-right: .5rem;
+  transform: scale(1.1);
+}
+#quitConversation svg{
+  color: #3377ff;
+}
+#ReceiverUsername h2{
+  margin-top: .1rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: Montserrat;
+}
+.BrightPage #ReceiverUsername h2{
+  color: #333;
+}
+.DarkPage #ReceiverUsername h2{
+  color: #ddd;
+}
+#Conversation #ReceiverUsername{
+  text-align: center;
+}
+#WriteMessageSection{
+  position: absolute;
+  bottom: 2%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  width: 100%;
+  padding: .3rem .8rem;
+}
+#WriteMessageSection textarea{
+  height: 2rem;
+  border-radius: 1rem;
+  padding: .2rem .9rem;
+}
+#WriteMessageSection #WriteMessage-buttons{
+  margin: .2rem .4rem;
+  color: #fff;
+  display: flex;
+}
+#SendMsgBtn{
+  background-color: #3377ff;
+  padding: .4rem .45rem;
+  font-size: .7rem;
+}
+#EditMsgBtn{
+  background-color: #228855;
+  padding: .35rem .4rem;
+  margin-right: .3rem;
+  font-size: .8rem;
+}
+#CloseEditingBtn{
+  background-color: #cc3322;
+  padding: .33rem .5rem;
+  font-size: .85rem;
+}
+#WriteMessage-buttons div{
+  border-radius: 1.2rem;
+  margin-bottom: .5rem;
+}
+#WriteMessage-buttons svg{
+  transition: transform .1s;
+}
+#WriteMessage-buttons div:active svg{
+  transform: scale(1.3);
+}
+#reversed-ScrollableList{  
+  margin-top: .5rem;
+  padding: .5rem;
+  max-height: calc(100vh - 12rem);
+  overflow: scroll;
+}
+#reversed-ScrollableList #Message{
+  margin: .3rem;
+  padding: .4rem .7rem;
+  max-width: 70%;
+  border-radius: 1rem;
+}
+.SentMsg{
+  float: right;
+  clear: both;
+  text-align: right;
+  border: solid 2px #ff4444;
+}
+.IncomingMsg{
+  float: left;
+  clear: both;
+  text-align: left;
+  border: solid 2px #3377ff;
+}
+#Message #WrittenAtMsg{
+  text-align: right;
+  color: #888;
+  font-weight: 200;
+  font-size: .9rem;
+}
+#MsgTxt{
+  margin-bottom: .1rem;
+  font-family: Montserrat;
+}
+.BrightPage #WriteMessageSection textarea{
+  box-shadow: 0 0 .1rem #222222;
+}
+.DarkPage #WriteMessageSection textarea{
+  border: solid 1px #666;
+}
+.DarkPage #Conversation #Conversation-UpperSection{
+  background-color: #333;
+  border-bottom: solid .5px #666;
+}
+.BrightPage #Conversation #Conversation-UpperSection{
+  background-color: #eef;
+  border-bottom: solid .5px #bbb;
 }
 .DarkPage #Conversation{
-  background-color: #222f2f;
+  background-color: #222428;
+  box-shadow: 0 0 .1rem #eaeaff;
 }
 .BrightPage #Conversation{
-  background-color: #eff;
+  background-color: #fff;
+  box-shadow: 0 0 .1rem #333;
 }
 #UserSection{
   margin: auto 10vw;
@@ -128,7 +256,7 @@
 }
 #UserSection #username{
   font-weight: 400;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Montserrat, sans-serif;
   margin: .6rem auto;
 }
 #UserSection #userSection-flexItem{
@@ -189,11 +317,13 @@
   overflow: scroll;
 }
 .DarkPage #scrollableList,
-.DarkPage a{
+.DarkPage a,
+.DarkPage #MsgTxt{
   color: #efefff; 
 }
 .BrightPage #scrollableList, 
-.BrightPage a{
+.BrightPage a,
+.BrightPage #MsgTxt{
   color: #22222a;
 }
 #FilterTodos{
@@ -258,7 +388,43 @@
   top: -55vh;
 }
 #shortcut{
-  padding: .9rem;
+  padding: .2rem .1rem;
+  text-align: left;
+  padding-bottom: 1.1rem;
+}
+#shortcut #SecondParticipant{
+  margin-bottom: .2rem;
+  font-weight: 400;
+  font-size: 1.1rem;
+  transition: margin-left .6s;
+}
+#shortcut #updatedAt-conversation{
+  float: right;
+  clear: both;
+  font-size: 1rem;
+  font-weight: 200;
+  color: #888;
+}
+#shortcut #middle-section{
+  display: flex;
+  justify-content: space-between;
+}
+#shortcut #latestMsg{
+  padding-top: .1rem;
+  margin-bottom: .1rem;
+}
+.normal {
+  font-weight: 200;
+}
+.unseen {
+  font-weight: 600;
+  color: #3377ff;
+}
+#shortcut #unseenMessages{
+  background-color: #3377ff;
+  border-radius: 4rem;
+  padding: .05rem .4rem;
+  font-weight: 400;
 }
 #request{
   padding: .5rem;
@@ -520,6 +686,9 @@
   #deleteAccountOption svg{
     margin-left: 1vw;
   }
+  #shortcut:hover #SecondParticipant{
+    margin-left: 10%;
+  }
 }
 @media only screen and (min-height: 1000px) and (min-width: 1400px){
   #FilterTodos h2{
@@ -542,6 +711,10 @@
     width: auto;
     transition: height .5s ease;
   }
+  #shortcut #unseenMessages{
+    background-color: transparent;
+    color: #3377ff;
+  }
   #Conversation{
     width: 100vw;
     z-index: 2;
@@ -563,6 +736,22 @@
     display: flex;
     flex-wrap: wrap;
     max-height: 10rem;
+  }
+  #messagingPage {
+    margin-left: 0;
+  }
+  #messagingPage #EditProfile{
+    margin-top: 0;
+    height: calc(100vh - 4.7rem);
+    width: 100vw;
+  }
+  #messagingPage #scrollableList{
+    display: block;
+    min-height: calc(100vh - 7rem);
+  }
+  #shortcut{
+    max-width: 100%;
+    flex-basis: 100%;
   }
   #request{    
     max-width: 33%;
@@ -624,6 +813,9 @@
   }  
   #scrollableList{
     display: block;
+  }
+  #WriteMessageSection{
+    bottom: 1%;
   }
 }
 @media only screen and (min-height: 1000px) and (max-width: 1400px){
@@ -705,6 +897,16 @@
   #FilterTodos button,
   #createTodoForm button {
     width: 70%;
+  }    
+  #reversed-ScrollableList{  
+    max-height: calc(100vh - 10.5rem);
+  }
+  #messagingPage {
+    padding-top: 3.7rem;
+  }
+  #Conversation{
+    top: 3.7rem;
+    height: calc(100vh - 3.7rem);
   }
   .normalForm{
     height: 19rem;

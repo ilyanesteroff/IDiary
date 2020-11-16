@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import editMsg from '../../actionHandlers/EditMessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 import * as Ctx from '../../utils/contexts'
 
 
@@ -17,12 +17,16 @@ export default ({ messageInput, text }) => {
           {setMessage =>
             <Ctx.SetConvToEditContext.Consumer>
               {updateConv => 
-                <FontAwesomeIcon
-                  icon={faPencilAlt}
+                <div 
+                  id="EditMsgBtn"
                   onClick={async _ => 
                     await editMsg(value, messageInput, set, setMessage.edit, updateConv)
                   }
-                />
+                >
+                  <FontAwesomeIcon
+                    icon={faCheck}
+                  />
+                </div>
               }
             </Ctx.SetConvToEditContext.Consumer>
           }

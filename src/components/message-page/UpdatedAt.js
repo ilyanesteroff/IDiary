@@ -1,5 +1,6 @@
 import React from 'react'
 import { shortFormatedMonths } from '../../utils/months'
+import addZero from '../../utils/addZero'
 
 
 export default ({ time }) => {
@@ -8,15 +9,14 @@ export default ({ time }) => {
   
   let output
 
-  if(date.getFullYear() !== now.getFullYear()) output = `${date.getFullYear()} ${shortFormatedMonths[date.getUTCMonth()]} ${date.getDate()}`
+  if(date.getFullYear() !== now.getFullYear()) output = `${date.getFullYear()} ${shortFormatedMonths[date.getUTCMonth()]} ${addZero(date.getDate())}`
   else if(date.getMonth() !== now.getMonth() || now.getDate() - date.getDate() > 1)
-    output = `${shortFormatedMonths[date.getUTCMonth()]} ${date.getDate()}`
-  else if(now.getDate() - date.getDate() === 1) output = `Yesterday at ${date.getUTCHours()}:${date.getUTCMinutes()}`
-  else output = `today at ${date.getUTCHours()}:${date.getUTCMinutes()}` 
+    output = `${shortFormatedMonths[date.getUTCMonth()]} ${addZero(date.getDate())}`
+  else output = `${addZero(date.getUTCHours().toString())}:${addZero(date.getUTCMinutes().toString())}` 
   
   return(
-    <h4>
+    <h5 id="updatedAt-conversation">
       { output }
-    </h4>
+    </h5>
   )
 }

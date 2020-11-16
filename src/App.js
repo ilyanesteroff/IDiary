@@ -145,4 +145,7 @@ export default memo(_ => {
       </Contexts.UserIdContext.Provider>
     </Contexts.BrightThemeContext.Provider>
   )
+}, (props, nextProps)=> {
+    console.log(props, nextProps)
+    return true
 })

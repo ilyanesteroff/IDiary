@@ -1,8 +1,11 @@
 import React from 'react'
+import addZero from '../../utils/addZero'
+
 
 export default ({ time }) => {
   const date = new Date(time)
-  let formatedTime = `${date.getUTCHours()}:${date.getUTCMinutes()}:${date.getUTCSeconds()}`
+  
+  let formatedTime = `${addZero(date.getUTCHours().toString())}:${addZero(date.getUTCMinutes().toString())}`
 
-  return <p>{ formatedTime }</p>
+  return <p id="WrittenAtMsg">{ formatedTime }</p>
 }

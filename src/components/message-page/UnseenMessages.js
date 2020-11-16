@@ -4,5 +4,7 @@ import userIdComparer from '../../utils/userIdComparer'
 
 export default ({ info }) => 
   info.unseenMessages > 0 && userIdComparer(info.latestMessage.to)
-    ? <p>{ info.unseenMessages }</p>
+    ? <div id="unseenMessages">
+        <p>{ info.unseenMessages }</p>
+      </div>
     : null

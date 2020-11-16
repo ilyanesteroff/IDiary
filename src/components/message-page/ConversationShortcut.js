@@ -6,6 +6,7 @@ import UpdatedAt from './UpdatedAt'
 import LatestMessage from './LatestMessage'
 import UnseenMessages from './UnseenMessages'
 import viewMessages from '../../actionHandlers/ViewMessages'
+import userIdComparer from '../../utils/userIdComparer'
 
 
 export default ({ info }) => {
@@ -30,12 +31,12 @@ export default ({ info }) => {
               onClick={async _ => await viewMessages(info, edit)}
             >
               <div id="shortcut" onClick={_ => set(info)}>
-                <div>
-                  <Username participants={info.participants}/>
-                  <UpdatedAt time={info.updatedAt}/>
+                <Username participants={info.participants}/>
+                <div id="middle-section">
+                  <LatestMessage message={info.latestMessage} unseenMsgs={ info.unseenMessages > 0 && userIdComparer(info.latestMessage.to) }/>
+                  <UnseenMessages info={info}/>
                 </div>
-                <LatestMessage message={info.latestMessage}/>
-                <UnseenMessages info={info}/>
+                <UpdatedAt time={info.updatedAt}/>
               </div>
             </Link>
           }
