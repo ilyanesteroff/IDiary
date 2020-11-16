@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import _fetch from '../../api/messaging/fetch'
+import _fetch from '../../api/fetch'
 import queryConvs from '../../graphql/fetch-conversations'
 import queryConvLength from '../../graphql/fetch-conversation-length'
 

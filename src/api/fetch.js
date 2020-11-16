@@ -1,6 +1,6 @@
-import { graphqlLink } from '../../utils/serverUrl'
-import headers from '../../utils/headers'
-import { tokenFromStorage as token } from '../../utils/tokens'
+import { graphqlLink } from '../utils/serverUrl'
+import headers from '../utils/headers'
+import { tokenFromStorage as token } from '../utils/tokens'
 
 
 export default query => {

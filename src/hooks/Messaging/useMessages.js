@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
 import query from '../../graphql/fetch-messages'
-import _fetch from '../../api/messaging/fetch'
+import _fetch from '../../api/fetch'
 import countMessages from '../../api/messaging/count-messages'
 
 

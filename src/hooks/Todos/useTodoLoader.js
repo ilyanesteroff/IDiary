@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react'
-import fetchTodos from '../../api/todos/fetch-todos'
+import _fetch from '../../api/fetch'
+import queryTodos from '../../graphql/find-todos-for-user'
 import fetchTodoStats from '../../api/todos/fetch-todo-stats'
 
 
@@ -18,7 +19,7 @@ export default (page, setError, userId) => {
             setActiveTodos(res1.data.user.ActiveTodos)
             setFullfilledTodos(res1.data.user.FullfilledTodos)          
             if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos !== 0) {
-              return fetchTodos(page, userId)
+              return _fetch(queryTodos(page, userId))
                 .then(res => {
                   setLoadingTodos(false)
                   setTodos([...res.data.todos])
@@ -33,7 +34,7 @@ export default (page, setError, userId) => {
             }
           })
           .catch(err => setError(err.message))
-      : fetchTodos(page)
+      : _fetch(queryTodos(page, userId))
           .then(res => {
             setLoadingTodos(false) 
             setTodos([...todos, ...res.data.todos])
