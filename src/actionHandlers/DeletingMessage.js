@@ -3,6 +3,7 @@ import deleteMsg from '../api/messaging/delete-message'
 
 export default async ( msg, deleteConv, editMsg, edit, deleteMessage ) => {
   setImmediate(_ => editMsg({ ...msg, loading: true }))
+  deleteMessage(msg._id)
   const res = await deleteMsg(msg._id)
   if(res.messageDeleted){
     if(res.conversationDeleted){
@@ -12,6 +13,5 @@ export default async ( msg, deleteConv, editMsg, edit, deleteMessage ) => {
     if(res.conversation){
       edit(res.conversation)
     }
-    deleteMessage(msg._id)
   }
 }

@@ -8,7 +8,7 @@ import handleClick from '../actionHandlers/LoginForm'
 import useComplainLog from '../hooks/useComplainLog'
 
 
-export default memo(({theme}) => {
+export default memo(({ theme }) => {
   const password = useRef(null)
   const email = useRef(null)
   const session = useRef(null)

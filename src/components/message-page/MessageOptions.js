@@ -1,17 +1,22 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import * as Ctx from '../../utils/contexts'
 import deleteMsg from '../../actionHandlers/DeletingMessage'
 
 
 export default ({ info, handleClick }) => (
-  <ul>
+  <ul id="msgOptions">
     <Ctx.SetMessageToEditLocallyContext.Consumer>
       {({ set }) =>
         <li onClick={_ => {
           setImmediate(_ => set(info))
           handleClick()
         }}>
-          edit
+          <FontAwesomeIcon
+            id="EditMsg"
+            icon={faPencilAlt}
+          />
         </li>
       }
     </Ctx.SetMessageToEditLocallyContext.Consumer>
@@ -26,7 +31,10 @@ export default ({ info, handleClick }) => (
                     <li onClick={async _ => 
                       await deleteMsg(info, _ => deleteConv(conv._id), setMessage.edit, edit, setMessage.delete)
                     }>
-                      delete
+                      <FontAwesomeIcon
+                        id="DeleteMsg"
+                        icon={faTrashAlt}
+                      />
                     </li>
                   }
                 </Ctx.SetConvToEditContext.Consumer>

@@ -1,20 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCogs } from '@fortawesome/free-solid-svg-icons'
 import Option from './Option'
+import useOutsideClicker from '../../../hooks/useOutsideClicker'
 import { SetBlockingUserContext } from '../../../utils/contexts'
 
 
 export default _ => {
-  const [ opened, setOpened ] = useState(false)
-  const container = useRef(null)
-
-  const handleClick = event => container.current && !container.current.contains(event.target) && setOpened(false)
-
-  useEffect(_ => {
-    document.addEventListener('click', handleClick)
-    return _ => document.removeEventListener('click', handleClick)
-  })
+  const [ opened, setOpened, container ] = useOutsideClicker()
 
   return(
     <>

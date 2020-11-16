@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, memo } from 'react'
 import useMessages from '../../hooks/Messaging/useMessages'
 import Spinner from '../spiners/BigSpinner'
 import WriteMessage from './WriteMessage'
 import Message from './Message'
 import * as Ctx from '../../utils/contexts'
 
-
-export default ({ conv, markMessages }) => {
+  
+export default memo(({ conv, markMessages }) => {
   const [ page, setPage ] = useState(1)
   const [ msgToEditLocally, setMsgToEditLocally ] = useState(null)
 
@@ -55,4 +55,6 @@ export default ({ conv, markMessages }) => {
       </Ctx.SetMessageToEditLocallyContext.Provider>
     </Ctx.SetMessageContext.Provider>
   )
-}
+}, (prev, next) => {
+  return prev.conv === next.conv
+})

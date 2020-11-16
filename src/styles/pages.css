@@ -161,6 +161,44 @@
   padding: .4rem .7rem;
   max-width: 70%;
   border-radius: 1rem;
+  position: relative;
+}
+#HeartIcon{  
+  position: absolute;
+  bottom: -.5rem;
+  right: -.5rem;
+  color: #ff4444;
+  transition: transform .3s;
+}
+.Like{
+  transform: scale(1);
+  animation: alternate 1s heartbeat;
+}
+.noLike{
+  transform: scale(0);
+}
+@keyframes heartbeat{
+  0%{transform: scale( 1 );}
+  50%{transform: scale( 1.25 );}
+  100%{transform: scale( 1 );}
+}
+#msgOptions{
+  position: absolute;
+  left: -2.2rem;
+  top: 0;
+  text-align: left;
+  padding: .17rem .2rem;
+  border: solid 2px #3377ff;
+  border-radius: 1rem;
+}
+#msgOptions li{
+  padding: .1rem .1rem;
+}
+#EditMsg{
+  color: #228855;
+}
+#DeleteMsg{
+  color: #ff4444;
 }
 .SentMsg{
   float: right;
