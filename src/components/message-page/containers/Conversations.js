@@ -1,6 +1,6 @@
 import React from 'react'
 import ConversationList from './ConversationList'
-import * as Ctx from '../../utils/contexts'
+import * as Ctx from '../../../utils/contexts'
 
 
 export default () => {

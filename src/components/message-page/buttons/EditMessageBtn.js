@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import editMsg from '../../actionHandlers/EditMessage'
+import editMsg from '../../../actionHandlers/EditMessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
-import * as Ctx from '../../utils/contexts'
+import * as Ctx from '../../../utils/contexts'
 
 
 export default ({ messageInput, text }) => {

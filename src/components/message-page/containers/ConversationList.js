@@ -1,8 +1,8 @@
 import React from 'react'
-import * as Ctx from '../../utils/contexts'
-import useScrollableList from '../../hooks/useScrollableList'
-import ConversationShortcut from './ConversationShortcut'
-import Spinner from '../spiners/BigSpinner'
+import * as Ctx from '../../../utils/contexts'
+import useScrollableList from '../../../hooks/useScrollableList'
+import ConversationShortcut from '../shortcut/index'
+import Spinner from '../../spiners/BigSpinner'
 
 
 export default ({ hasNextPage, setPage, setHasNextPage, page }) => {

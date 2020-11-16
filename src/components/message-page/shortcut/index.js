@@ -1,12 +1,12 @@
 import React, { useEffect, useContext, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { CurrentlyOpenedConvContext, SetConvToEditContext } from '../../utils/contexts'
+import { CurrentlyOpenedConvContext, SetConvToEditContext } from '../../../utils/contexts'
 import Username from './SecondUser'
 import UpdatedAt from './UpdatedAt'
 import LatestMessage from './LatestMessage'
 import UnseenMessages from './UnseenMessages'
-import viewMessages from '../../actionHandlers/ViewMessages'
-import userIdComparer from '../../utils/userIdComparer'
+import viewMessages from '../../../actionHandlers/ViewMessages'
+import userIdComparer from '../../../utils/userIdComparer'
 
 
 export default ({ info }) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import userIdComparer from '../../utils/userIdComparer'
+import userIdComparer from '../../../utils/userIdComparer'
 
 
 export default ({ info }) => 

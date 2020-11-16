@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
-import SendMessageBtn from './SendMessageBtn'
-import EditMessageBtn from './EditMessageBtn'
-import CloseEditingBtn from './CloseEditingBtn'
-import * as Ctx from '../../utils/contexts'
+import SendMessageBtn from '../buttons/SendMessageBtn'
+import EditMessageBtn from '../buttons/EditMessageBtn'
+import CloseEditingBtn from '../buttons/CloseEditingBtn'
+import * as Ctx from '../../../utils/contexts'
 
 
 export default _ => {

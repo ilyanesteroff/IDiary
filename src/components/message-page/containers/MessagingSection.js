@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback, memo } from 'react'
-import useMessages from '../../hooks/Messaging/useMessages'
-import Spinner from '../spiners/BigSpinner'
-import WriteMessage from './WriteMessage'
-import Message from './Message'
-import * as Ctx from '../../utils/contexts'
+import useMessages from '../../../hooks/Messaging/useMessages'
+import Spinner from '../../spiners/BigSpinner'
+import WriteMessage from '../message/WriteMessage'
+import Message from '../message/index'
+import * as Ctx from '../../../utils/contexts'
 
   
 export default memo(({ conv, markMessages }) => {

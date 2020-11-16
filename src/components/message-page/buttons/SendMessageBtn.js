@@ -1,9 +1,9 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import * as Ctx from '../../utils/contexts'
-import writeMessage from '../../actionHandlers/WriteMessage'
-import createConv from '../../actionHandlers/CreateConv'
+import * as Ctx from '../../../utils/contexts'
+import writeMessage from '../../../actionHandlers/WriteMessage'
+import createConv from '../../../actionHandlers/CreateConv'
 
 
 export default ({ messageInput }) => {

@@ -1,6 +1,6 @@
 import React from 'react'
-import QuitConversation from './QuitConversation'
-import Receiver from './Receiver'
+import QuitConversation from '../buttons/QuitConversation'
+import Receiver from '../message/Receiver'
 
 
 export default _ => (

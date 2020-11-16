@@ -1,6 +1,6 @@
 import React from 'react'
-import { shortFormatedMonths } from '../../utils/months'
-import addZero from '../../utils/addZero'
+import { shortFormatedMonths } from '../../../utils/months'
+import addZero from '../../../utils/addZero'
 
 
 export default ({ time }) => {

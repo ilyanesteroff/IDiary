@@ -1,9 +1,9 @@
 import React from 'react'
 import MessageOptions from './MessageOptions'
 import WrittenAt from './WrittenAt'
-import useMessageManager from '../../hooks/Messaging/useMessageManager'
+import useMessageManager from '../../../hooks/Messaging/useMessageManager'
 import LikedIcon from './LikedIcon'
-import userIdComparer from '../../utils/userIdComparer'
+import userIdComparer from '../../../utils/userIdComparer'
 
 
 export default ({ info }) => {

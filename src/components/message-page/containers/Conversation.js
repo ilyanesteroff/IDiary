@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef, useContext } from 'react'
 import { Redirect } from 'react-router-dom'
-import * as Ctx from '../../utils/contexts'
+import * as Ctx from '../../../utils/contexts'
 import UpperSection from './UpperSection'
 import MessagingSection from './MessagingSection'
-import WriteMessage from './WriteMessage'
-import _fetch from '../../api/messaging/fetch'
-import query from '../../graphql/fetch-conversation'
-import viewMessages from '../../actionHandlers/ViewMessages'
-import userIdComparer from '../../utils/userIdComparer'
+import WriteMessage from '../message/WriteMessage'
+import _fetch from '../../../api/messaging/fetch'
+import query from '../../../graphql/fetch-conversation'
+import viewMessages from '../../../actionHandlers/ViewMessages'
+import userIdComparer from '../../../utils/userIdComparer'
 
 
 export default _ => {

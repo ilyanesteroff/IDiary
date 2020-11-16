@@ -1,5 +1,5 @@
 import React from 'react'
-import addZero from '../../utils/addZero'
+import addZero from '../../../utils/addZero'
 
 
 export default ({ time }) => {

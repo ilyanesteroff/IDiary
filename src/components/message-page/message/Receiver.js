@@ -1,5 +1,5 @@
 import React from 'react'
-import { ReceiverContext } from '../../utils/contexts'
+import { ReceiverContext } from '../../../utils/contexts'
 
 
 export default _ => (

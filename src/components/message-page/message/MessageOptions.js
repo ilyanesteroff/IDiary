@@ -1,8 +1,8 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import * as Ctx from '../../utils/contexts'
-import deleteMsg from '../../actionHandlers/DeletingMessage'
+import * as Ctx from '../../../utils/contexts'
+import deleteMsg from '../../../actionHandlers/DeletingMessage'
 
 
 export default ({ info, handleClick }) => (

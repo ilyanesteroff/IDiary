@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import useWindowResizer from '../../hooks/useWindowResizer'
+import useWindowResizer from '../../../hooks/useWindowResizer'
+
 
 export default ({ message, unseenMsgs }) => {
   const [ width ] = useWindowResizer()
