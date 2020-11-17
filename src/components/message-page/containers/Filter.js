@@ -1,16 +1,17 @@
-import React, { forwardRef, useState } from 'react'
+import React, { useState, forwardRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
-import FilterForm from '../../../forms/FilterForm'
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
+import FilterForm from '../../../forms/FilterMessagesForm'
 
 
 export default forwardRef((props, refs) => {
   const [ hideForm, setHideForm ] = useState(false)
+
   return(
-    <div id="FilterTodos">
+    <div id="RightSideBar">
       <h2>
-        Filter 
+        Filter
         <div 
           id="HideFilter" 
           onClick={_ => setHideForm(!hideForm)}
@@ -19,7 +20,7 @@ export default forwardRef((props, refs) => {
         </div>
       </h2>
       <div id="FilterTodos-form" className={hideForm? 'hiddenForm' : 'normalForm'}>
-        <FilterForm refs={refs} cHandlers={props.cHandlers}/>
+        <FilterForm ref={refs} cHandlers={props.cHandlers}/>
       </div>
     </div>
   )

@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 export default _ => (
   <head>
     <meta charSet="utf-8" />

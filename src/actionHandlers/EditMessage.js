@@ -1,7 +1,7 @@
 import edit from '../api/messaging/edit-message'
 
 
-export default async (msg, messageInput, setMsgToEditLocally, setMsgToEdit, updateConv) => {    
+export default async (conv, msg, messageInput, setMsgToEditLocally, setMsgToEdit, updateConv) => {    
   const txt = messageInput.current.value
   messageInput.current.value = ''
   
@@ -12,6 +12,12 @@ export default async (msg, messageInput, setMsgToEditLocally, setMsgToEdit, upda
   setMsgToEditLocally(null)
   const res = await edit(msg._id, txt)
   if(res.messageUpdated){
-    if(res.conversation) updateConv(res.conversation)
+    console.log(res.conversationUpdated)
+    if(res.conversationUpdated) updateConv({
+      ...conv, 
+      latestMessage: {
+        text: txt
+      }
+    })
   }
 }

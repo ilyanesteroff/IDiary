@@ -6,7 +6,7 @@ import ScrollableList from '../scrollable-list/index'
 export default ({ userId, username }) => (
   <ViewUserStatsContext.Consumer>
     {({value}) =>
-      <div id="UserFriendBar">
+      <div id="RightSideBar">
         <UserIdContext.Consumer>
           {_userId =>
             <h2>

@@ -22,8 +22,8 @@ export default (page, setError, userId) => {
               return _fetch(queryTodos(page, userId))
                 .then(res => {
                   setLoadingTodos(false)
-                  setTodos([...res.data.todos])
-                  if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.data.todos.length) setNextPage(true)
+                  setTodos([...res.todos])
+                  if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.todos.length) setNextPage(true)
                 })
                 .catch(err => {
                   setLoadingTodos(false)
@@ -37,8 +37,8 @@ export default (page, setError, userId) => {
       : _fetch(queryTodos(page, userId))
           .then(res => {
             setLoadingTodos(false) 
-            setTodos([...todos, ...res.data.todos])
-            if(fullfilledTodos + activeTodos > todos.length + res.data.todos.length) setNextPage(true)
+            setTodos([...todos, ...res.todos])
+            if(fullfilledTodos + activeTodos > todos.length + res.todos.length) setNextPage(true)
           })
           .catch(err => setError(err.message))
   , [ userId, activeTodos, fullfilledTodos, page, setError, todos ])

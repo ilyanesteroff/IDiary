@@ -1,71 +1,73 @@
-import React, { useEffect, useState, useRef, useContext } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useEffect, useState, useCallback, memo } from 'react'
 import * as Ctx from '../../../utils/contexts'
-import UpperSection from './UpperSection'
 import MessagingSection from './MessagingSection'
-import WriteMessage from '../message/WriteMessage'
-import _fetch from '../../../api/fetch'
-import query from '../../../graphql/fetch-conversation'
+import UpperSection from './UpperSection'
+import Filter from './Filter'
 import viewMessages from '../../../actionHandlers/ViewMessages'
 import userIdComparer from '../../../utils/userIdComparer'
+import useMessages from '../../../hooks/Messaging/useMessages'
+import useMessageFilter from '../../../hooks/Messaging/useMessageFilter'
 
 
-export default _ => {
-  const CurrentConv = _ => useContext(Ctx.CurrentlyOpenedConvContext)
-  const setConv = useRef(CurrentConv().set)
+export default memo(({ conv }) => {
+  const [ page, setPage ] = useState(1)
 
-  const [ warning, setWarning ] = useState(false)
-  const [ receiver, setReceiver ] = useState('')
+  const [ messages, loading, hasNextPage, setHasNextPage, setMessageToAdd, setMessageToDelete, setMessageToEdit ] = useMessages(page, conv, _ => {})
+  
+  const [ messagesToExpose, refs, changeHandlers ] = useMessageFilter(messages)
+
+  const definePosition = useCallback(e => {
+    if(e.target.scrollTop === 0 && hasNextPage){
+      setPage(page + 1)
+      setHasNextPage(false)
+    }
+    // eslint-disable-next-line 
+  }, [ page, setHasNextPage, hasNextPage ])
 
   useEffect(_ => {
-    const potentialUsername = window.location.pathname.split('/')[3]
-    if(potentialUsername){
-      _fetch(query(potentialUsername))
-        .then(res => {
-          if(!res.conversation.ifUserAllowed)
-            return setWarning(true)
-          if(!res.conversation.exists)
-            return setReceiver(potentialUsername)
-
-          return setConv.current(res.conversation.conversation)
-        })
-        .catch(err => console.log(err))
-    }
-  }, [ ])
+    setImmediate(_ => setPage(1))
+  }, [ conv._id ])
 
   return(
     <Ctx.CurrentlyOpenedConvContext.Consumer>
-      {({ value, set }) =>     
+      {({ set }) =>     
         <>
           <Ctx.QuitHandlerContext.Provider value={_ => {
             set(null)
           }}>
-            {value &&
+            <>
               <div id="Conversation">
-                <Ctx.ReceiverContext.Provider value={value.participants[value.participants.findIndex(p => !userIdComparer(p._id))].username}>
+                <Ctx.ReceiverContext.Provider value={conv.participants[conv.participants.findIndex(p => !userIdComparer(p._id))].username}>
                   <UpperSection/>
                   <Ctx.SetConvToEditContext.Consumer>
                     {edit =>
-                      <MessagingSection conv={value} markMessages={async _ => await viewMessages(value, edit)}/>
+                      <Ctx.SetMessageContext.Provider value={
+                        { 
+                          edit: setMessageToEdit, 
+                          delete: setMessageToDelete, 
+                          add: setMessageToAdd 
+                        }
+                      }>
+                        <MessagingSection 
+                          markMessages={async _ => await viewMessages(conv, edit)}
+                          loading={loading}
+                          messages={messagesToExpose}
+                          definePosition={definePosition}
+                        />
+                      </Ctx.SetMessageContext.Provider>
                     }
                   </Ctx.SetConvToEditContext.Consumer>
                 </Ctx.ReceiverContext.Provider>
               </div>
-            }
-            {receiver && 
-              <div id="Conversation">
-                <Ctx.ReceiverContext.Provider value={receiver}>
-                  <UpperSection/>
-                  <WriteMessage/>
-                </Ctx.ReceiverContext.Provider>
-              </div>
-            }
+              {messages.length > 0 &&
+                <Filter ref={ refs } cHandlers={ changeHandlers }/>
+              }
+            </>    
           </Ctx.QuitHandlerContext.Provider>
-          {warning  &&
-            <Redirect to="/messages"/>
-          }
         </>
       }
     </Ctx.CurrentlyOpenedConvContext.Consumer>
   )
-}
+}, (prev, next) => {
+  return prev.conv === next.conv
+})

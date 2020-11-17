@@ -1,24 +1,13 @@
-import React, { useState, useEffect, useCallback, memo } from 'react'
-import useMessages from '../../../hooks/Messaging/useMessages'
+import React, { useState, useEffect, memo } from 'react'
 import Spinner from '../../spiners/BigSpinner'
 import WriteMessage from '../message/WriteMessage'
 import Message from '../message/index'
 import * as Ctx from '../../../utils/contexts'
 
-  
-export default memo(({ conv, markMessages }) => {
-  const [ page, setPage ] = useState(1)
+
+export default memo(({ loading, messages, markMessages, definePosition }) => {
   const [ msgToEditLocally, setMsgToEditLocally ] = useState(null)
 
-  const [ messages, loading, hasNextPage, setHasNextPage, setMessageToAdd, setMessageToDelete, setMessageToEdit ] = useMessages(page, conv, val => {})
-  const definePosition = useCallback(e => {
-    if(e.target.scrollTop === 0 && hasNextPage){
-      setPage(page + 1)
-      setHasNextPage(false)
-    }
-    // eslint-disable-next-line 
-  }, [ page, setHasNextPage, hasNextPage ])
-  
   useEffect(_ => {
     const messageList = document.getElementById('reversed-ScrollableList')
     messageList.scrollTop = messageList.scrollHeight
@@ -30,31 +19,17 @@ export default memo(({ conv, markMessages }) => {
     markMessages()
   }, [ markMessages ])
 
-  useEffect(_ => {
-    setImmediate(_ => setPage(1))
-  }, [ conv._id ])
-
   return(    
-    <Ctx.SetMessageContext.Provider value={
-      { 
-        edit: setMessageToEdit, 
-        delete: setMessageToDelete, 
-        add: setMessageToAdd 
-      }
-    }>
-      <Ctx.SetMessageToEditLocallyContext.Provider value={{ set: val => setMsgToEditLocally(val), value: msgToEditLocally }}>
-        <>
-          <div id="reversed-ScrollableList">
-            { loading && <Spinner/> }
-            {messages.length > 0 &&
-              messages.map((m, i) => <Message key={m._id || 'm' + i} info={m}/>)
-            }
-          </div>
-          <WriteMessage/>
-        </>
-      </Ctx.SetMessageToEditLocallyContext.Provider>
-    </Ctx.SetMessageContext.Provider>
+    <Ctx.SetMessageToEditLocallyContext.Provider value={{ set: val => setMsgToEditLocally(val), value: msgToEditLocally }}>
+      <>
+        <div id="reversed-ScrollableList">
+          { loading && <Spinner/> }
+          {messages.length > 0 &&
+            messages.map((m, i) => <Message key={m._id || 'm' + i} info={m}/>)
+          }
+        </div>
+        <WriteMessage/>
+      </>
+    </Ctx.SetMessageToEditLocallyContext.Provider>
   )
-}, (prev, next) => {
-  return prev.conv === next.conv
 })

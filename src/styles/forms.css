@@ -139,7 +139,8 @@ input::placeholder{
   font-weight: 600;
   font-size: 1rem;
 }
-#FilterTodos > #input{
+#FilterTodos > #input,
+#RightSideBar > #input{
   margin: .7rem auto;
 }
 #HideFilter {
@@ -147,6 +148,7 @@ input::placeholder{
   clear: both;
 }
 .DarkPage #FilterTodos input,
+.DarkPage #RightSideBar input,
 .DarkPage #TodoStats input,
 .DarkModal #FormInModal input,
 .DarkModal #FormInModal textarea,
@@ -158,6 +160,7 @@ input::placeholder{
   color: #eeeeff;
 }
 .BrightPage #FilterTodos input,
+.BrightPage #RightSideBar input,
 .BrightPage #TodoStats input,
 .BrightModal #FormInModal input,
 .BrightLoginForm input,
@@ -169,6 +172,7 @@ input::placeholder{
   color: #222;
 }
 .DarkPage #FilterTodos input:focus,
+.DarkPage #RightSideBar input:focus,
 .DarkPage #TodoStats input:focus,
 .DarkModal #FormInModal input:focus,
 .DarkModal #FormInModal textarea:focus,
@@ -180,6 +184,7 @@ input::placeholder{
   box-shadow: 0 0 .3vh #3377ff;
 }
 .BrightPage #FilterTodos input:focus,
+.BrightPage #RightSideBar input:focus,
 .BrightPage #TodoStats input:focus,
 .BrightModal #FormInModal input:focus,
 .BrightModal #FormInModal textarea:focus,

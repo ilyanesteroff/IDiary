@@ -16,7 +16,12 @@ export default async (conv, messageInput, add, edit, updateConv) => {
     
     setImmediate(add(unverifiedMsg))
     const data = await write(txt, to, conv._id)
-    updateConv(data.conversation)
+    updateConv({ 
+      ...conv, 
+      latestMessage: data.message, 
+      unseenMessages: conv.unseenMessages + 1, 
+      updatedAt: data.message.writtenAt 
+    })
     edit({ oldMessage: unverifiedMsg, verifiedMessage: data.message })
   }
 }

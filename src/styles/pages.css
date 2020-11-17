@@ -343,7 +343,7 @@
   width: 15vw;
   z-index: 1;
 }
-#UserFriendBar{
+#RightSideBar{
   right: 0;
   width: 20vw;
   overflow: hidden;
@@ -394,7 +394,7 @@
 #FilterTodos,
 #TodoStats,
 #EditProfile, 
-#UserFriendBar{
+#RightSideBar{
   top: 4.7rem;
   padding: 2rem 2%;
   height: calc(100% - 4.7rem);
@@ -521,18 +521,19 @@
 .BrightPage #EditProfile,
 .BrightPage #FilterTodos,
 .BrightPage #TodoStats,
-.BrightPage #UserFriendBar{
+.BrightPage #RightSideBar{
   background-color: #fafaff;
   box-shadow: 0 0 0.3vh #222227;
 }
 .DarkPage #EditProfile,
 .DarkPage #FilterTodos,
 .DarkPage #TodoStats,
-.DarkPage #UserFriendBar{
+.DarkPage #RightSideBar{
   background-color: #222227;
   box-shadow: 0 0 0.3vh #fafaff;
 }
 .DarkPage #EditProfile h4,
+.DarkPage #RightSideBar h4,
 .DarkPage #FilterTodos h4,
 .DarkPage #TodoStats h4{
   background-color: #232327;
@@ -541,7 +542,7 @@
 #TodoStats h2,
 #FilterTodos h2,
 #EditProfile h2,
-#UserFriendBar h2{
+#RightSideBar h2{
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -549,7 +550,7 @@
 .BrightPage #FilterTodos h2,
 .BrightPage #TodoStats h2,
 .BrightPage #EditProfile h2,
-.BrightPage #UserFriendBar h2,
+.BrightPage #RightSideBar h2,
 .BrightPage #count,
 .BrightPage #contrast{
   color: #22222f;
@@ -557,7 +558,7 @@
 .DarkPage #FilterTodos h2,
 .DarkPage #TodoStats h2,
 .DarkPage #EditProfile h2,
-.DarkPage #UserFriendBar h2,
+.DarkPage #RightSideBar h2,
 .DarkPage #count,
 .DarkPage #contrast{
   color: #eaeaff;
@@ -584,11 +585,13 @@
 }
 .BrightPage #FilterTodos p,
 .BrightPage #TodoStats p,
+.DarkPage #RightSideBar p,
 .BrightPage #EditProfile li{
   color: #222232;
 }
 .DarkPage #FilterTodos p,
 .DarkPage #TodoStats p,
+.DarkPage #RightSideBar p,
 .DarkPage #EditProfile li{
   color: #efeaff;
 }
@@ -742,7 +745,7 @@
   }
 }
 @media only screen and (max-width: 1400px){
-  #TodoStats, #FilterTodos, #EditProfile, #UserFriendBar{
+  #TodoStats, #FilterTodos, #EditProfile, #RightSideBar{
     position: static;
     height: auto;
     text-align: center;

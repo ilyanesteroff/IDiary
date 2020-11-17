@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
-import useTodoFilter from './useTodoFilter' 
+import useFilter from '../useFilter'
 import useUnsetFilter from './useUnsetTodoFilter'
 
 
 export default todos => {
-  //filter params
   const [ showOnlyCompletedTodos, setShowOnlyCompletedTodos ] = useState(false)
   const [ showOnlyActiveTodos, setShowOnlyActiveTodos ] = useState(false)
   const [ showElapsedTodos, setShowElapsedTodos ] = useState(false)
@@ -19,16 +18,38 @@ export default todos => {
     set_todos(todos)
   }, [ todos ])
 
-  const [todosToExpose] = useTodoFilter(
-    _todos, 
-    showOnlyCompletedTodos, 
-    showElapsedTodos,
-    showOnlyActiveTodos, 
-    hashtag,
-    taskIncludes,
-    timeToComplete,
-    createdAt
-  ) 
+  const [ todosToExpose ] = useFilter(_todos, [
+    showOnlyCompletedTodos, showElapsedTodos, showOnlyActiveTodos, hashtag, taskIncludes, timeToComplete, createdAt
+  ], elems => {
+    let _filteredTodos = elems
+
+    if(showOnlyActiveTodos)
+      _filteredTodos = _filteredTodos.filter(todo => !todo.completed)
+    if(showOnlyCompletedTodos)
+      _filteredTodos = _filteredTodos.filter(todo => todo.completed)
+    if(showElapsedTodos)
+      _filteredTodos = _filteredTodos.filter(todo => 
+        todo.timeToComplete && 
+        !todo.completed && 
+        todo.timeToComplete + new Date(todo.createdAt).getTime() < new Date().getTime()
+      )
+    if(hashtag.trim().length > 0)
+      _filteredTodos = _filteredTodos.filter(todo =>  todo.tags && todo.tags.some(tag => tag.toLowerCase().includes(hashtag.toLowerCase())))
+    if(taskIncludes.trim().length > 0)
+      _filteredTodos = _filteredTodos.filter(todo => todo.task.toLowerCase().includes(taskIncludes.toLowerCase()))
+    if(timeToComplete > 0)
+      _filteredTodos = _filteredTodos.filter(todo => todo.timeToComplete === (parseInt(timeToComplete) * 36000))
+    if(createdAt !== ''){
+      const date = createdAt.split('-')
+      _filteredTodos = _filteredTodos.filter(todo => 
+        new Date(todo.createdAt).getFullYear() === parseInt(date[0]) &&
+        new Date(todo.createdAt).getMonth() + 1 === parseInt(date[1]) &&
+        new Date(todo.createdAt).getDate() === parseInt(date[2])
+      )
+    }
+
+    return _filteredTodos
+  })
 
   const [refs] = useUnsetFilter(unsetFilter, _ => {
     setShowOnlyActiveTodos(false)
