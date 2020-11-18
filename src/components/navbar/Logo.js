@@ -1,20 +1,31 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { BrightThemeContext } from '../../utils/contexts'
 import { faCompass } from '@fortawesome/free-regular-svg-icons'
+import useResizer from '../../hooks/useWindowResizer'
+import { IncomingReqsContext, UnseenMsgsContext } from '../../utils/contexts'
+import formatNum from '../../utils/formatNotificationNumber'
+
 
 export default props => {
-  
+  const [ width ] = useResizer()
+
   return(
-    <BrightThemeContext.Consumer> 
-      { value => 
-        <div className={value? "darkLogo" : "brightLogo"} id="logo">
-          <FontAwesomeIcon 
-            icon={faCompass} 
-            onClick={props.clickHandler}
-          />
-        </div> 
+    <IncomingReqsContext.Consumer>
+      {({ requests }) =>
+        <UnseenMsgsContext.Consumer>
+          {({ messages }) =>
+            <div id="logo">
+              <FontAwesomeIcon 
+                icon={faCompass} 
+                onClick={props.clickHandler}
+              />
+              {width < 830 && requests + messages > 0 &&
+                <p id="notification">{ formatNum(requests + messages) }</p>
+              }
+            </div> 
+          }
+        </UnseenMsgsContext.Consumer>
       }
-    </BrightThemeContext.Consumer>
+    </IncomingReqsContext.Consumer>
   )
 }

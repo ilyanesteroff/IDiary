@@ -1,34 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import Logo from './Logo'
-import { 
-  BrightThemeContext, 
-  IsAuthContext, 
-  FirstnameContext
-} from '../../utils/contexts'
+import { BrightThemeContext, IsAuthContext, FirstnameContext } from '../../utils/contexts'
 import NavbarElement from './NavbarElement'
 import * as na from './navbarOptions'
 import SideMenu from './PortalMenu'
 import ThemeToggler from './ThemeToggler'
 import Logout from './LogoutButton'
+import ProfileLink from './ProfileLink'
+import MessagesLink from './MessagesLink'
+import useResizer from '../../hooks/useWindowResizer'
 
 
 export default _ => {
-  const [ width, setWidth ] = useState(window.innerWidth)
+  const [ width ] = useResizer()
   const [ menuInPortalOpened, setMenuInPortalOpened] = useState(false)
-  const _isMounted = useRef(true)
 
-  const measureWidth = _ => {
-    if(_isMounted.current) setWidth(window.innerWidth)
-  }
-
-  useEffect(_ => {
-    window.addEventListener('resize', measureWidth)
-    return function cleanup() {
-      _isMounted.current = false
-      window.removeEventListener('resize', measureWidth)
-    }
-  }, [])
- 
   const closeSideMenu = _ => {
     if(menuInPortalOpened) setMenuInPortalOpened(false)
   }
@@ -47,26 +33,32 @@ export default _ => {
               <IsAuthContext.Consumer>
                 {isAuth =>
                   <FirstnameContext.Consumer>
-                    {firstname =>
+                    {({ firstname }) =>
                       <ul>
-                        {isAuth && na.optionsForUsers.map((op, i) => {
-                              if(op.link === '/profile') op.value = firstname.firstname
-                              return <NavbarElement
-                                link={op.link}
-                                content={op.value}
-                                icon={op.icon}
-                                key={i+'opt'}
-                              />
-                            })
+                        {isAuth && 
+                          <>
+                            {
+                              na.optionsForUsers.map((op, i) => 
+                                <NavbarElement
+                                  link={op.link}
+                                  content={op.value}
+                                  icon={op.icon}
+                                  key={i+'opt'}
+                                />
+                              )
+                            }
+                            <MessagesLink/>
+                            <ProfileLink username={firstname}/>
+                          </>
                         }
                         {!isAuth && na.optionsForVisitors.map((op, i) => 
-                              <NavbarElement
-                                link={op.link}
-                                content={op.value}
-                                icon={op.icon}
-                                key={i+'opt'}
-                              />
-                            )
+                            <NavbarElement
+                              link={op.link}
+                              content={op.value}
+                              icon={op.icon}
+                              key={i+'opt'}
+                            />
+                          )
                         }
                         {isAuth && <Logout/>}
                       </ul>

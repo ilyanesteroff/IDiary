@@ -3,6 +3,7 @@ import MessageOptions from './MessageOptions'
 import WrittenAt from './WrittenAt'
 import useMessageManager from '../../../hooks/Messaging/useMessageManager'
 import LikedIcon from './LikedIcon'
+import Seen from './Seen'
 import userIdComparer from '../../../utils/userIdComparer'
 
 
@@ -19,7 +20,12 @@ export default ({ info }) => {
         ref={ref}
       >
         <p id="MsgTxt">{ info.text }</p>
-        <WrittenAt time={ info.writtenAt }/>
+        <p>
+          <WrittenAt time={ info.writtenAt }/>
+          {!userIdComparer(info.to) &&
+            <Seen seen={ info.seen }/>
+          }
+        </p>
         <LikedIcon liked={liked}/>        
         {optionsOpened && 
           <MessageOptions info={info} handleClick={_ => setOptionsOpened(false)}/>

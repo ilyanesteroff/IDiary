@@ -13,7 +13,7 @@ export default memo(({ conv }) => {
   const [ page, setPage ] = useState(1)
 
   const [ messages, loading, hasNextPage, setHasNextPage, setMessageToAdd, setMessageToDelete, setMessageToEdit ] = useMessages(page, conv, _ => {})
-  
+
   const [ messagesToExpose, refs, changeHandlers ] = useMessageFilter(messages)
 
   const definePosition = useCallback(e => {
@@ -48,12 +48,20 @@ export default memo(({ conv }) => {
                           add: setMessageToAdd 
                         }
                       }>
-                        <MessagingSection 
-                          markMessages={async _ => await viewMessages(conv, edit)}
-                          loading={loading}
-                          messages={messagesToExpose}
-                          definePosition={definePosition}
-                        />
+                        <Ctx.UnseenMsgsContext.Consumer>
+                          { msgs =>
+                            <MessagingSection 
+                              markMessages={async _ => {
+                                await viewMessages(conv, edit)
+                                if(userIdComparer(conv.latestMessage.to) && conv.unseenMessages > 0)
+                                  msgs.set(msgs.messages - conv.unseenMessages)
+                              }}
+                              loading={loading}
+                              messages={messagesToExpose}
+                              definePosition={definePosition}
+                            />
+                          }
+                        </Ctx.UnseenMsgsContext.Consumer>
                       </Ctx.SetMessageContext.Provider>
                     }
                   </Ctx.SetConvToEditContext.Consumer>

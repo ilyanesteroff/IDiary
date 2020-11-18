@@ -18,6 +18,8 @@ export default memo(({ loading, messages, markMessages, definePosition }) => {
   useEffect(_ => {
     markMessages()
   }, [ markMessages ])
+  
+  console.log('renders')
 
   return(    
     <Ctx.SetMessageToEditLocallyContext.Provider value={{ set: val => setMsgToEditLocally(val), value: msgToEditLocally }}>
@@ -32,4 +34,6 @@ export default memo(({ loading, messages, markMessages, definePosition }) => {
       </>
     </Ctx.SetMessageToEditLocallyContext.Provider>
   )
-})
+}, (prev, next) => 
+  prev.loading === next.loading && prev.messages.length === next.messages.length
+)

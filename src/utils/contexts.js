@@ -10,6 +10,10 @@ export const UserIdContext = createContext(null)
 
 export const IsAuthContext = createContext(false)
 
+export const UnseenMsgsContext = createContext({ set: _ => {}, messages: 0 })
+
+export const IncomingReqsContext = createContext({ set: _ => {}, requests: 0 })
+
 export const LogoutHandlerContext = createContext(_ => {})
 
 export const LoginHandlerContext = createContext(_ => {})

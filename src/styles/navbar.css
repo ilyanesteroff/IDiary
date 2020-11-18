@@ -27,41 +27,42 @@ li#navbarOption{
 #navbarOption div{
   display: inline;
 }
-#link{
-  text-decoration: none;
-}
 ul{
   display: inline;
 }
-#navbarOptionText{
+#navbarOption p{
   font-size: 1.3rem;
   display: inline;
   font-family: Ubuntu, sans-serif;
   font-weight: 600;
   transition: color .7s;
-}
-.BrightNavbarOptionText {
+} 
+.brightNavbar p,
+.brightSideMenu p{
   color: #333;
 }
-.DarkNavbarOptionText {
+.darkNavbar p,
+.darkSideMenu p{
   color: #eee;
 }
-.ActiveNavbarOption {
+#ActiveNavbarOption {
   color: #2323F3;
 }
-#navbarOptionIcon {
+#navbarOption svg {
   display: none;
 }
-.BrightNavbarIcon {
-  color: #232323;
-}
-li#navbarOption:hover .BrightNavbarOptionText{
+li#navbarOption:hover .brightNavbar p{
   color: #888;
 }
-li#navbarOption:hover .DarkNavbarOptionText{
+li#navbarOption:hover .darkNavbar p{
   color: #888;
 }
-.DarkNavbarIcon {
+.brightNavbar #navbarOption svg,
+.brightSideMenu #SideMenuNavbarOption svg {
+  color: #333;
+}
+.darkNavbar #navbarOption svg,
+.darkSideMenu #SideMenuNavbarOption svg {
   color: #eee;
 }
 #ThemeToggler {
@@ -69,17 +70,41 @@ li#navbarOption:hover .DarkNavbarOptionText{
   right: 2%;
   position: absolute;
 }
-.darkLogo {
+.brightNavbar #logo {
   color: #333;
 }
-.brightLogo {
+.darkNavbar #logo {
   color: #bbb;
 }
 #logo {
   float: left;
   font-size: 2.4rem;
   margin: 1rem 1.2rem;
-}#SideMenu{
+  position: relative;
+}
+#notification{
+  font-size: .9rem;
+  padding: .1rem .4rem;
+  border-radius: 2rem;
+  font-family: Ubuntu, sans-serif;
+  font-weight: 600;
+  background-color: #2323F3;
+  color: #fff;
+}
+#icon{
+  position: relative;
+}
+#icon #notification{
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0.8rem;
+}
+#logo #notification{
+  position: absolute;
+  bottom: -0.2rem;
+  left: -0.4rem;
+}
+#SideMenu{
   position: fixed;
   top: 4.7rem;
   width: 100vw;
@@ -102,23 +127,23 @@ li#navbarOption:hover .DarkNavbarOptionText{
   padding: 6vh 6%;
   cursor: pointer;
 }
-.BrightSideMenuNavbarOption:active,
-.BrightSideMenuNavbarOption:hover,
+.brightSideMenu #SideMenuNavbarOption:active,
+.brightSideMenu #SideMenuNavbarOption:hover,
 .BrightPage #UserSection #UserSettingsOptions:hover{
-  background-color: rgba(3, 3, 3, 0.3);
+  background-color: rgba(3, 3, 3, 0.2);
 }
-.DarkSideMenuNavbarOption:active,
-.DarkSideMenuNavbarOption:hover,
+.darkSideMenu #SideMenuNavbarOption:active,
+.darkSideMenu #SideMenuNavbarOption:hover,
 .DarkPage #UserSection #UserSettingsOptions:hover{
   background-color: rgba(252, 252, 252, 0.3);
 }
-#SideMenuNavbarOptionIcon{
+#SideMenuNavbarOption svg{
   display: inline-block;
   margin-right: 7%;
   font-size: 4vh;
   transition: all .5s;
 }
-#SideMenuNavbarOptionText{
+#SideMenuNavbarOption p{
   transition: all .5s; 
   position: relative;
   float: right;
@@ -127,14 +152,14 @@ li#navbarOption:hover .DarkNavbarOptionText{
   font-family: 'Ubuntu', sans-serif;
 }
 @media only screen and (max-width: 1200px){
-  #navbarOptionText{
+  #navbarOption p{
     display: none;
   }
   #navbarOptions{
     width: 80vw;
     margin-left: 13vw;
   }
-  #navbarOptionIcon{
+  #navbarOption svg{
     margin: auto 3%;
     display: inline;
     font-size: 1.6rem;
@@ -162,10 +187,10 @@ li#navbarOption:hover .DarkNavbarOptionText{
   #SideMenuNavbarOption{
     width: 50%;
   }
-  #SideMenuNavbarOptionIcon{
+  #SideMenuNavbarOption svg{
     font-size: 6vh;   
   }
-  #SideMenuNavbarOptionText{
+  #SideMenuNavbarOption p{
     font-size: 4.5vh;
   }
 }

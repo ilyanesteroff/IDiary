@@ -11,8 +11,8 @@ export default _ => {
   })
 
   const handleResize = _ => {
-    setHeight(window.innerHeight)
-    setWidth(window.innerWidth)
+    setImmediate(_ => setWidth(window.innerWidth))
+    setImmediate(_ => setHeight(window.innerHeight))
   }
 
   return [ width, height ]

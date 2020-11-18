@@ -1,55 +1,61 @@
-import React, { useContext } from 'react'
-import { 
-  IsAuthContext, 
-  FirstnameContext,
-  BrightThemeContext
-} from '../../utils/contexts'
+import React from 'react'
+import { IsAuthContext, FirstnameContext, BrightThemeContext } from '../../utils/contexts'
 import SideMenuPortal from '../portals/index'
 import NavbarElement from './NavbarElement'
+import ProfileLink from './ProfileLink'
+import MessagesLink from './MessagesLink'
 import Logout from './LogoutButton'
 import * as na from './navbarOptions'
 
 
-const SideMenu = ({opened}) => {
-  const IsAuth = _ => useContext(IsAuthContext)
-  const Firstname = _ => useContext(FirstnameContext)
-  let options //navbar options
-
-  if(IsAuth()){
-    options = na.optionsForUsers
-    const firstnameIndex = options.findIndex(f => f.link === '/profile')
-    options[firstnameIndex].value = Firstname().firstname
-  } else options = na.optionsForVisitors
-
-  options = options.map((o, i) => 
-    <NavbarElement
-      sideMenu={true}
-      link={o.link} 
-      icon={o.icon}
-      content={o.value}
-      key={i+'op'}
-    />
-  )
-
-  if(IsAuth()) options.push(<Logout key="logoutBtn" sideMenu={true}/>)
-
-  return (
-    <BrightThemeContext.Consumer>
-      {theme =>
-        <SideMenuPortal parent="side-menu">
-          <div 
-            id="SideMenu" 
-            className={theme? 'brightSideMenu' : 'darkSideMenu'}
-            onClick={() => opened(false)}
-          >
-            <ul className="SideMenuOptions">
-              { options }
-            </ul>
-          </div>
-        </SideMenuPortal>
-      }
-    </BrightThemeContext.Consumer>
-  )
-}
-
-export default SideMenu
+export default ({ opened }) => 
+  <BrightThemeContext.Consumer>
+    {theme =>
+      <SideMenuPortal parent="side-menu">
+        <IsAuthContext.Consumer>
+          {isAuth =>
+            <FirstnameContext.Consumer>
+              {({ firstname }) =>
+                <div 
+                  id="SideMenu" 
+                  onClick={() => opened(false)}            
+                  className={theme? 'brightSideMenu' : 'darkSideMenu'}
+                >
+                  <ul className="SideMenuOptions">
+                    {isAuth && 
+                      <>
+                        {
+                          na.optionsForUsers.map((op, i) => 
+                            <NavbarElement
+                              link={op.link}
+                              content={op.value}
+                              icon={op.icon}
+                              key={i+'opt'}
+                              sideMenu
+                            />
+                          )
+                        }
+                        <MessagesLink/>
+                        <ProfileLink username={firstname}/>
+                      </>
+                    }
+                    {!isAuth && na.optionsForVisitors.map((op, i) => 
+                        <NavbarElement
+                          link={op.link}
+                          content={op.value}
+                          icon={op.icon}
+                          key={i+'opt'}
+                          sideMenu
+                        />
+                      )
+                    }
+                    {isAuth && <Logout sideMenu/>}           
+                  </ul>
+                </div>
+              }
+            </FirstnameContext.Consumer>
+          }
+        </IsAuthContext.Consumer>
+      </SideMenuPortal>
+    }
+  </BrightThemeContext.Consumer>

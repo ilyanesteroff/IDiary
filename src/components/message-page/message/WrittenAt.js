@@ -7,5 +7,5 @@ export default ({ time }) => {
   
   let formatedTime = `${addZero(date.getUTCHours().toString())}:${addZero(date.getUTCMinutes().toString())}`
 
-  return <p id="WrittenAtMsg">{ formatedTime }</p>
+  return <span id="WrittenAtMsg">{ formatedTime }</span>
 }

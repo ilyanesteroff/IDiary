@@ -5,6 +5,8 @@ import login from './api/login'
 import requestEmailAcceptation from './api/acceptEmail'
 import clearStorages from './utils/clearStorages'
 import * as Contexts from './utils/contexts'
+import _fetch from './api/fetch'
+import userStats from './graphql/get-user-stats'
 
 
 export default memo(({ signal }) => {
@@ -12,6 +14,8 @@ export default memo(({ signal }) => {
   const [ firstname, setFirstname ] = useState(null)
   const [ isAuth, setIsAuth ] = useState(null)
   const [ brightTheme, setBrightTheme ] = useState(true)
+  const [ incomingReqs, setIncomingReqs ] = useState(0)
+  const [ unseenMsgs, setUnseenMsgs ] = useState(0)
   
   useEffect(_ => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token')
@@ -31,6 +35,7 @@ export default memo(({ signal }) => {
     setUserId(userId)
     setFirstname(firstname)
     setBrightTheme(theme === 'true' ? true : false)
+    fetchUserStats()
     // eslint-disable-next-line
   }, [])
 
@@ -46,6 +51,16 @@ export default memo(({ signal }) => {
       logoutHandler()
       window.location.pathname = '/login'
     }
+  }
+
+  const fetchUserStats = _ => {
+    _fetch(userStats)
+      .then(res => {
+        if(res.userStats){
+          setUnseenMsgs(res.userStats.unseenMessages)
+          setIncomingReqs(res.userStats.incomingRequests)
+        }
+      })
   }
 
   const logoutHandler = () => {
@@ -78,7 +93,8 @@ export default memo(({ signal }) => {
         return 
       })
       .then(_ => {
-        setIsAuth(true)
+        setIsAuth(true)        
+        fetchUserStats()
       })
       .catch(err => {
         cb()
@@ -121,20 +137,24 @@ export default memo(({ signal }) => {
           setFirstname: val => setFirstname(val)
         }}>
           <Contexts.IsAuthContext.Provider value={isAuth}>
-            <Contexts.LogoutHandlerContext.Provider value={logoutHandler}>
-              <Contexts.LoginHandlerContext.Provider value={loginHandler}>
-                <Contexts.ToggleThemeContext.Provider value={toggleTheme}>
-                  <Contexts.AcceptEmailContext.Provider value={acceptEmailHandler}>
-                    {isAuth !== null &&
-                      <>
-                        <Head/>
-                        <Router isAuth={isAuth}/>
-                      </>
-                    }
-                  </Contexts.AcceptEmailContext.Provider>
-                </Contexts.ToggleThemeContext.Provider>
-              </Contexts.LoginHandlerContext.Provider>
-            </Contexts.LogoutHandlerContext.Provider>
+            <Contexts.IncomingReqsContext.Provider value={{ requests: incomingReqs, set: val => setIncomingReqs(val) }}>
+              <Contexts.UnseenMsgsContext.Provider value={{ messages: unseenMsgs, set: val => setUnseenMsgs(val) }}>
+                <Contexts.LogoutHandlerContext.Provider value={logoutHandler}>
+                  <Contexts.LoginHandlerContext.Provider value={loginHandler}>
+                    <Contexts.ToggleThemeContext.Provider value={toggleTheme}>
+                      <Contexts.AcceptEmailContext.Provider value={acceptEmailHandler}>
+                        {isAuth !== null &&
+                          <>
+                            <Head/>
+                            <Router isAuth={isAuth}/>
+                          </>
+                        }
+                      </Contexts.AcceptEmailContext.Provider>
+                    </Contexts.ToggleThemeContext.Provider>
+                  </Contexts.LoginHandlerContext.Provider>
+                </Contexts.LogoutHandlerContext.Provider>
+              </Contexts.UnseenMsgsContext.Provider>
+            </Contexts.IncomingReqsContext.Provider>
           </Contexts.IsAuthContext.Provider>
         </Contexts.FirstnameContext.Provider>
       </Contexts.UserIdContext.Provider>

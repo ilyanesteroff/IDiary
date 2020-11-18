@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilAlt, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faEdit, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
 import * as Ctx from '../../../utils/contexts'
 import deleteMsg from '../../../actionHandlers/DeletingMessage'
 
@@ -15,7 +15,7 @@ export default ({ info, handleClick }) => (
         }}>
           <FontAwesomeIcon
             id="EditMsg"
-            icon={faPencilAlt}
+            icon={faEdit}
           />
         </li>
       }

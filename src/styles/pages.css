@@ -186,7 +186,7 @@
   position: absolute;
   left: -2.2rem;
   top: 0;
-  text-align: left;
+  text-align: center;
   padding: .17rem .2rem;
   border: solid 2px #3377ff;
   border-radius: 1rem;
@@ -200,6 +200,14 @@
 #DeleteMsg{
   color: #ff4444;
 }
+.seen{
+  color: #3377ff;
+  padding-top: .2rem;
+}
+.notSeen{
+  color: #888;
+  padding-top: .2rem;
+}
 .SentMsg{
   float: right;
   clear: both;
@@ -211,6 +219,7 @@
   clear: both;
   text-align: left;
   border: solid 2px #3377ff;
+  transition: background-color .5s;
 }
 #Message #WrittenAtMsg{
   text-align: right;
@@ -758,7 +767,7 @@
   }
   #Conversation{
     width: 100vw;
-    z-index: 2;
+    z-index: 1;
     position: fixed;
     top: 4.7rem;
     left: 0;
