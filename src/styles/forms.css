@@ -110,6 +110,25 @@ select{
   margin: .3rem auto;
   border-radius: 3rem;
 }
+#SearchInput{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  position: relative;
+  width: 15rem;
+}
+#SearchInput input{
+  padding-left: 2rem;
+}
+#SearchInput svg{
+  position: absolute;
+  left: .8rem;
+  bottom: .8rem;
+  color: #888;
+}
+#SearchInput input:focus + svg{
+  color: #3377ff;
+}
 .formPage input, button,
 .signupFormPage input, button{
   width: 100%;
@@ -148,6 +167,7 @@ input::placeholder{
   clear: both;
 }
 .DarkPage #FilterTodos input,
+.DarkPage #SearchInput input,
 .DarkPage #RightSideBar input,
 .DarkPage #TodoStats input,
 .DarkModal #FormInModal input,
@@ -160,6 +180,7 @@ input::placeholder{
   color: #eeeeff;
 }
 .BrightPage #FilterTodos input,
+.BrightPage #SearchInput input,
 .BrightPage #RightSideBar input,
 .BrightPage #TodoStats input,
 .BrightModal #FormInModal input,
@@ -173,6 +194,7 @@ input::placeholder{
 }
 .DarkPage #FilterTodos input:focus,
 .DarkPage #RightSideBar input:focus,
+.DarkPage #SearchInput input:focus,
 .DarkPage #TodoStats input:focus,
 .DarkModal #FormInModal input:focus,
 .DarkModal #FormInModal textarea:focus,
@@ -186,6 +208,7 @@ input::placeholder{
 .BrightPage #FilterTodos input:focus,
 .BrightPage #RightSideBar input:focus,
 .BrightPage #TodoStats input:focus,
+.BrightPage #SearchInput input:focus,
 .BrightModal #FormInModal input:focus,
 .BrightModal #FormInModal textarea:focus,
 .BrightModal select:focus,
@@ -334,6 +357,11 @@ hr {
     margin-left: 5%;
     width: 90%;
     padding: .2rem 1rem;
+  }
+  #SearchInput{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 1rem;
   }
   .formPage form a, 
   .signupFormPage form a{

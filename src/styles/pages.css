@@ -253,6 +253,25 @@
   background-color: #fff;
   box-shadow: 0 0 .1rem #333;
 }
+#SearchOptions{
+  text-align: center;
+  margin: 1rem;
+}
+#SearchOptions svg{
+  margin: auto 1rem;
+}
+#activeOption{
+  color: #3377ff;
+}
+#users{
+  display: flex;
+}
+#users #request {
+  width: 25%
+}
+p#names{
+  color: #3377ff;
+}
 #UserSection{
   margin: auto 10vw;
   padding: 1rem 2%;
@@ -874,7 +893,7 @@
   }
   .hiddenForm{
     height: 1px;
-  }
+  }  
   .normalForm{
     height: 18rem;
   }
@@ -883,6 +902,12 @@
   #TodoStats, #FilterTodos{
     position: sticky;
     padding: .4rem;
+  }
+  #users{
+    display: block;
+  }
+  #users #request {
+    width: 100%
   }
   #FilterTodos{
     position: static;

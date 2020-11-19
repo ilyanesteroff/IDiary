@@ -6,11 +6,11 @@
   z-index: 3;
 }
 .brightNavbar{
-  background-color: #eee;
+  background-color: #fff;
   box-shadow: #222 0 0 .3vh;
 }
 .darkNavbar{
-  background-color: #222;
+  background-color: #232323;
   box-shadow: #eee 0 0 .3vh;
 }
 #navbarOptions {
@@ -31,10 +31,10 @@ ul{
   display: inline;
 }
 #navbarOption p{
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   display: inline;
   font-family: Ubuntu, sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   transition: color .7s;
 } 
 .brightNavbar p,
@@ -51,10 +51,7 @@ ul{
 #navbarOption svg {
   display: none;
 }
-li#navbarOption:hover .brightNavbar p{
-  color: #888;
-}
-li#navbarOption:hover .darkNavbar p{
+li#navbarOption:hover p:not(#ActiveNavbarOption){
   color: #888;
 }
 .brightNavbar #navbarOption svg,

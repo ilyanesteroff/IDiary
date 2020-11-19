@@ -10,7 +10,7 @@ import {
 export const optionsForUsers = [
   {
     value: 'Main',
-    link: '/feed',
+    link: '/',
     icon: faChessBoard
   }, 
   {

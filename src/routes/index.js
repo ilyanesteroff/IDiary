@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
-import MainPage from '../pages/Landing-page'
 import LoginPage from '../pages/Login'
 import ResetPassword from '../pages/Reset-password-page'
 import SetNewPassword from '../pages/Set-new-password'
@@ -12,13 +11,15 @@ import Profile from '../pages/ProfilePage'
 import AnotherProfile from '../pages/AnotherProfile'
 import OtherTodos from '../pages/TodosOfAnotherUser'
 import Messages from '../pages/Messages'
+import MainPageForUsers from '../pages/MainPageForUsers'
+import MainPageForVisitors from '../pages/MainPageForVisitors'
 import userIdComparer from '../utils/userIdComparer'
 
 
 export default ({ isAuth })  => (
   <Router>
     <Switch>
-      <Route exact path="/" render={_ => <MainPage isAuth={isAuth}/>}/>
+      <Route exact path="/" render={_ => isAuth ? <MainPageForUsers/> : <MainPageForVisitors/> }/>
       <Route 
         path="/login" 
         render={_ => isAuth ? <Redirect to="/"/> : <LoginPage/>}/>

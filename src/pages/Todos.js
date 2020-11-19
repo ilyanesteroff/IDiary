@@ -1,10 +1,11 @@
-import React, { useState, useEffect, memo } from 'react'
+import React, { useState, memo } from 'react'
 import Navbar from '../components/navbar/index'
 import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/other/AddTodoBtn'
 import * as Ctx from '../utils/contexts'
 import useTodoLoader from '../hooks/Todos/useTodoLoader'
 import useTodoManipulator from '../hooks/Todos/useTodoManipulator'
+import useTodoScroller from '../hooks/Todos/useTodoScroller'
 import Todos from '../components/todos/containers/index'
 import CreateOrUpdateTodoModal from '../components/todos/containers/CreateOrUpdateModal'
 import Chapter from '../components/todos/other/Chapter'
@@ -21,17 +22,7 @@ export default memo(_ => {
 
   const [ todosToExpose, refs, changeHandlers, active, completed, setNewTodo, setTodoToDelete, setTodoToUpdate ] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
 
-  const definePosition = _ => {
-    if((window.innerHeight + window.pageYOffset + 10) >= document.body.offsetHeight && nextPage) {
-      setPage(page + 1)
-      setNextPage(false)
-    }
-  }
-
-  useEffect(_ => {
-    window.addEventListener('scroll', definePosition)
-    return _ => window.removeEventListener('scroll', definePosition)
-  })
+  useTodoScroller(page, setPage, nextPage, setNextPage)
 
   return(
     <>
@@ -45,7 +36,6 @@ export default memo(_ => {
               {completed === 0 && active === 0 && error.length === 0 &&
                 <h3>It seems like you have no todos yet</h3>
               }     
-              {error.length > 0 && <h3>Technical error occured</h3>}
               {loading && <Spinner/>}
               {addTodoModalOpened && 
                 <Ctx.SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>

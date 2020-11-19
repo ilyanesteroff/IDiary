@@ -15,14 +15,14 @@ export default (page, setError, userId) => {
   const loadTodos = useCallback(_ => 
     !fullfilledTodos && !activeTodos
       ? fetchTodoStats(userId)
-          .then(res1 => {
-            setActiveTodos(res1.data.user.ActiveTodos)
-            setFullfilledTodos(res1.data.user.FullfilledTodos)          
+          .then(res1 => {       
             if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos !== 0) {
               return _fetch(queryTodos(page, userId))
                 .then(res => {
                   setLoadingTodos(false)
-                  setTodos([...res.todos])
+                  setImmediate(_ => setTodos([...res.todos]))
+                  setImmediate(_ => setActiveTodos(res1.data.user.ActiveTodos))
+                  setImmediate(_ => setFullfilledTodos(res1.data.user.FullfilledTodos))
                   if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.todos.length) setNextPage(true)
                 })
                 .catch(err => {
