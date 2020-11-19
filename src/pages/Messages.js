@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import Page from '../components/message-page/containers/index'
 import * as Ctx from '../utils/contexts'
 import useConversationManager from '../hooks/Messaging/useConversationLoader'
@@ -43,6 +44,7 @@ export default memo(_ => {
           </Ctx.ConversationsContext.Provider>
         }
       </Ctx.BrightThemeContext.Consumer>
+      <Footer/>
     </>
   )
 })

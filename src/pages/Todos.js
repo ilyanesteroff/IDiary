@@ -1,5 +1,6 @@
 import React, { useState, memo } from 'react'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import Spinner from '../components/spiners/BigSpinner'
 import AddTodoBtn from '../components/todos/other/AddTodoBtn'
 import * as Ctx from '../utils/contexts'
@@ -69,6 +70,7 @@ export default memo(_ => {
           </Ctx.TodoStatsContext.Provider>
         }
       </Ctx.BrightThemeContext.Consumer>
+      <Footer/>
     </>
   )
 })

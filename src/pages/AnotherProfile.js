@@ -1,6 +1,7 @@
 import React, { useState, memo }  from 'react'
 import * as Ctx from '../utils/contexts'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import useLoader from '../hooks/AnotherProfile/useLoader'
 import useUnfollowHandler from '../hooks/AnotherProfile/useUnfollowHandler'
 import Spinner from '../components/spiners/BigSpinner'
@@ -17,7 +18,7 @@ export default memo(({ userId }) => {
   const [ availableInfo, setUnfollow ] = useUnfollowHandler(info)
   
   return(
-    <div>
+    <>
       <Navbar/>
       <Ctx.BrightThemeContext.Consumer> 
         {theme =>
@@ -48,6 +49,7 @@ export default memo(({ userId }) => {
           </div>
         }
       </Ctx.BrightThemeContext.Consumer>
-    </div>
+      <Footer/>
+    </>
   )
 })

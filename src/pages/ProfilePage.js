@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import * as Ctx from '../utils/contexts'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import useLoader from '../hooks/Profile/useLoader'
 import useUserInfoManager from '../hooks/Profile/useProfileInfoManager'
 import Spinner from '../components/spiners/BigSpinner'
@@ -65,6 +66,7 @@ export default memo(_ => {
           </div>
         }
       </Ctx.BrightThemeContext.Consumer>
+      <Footer/>
     </>
   )
 })

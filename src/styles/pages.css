@@ -6,6 +6,7 @@
 }
 .Page{
   margin: auto 10%;
+  min-height: calc(100vh - 10.65rem);
   font-family: Ubuntu, sans-serif;
 }
 .Page h1{

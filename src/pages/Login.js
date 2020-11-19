@@ -1,5 +1,6 @@
 import React, {memo} from 'react'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import LoginForm from '../forms/LoginForm'
 import { BrightThemeContext } from '../utils/contexts'
 
@@ -22,6 +23,7 @@ export default memo(_ => {
           </div>
         }
       </BrightThemeContext.Consumer>
+      <Footer/>
     </>
   )
 })

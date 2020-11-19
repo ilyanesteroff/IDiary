@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import * as Ctx from '../utils/contexts'
 import Page from '../components/MainPageForUsers/index'
 
@@ -16,6 +17,7 @@ export default _ => {
           </div>
         }
       </Ctx.BrightThemeContext.Consumer>
+      <Footer/>
     </>
   )
 }

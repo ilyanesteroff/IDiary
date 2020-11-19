@@ -1,16 +1,17 @@
 import React, { memo } from 'react'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import SignupForm from '../forms/SignupForm'
 import { BrightThemeContext } from '../utils/contexts'
 
 export default memo(_ => {
-  document.title = 'MyDiary - Create account'
+  document.title = 'IDiary - Create account'
 
   return(
-    <BrightThemeContext.Consumer>
-      {theme =>
-        <>
-          <Navbar/>
+    <>
+      <Navbar/>      
+      <BrightThemeContext.Consumer>
+        {theme =>
           <div className={`signupFormPage ${theme? 'Bright' : 'Dark'}Page`}>
             <h1
               id="headline"
@@ -20,8 +21,9 @@ export default memo(_ => {
             </h1>
             <SignupForm theme={theme}/>
           </div>
-        </>
-      }
-    </BrightThemeContext.Consumer>
+        }
+      </BrightThemeContext.Consumer>
+      <Footer/>
+    </>
   )
 })

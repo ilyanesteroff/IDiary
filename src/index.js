@@ -11,6 +11,7 @@ import './styles/spinners.css'
 import './styles/pages.css'
 import './styles/Modals.css'
 import './styles/tooltip.css'
+import './styles/footer.css'
 
 
 ReactDOM.render(

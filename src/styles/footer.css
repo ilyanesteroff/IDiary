@@ -1,0 +1,55 @@
+#Footer{
+  margin-top: 4rem;
+  width: 100%;
+  padding: 1rem;
+  z-index: -1;
+  font-family: Ubuntu, sans-serif;
+}
+.BrightFooter{
+  background-color: #efefff;
+  box-shadow: 0 0 .1rem #222;
+}
+.DarkFooter{
+  background-color: #232333;
+  box-shadow: 0 0 .1rem #eee;
+}
+#FooterItems{
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 55%;
+}
+#FooterItem a{
+  color: #888;
+  font-weight: 300;
+  display: inline-block;
+  margin-top: .4rem;
+}
+.DarkFooter h3{
+  color: #eef;
+}
+.BrightFooter h3{
+  color: #22233f;
+}
+.FooterIcons li{
+  display: inline-block;
+}
+.FooterIcons svg{
+  font-size: 1.5rem;
+  margin-right: 1rem;
+  color:  #3377ff;
+  margin-top: .4rem;
+}
+@media only screen and (max-width: 540px){
+  #FooterItems{
+    display: block;
+    width: 90%;
+    margin: .1rem auto;
+  }
+  #FormItems-li{
+    margin-top: .5rem;
+  }
+  .FooterIcons svg{
+    margin-top: .1rem;
+  }
+}

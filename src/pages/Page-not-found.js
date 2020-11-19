@@ -1,16 +1,17 @@
-import React, {memo} from 'react'
+import React, { memo } from 'react'
 import { BrightThemeContext } from '../utils/contexts'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 
 export default memo(_ => {
   document.title = 'Page Not Found'
   return (
-    <BrightThemeContext.Consumer>
-      {theme =>
-        <>
-          <Navbar/>
+    <>
+      <Navbar/>      
+      <BrightThemeContext.Consumer>
+        {theme =>
           <div id="MainBody" className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
             <h2 
               id="headline"
@@ -27,8 +28,9 @@ export default memo(_ => {
               id="linkToHome"
             >Go to main page</a>
           </div>
-        </>
-      }
-    </BrightThemeContext.Consumer>
+        }
+      </BrightThemeContext.Consumer>
+      <Footer/>
+    </>
   )
 })

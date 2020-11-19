@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '../components/navbar/index'
+import Footer from '../components/Footer/index'
 import Spinner from '../components/spiners/BigSpinner'
 import * as Ctx from '../utils/contexts'
 import useTodoLoader from '../hooks/Todos/useTodoLoader'
@@ -54,6 +55,7 @@ export default ({ userId }) => {
           </Ctx.TodoStatsContext.Provider>
         }
       </Ctx.BrightThemeContext.Consumer>
+      <Footer/>
     </>
   )
 }

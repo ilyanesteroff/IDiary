@@ -28,6 +28,11 @@ export default memo(({ conv }) => {
     setImmediate(_ => setPage(1))
   }, [ conv._id ])
 
+  useEffect(_ => {
+    document.body.style.overflowY = 'hidden'
+    return _ => document.body.style.overflowY = 'auto'
+  })
+
   return(
     <Ctx.CurrentlyOpenedConvContext.Consumer>
       {({ set }) =>     
