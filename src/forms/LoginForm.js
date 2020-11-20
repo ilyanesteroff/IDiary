@@ -1,4 +1,5 @@
 import React, { useRef, useState, memo } from 'react'
+import { Link } from 'react-router-dom'
 import { LoginHandlerContext } from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Email from '../components/FormComponents/Email'
@@ -48,9 +49,9 @@ export default memo(({ theme }) => {
           </button>
         }
       </LoginHandlerContext.Consumer>
-      <a id="firstLink" href="/password-reset">Forgot your password? No problems</a>
+      <Link id="firstLink" to="/password-reset">Forgot your password? No problems</Link>
       <hr/>
-      <a id="buttonLikeAnchor" href="/create-user">Create account</a>
+      <Link id="buttonLikeAnchor" to="/create-user">Create account</Link>
     </form>
   )
 })

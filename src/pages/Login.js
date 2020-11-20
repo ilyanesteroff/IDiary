@@ -15,9 +15,9 @@ export default memo(_ => {
         {theme => 
           <div className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
             <>
-              <h2 id="headline">
+              <h1>
                 Login into your existing account
-              </h2>
+              </h1>
               <LoginForm theme={theme}/>
             </>
           </div>
