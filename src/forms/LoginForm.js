@@ -29,7 +29,7 @@ export default memo(({ theme }) => {
       />
       <Password ref={password}/>
       <Checkbox ref={session}>
-        <p className="InputLabel">Logout when browser closes</p>
+        <p className="InputLabel">Keep me logged in</p>
       </Checkbox>
       <LoginHandlerContext.Consumer> 
         {loginHandler => 

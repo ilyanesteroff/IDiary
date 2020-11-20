@@ -64,7 +64,6 @@ export default memo(({ signal }) => {
   }
 
   const logoutHandler = () => {
-    window.location.pathname = '/'
     setIsAuth(false)
     setUserId(null)
     setFirstname(null)

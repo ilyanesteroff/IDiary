@@ -4,9 +4,11 @@
 .formPage, .signupFormPage, .Page{
   padding-top: 4.7rem;
 }
+.formPage, .Page{
+  min-height: calc(100vh - 10.65rem);
+}
 .Page{
   margin: auto 10%;
-  min-height: calc(100vh - 10.65rem);
   font-family: Ubuntu, sans-serif;
 }
 .Page h1{
@@ -38,7 +40,7 @@
   padding: 1rem 3%;
   margin: 2.5rem 20%;
   text-align: center;
-  border-radius: 0.5vh;  
+  border-radius: 0.5rem;  
 }
 .BrightPage h1, .BrightPage #headline{
   color: #232323;
@@ -832,6 +834,9 @@ p#names{
   }
   .hiddenForm{
     height: .01vh;
+  }
+  .Page h3{
+    margin: 2.5rem 10%; 
   }
   #TodoStats h4, #FilterTodos h4, #EditProfile h4{
     font-size: 1.1rem;

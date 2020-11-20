@@ -29,7 +29,7 @@ export default _ => {
         <UsersPage username={input.trim().toLowerCase()}/>
       }
       {currentOption === '' &&
-        <h3>At this page you can search for users and todos</h3>
+        <h3>Here you can search for users and todos</h3>
       }
     </>
   )
