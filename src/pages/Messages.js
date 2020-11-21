@@ -52,10 +52,7 @@ export default memo(_ => {
           </Ctx.ConversationsContext.Provider>
         }
       </Ctx.BrightThemeContext.Consumer>
-      {width < 1400 && currentConv 
-        ? null
-        : <Footer/>
-      }
+      <Footer/>
     </>
   )
 })
