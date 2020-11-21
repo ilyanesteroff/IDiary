@@ -158,6 +158,11 @@ input::-webkit-input-placeholder{
   font-size: 1rem;
   border: solid 1px transparent;
 }
+input[type="date"]{
+  display:block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+}
 #FilterTodos > #input,
 #RightSideBar > #input{
   margin: .7rem auto;
