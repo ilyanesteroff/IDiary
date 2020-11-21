@@ -16,8 +16,7 @@ export default forwardRef((props, refs) => {
     return _ => window.removeEventListener('resize', resize)
   })
 
-  return width > 1400
-    ? (
+  return(
         <div id="RightSideBar">
           <h2>
             Filter
@@ -33,5 +32,4 @@ export default forwardRef((props, refs) => {
           </div>
         </div>
       )
-    : null
 })

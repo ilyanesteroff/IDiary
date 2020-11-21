@@ -44,7 +44,10 @@ export default _ => {
     <CurrentlyOpenedConvContext.Consumer>
       {({ value }) => 
         <>
-          <Conversations/>    
+          {value && width < 1400
+            ? null
+            : <Conversations/>     
+          }
           {value && 
             <CurrentConversation conv={value}/>  
           }
