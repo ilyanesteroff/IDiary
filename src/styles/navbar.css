@@ -162,9 +162,12 @@ li#navbarOption:hover p:not(#ActiveNavbarOption){
     font-size: 1.6rem;
   }
 }
-@media only screen and (max-width: 540px){
+@media only screen and (max-width: 830px){
   #navbarOptions{
     display: none;
+  }
+  #SideMenu{
+    display: block;
   }
 }
 @media only screen and (max-height: 540px) and (max-width: 830px){
@@ -177,7 +180,8 @@ li#navbarOption:hover p:not(#ActiveNavbarOption){
   #logo{
     font-size: 2rem;
     margin: .8rem 3%;
-  }#SideMenu{  
+  }
+  #SideMenu{  
     top: 3.7rem;
     height: calc(100% - 3.7rem);
   }
