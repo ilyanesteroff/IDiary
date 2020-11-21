@@ -17,8 +17,8 @@ export default _ => {
   const resize = _ => setWidth(window.innerWidth)
 
   useEffect(_ => {
-    document.addEventListener('resize', resize)
-    return _ => document.removeEventListener('resize', resize)
+    window.addEventListener('resize', resize)
+    return _ => window.removeEventListener('resize', resize)
   })
 
   const closeSideMenu = _ => {
