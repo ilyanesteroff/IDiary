@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, memo } from 'react'
+import React, { useState, useRef, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import useComplainLog from '../hooks/useComplainLog'
@@ -9,11 +9,6 @@ import setNewPassword from '../actionHandlers/updateuser/SetNewPassword'
 export default memo(({unsetEditing}) => {
   const [ submiting, setSubmiting ] = useState(false)
   const [ setError, complainLog ] = useComplainLog()
-
-  useEffect(_ => {
-    document.body.style.overflowY = 'hidden'
-    return _ => document.style.overflowY = 'auto' 
-  })
 
   const oldPw = useRef(null)
   const newPw = useRef(null)

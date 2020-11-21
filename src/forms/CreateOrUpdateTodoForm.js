@@ -21,10 +21,10 @@ export default ({ closeModal, todoData }) => {
 
   const [ submiting, setSubmiting ] = useState(false)
   const [ setError, complainLog ] = useComplainLog()
-  
+
   useEffect(_ => {
     document.body.style.overflowY = 'hidden'
-    return _ => document.style.overflowY = 'auto' 
+    return _ => document.body.style.overflowY = 'auto'
   })
 
   return (

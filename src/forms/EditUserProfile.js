@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import useComplainLog from '../hooks/useComplainLog'
@@ -14,11 +14,6 @@ export default ({ unsetEditing }) => {
   const firstname = useRef(null)
   const lastname = useRef(null)
   const username = useRef(null)
-  
-  useEffect(_ => {
-    document.body.style.overflowY = 'hidden'
-    return _ => document.style.overflowY = 'auto' 
-  })
 
   return(
     <Ctx.UserDataContext.Consumer>

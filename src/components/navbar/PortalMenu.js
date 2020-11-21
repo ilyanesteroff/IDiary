@@ -11,8 +11,8 @@ import * as na from './navbarOptions'
 export default ({ opened }) => {  
   useEffect(_ => {
     if(opened){
-      document.body.style.maxHeight = '100vh'
-      return _ => document.body.style.maxHeight = 'auto' 
+      document.body.style.overflowY = 'hidden'
+      return _ => document.body.style.overflowY = 'auto' 
     }
   })
 
