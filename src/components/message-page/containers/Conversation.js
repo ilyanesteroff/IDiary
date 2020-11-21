@@ -30,7 +30,11 @@ export default memo(({ conv }) => {
 
   useEffect(_ => {
     document.body.style.overflowY = 'hidden'
-    return _ => document.body.style.overflowY = 'auto'
+    document.body.style.maxHeight = '100vh'
+    return _ => {
+      document.body.style.overflowY = 'auto'
+      document.body.style.maxHeight = 'auto'
+    }
   })
 
   return(

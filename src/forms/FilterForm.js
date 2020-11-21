@@ -2,6 +2,7 @@ import React from 'react'
 import Checkbox from '../components/FormComponents/Checkbox'
 import Input from '../components/FormComponents/TodoInput'
 
+
 export default ({ cHandlers, refs }) => (
   <form id="FilterForm">
     <Checkbox onChange={cHandlers.showOnlyActiveOnChange} ref={refs.activeTodos}> 
