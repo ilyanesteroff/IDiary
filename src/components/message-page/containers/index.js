@@ -12,9 +12,17 @@ import query from '../../../graphql/fetch-conversation'
 export default _ => {  
   const [ warning, setWarning ] = useState()
   const [ receiver, setReceiver ] = useState('')
+  const [ width, setWidth ] = useState(window.innerWidth)
 
   const CurrentConv = _ => useContext(CurrentlyOpenedConvContext)
   const setConv = useRef(CurrentConv().set)
+
+  const resize = _ => setWidth(window.innerWidth)
+
+  useEffect(_ => {
+    window.addEventListener('resize', resize)
+    return _ => window.removeEventListener('resize', resize)
+  })
 
   useEffect(_ => {
     const potentialUsername = window.location.pathname.split('/')[3]
@@ -33,24 +41,29 @@ export default _ => {
   })
 
   return(
-    <>
-      <Conversations/>      
-      <CurrentlyOpenedConvContext.Consumer>
-        {({ value }) => 
-          value && <CurrentConversation conv={value}/>   
-        }
-      </CurrentlyOpenedConvContext.Consumer>
-      {warning  &&
-        <Redirect to="/messages"/>
+    <CurrentlyOpenedConvContext.Consumer>
+      {({ value }) => 
+        <>
+          {value && width < 1400
+            ? null
+            : <Conversations/>     
+          }
+          {value && 
+            <CurrentConversation conv={value}/>  
+          }
+          {warning  &&
+            <Redirect to="/messages"/>
+          }
+          {receiver && 
+            <div id="Conversation">
+              <ReceiverContext.Provider value={receiver}>
+                <UpperSection/>
+                <WriteMessage/>
+              </ReceiverContext.Provider>  
+            </div>
+          }
+        </>
       }
-      {receiver && 
-        <div id="Conversation">
-          <ReceiverContext.Provider value={receiver}>
-            <UpperSection/>
-            <WriteMessage/>
-          </ReceiverContext.Provider>
-        </div>
-      }
-    </>
+    </CurrentlyOpenedConvContext.Consumer>
   )
 }
