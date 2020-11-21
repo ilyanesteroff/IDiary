@@ -107,9 +107,6 @@ select{
   margin: .3rem auto;
   border-radius: 3rem;
 }
-input[type="password"]::-webkit-input-placeholder{
-  color: #777;
-}
 #SearchInput{
   margin-left: auto;
   margin-right: auto;
@@ -153,7 +150,8 @@ button:active, #buttons a:active{
   background-color:  #3377ff;
   color: #fff;
 }
-input::placeholder{
+input::-webkit-input-placeholder{
+  color: #777;
   font-family: Montserrat;
   font-weight: 600;
   font-size: 1rem;
