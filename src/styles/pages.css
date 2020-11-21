@@ -991,6 +991,11 @@ h1{
     font-weight: 400;
   }
 }
+@media only screen and (min-width: 279px) and (max-width: 530px){
+  #Conversation{
+    max-height: calc(100vh - 7.7rem);
+  }
+}
 @media only screen and (max-height: 540px) and (max-width: 830px){
   #TodoStats, #FilterTodos{
     padding: .4rem;
