@@ -18,6 +18,8 @@ export default _ => {
 
   useEffect(_ => {
     window.addEventListener('resize', resize)
+    window.resizeTo(window.innerWidth + 1, window.innerHeight)
+    window.resizeTo(window.innerWidth - 1, window.innerHeight)
     return _ => window.removeEventListener('resize', resize)
   })
 
