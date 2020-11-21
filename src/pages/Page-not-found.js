@@ -1,26 +1,25 @@
-import React, { memo } from 'react'
+import React from 'react'
 import { BrightThemeContext } from '../utils/contexts'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 
-export default memo(_ => {
+
+export default _ => {
   document.title = 'Page Not Found'
   return (
     <>
       <Navbar/>      
       <BrightThemeContext.Consumer>
         {theme =>
-          <div id="MainBody" className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
-            <h2 
-              id="headline"
-            >
+          <div id="MainBody" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
+            <h1>
               Page not found
-            </h2>
+            </h1>
             <FontAwesomeIcon 
               icon={faExclamationTriangle}
-              id="Icon"
+              id="BigIcon"
               className={`${theme ? 'Bright' : 'Dark'}Icon`}
             />
             <a 
@@ -33,4 +32,4 @@ export default memo(_ => {
       <Footer/>
     </>
   )
-})
+}

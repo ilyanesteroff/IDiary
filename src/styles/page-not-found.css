@@ -2,30 +2,22 @@
   padding-top: 20vh;
   font-family: Ubuntu, sans-serif;
 }
-#Icon {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, 0%);
+#BigIcon {
+  display: block;
+  margin: auto;
   text-align: center;
   font-size: 4rem;
 }
-.BrightIcon{
-  color: #333;
-}
-.DarkIcon{
-  color: #ddd;
-}
 #linkToHome{
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
   text-align: center;
   font-size: 1.5rem;
+  max-width: 230px;
+  margin: auto;
+  margin-top: 2rem;
   text-decoration: none;
-  padding: 1rem 2rem;
+  padding: 1rem;
   background-color: #2323F3;
-  border-radius: 1vh;
+  border-radius: .6rem;
   color: #fff;
 }

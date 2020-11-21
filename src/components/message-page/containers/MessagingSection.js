@@ -19,8 +19,6 @@ export default memo(({ loading, messages, markMessages, definePosition }) => {
     markMessages()
   }, [ markMessages ])
   
-  console.log('renders')
-
   return(    
     <Ctx.SetMessageToEditLocallyContext.Provider value={{ set: val => setMsgToEditLocally(val), value: msgToEditLocally }}>
       <>

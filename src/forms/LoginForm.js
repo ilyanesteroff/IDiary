@@ -18,10 +18,8 @@ export default memo(({ theme }) => {
 
   const [ setError, complainLog ] = useComplainLog()
   
-  const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
-  
   return(
-    <form className={formClassName}>
+    <form className={submiting? 'FormWithSpinner' : ''}>
       <FormSpinner/>
       { complainLog }
       <Email 

@@ -2,7 +2,6 @@
   margin-top: 4rem;
   width: 100%;
   padding: 1rem;
-  z-index: -1;
   font-family: Ubuntu, sans-serif;
   position: relative;
 }
@@ -23,7 +22,7 @@
 #FooterItem a{
   color: #888;
   font-weight: 300;
-  display: inline-block;
+  display: block;
   margin-top: .4rem;
 }
 .DarkFooter h3{
@@ -32,10 +31,10 @@
 .BrightFooter h3{
   color: #22233f;
 }
-.FooterIcons li{
-  display: inline-block;
+#FooterIcons a{
+  display: inline;
 }
-.FooterIcons svg{
+#FooterIcons svg{
   font-size: 1.5rem;
   margin-right: 1rem;
   color:  #3377ff;
@@ -55,7 +54,7 @@
   #FormItems-li{
     margin-top: .5rem;
   }
-  .FooterIcons svg{
+  #FooterIcons svg{
     margin-top: .1rem;
   }
   #FormItems-li:last-of-type{

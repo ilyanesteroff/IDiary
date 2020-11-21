@@ -8,6 +8,9 @@
 .formPage, .Page{
   min-height: calc(100vh - 10.6rem);
 }
+.formPage h1, .signupFormPage h1{
+  margin-bottom: 3rem;
+}
 .Page{
   margin: auto 10%;
 }
@@ -283,7 +286,7 @@ h1{
 #SearchOptions svg{
   margin: auto 1rem;
 }
-#activeOption{
+#activeOption, p#names{
   color: #3377ff;
 }
 #users{
@@ -291,9 +294,6 @@ h1{
 }
 #users #request {
   width: 25%
-}
-p#names{
-  color: #3377ff;
 }
 #UserSection{
   margin: auto 10vw;
@@ -418,6 +418,7 @@ p#names{
 #FilterTodos{
   left: 0;
   width: 16vw;
+  z-index: 1;
 }
 #EditProfile{
   left: 0;
@@ -603,7 +604,8 @@ p#names{
 .BrightPage #EditProfile h2,
 .BrightPage #RightSideBar h2,
 .BrightPage #count,
-.BrightPage #contrast{
+.BrightPage #contrast,
+.BrightPage #BigIcon{
   color: #22222f;
 }
 .DarkPage #FilterTodos h2,
@@ -611,7 +613,8 @@ p#names{
 .DarkPage #EditProfile h2,
 .DarkPage #RightSideBar h2,
 .DarkPage #count,
-.DarkPage #contrast{
+.DarkPage #contrast,
+.DarkPage #BigIcon{
   color: #eaeaff;
 }
 #TodoStats h4,

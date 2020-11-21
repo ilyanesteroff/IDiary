@@ -16,7 +16,7 @@ export default _ => {
             The advanced and minimalistic web-based app for todos and communication
           </p>
           <p id="description">
-            Just log in or sign up & go
+            Just log in or sign up & <span id="activeOption">go</span>
           </p>
           <img 
             id="first-image" 

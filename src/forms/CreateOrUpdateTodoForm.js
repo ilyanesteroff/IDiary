@@ -8,7 +8,7 @@ import updateTodo from '../actionHandlers/CreateOrUpdateTodo'
 import useComplainLog from '../hooks/useComplainLog'
 
 
-export default ({closeModal, todoData}) => {
+export default ({ closeModal, todoData }) => {
   const SetNewTodo = _ => useContext(Ctx.SetNewTodoContext)
   const SetTodoToUpdate = _ => useContext(Ctx.SetTodoToUpdateContext)
   

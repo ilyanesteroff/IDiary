@@ -16,10 +16,6 @@ form {
   margin: 1.65rem 32.5%;
   width: 35%;
 }
-.signupFormPage form {
-  margin: 1rem 10%;
-  width: 80%;
-}
 .formPage a, input {
   display: block;
 }
@@ -42,8 +38,8 @@ input:hover, textarea:hover{
     width: 36vw !important;
   }
   .signupFormPage button{
-    width: 50%;
-    margin-left: 25%;
+    width: 30%;
+    margin-left: 35%;
     margin-top: 1.3rem;
   }
 } 
@@ -87,8 +83,9 @@ input:hover, textarea:hover{
 #withoutSignup {
   top: 30%;
 }
-.DarkLoginForm .revealPwIcon,
-.DarkModal .revealPwIcon{
+.DarkPage .revealPwIcon,
+.DarkModal .revealPwIcon,
+.DarkPage .InputLabel{
   color: #eee;
 }
 input, textarea, select{
@@ -109,6 +106,9 @@ input[type="tel"],
 select{
   margin: .3rem auto;
   border-radius: 3rem;
+}
+input[type="password"]::-webkit-input-placeholder{
+  color: #777;
 }
 #SearchInput{
   margin-left: auto;
@@ -166,57 +166,41 @@ input::placeholder{
   float: right;
   clear: both;
 }
-.DarkPage #FilterTodos input,
-.DarkPage #SearchInput input,
-.DarkPage #RightSideBar input,
-.DarkPage #TodoStats input,
-.DarkModal #FormInModal input,
-.DarkModal #FormInModal textarea,
-.DarkLoginForm input,
+.DarkPage input,
+.DarkModal input,
+.DarkModal textarea,
 .DarkModal select,
-.DarkPage #WriteMessageSection textarea{
+.DarkPage textarea{
   background-color: #42424f;
   border: solid 1px  #42424f;
   color: #eeeeff;
 }
-.BrightPage #FilterTodos input,
-.BrightPage #SearchInput input,
-.BrightPage #RightSideBar input,
-.BrightPage #TodoStats input,
-.BrightModal #FormInModal input,
-.BrightLoginForm input,
+.BrightPage input,
+.BrightModal input,
+.BrightModal textarea,
 .BrightModal select,
-.BrightModal #FormInModal textarea,
-.BrightPage #WriteMessageSection textarea{
+.BrightPage textarea{
   background-color: #d3d3ee;
   border: solid 1px  #d3d3ee;
   color: #222;
 }
-.DarkPage #FilterTodos input:focus,
-.DarkPage #RightSideBar input:focus,
-.DarkPage #SearchInput input:focus,
-.DarkPage #TodoStats input:focus,
-.DarkModal #FormInModal input:focus,
-.DarkModal #FormInModal textarea:focus,
+.DarkPage input:focus,
+.DarkModal input:focus,
+.DarkModal textarea:focus,
 .DarkModal select:focus,
-.DarkLoginForm input:focus,
-.DarkPage #WriteMessageSection textarea:focus{
-  background-color: #222222;
-  border-color: #3377ff;
+.DarkPage textarea:focus{
+  background-color: #222222 !important;
+  border-color: #3377ff !important;
   box-shadow: 0 0 .3vh #3377ff;
 }
-.BrightPage #FilterTodos input:focus,
-.BrightPage #RightSideBar input:focus,
-.BrightPage #TodoStats input:focus,
-.BrightPage #SearchInput input:focus,
-.BrightModal #FormInModal input:focus,
-.BrightModal #FormInModal textarea:focus,
+.BrightPage input:focus,
+.BrightModal input:focus,
+.BrightModal textarea:focus,
 .BrightModal select:focus,
-.BrightLoginForm input:focus,
-.BrightPage #WriteMessageSection textarea:focus{
-  background-color: #fbfbff;
+.BrightPage textarea:focus{
   box-shadow: 0 0 .3vh #3377ff;
-  border-color: #3377ff;
+  border-color: #3377ff !important;
+  background-color: #fbfbff !important;
 }
 .formPage form a, 
 .signupFormPage form a{
@@ -236,18 +220,6 @@ input::placeholder{
   border-radius: 1vh;
   border: solid 2px #ff4444;
   font-family: Ubuntu;
-}
-.BrightLoginForm a{
-  color: #333;
-}
-.DarkLoginForm p{
-  color: #ececec;
-}
-.BrightLoginForm p{
-  color: #232323;
-}
-.DarkLoginForm a{
-  color: #eee;
 }
 #firstLink{
   margin-bottom: 1rem;

@@ -22,6 +22,7 @@ export default username => {
               to
             }
             updatedAt
+            unseenMessages
           }
           exists
           ifUserAllowed
