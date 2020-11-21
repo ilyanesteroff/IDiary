@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from 'react'
+import React, { useState, useEffect, useRef, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Input from '../components/FormComponents/TodoInput'
@@ -14,6 +14,11 @@ export default memo(({ unsetEditing }) => {
   
   const _public = useRef(null)
   const phone = useRef(null)
+  
+  useEffect(_ => {
+    document.body.style.overflowY = 'hidden'
+    return _ => document.style.overflowY = 'auto' 
+  })
 
   return(
     <Ctx.UserDataContext.Consumer>

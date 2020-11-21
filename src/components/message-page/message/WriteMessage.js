@@ -12,7 +12,7 @@ export default _ => {
       <Ctx.SetMessageToEditLocallyContext.Consumer>
         {({ value }) =>
           <>
-            <textarea ref={message}></textarea>
+            <textarea ref={message} onFocus={_ => document.body.scrollTop = 0}></textarea>
             {value === null 
               ? <div id="WriteMessage-buttons">
                   <SendMessageBtn messageInput={message}/>

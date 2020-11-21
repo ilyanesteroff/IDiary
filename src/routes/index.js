@@ -21,7 +21,6 @@ export default ({ isAuth })  => (
     <Switch>
       <Route exact path="/" render={_ => isAuth ? <MainPageForUsers/> : <MainPageForVisitors/> }/>
       <Route 
-        exact
         path="/login" 
         render={_ => isAuth ? <Redirect to="/"/> : <LoginPage/>}/>
       <Route

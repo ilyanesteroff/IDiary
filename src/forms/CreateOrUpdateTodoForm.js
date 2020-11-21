@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from 'react'
+import React, { useRef, useState, useContext, useEffect } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Checkbox from '../components/FormComponents/Checkbox'
@@ -21,6 +21,11 @@ export default ({ closeModal, todoData }) => {
 
   const [ submiting, setSubmiting ] = useState(false)
   const [ setError, complainLog ] = useComplainLog()
+  
+  useEffect(_ => {
+    document.body.style.overflowY = 'hidden'
+    return _ => document.style.overflowY = 'auto' 
+  })
 
   return (
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}> 

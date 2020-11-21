@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Input from '../components/FormComponents/TodoInput'
@@ -12,6 +12,11 @@ export default ({ unsetEditing }) => {
   const [ status, setStatus ] = useState('')
 
   const [ setError, complainLog ] = useComplainLog()
+  
+  useEffect(_ => {
+    document.body.style.overflowY = 'hidden'
+    return _ => document.style.overflowY = 'auto' 
+  })
 
   const about = useRef(null)
   const website = useRef(null)
