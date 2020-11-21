@@ -106,6 +106,7 @@ input[type="tel"],
 select{
   margin: .3rem auto;
   border-radius: 3rem;
+  border: solid 1px transparent;
 }
 #SearchInput{
   margin-left: auto;
@@ -155,6 +156,7 @@ input::-webkit-input-placeholder{
   font-family: Montserrat;
   font-weight: 600;
   font-size: 1rem;
+  border: solid 1px transparent;
 }
 #FilterTodos > #input,
 #RightSideBar > #input{
@@ -170,7 +172,6 @@ input::-webkit-input-placeholder{
 .DarkModal select,
 .DarkPage textarea{
   background-color: #42424f;
-  border: solid 1px  #42424f;
   color: #eeeeff;
 }
 .BrightPage input,
@@ -179,7 +180,6 @@ input::-webkit-input-placeholder{
 .BrightModal select,
 .BrightPage textarea{
   background-color: #d3d3ee;
-  border: solid 1px  #d3d3ee;
   color: #222;
 }
 .DarkPage input:focus,
