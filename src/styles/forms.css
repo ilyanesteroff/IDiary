@@ -156,13 +156,13 @@ input::-webkit-input-placeholder{
   font-family: Montserrat;
   font-weight: 600;
   font-size: 1rem;
-  border: solid 1px transparent;
 }
 input[type="date"]{
   display:block;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
-  padding: 1rem;
+  padding: .5rem;
+  padding-left: 1rem;
 }
 #FilterTodos > #input,
 #RightSideBar > #input{

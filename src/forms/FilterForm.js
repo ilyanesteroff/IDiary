@@ -34,6 +34,7 @@ export default ({ cHandlers, refs }) => (
       />
       <Input 
         label="Pick a date"
+        placeholder="Tap" 
         type="date" 
         changeHandler={cHandlers.createdAtOnChange}
         ref={refs.createdAt}

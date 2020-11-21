@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Logo from './Logo'
 import { BrightThemeContext, IsAuthContext, FirstnameContext } from '../../utils/contexts'
 import NavbarElement from './NavbarElement'
@@ -8,17 +8,23 @@ import ThemeToggler from './ThemeToggler'
 import Logout from './LogoutButton'
 import ProfileLink from './ProfileLink'
 import MessagesLink from './MessagesLink'
-import useResizer from '../../hooks/useWindowResizer'
 
 
 export default _ => {
-  const [ width ] = useResizer()
+  const [ width, setWidth ] = useState(window.innerWidth)
   const [ menuInPortalOpened, setMenuInPortalOpened] = useState(false)
+
+  const resize = _ => setWidth(window.innerWidth)
+
+  useEffect(_ => {
+    document.addEventListener('resize', resize)
+    return _ => document.removeEventListener('resize', resize)
+  })
 
   const closeSideMenu = _ => {
     if(menuInPortalOpened) setMenuInPortalOpened(false)
   }
-  console.log(width)
+  
   return (
     <BrightThemeContext.Consumer>
       {theme => 
