@@ -33,6 +33,7 @@ export default memo(({ conv }) => {
     document.body.style.maxHeight = '100vh'
     return _ => {
       document.body.style.overflowY = 'auto'
+      document.body.scrollTop = 0
       document.body.style.maxHeight = 'auto'
     }
   })
