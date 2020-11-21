@@ -162,7 +162,7 @@ input[type="date"]{
   display:block;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
-  padding: 2rem;
+  padding: 1rem;
 }
 #FilterTodos > #input,
 #RightSideBar > #input{

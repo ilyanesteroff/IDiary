@@ -18,7 +18,7 @@ export default _ => {
   const closeSideMenu = _ => {
     if(menuInPortalOpened) setMenuInPortalOpened(false)
   }
-
+  console.log(width)
   return (
     <BrightThemeContext.Consumer>
       {theme => 
