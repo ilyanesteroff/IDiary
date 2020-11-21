@@ -11,17 +11,9 @@ export default memo(_ => {
   const [ convPage, setConvPage ] = useState(1)
   const [ error, setError ] = useState('')
   const [ currentConv, setCurrentConv ] = useState(null)
-  const [ width, setWidth ] = useState(window.innerWidth)
 
   const [ loading, convs, hasNextPage, convLength, setConvToDelete, setConvToEdit, setConvToAdd, setHasNextPage ] 
     = useConversationManager(convPage, setError)
-
-  const resize = _ => setWidth(window.innerWidth)
-
-  useEffect(_ => {
-    window.addEventListener('resize', resize)
-    return _ => window.removeEventListener('resize', resize)
-  })
 
   return(
     <>
@@ -52,10 +44,7 @@ export default memo(_ => {
           </Ctx.ConversationsContext.Provider>
         }
       </Ctx.BrightThemeContext.Consumer>
-      {width < 1400 && currentConv 
-        ? null
-        : <Footer/>
-      }
+      <Footer/>
     </>
   )
 })
