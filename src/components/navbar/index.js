@@ -33,7 +33,7 @@ export default _ => {
           className={theme ? 'brightNavbar' : 'darkNavbar'}
           onClick={() => closeSideMenu()}
         >
-          <Logo clickHandler={width > 830? _ => {} : _ => setMenuInPortalOpened(true)}/>
+          <Logo clickHandler={_ => setMenuInPortalOpened(true)}/>
           { width > 830 && 
             <div id="navbarOptions">
               <IsAuthContext.Consumer>
@@ -74,7 +74,7 @@ export default _ => {
               </IsAuthContext.Consumer>
             </div>
           }
-          {width < 830 && menuInPortalOpened && <SideMenu opened={setMenuInPortalOpened}/>}
+          {menuInPortalOpened && <SideMenu opened={setMenuInPortalOpened}/>}
           <ThemeToggler/>
         </div>
       }
