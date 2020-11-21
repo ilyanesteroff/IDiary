@@ -1,6 +1,5 @@
 import React, { useState, useEffect, memo } from 'react'
 import Router from './routes/index'
-import Head from './Head'
 import login from './api/login'
 import requestEmailAcceptation from './api/acceptEmail'
 import clearStorages from './utils/clearStorages'
@@ -144,10 +143,7 @@ export default memo(({ signal }) => {
                     <Contexts.ToggleThemeContext.Provider value={toggleTheme}>
                       <Contexts.AcceptEmailContext.Provider value={acceptEmailHandler}>
                         {isAuth !== null &&
-                          <>
-                            <Head/>
-                            <Router isAuth={isAuth}/>
-                          </>
+                          <Router isAuth={isAuth}/>
                         }
                       </Contexts.AcceptEmailContext.Provider>
                     </Contexts.ToggleThemeContext.Provider>
