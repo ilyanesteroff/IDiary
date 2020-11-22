@@ -45,10 +45,17 @@ h1{
   text-align: center;
   border-radius: 0.5rem;  
 }
+.MainIcon{
+  color: #3377ff;
+  margin-left: 1rem;
+}
 .Page h1#Headline{
   margin-top: 10vh;
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
+}
+div#Main-texts{
+  margin: 5vh auto;
 }
 .image{
   transition: all .5s;
@@ -85,7 +92,7 @@ h1{
   color: #888;
   text-align: center;
   font-size: 1.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 .BrightPage h1, .BrightPage #headline{
   color: #232323;
