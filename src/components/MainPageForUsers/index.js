@@ -9,12 +9,12 @@ import { faTasks, faUsers } from '@fortawesome/free-solid-svg-icons'
 export default _ => {
   const [ input, setInput ] = useState('')
   const [ currentOption, setCurrentOption ] = useState('')
-
+  
   const swapCurrentOption = name => {
     if(currentOption !== name)
       setCurrentOption(name)
   }
-
+  
   return(
     <>
       <Search currentOption={currentOption} onChange={e => setInput(e.target.value)}/>
