@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Email from '../components/FormComponents/Email'
 import Password from '../components/FormComponents/Password'
@@ -12,12 +12,14 @@ import useComplainLog from '../hooks/useComplainLog'
 
 
 export default memo(({theme}) => {
-  const [userCreated, setUserCreated] = useState(false)
-  const [submiting, setSubmiting] = useState(false)
+  const [ userCreated, setUserCreated ] = useState(false)
+  const [ submiting, setSubmiting ] = useState(false)
 
   const [ setError, complainLog ] = useComplainLog() 
 
-  const [refs] = useSignupFormRefs()
+  const [ refs ] = useSignupFormRefs()
+
+  useEffect(_ => refs.firstname.current && refs.firstname.current.focus())
 
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
 

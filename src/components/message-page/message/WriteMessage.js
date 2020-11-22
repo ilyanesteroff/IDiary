@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import SendMessageBtn from '../buttons/SendMessageBtn'
 import EditMessageBtn from '../buttons/EditMessageBtn'
 import CloseEditingBtn from '../buttons/CloseEditingBtn'
@@ -7,6 +7,9 @@ import * as Ctx from '../../../utils/contexts'
 
 export default _ => {
   const message = useRef(null)
+
+  useEffect(_ => message.current && message.current.focus())
+
   return(
     <div id="WriteMessageSection">
       <Ctx.SetMessageToEditLocallyContext.Consumer>

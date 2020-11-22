@@ -2,13 +2,16 @@ import React, { useState, forwardRef, memo } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import InputLabel from './InputLabel'
+import restoreFocus from '../../utils/restoreFocus'
+
 
 export default memo(forwardRef((props, ref) => {
-  const [revealPw, setRevealPw] = useState(false)
-  const [password, setPassword] = useState('')
+  const [ revealPw, setRevealPw ] = useState(false)
+  const [ password, setPassword ] = useState('')
   
-  const togglePw = e => {
+  const togglePw = _ => {
     setRevealPw(!revealPw) 
+    restoreFocus(ref.current)
   }
 
   const setPw = event => {

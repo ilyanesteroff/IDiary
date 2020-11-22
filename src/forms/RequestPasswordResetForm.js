@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from 'react'
+import React, { useEffect, useState, useRef, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Email from '../components/FormComponents/Email'
 import DoneMessage from '../components/FormComponents/DoneMessage'
@@ -14,6 +14,8 @@ export default memo(({theme}) => {
   const [ setError, complainLog ] = useComplainLog()
 
   const email = useRef(null)
+
+  useEffect(_ => email.current && email.current.focus())
   
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
   

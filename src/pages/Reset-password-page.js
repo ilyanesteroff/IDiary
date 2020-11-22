@@ -5,19 +5,17 @@ import RequestPasswordResetForm from '../forms/RequestPasswordResetForm'
 
 
 export default memo(_ => {
-  document.title = 'MyDiary - Request password reset'
+  document.title = 'IDiary - Request password reset'
 
   return (
     <>
       <Navbar/>
       <BrightThemeContext.Consumer>
         {theme =>
-          <div className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
-            <h2 
-              id="headline"
-            >
+          <div className={`formPage ${theme? 'Bright' : 'Dark'}Page Page`}>
+            <h1>
               Request password reset
-            </h2>
+            </h1>
             <RequestPasswordResetForm theme={theme}/>
           </div>
         }

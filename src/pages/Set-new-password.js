@@ -7,7 +7,7 @@ import checkIfResetPwIsActual from '../api/checks/if-password-reset-is-actual'
 import { tokenFromUrl as token } from '../utils/tokens'
 
 export default memo(_ => {
-  document.title = 'MyDiary - Set new password'
+  document.title = 'IDiary - Set new password'
   const [ checked, setChecked ] = useState(false)
   const [ actual, setActual ] = useState(false)
 
@@ -21,8 +21,8 @@ export default memo(_ => {
         {theme => 
           <>
             {checked && actual &&
-              <div className={`formPage ${theme? 'Bright' : 'Dark'}Page`}>
-                <h1 id="headline">
+              <div className={`formPage ${theme? 'Bright' : 'Dark'}Page Page`}>
+                <h1>
                   Set new password
                 </h1>
                 <ResetPasswordForm 

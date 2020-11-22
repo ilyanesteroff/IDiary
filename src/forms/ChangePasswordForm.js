@@ -1,4 +1,4 @@
-import React, { useState, useRef, memo } from 'react'
+import React, { useEffect, useState, useRef, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import useComplainLog from '../hooks/useComplainLog'
@@ -13,6 +13,8 @@ export default memo(({unsetEditing}) => {
   const oldPw = useRef(null)
   const newPw = useRef(null)
   const newPw2 = useRef(null)
+
+  useEffect(_ => oldPw.current && oldPw.current.focus())
 
   return(
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
