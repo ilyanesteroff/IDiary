@@ -32,68 +32,68 @@ export default ({ theme }) => {
 
   return(
     <>
-        <Image
-          alt="Create todo form"
-          content="Create Todos" 
-          src={
-            width > 540
-              ? theme ? BrightCreateTodoPage : DarkCreateTodoPage
-              : theme ? BrightCreateTodoMobile : DarkCreateTodoMobile
-          }
-        />
-        <Image 
-          src={ 
-            width > 540
-              ? theme ? BrightTodoPage : DarkTodoPage 
-              : theme ? BrightMobileTodos : DarkMobileTodos
-          }
-          alt="Todos"
-          content="Collect & manage todos"  
-        />
-        <Image
-          src={ 
-            width > 540
-              ? theme ? BrightUserPage : DarkUserPage 
-              : theme ? BrightMobileUserPage : DarkMobileUserPage
-          }
-          alt="profile page"
-          content="Manage your profile"
-          sideEffect
-        />
-        <Image
-          src={ 
-            width > 540
-              ? theme ? BrightConversation : DarkConversation 
-              : theme ? BrightMobileConversation : DarkMobileConversation 
-          }
-          alt="conversation page"
-          content="Stay connected with others"
-        />
-        <Image
-          src={ 
-            width > 540
-              ? theme ? BrightAnotherUser : DarkAnotherUser
-              : theme ? BrightAnotherUserMobile : DarkAnotherUserMobile
-          }
-          alt="The page of another user"
-          content="View profiles of another users"
-          sideEffect
-        />
-        {width > 540 &&
-          <>
-            <Image
-              src={ theme ? BrightAnotherTodos : DarkAnotherTodos }
-              alt="The page of todos"
-              content="View todos of another users"
-              sideEffect
-            />
-            <Image
-              src={ theme ? BrightTodosByTag : DarkTodosByTag }
-              alt="The page of todos"
-              content="Search todos by tags"
-            />
-          </>
+      <Image
+        alt="Create todo form"
+        content="Create Todos" 
+        src={
+          width > 540
+            ? theme ? BrightCreateTodoPage : DarkCreateTodoPage
+            : theme ? BrightCreateTodoMobile : DarkCreateTodoMobile
         }
+      />
+      <Image 
+        src={ 
+          width > 540
+            ? theme ? BrightTodoPage : DarkTodoPage 
+            : theme ? BrightMobileTodos : DarkMobileTodos
+        }
+        alt="Todos"
+        content="Collect & manage todos"  
+      />
+      <Image
+        src={ 
+          width > 540
+            ? theme ? BrightUserPage : DarkUserPage 
+            : theme ? BrightMobileUserPage : DarkMobileUserPage
+        }
+        alt="profile page"
+        content="Manage your profile"
+        sideEffect
+      />
+      <Image
+        src={ 
+          width > 540
+            ? theme ? BrightConversation : DarkConversation 
+            : theme ? BrightMobileConversation : DarkMobileConversation 
+        }
+        alt="conversation page"
+        content="Connect you with others"
+      />
+      <Image
+        src={ 
+          width > 540
+            ? theme ? BrightAnotherUser : DarkAnotherUser
+            : theme ? BrightAnotherUserMobile : DarkAnotherUserMobile
+        }
+        alt="The page of another user"
+        content="View profiles of another users"
+        sideEffect
+      />
+      {width > 540 &&
+        <>
+          <Image
+            src={ theme ? BrightAnotherTodos : DarkAnotherTodos }
+            alt="The page of todos"
+            content="View todos of another users"
+            sideEffect
+          />
+          <Image
+            src={ theme ? BrightTodosByTag : DarkTodosByTag }
+            alt="The page of todos"
+            content="Search todos by tags"
+          />
+        </>
+      }
     </>
   )
 }

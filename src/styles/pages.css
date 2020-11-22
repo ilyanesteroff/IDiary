@@ -55,7 +55,7 @@ h1{
   margin-bottom: 2em;
 }
 div#Main-texts{
-  margin: 5vh auto;
+  margin-bottom: 8rem;
 }
 .image{
   transition: all .5s;
