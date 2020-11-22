@@ -51,13 +51,35 @@ h1{
   margin-bottom: 2rem;
 }
 .image{
+  transition: all .5s;
   max-width: 100%;
   border: solid 2px #888;
   border-radius: 1vh;
   box-shadow: 0 0 .5rem #2222ff99;
+  margin-top: 1.5rem;
 }
-#first-image{
-  margin-top: 5vh;
+#Feature{
+  margin-top: 2rem;
+  font-size: 1.2rem;
+}
+.left{
+  text-align: left;
+}
+.center{  
+  text-align: center;
+}
+#separator{
+  transition: margin 1s ease-in-out;
+}
+.topMargin{
+  margin-top: 40vh;
+}
+.noMargin{
+  margin-top: 2vh;
+}
+.leftMargin{
+  margin-top: 20%;
+  margin-left: 80%;
 }
 .Page p#description{
   color: #888;
@@ -286,7 +308,7 @@ h1{
 #SearchOptions svg{
   margin: auto 1rem;
 }
-#activeOption, p#names{
+#activeOption, p#names, #Feature{
   color: #3377ff;
 }
 #users{
@@ -934,6 +956,18 @@ h1{
   }
   #users{
     display: block;
+  }
+  .image{
+    width: 80%;
+    margin-left: 10%;
+    border-width: 1px;
+  }
+  #MainPage h1, #MainPage p{
+    width: 80%;
+    margin-left: 10%;
+  }
+  .left{
+    margin-left: 10%;
   }
   #users #request {
     width: 100%
