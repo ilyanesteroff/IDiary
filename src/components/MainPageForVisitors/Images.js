@@ -1,9 +1,8 @@
 import React from 'react'
 import Image from './Image'
+import FirstImage from './FirstImage'
 import BrightUserPage from '../../assets/computers/BrightPageUI.png'
 import DarkUserPage from '../../assets/computers/DarkPageUI.png'
-import BrightCreateTodoPage from '../../assets/computers/BrightCreateTodo.png'
-import DarkCreateTodoPage from '../../assets/computers/DarkCreateTodo.png'
 import BrightTodoPage from '../../assets/computers/BrightTodos.png'
 import DarkTodoPage from '../../assets/computers/DarkTodos.png'
 import BrightConversation from '../../assets/computers/BrightConversation.png'
@@ -16,8 +15,6 @@ import BrightTodosByTag from '../../assets/computers/BrightTodoByTag.png'
 import DarkTodosByTag from '../../assets/computers/DarkTodoByTag.png'
 import BrightMobileUserPage from '../../assets/mobile/BrightProfile.JPG'
 import DarkMobileUserPage from '../../assets/mobile/DarkProfile.JPG'
-import BrightCreateTodoMobile from '../../assets/mobile/BrightCreateTodo.JPG'
-import DarkCreateTodoMobile from '../../assets/mobile/DarkCreateProfile.JPG'
 import BrightMobileTodos from '../../assets/mobile/BrightTodos.JPG'
 import DarkMobileTodos from '../../assets/mobile/DarkTodos.JPG'
 import BrightMobileConversation from '../../assets/mobile/BrightConversations.JPG'
@@ -32,15 +29,7 @@ export default ({ theme }) => {
 
   return(
     <>
-      <Image
-        alt="Create todo form"
-        content="Create Todos" 
-        src={
-          width > 540
-            ? theme ? BrightCreateTodoPage : DarkCreateTodoPage
-            : theme ? BrightCreateTodoMobile : DarkCreateTodoMobile
-        }
-      />
+      <FirstImage width={ width } theme={ theme } />
       <Image 
         src={ 
           width > 540
@@ -67,7 +56,7 @@ export default ({ theme }) => {
             : theme ? BrightMobileConversation : DarkMobileConversation 
         }
         alt="conversation page"
-        content="Connect you with others"
+        content="Keep you connected with others"
       />
       <Image
         src={ 

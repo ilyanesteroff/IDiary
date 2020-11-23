@@ -12,7 +12,8 @@ export default ({ src, content, alt, sideEffect }) => {
   }
 
   const observer = new IntersectionObserver(_ => {
-    if(window.pageYOffset > window.innerHeight / 4){
+    console.log(window.pageYOffset, window.innerHeight)
+    if(window.pageYOffset > 50){
       if(!touched) setTouched(true)
     }
   }, options)
