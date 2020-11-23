@@ -13,6 +13,8 @@ import OtherTodos from '../pages/TodosOfAnotherUser'
 import Messages from '../pages/Messages'
 import MainPageForUsers from '../pages/MainPageForUsers'
 import MainPageForVisitors from '../pages/MainPageForVisitors'
+import Project from '../pages/Project'
+import Stack from '../pages/Stack'
 import userIdComparer from '../utils/userIdComparer'
 
 
@@ -23,6 +25,12 @@ export default ({ isAuth })  => (
       <Route 
         path="/login" 
         render={_ => isAuth ? <Redirect to="/"/> : <LoginPage/>}/>
+      <Route 
+        path="/stack" 
+        render={_ => <Stack/>}/>
+      <Route 
+        path="/project" 
+        render={_ => <Project/>}/>
       <Route
         path='/create-user'
         render={_ => isAuth ? <Redirect to="/"/> : <Signup/>}

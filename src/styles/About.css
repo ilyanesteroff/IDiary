@@ -1,0 +1,78 @@
+#StackLists{
+  display: flex;
+}
+#StackList h2, #StackList li h4{
+  text-align: center;
+}
+#StackList ul{
+  display: flex;
+  flex-wrap: wrap;
+  width: 40vw;
+  margin: 1rem auto;
+}
+#StackList li{
+  width: 50%;
+  padding: .5rem;
+  margin-bottom: .5rem;
+  position: relative;
+  overflow: hidden;
+  height: auto;
+}
+#StackList li svg{
+  margin-left: .5rem;
+}
+#StackLists h4{
+  font-size: 1.2rem;
+}
+#overflowItem{
+  opacity: 0;
+  margin-top: .5rem;
+  margin-left: -10rem;
+  width: 100%;
+  transition: all 1s;
+}
+#StackList li:hover #overflowItem{
+  opacity: 1;
+  margin-left: 0;
+}
+.BrightPage #StackLists h2,
+.BrightPage #StackLists p{
+  color: #333;
+}
+.BrightPage #StackLists h4{
+  color: #222;
+}
+.DarkPage #StackLists h2,
+.DarkPage #StackLists p{
+  color: #ddf;
+}
+.DarkPage #StackLists h4{
+  color: #eee;
+}
+@media only screen and (max-width: 1100px){
+  #StackLists{
+    display: block;
+  }
+  #StackList{
+    margin-bottom: 2rem;
+  }
+  #StackList ul{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 1rem auto;
+  }  
+  #StackList #overflowItem{
+    opacity: 1;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 500px){
+  #StackList ul{
+    display: block;
+    margin-top: 2rem;
+  }
+  #StackList li{
+    width: 100%;
+  }
+}

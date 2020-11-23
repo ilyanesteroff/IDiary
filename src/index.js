@@ -11,6 +11,7 @@ import './styles/pages.css'
 import './styles/Modals.css'
 import './styles/tooltip.css'
 import './styles/footer.css'
+import './styles/About.css'
 
 
 ReactDOM.render(
