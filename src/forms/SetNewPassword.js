@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, memo } from 'react'
+import React, { useState, useRef, memo } from 'react'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Password from '../components/FormComponents/Password'
 import setNewPassword from '../actionHandlers/SetNewPassword'
@@ -13,8 +13,6 @@ export default memo(({theme}) => {
   
   const password1 = useRef(null)
   const password2 = useRef(null)
-
-  useEffect(_ => password1.current && password1.current.focus())
   
   const formClassName = `${theme? 'Bright': 'Dark'}LoginForm ${submiting? 'FormWithSpinner' : ''}`
 

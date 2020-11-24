@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, memo } from 'react'
+import React, { useRef, useState, memo } from 'react'
 import { Link } from 'react-router-dom'
 import { LoginHandlerContext } from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
@@ -17,8 +17,6 @@ export default memo(_ => {
   const [ submiting, setSubmiting ] = useState(false) 
 
   const [ setError, complainLog ] = useComplainLog()
-
-  useEffect(_ => email.current && email.current.focus())
   
   return(
     <form className={submiting? 'FormWithSpinner' : ''}>

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext, useEffect } from 'react'
+import React, { useRef, useState, useContext, useEffect, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Checkbox from '../components/FormComponents/Checkbox'
@@ -9,7 +9,7 @@ import useComplainLog from '../hooks/useComplainLog'
 import restoreFocus from '../utils/restoreFocus'
 
 
-export default ({ closeModal, todoData }) => {
+export default memo(({ closeModal, todoData }) => {
   const SetNewTodo = _ => useContext(Ctx.SetNewTodoContext)
   const SetTodoToUpdate = _ => useContext(Ctx.SetTodoToUpdateContext)
   
@@ -64,4 +64,4 @@ export default ({ closeModal, todoData }) => {
       </button>
     </form>
   )
-}
+}, (prev, next) => prev.todoData === next.todoData)

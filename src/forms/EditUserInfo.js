@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Input from '../components/FormComponents/TodoInput'
 import Textarea from '../components/todos/other/Textarea'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserInfo'
 import useComplainLog from '../hooks/useComplainLog'
-import restoreFocus from '../utils/restoreFocus'
 
 
 export default ({ unsetEditing }) => {
@@ -17,8 +16,6 @@ export default ({ unsetEditing }) => {
   const about = useRef(null)
   const website = useRef(null)
   const company = useRef(null)
-
-  useEffect(_ => about.current && restoreFocus(about.current))
 
   return(
     <Ctx.UserDataContext.Consumer>

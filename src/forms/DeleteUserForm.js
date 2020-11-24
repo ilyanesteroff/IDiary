@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Password from '../components/FormComponents/Password'
@@ -11,8 +11,6 @@ export default _ => {
   const [ submiting, setSubmitting ] = useState(false)
 
   const password = useRef(null)
-
-  useEffect(_ => password.current && password.current.focus())
 
   return(
     <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>

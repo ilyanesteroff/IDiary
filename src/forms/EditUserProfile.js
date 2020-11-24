@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import useComplainLog from '../hooks/useComplainLog'
@@ -14,8 +14,6 @@ export default ({ unsetEditing }) => {
   const firstname = useRef(null)
   const lastname = useRef(null)
   const username = useRef(null)
-
-  useEffect(_ => firstname.current && firstname.current.focus())
 
   return(
     <Ctx.UserDataContext.Consumer>

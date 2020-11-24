@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, memo } from 'react'
+import React, { useState, useRef, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Input from '../components/FormComponents/TodoInput'
@@ -14,8 +14,6 @@ export default memo(({ unsetEditing }) => {
   
   const _public = useRef(null)
   const phone = useRef(null)
-
-  useEffect(_ => phone.current && phone.current.focus())
 
   return(
     <Ctx.UserDataContext.Consumer>
