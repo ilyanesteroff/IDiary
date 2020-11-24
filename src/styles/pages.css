@@ -620,7 +620,6 @@ h1{
 .DarkPage #FilterTodos h4,
 .DarkPage #TodoStats h4{
   background-color: #232327;
-  box-shadow: 0 0 0.3vh #fafaff;
 }
 #TodoStats h2,
 #FilterTodos h2,
