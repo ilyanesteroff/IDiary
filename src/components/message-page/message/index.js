@@ -1,5 +1,6 @@
 import React from 'react'
 import MessageOptions from './MessageOptions'
+import MessageText from './MessageText'
 import WrittenAt from './WrittenAt'
 import useMessageManager from '../../../hooks/Messaging/useMessageManager'
 import LikedIcon from './LikedIcon'
@@ -19,13 +20,13 @@ export default ({ info }) => {
         onClick={_ => optionsOpened && setOptionsOpened(false)}
         ref={ref}
       >
-        <p id="MsgTxt">{ info.text }</p>
-        <p>
+        <MessageText text={ info.text }/>
+        <>
           <WrittenAt time={ info.writtenAt }/>
           {!userIdComparer(info.to) &&
             <Seen seen={ info.seen }/>
           }
-        </p>
+        </>
         <LikedIcon liked={liked}/>        
         {optionsOpened && 
           <MessageOptions info={info} handleClick={_ => setOptionsOpened(false)}/>

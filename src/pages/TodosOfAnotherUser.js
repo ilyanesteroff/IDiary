@@ -20,6 +20,8 @@ export default ({ userId }) => {
   
   useTodoScroller(page, setPage, nextPage, setNextPage)
 
+  console.log(todos)
+
   useEffect(_ => {
     if(todos.length > 0) document.title = `${todos[0].creator.username}'s todos`
   }, [ todos ])
@@ -32,7 +34,7 @@ export default ({ userId }) => {
           <Ctx.TodoStatsContext.Provider value={{active: active, completed: completed}}>
             <div id="TodosPage" className={`${theme? 'Bright' : 'Dark'}Page Page`}>
               {error.length > 0 && <h3>{error}</h3>}              
-              {(completed === 0 && active === 0 && error.length === 0)  &&
+              {!loading && todos.length === 0 &&
                 <h3>It seems like there are no available todos</h3>
               } 
               {todos.length > 0 &&

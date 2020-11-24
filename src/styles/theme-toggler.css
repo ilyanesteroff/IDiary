@@ -1,62 +1,61 @@
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 2.5rem;
-    height: 0.2rem;
-  }
-  .switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }  
-  .slider { 
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }
-  .toggler {
-    background-color: #eee;
-  }
-  .RegCheckbox {
-    background-color: #888;
-  }  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 1.2rem;
-    width: 1.2rem;
-    left: -0.03rem;
-    bottom: -0.5rem;
-    background-color: #2323F3;
-    -webkit-transition: .4s;
-    transition: .4s;
-  }  
-  input:disabled + .slider:before{
-    background-color: #888;
-  }
-  input:checked + .slider {
-    background-color: #222;
-  }  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #222;
-  }
-  input:checked + .RegCheckbox{
-    background-color: #777;
-  }  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(1.4rem);
-    -ms-transform: translateX(1.4rem);
-    transform: translateX(1.4rem);
-  }  
-  /* Rounded sliders */
-  .slider.round {
-    border-radius: 1.2rem;
-  }  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+  position: relative;
+  display: inline-block;
+  width: 2.5rem;
+  height: 0.2rem;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}  
+.slider { 
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.toggler {
+  background-color: #eee;
+}
+.RegCheckbox {
+  background-color: #888;
+}  
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.2rem;
+  width: 1.2rem;
+  left: -0.03rem;
+  bottom: -0.5rem;
+  background-color: #2323F3;
+  -webkit-transition: .4s;
+  transition: .4s;
+}  
+input:disabled + .slider:before{
+  background-color: #888;
+}
+input:checked + .slider {
+  background-color: #222;
+}  
+input:focus + .slider {
+  box-shadow: 0 0 1px #222;
+}
+input:checked + .RegCheckbox{
+  background-color: #777;
+}  
+input:checked + .slider:before {
+  -webkit-transform: translateX(1.4rem);
+  -ms-transform: translateX(1.4rem);
+  transform: translateX(1.4rem);
+}  
+.slider.round {
+  border-radius: 1.2rem;
+}  
+.slider.round:before {
+  border-radius: 50%;
+}

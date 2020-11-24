@@ -15,6 +15,7 @@ import MainPageForUsers from '../pages/MainPageForUsers'
 import MainPageForVisitors from '../pages/MainPageForVisitors'
 import Project from '../pages/Project'
 import Stack from '../pages/Stack'
+import Features from '../pages/Features'
 import userIdComparer from '../utils/userIdComparer'
 
 
@@ -27,7 +28,10 @@ export default ({ isAuth })  => (
         render={_ => isAuth ? <Redirect to="/"/> : <LoginPage/>}/>
       <Route 
         path="/stack" 
-        render={_ => <Stack/>}/>
+        render={_ => <Stack/>}/> 
+      <Route 
+        path="/features" 
+        render={_ => <Features/>}/>
       <Route 
         path="/project" 
         render={_ => <Project/>}/>

@@ -1,12 +1,18 @@
-import React, { memo } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
+import Spinner from '../components/spiners/BigSpinner'
 import SignupForm from '../forms/SignupForm'
+import useSignupPage from '../hooks/SignupPage/useSignupPage'
 import { BrightThemeContext } from '../utils/contexts'
 
 
-export default memo(_ => {
+export default _ => {
   document.title = 'IDiary - Create account'
+
+  const [ error, setError ] = useState('')
+
+  const [ pageLoading, enoughSpace ] = useSignupPage(setError)
 
   return(
     <>
@@ -14,12 +20,23 @@ export default memo(_ => {
       <BrightThemeContext.Consumer>
         {theme =>
           <div className={`signupFormPage ${theme? 'Bright' : 'Dark'}Page Page`}>
-            <h1>Create your account</h1>
-            <SignupForm theme={theme}/>
+            {enoughSpace === true && !pageLoading &&
+              <>
+                <h1>Create your account</h1>
+                <SignupForm theme={theme}/>
+              </>
+            }
+            {error.length > 0 &&
+              <h3>{ error }</h3>
+            }
+            {!pageLoading && enoughSpace === false &&
+              <h3>Unfortunately there is no space left on the database</h3>
+            }
+            { pageLoading && <Spinner/> }
           </div>
         }
       </BrightThemeContext.Consumer>
       <Footer/>
     </>
   )
-})
+}

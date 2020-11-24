@@ -4,6 +4,16 @@
 #StackList h2, #StackList li h4{
   text-align: center;
 }
+#Features{
+  margin: 1rem auto;
+}
+#Features h4{
+  font-size: 1.2rem;
+  margin: 1rem auto;
+}
+#Features p{
+  margin: .5rem auto;
+}
 #StackList ul{
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +23,6 @@
 #StackList li{
   width: 50%;
   padding: 1rem;
-  margin-bottom: .5rem;
   position: relative;
   overflow: hidden;
   height: auto;
@@ -36,18 +45,28 @@
   opacity: 1;
   margin-left: 0;
 }
+#Project{
+  line-height: 1.5rem;
+  text-align: justify;
+}
 .BrightPage #StackLists h2,
-.BrightPage #StackLists p{
+.BrightPage #StackLists p,
+.BrightPage #Project,
+.BrightPage #Features h4{
   color: #333;
 }
-.BrightPage #StackLists h4{
+.BrightPage #StackLists h4,
+.BrightPage #Features p{
   color: #222;
 }
 .DarkPage #StackLists h2,
-.DarkPage #StackLists p{
+.DarkPage #StackLists p,
+.DarkPage #Project,
+.DarkPage #Features h4{
   color: #ddf;
 }
-.DarkPage #StackLists h4{
+.DarkPage #StackLists h4,
+.DarkPage #Features p{
   color: #eee;
 }
 @media only screen and (max-width: 1100px){
@@ -76,5 +95,9 @@
   }
   #StackList li{
     width: 100%;
+  }
+  #Features, #Project{
+    margin-left: 5%;
+    width: 90%;
   }
 }

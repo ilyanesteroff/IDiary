@@ -7,6 +7,7 @@ export default _ => (
     <h3>About</h3>
     <div id="FooterItem">
       <Link to="/project">Project</Link>
+      <Link to="/features">Features</Link>
       <Link to="/stack">Stack</Link>
     </div>
   </div>

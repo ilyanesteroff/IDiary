@@ -6,7 +6,7 @@
   font-family: Ubuntu, sans-serif;
 }
 .formPage, .Page{
-  min-height: calc(100vh - 10.6rem);
+  min-height: calc(100vh - 12.2rem);
 }
 .formPage h1, .signupFormPage h1{
   margin-bottom: 3rem;
@@ -425,6 +425,7 @@ h1{
 #RightSideBar{
   right: 0;
   width: 20vw;
+  z-index: 1;
   overflow: hidden;
 }
 #scrollableList{
@@ -555,6 +556,7 @@ h1{
 #request #username{
   font-size: 1.1rem;
   font-weight: 600;
+  text-align: left;
 }
 .DarkPage #request{
   background-color: #22222a;
@@ -593,6 +595,7 @@ h1{
 #request #names{
   font-size: .9rem;
   margin: .3rem 0;
+  text-align: left;
 }
 #request #BlueIcon,
 #userBtns #BlueIcon{
@@ -633,7 +636,8 @@ h1{
 .BrightPage #RightSideBar h2,
 .BrightPage #count,
 .BrightPage #contrast,
-.BrightPage #BigIcon{
+.BrightPage #BigIcon,
+.BrightPage .complain p{
   color: #22222f;
 }
 .DarkPage #FilterTodos h2,
@@ -642,7 +646,8 @@ h1{
 .DarkPage #RightSideBar h2,
 .DarkPage #count,
 .DarkPage #contrast,
-.DarkPage #BigIcon{
+.DarkPage #BigIcon,
+.DarkPage .complain p{
   color: #eaeaff;
 }
 #TodoStats h4,

@@ -1,7 +1,7 @@
 import React from 'react'
 import Backend from './Backend'
 import Frontend from './Frontend'
-import Chapter from './Chapter'
+import Chapter from '../Global/Chapter'
 
 
 export default _ => {
