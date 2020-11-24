@@ -7,13 +7,12 @@ export default ({ src, content, alt, sideEffect }) => {
 
   let options = {
     root: null,
-    rootMargin: '10px',
+    rootMargin: '5px',
     threshold: sideEffect ? 0.1 : 0.05
   }
 
   const observer = new IntersectionObserver(_ => {
-    console.log(window.pageYOffset, window.innerHeight)
-    if(window.pageYOffset > 50){
+    if(window.pageYOffset > window.innerHeight){
       if(!touched) setTouched(true)
     }
   }, options)
