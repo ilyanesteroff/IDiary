@@ -1,4 +1,4 @@
-import React, { useState, memo }  from 'react'
+import React, { useState, memo, useEffect }  from 'react'
 import * as Ctx from '../utils/contexts'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
@@ -16,6 +16,8 @@ export default memo(({ userId }) => {
 
   const [ loading, info ] = useLoader(userId, setError)
   const [ availableInfo, setUnfollow ] = useUnfollowHandler(info)
+
+  useEffect(_ => window.scrollTo(0, 0), [ ])
   
   return(
     <>
@@ -52,4 +54,4 @@ export default memo(({ userId }) => {
       <Footer/>
     </>
   )
-})
+}, (prev, next) => prev.userId === next.userId)

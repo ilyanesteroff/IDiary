@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrightThemeContext } from '../utils/contexts'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
@@ -8,6 +8,9 @@ import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
 
 export default _ => {
   document.title = 'Page Not Found'
+  
+  useEffect(_ => window.scrollTo(0, 0), [ ])
+  
   return (
     <>
       <Navbar/>      

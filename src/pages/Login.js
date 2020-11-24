@@ -1,13 +1,15 @@
-import React, {memo} from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
 import LoginForm from '../forms/LoginForm'
 import { BrightThemeContext } from '../utils/contexts'
 
 
-export default memo(_ => {  
+export default _ => {  
   document.title = 'IDiary - Login'
 
+  useEffect(_ => window.scrollTo(0, 0), [ ])
+  
   return(    
     <>
       <Navbar/>
@@ -26,4 +28,4 @@ export default memo(_ => {
       <Footer/>
     </>
   )
-})
+}

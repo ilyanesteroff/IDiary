@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState, memo } from 'react'
+import React, { useContext, useRef, useState, useEffect, memo } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeartBroken } from '@fortawesome/free-solid-svg-icons'
 import * as Ctx from '../utils/contexts'
@@ -25,6 +25,8 @@ export default memo(_ => {
   const [ userInfo, setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, setDecreaseUserStats, setIncreaseUserStats ] = useUserInfoManager(info)
 
   document.title = firstname.current
+  
+  useEffect(_ => window.scrollTo(0, 0), [ ])
 
   return(
     <>

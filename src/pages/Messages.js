@@ -12,6 +12,8 @@ export default memo(_ => {
   const [ error, setError ] = useState('')
   const [ currentConv, setCurrentConv ] = useState(null)
   const [ width, setWidth ] = useState(window.innerWidth)
+  
+  useEffect(_ => window.scrollTo(0, window.pageYOffset), [ ])
 
   const [ loading, convs, hasNextPage, convLength, setConvToDelete, setConvToEdit, setConvToAdd, setHasNextPage ] 
     = useConversationManager(convPage, setError)

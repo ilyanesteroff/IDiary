@@ -12,7 +12,7 @@ export default ({ src, content, alt, sideEffect }) => {
   }
 
   const observer = new IntersectionObserver(_ => {
-    if(window.pageYOffset > window.innerHeight){
+    if(window.pageYOffset > window.innerHeight / 2){
       if(!touched) setTouched(true)
     }
   }, options)

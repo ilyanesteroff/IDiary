@@ -20,7 +20,7 @@ export default ({ userId }) => {
   
   useTodoScroller(page, setPage, nextPage, setNextPage)
 
-  console.log(todos)
+  useEffect(_ => window.scrollTo(0, 0), [ ])
 
   useEffect(_ => {
     if(todos.length > 0) document.title = `${todos[0].creator.username}'s todos`

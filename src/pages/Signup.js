@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
 import Spinner from '../components/spiners/BigSpinner'
@@ -11,6 +11,8 @@ export default _ => {
   document.title = 'IDiary - Create account'
 
   const [ error, setError ] = useState('')
+  
+  useEffect(_ => window.scrollTo(0, 0), [ ])
 
   const [ pageLoading, enoughSpace ] = useSignupPage(setError)
 

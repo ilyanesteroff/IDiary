@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
 import Spinner from '../components/spiners/BigSpinner'
@@ -24,6 +24,8 @@ export default memo(_ => {
   const [ todosToExpose, refs, changeHandlers, active, completed, setNewTodo, setTodoToDelete, setTodoToUpdate ] = useTodoManipulator(todos, activeTodos, fullfilledTodos)
 
   useTodoScroller(page, setPage, nextPage, setNextPage)
+  
+  useEffect(_ => window.scrollTo(0, 0), [ ])
 
   return(
     <>
