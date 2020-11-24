@@ -6,6 +6,7 @@ import { BrightThemeContext } from '../utils/contexts'
 
 
 export default _ => {
+  document.title = 'IDiary Stack'
   return(
     <>
       <Navbar/>

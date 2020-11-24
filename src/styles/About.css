@@ -12,7 +12,7 @@
 }
 #StackList li{
   width: 50%;
-  padding: .5rem;
+  padding: 1rem;
   margin-bottom: .5rem;
   position: relative;
   overflow: hidden;
@@ -20,6 +20,7 @@
 }
 #StackList li svg{
   margin-left: .5rem;
+  font-size: 1.3rem;
 }
 #StackLists h4{
   font-size: 1.2rem;
@@ -52,6 +53,7 @@
 @media only screen and (max-width: 1100px){
   #StackLists{
     display: block;
+    border: none;
   }
   #StackList{
     margin-bottom: 2rem;
