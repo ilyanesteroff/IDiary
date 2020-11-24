@@ -16,13 +16,13 @@ export default (page, setError, userId) => {
     !fullfilledTodos && !activeTodos
       ? fetchTodoStats(userId)
           .then(res1 => {       
+            setFullfilledTodos(res1.data.user.FullfilledTodos)
+            setActiveTodos(res1.data.user.ActiveTodos)
             if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos !== 0) {
               return _fetch(queryTodos(page, userId))
                 .then(res => {
                   setLoadingTodos(false)
                   setImmediate(_ => setTodos([...res.todos]))
-                  setImmediate(_ => setActiveTodos(res1.data.user.ActiveTodos))
-                  setImmediate(_ => setFullfilledTodos(res1.data.user.FullfilledTodos))
                   if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.todos.length) setNextPage(true)
                 })
                 .catch(err => {
