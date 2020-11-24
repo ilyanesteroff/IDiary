@@ -14,6 +14,7 @@ export default ({ text }) => {
                href={ c }
                id="activeOption"
                key={ "link" + i }
+               style={{ wordWrap: 'break-word' }}
               >
                 { c + ' ' }
               </a>
