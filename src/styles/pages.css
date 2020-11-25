@@ -1026,7 +1026,7 @@ h1{
     font-weight: 600;
   }
   #reversed-ScrollableList{  
-    max-height: calc(90vh - 12rem) !important;
+    height: calc(90vh - 12rem) !important;
   }
   #WriteMessageSection{
     padding-bottom: 10vh !important;
