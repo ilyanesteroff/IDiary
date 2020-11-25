@@ -1083,7 +1083,7 @@ h1{
       bottom: 10%;
     }
   }
-}
+} 
 @media only screen and (max-height: 540px){
   .Page h1#Headline{
     margin-top: 5vh;
