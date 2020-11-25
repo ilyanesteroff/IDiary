@@ -13,7 +13,7 @@ export default ({ onChange, currentOption }) => {
       <input 
         type="text"
         ref={input}
-        placeholder={ currentOption.length > 0 ? currentOption === 'todos' ? 'Enter a tag' : 'Enter a username' : ''}
+        placeholder={ currentOption.length > 0 ? currentOption === 'todos' ? 'Enter a tag' : 'Enter a name' : ''}
         onChange={onChange}
       />
       <FontAwesomeIcon
