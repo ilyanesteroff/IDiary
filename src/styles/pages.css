@@ -1025,6 +1025,9 @@ h1{
   p#TimeLeft{
     font-weight: 600;
   }
+  #WriteMessageSection{
+    padding-bottom: 10vh;
+  }
   p#time{
     font-weight: 400;
   }
