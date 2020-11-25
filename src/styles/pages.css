@@ -1077,14 +1077,6 @@ h1{
     margin-left: 2%;
   }
 }
-@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0){ 
-  @media only screen and (max-width: 540px){
-    #WriteMessageSection{
-      bottom: 20vh;
-      z-index: 2;
-    }
-  }
-} 
 @media only screen and (max-height: 540px){
   .Page h1#Headline{
     margin-top: 5vh;

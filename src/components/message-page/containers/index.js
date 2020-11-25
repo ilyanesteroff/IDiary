@@ -12,18 +12,11 @@ import query from '../../../graphql/fetch-conversation'
 export default _ => {  
   const [ warning, setWarning ] = useState()
   const [ receiver, setReceiver ] = useState('')
-  const [ width, setWidth ] = useState(window.innerWidth)
 
   const CurrentConv = _ => useContext(CurrentlyOpenedConvContext)
   const setConv = useRef(CurrentConv().set)
 
-  const resize = _ => setWidth(window.innerWidth)
-
-  useEffect(_ => {
-    window.addEventListener('resize', resize)
-    return _ => window.removeEventListener('resize', resize)
-  })
-
+  
   useEffect(_ => {
     const potentialUsername = window.location.pathname.split('/')[3]
     if(potentialUsername){
@@ -44,10 +37,7 @@ export default _ => {
     <CurrentlyOpenedConvContext.Consumer>
       {({ value }) => 
         <>
-          {value && width < 1400
-            ? null
-            : <Conversations/>     
-          }
+          <Conversations/>   
           {value && 
             <CurrentConversation conv={value}/>  
           }
