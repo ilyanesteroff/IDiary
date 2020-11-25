@@ -46,19 +46,20 @@ export default memo(({ signal }) => {
   })
 
   const storageObserver = e => {
-    if(!e.key){
-      logoutHandler()
-      window.location.pathname = '/login'
-    }
+    !e.key && logoutHandler()
   }
 
   const fetchUserStats = _ => {
     _fetch(userStats)
       .then(res => {
+        if(res.errors) throw new Error('logout')
         if(res.userStats){
           setUnseenMsgs(res.userStats.unseenMessages)
           setIncomingReqs(res.userStats.incomingRequests)
         }
+      })
+      .catch(_ => {
+        logoutHandler()
       })
   }
 
