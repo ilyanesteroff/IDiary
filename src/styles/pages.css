@@ -1025,8 +1025,11 @@ h1{
   p#TimeLeft{
     font-weight: 600;
   }
+  #reversed-ScrollableList{  
+    max-height: calc(90vh - 12rem) !important;
+  }
   #WriteMessageSection{
-    padding-bottom: 10vh;
+    padding-bottom: 10vh !important;
   }
   p#time{
     font-weight: 400;
