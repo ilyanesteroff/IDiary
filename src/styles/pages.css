@@ -1080,7 +1080,8 @@ h1{
 @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0){ 
   @media only screen and (max-width: 540px){
     #WriteMessageSection{
-      bottom: 20%;
+      bottom: 20vh;
+      z-index: 2;
     }
   }
 } 
