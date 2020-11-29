@@ -17,7 +17,6 @@ export default _ => {
 
   useEffect(_ => {
     const potentialTag = window.location.pathname.split('/')[2]
-    console.log(potentialTag)
     if(potentialTag){
       setCurrentOption('todos')
       setInput(potentialTag)
