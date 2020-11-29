@@ -1,12 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default ({tags}) => (
+
+export default ({ tags }) => (
   <ul id="TodoTags">
     {tags.map((tag, index) => 
       <li key={'tag'+index}>
-        <a href={`todos-tags/q=${tag}`}>
+        <Link to={`/tags/${tag}`}>
           {'#'+tag}
-        </a>
+        </Link>
       </li>
     )}
   </ul>
