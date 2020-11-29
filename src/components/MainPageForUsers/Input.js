@@ -6,7 +6,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 export default ({ onChange, currentOption }) => {
   const input = useRef(null)
 
-  useEffect(_ => input.current && input.current.focus())
+  useEffect(_ => input.current && window.location.pathname.split[2] && input.current.focus())
 
   return(
     <div id="SearchInput">
