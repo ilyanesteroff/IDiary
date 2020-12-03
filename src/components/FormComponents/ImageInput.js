@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 
 
 export default ({ setImage, editing }) => {
@@ -6,7 +6,6 @@ export default ({ setImage, editing }) => {
   <>
     <p>{ editing? 'pick a new image or double click to remove existing' : 'Pick an image' }</p>
     <input
-      ref={  }
       type="file"  
       accept="image/*" 
       onDoubleClick={e => {
