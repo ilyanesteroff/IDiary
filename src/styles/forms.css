@@ -110,10 +110,16 @@ select{
   border: solid 1px transparent;
 }
 input::file-selector-button{
-  background-color: #11F313;
+  background-color: transparent;
+  border: none;
+  color: #3377ff;
+  font-family: Ubuntu, sans-serif;
 }
 input::-webkit-file-upload-button{
-  background-color: #11F313;
+  background-color: transparent;
+  border: none;
+  color: #3377ff;
+  font-family: Ubuntu, sans-serif;
 }
 #SearchInput{
   margin-left: auto;
