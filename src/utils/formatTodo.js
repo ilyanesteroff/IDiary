@@ -27,6 +27,7 @@ export default async todoData => {
     if(success) todoInput.imageUrl = creds.key
   }
   if(todoData.image === 'remove') todoInput.imageUrl = todoData.image
+  console.log(todoInput)
   
   return todoInput
 }

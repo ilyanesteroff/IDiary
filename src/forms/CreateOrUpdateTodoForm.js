@@ -22,8 +22,6 @@ export default memo(({ closeModal, todoData }) => {
   const setNewTodo = useRef(SetNewTodo())
   const setTodoToUpdate = useRef(SetTodoToUpdate())
   
-  console.log(image)
-
   useEffect(_ => task.current && restoreFocus(task.current))
 
   const [ submiting, setSubmiting ] = useState(false)
