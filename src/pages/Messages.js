@@ -11,9 +11,6 @@ export default memo(_ => {
   const [ convPage, setConvPage ] = useState(1)
   const [ error, setError ] = useState('')
   const [ currentConv, setCurrentConv ] = useState(null)
-  const [ width, setWidth ] = useState(window.innerWidth)
-  
-  useEffect(_ => window.scrollTo(0, window.pageYOffset), [ ])
 
   const [ loading, convs, hasNextPage, convLength, setConvToDelete, setConvToEdit, setConvToAdd, setHasNextPage ] 
     = useConversationManager(convPage, setError)
@@ -54,7 +51,7 @@ export default memo(_ => {
           </Ctx.ConversationsContext.Provider>
         }
       </Ctx.BrightThemeContext.Consumer>
-      {width < 1400 && currentConv 
+      {currentConv 
         ? null
         : <Footer/>
       }
