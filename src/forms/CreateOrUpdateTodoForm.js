@@ -4,6 +4,7 @@ import FormSpinner from '../components/spiners/FormSpinner'
 import Checkbox from '../components/FormComponents/Checkbox'
 import Input from '../components/FormComponents/TodoInput'
 import Textarea from '../components/todos/other/Textarea'
+import ImageInput from '../components/FormComponents/ImageInput'
 import updateTodo from '../actionHandlers/CreateOrUpdateTodo'
 import useComplainLog from '../hooks/useComplainLog'
 import restoreFocus from '../utils/restoreFocus'
@@ -12,14 +13,16 @@ import restoreFocus from '../utils/restoreFocus'
 export default memo(({ closeModal, todoData }) => {
   const SetNewTodo = _ => useContext(Ctx.SetNewTodoContext)
   const SetTodoToUpdate = _ => useContext(Ctx.SetTodoToUpdateContext)
+  const [ image, setImage ] = useState(null) 
   
   const completed = useRef(null)
   const publicT = useRef(null)
   const timeToComplete = useRef(null)
   const task = useRef(null)
-  const image = useRef(null)
   const setNewTodo = useRef(SetNewTodo())
   const setTodoToUpdate = useRef(SetTodoToUpdate())
+  
+  console.log(image)
 
   useEffect(_ => task.current && restoreFocus(task.current))
 
@@ -50,12 +53,7 @@ export default memo(({ closeModal, todoData }) => {
             : ''
         }
       />
-      <p>Attach an image</p>
-      <input
-        type="file"  
-        accept="image/*" 
-        ref={image}
-      />
+      <ImageInput editing={ todoData.value } setImage={val => setImage(val)}/>
       <button
         onClick={async e => {
           e.preventDefault()
@@ -63,7 +61,8 @@ export default memo(({ closeModal, todoData }) => {
             task: task.current.value,
             public: publicT.current.checked,
             completed: completed.current.checked,
-            timeToComplete: timeToComplete.current.value
+            timeToComplete: timeToComplete.current.value,
+            image: image
           }, setError, todoData.value? setTodoToUpdate.current : setNewTodo.current, closeModal, setSubmiting, todoData.value && todoData.value, todoData.value && todoData.unset)
         }}
       >
