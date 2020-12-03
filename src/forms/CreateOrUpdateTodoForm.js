@@ -17,6 +17,7 @@ export default memo(({ closeModal, todoData }) => {
   const publicT = useRef(null)
   const timeToComplete = useRef(null)
   const task = useRef(null)
+  const image = useRef(null)
   const setNewTodo = useRef(SetNewTodo())
   const setTodoToUpdate = useRef(SetTodoToUpdate())
 
@@ -48,6 +49,12 @@ export default memo(({ closeModal, todoData }) => {
             ? todoData.value.timeToComplete / 3600000
             : ''
         }
+      />
+      <p>Attach an image</p>
+      <input
+        type="file" 
+        accept="image/*" 
+        ref={image}
       />
       <button
         onClick={async e => {

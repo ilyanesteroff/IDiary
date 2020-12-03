@@ -18,7 +18,7 @@ export default async (data, setError, setTodo, closeModal, setSubmiting, todoDat
   }
   const todoValidationFailed = TodoInputValidator(data, setError)
   if(todoValidationFailed) return setSubmiting(false)
-  const todoInput = TodoInputFormater(data)
+  const todoInput = await TodoInputFormater(data)
   try {
     let Todo
     todoData

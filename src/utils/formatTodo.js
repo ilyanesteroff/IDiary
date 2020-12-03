@@ -1,8 +1,10 @@
 import validator from 'validator'
+import getPresignedUrl from '../api/get-presigned-url'
+import loadPic from '../api/send-pic'
 import { timeUnitsInSeconds as hours } from './time'
 
 
-export default todoData => {
+export default async todoData => {
   const { task, timeToComplete, completed } = todoData
   const todoInput = {
     public: todoData.public,
@@ -18,5 +20,13 @@ export default todoData => {
   timeToComplete !== '' && timeToComplete !== '0'
     ? todoInput.timeToComplete =  parseFloat(timeToComplete).toPrecision(3) * hours.hour * 1000
     : todoInput.timeToComplete = null
+
+  if(data.image && data.image !== 'remove'){
+    const creds = await getPresignedUrl()
+    const success = await loadPic(data.image, creds.url)
+    if(success) todoInput.imageUrl = creds.key
+  }
+  if(data.image === 'remove') todoInput.imageUrl = data.image
+  
   return todoInput
 }
