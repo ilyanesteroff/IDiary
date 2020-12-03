@@ -13,6 +13,6 @@ export default (file, url) =>
       return true
     })
     .catch(err => {
-      console.log(err)
+      console.log(err.message)
       return false
     })
