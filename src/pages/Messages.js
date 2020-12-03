@@ -15,13 +15,6 @@ export default memo(_ => {
   const [ loading, convs, hasNextPage, convLength, setConvToDelete, setConvToEdit, setConvToAdd, setHasNextPage ] 
     = useConversationManager(convPage, setError)
 
-  const resize = _ => setWidth(window.innerWidth)
-
-  useEffect(_ => {
-    window.addEventListener('resize', resize)
-    return _ => window.removeEventListener('resize', resize)
-  })
-
   return(
     <>
       <Navbar/>
