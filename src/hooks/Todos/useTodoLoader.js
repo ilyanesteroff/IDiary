@@ -18,7 +18,7 @@ export default (page, setError, userId) => {
           .then(res1 => {       
             setFullfilledTodos(res1.data.userByID.FullfilledTodos)
             setActiveTodos(res1.data.userByID.ActiveTodos)
-            if(res1.data.user.FullfilledTodos + res1.data.userByID.ActiveTodos !== 0) {
+            if(res1.data.userByID.FullfilledTodos + res1.data.userByID.ActiveTodos !== 0) {
               return _fetch(queryTodos(page, userId))
                 .then(res => {
                   setLoadingTodos(false)
