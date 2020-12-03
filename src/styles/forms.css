@@ -110,6 +110,9 @@ select{
   border: solid 1px transparent;
 }
 input[type="file"]{
+  opacity:0;
+}
+input[type="file"]{
   position: relative;
   padding-right: 3rem;
 }
