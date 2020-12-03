@@ -10,12 +10,12 @@ import TimeLeft from './TimeToComplete'
 import LinkOnAuthor from './LinkOnAuthor'
 
 
-export default ({todoData}) => {
+export default ({ todoData }) => {
   const { createdAt, timeToComplete, task, completed, tags } = todoData
   const [ incompleted, setIncompleted ] = useState(
     timeToComplete !== null && !completed && timeToComplete + createdAt.getTime() < new Date().getTime()
   )
-
+  console.log(todoData)
   return(
     <YourTodoContext.Consumer>
       {yourTodo =>
