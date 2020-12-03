@@ -5,7 +5,7 @@ import RemoveImage from '../todos/todo/RemoveImage'
 export default ({ setImage, editing, file }) => {
   return(
   <>
-    <p>{ editing? 'pick a new image or double click to remove existing' : 'Pick an image' }</p>
+    <p>{ editing? 'Pick a new image' : 'Pick an image' }</p>
     <div id="RelativeInput">
       <input
         type="file"  
