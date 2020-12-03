@@ -12,8 +12,4 @@ export default userId => {
     body: JSON.stringify(query(userId)),
   }) 
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res
-    })
 }
