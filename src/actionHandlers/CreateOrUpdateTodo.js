@@ -30,7 +30,7 @@ export default async (data, setError, setTodo, closeModal, setSubmiting, todoDat
         unsetTodoData()
       }
       if(Todo.data.createTodo) setTodo(Todo.data.createTodo)
-      setImmediate(_ => closeModal())
+      closeModal()
       setSubmiting(false)
     } else throw new Error()
   } catch(err) {

@@ -15,7 +15,7 @@ export default ({ todoData }) => {
   const [ incompleted, setIncompleted ] = useState(
     timeToComplete !== null && !completed && timeToComplete + createdAt.getTime() < new Date().getTime()
   )
-  console.log(todoData)
+  
   return(
     <YourTodoContext.Consumer>
       {yourTodo =>
