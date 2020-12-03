@@ -4,7 +4,7 @@ export default userId => {
   return {
     query: `
       query ViewUser($userId: ID!) {
-        user(userId: $userId) {
+        userByID(userId: $userId) {
           FullfilledTodos
           ActiveTodos
           _id 
@@ -13,7 +13,7 @@ export default userId => {
       }
     `,
     variables: {
-      userId: userId
+      userId
     }
   }
 }
