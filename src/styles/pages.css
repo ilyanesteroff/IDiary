@@ -696,10 +696,12 @@ h1{
   margin-left: 6vw;
   width: 69vw !important;
   margin-top: 2.5rem;
+  align-items: baseline;
 }
 #Todo{
   width: 23vw !important;
   padding: .5rem;
+  height: auto;
 }
 .BrightPage #Todo {
   background-color: #f1f1ff;
