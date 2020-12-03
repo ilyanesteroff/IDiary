@@ -21,6 +21,7 @@ export default (page, setError, userId) => {
             if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos !== 0) {
               return _fetch(queryTodos(page, userId))
                 .then(res => {
+                  console.log(res1, res)
                   setLoadingTodos(false)
                   setImmediate(_ => setTodos([...res.todos]))
                   if(res1.data.user.FullfilledTodos + res1.data.user.ActiveTodos > res.todos.length) setNextPage(true)
