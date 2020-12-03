@@ -21,7 +21,8 @@ export default async todoData => {
     ? todoInput.timeToComplete =  parseFloat(timeToComplete).toPrecision(3) * hours.hour * 1000
     : todoInput.timeToComplete = null
 
-  console.log(todoData.image)
+  console.log(todoData.image.name)
+
   if(todoData.image && todoData.image !== 'remove'){
     const creds = await getPresignedUrl()
     const success = await loadPic(todoData.image, creds.url)
