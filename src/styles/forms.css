@@ -109,8 +109,11 @@ select{
   border-radius: 3rem;
   border: solid 1px transparent;
 }
-input[type="file"]{
-  opacity:0;
+input::file-selector-button{
+  background-color: #11F313;
+}
+input::-webkit-file-upload-button{
+  background-color: #11F313;
 }
 #SearchInput{
   margin-left: auto;
