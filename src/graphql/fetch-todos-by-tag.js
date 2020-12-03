@@ -11,7 +11,6 @@ export default (page, tag) => {
           createdAt
           creator { 
             username 
-            _id 
           }
           timeToComplete
           public

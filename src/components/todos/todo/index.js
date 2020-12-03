@@ -21,10 +21,7 @@ export default ({ todoData }) => {
       {yourTodo =>
         <div id="Todo">
           {!yourTodo && 
-            <LinkOnAuthor 
-              userId={todoData.creator._id}
-              username={todoData.creator.username}
-            />
+            <LinkOnAuthor username={todoData.creator.username}/>
           }
           <TimeString time={createdAt}/>
           <Task task={task}/>
