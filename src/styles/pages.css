@@ -785,7 +785,7 @@ h1{
 }
 #todoDeletingSpinner{
   color: #3377ff;
-  animation: rotating 2s linear;
+  animation: rotating infinite linear;
 }
 @keyframes rotating {
   from {transform: rotate(0deg);}

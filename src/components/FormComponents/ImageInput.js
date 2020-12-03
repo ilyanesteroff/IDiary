@@ -8,8 +8,7 @@ export default ({ setImage, editing }) => {
     <input
       type="file"  
       accept="image/*" 
-      onDoubleClick={e => {
-        console.log(e.target.value)
+      onDoubleClick={_ => {
         if(editing){
           setImage('remove')
         }
