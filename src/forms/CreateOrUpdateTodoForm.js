@@ -51,7 +51,11 @@ export default memo(({ closeModal, todoData }) => {
             : ''
         }
       />
-      <ImageInput editing={ todoData.value } setImage={val => setImage(val)}/>
+      <ImageInput 
+        editing={ todoData.value } 
+        setImage={val => setImage(val)}
+        file={image}
+      />
       <button
         onClick={async e => {
           e.preventDefault()

@@ -120,6 +120,10 @@ input[type="file"]{
   position: relative;
   width: 15rem;
 }
+#RelativeInput{
+  position: relative;
+  padding-right: 3rem;
+}
 #SearchInput input{
   padding-left: 2rem;
 }
