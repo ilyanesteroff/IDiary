@@ -16,6 +16,7 @@ export default (page, tag) => {
           timeToComplete
           public
           tags
+          imageUrl
         }
       }
     `,

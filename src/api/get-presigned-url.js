@@ -11,7 +11,6 @@ export default _ => {
   })
     .then(res => res.json())
     .then(res => {
-      console.log(res)
       if(res.error) throw new Error('broke')
       return res
     })

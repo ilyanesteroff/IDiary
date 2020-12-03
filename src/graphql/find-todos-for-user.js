@@ -1,5 +1,6 @@
 import userIdComparer from '../utils/userIdComparer'
 
+
 export default (page, userId) => { 
   return {
     query: `
@@ -17,6 +18,7 @@ export default (page, userId) => {
           timeToComplete
           public
           tags
+          imageUrl
         }
       }
     `,

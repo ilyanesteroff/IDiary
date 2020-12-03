@@ -5,6 +5,7 @@ import TodoLowerSection from './TodoLowerSection'
 import CompletedLabel from './CompletedLabel'
 import Task from './Task'
 import Tags from './Tags'
+import Image from './Image'
 import TimeLeft from './TimeToComplete'
 import LinkOnAuthor from './LinkOnAuthor'
 
@@ -27,6 +28,7 @@ export default ({todoData}) => {
           }
           <TimeString time={createdAt}/>
           <Task task={task}/>
+          <Image imgSrc={todoData.imageUrl}/>
           <CompletedLabel completed={completed}/>
           {incompleted && 
             <p id="red">The time limit for this todo is elapsed</p>

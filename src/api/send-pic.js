@@ -8,11 +8,7 @@ export default (file, url) =>
       'Content-Type': file.type 
     }
   })
-    .then(res => {
-      console.log(res.data)
-      return true
-    })
-    .catch(err => {
-      console.log(err.message)
+    .then(_ => true)
+    .catch(_ => {
       return false
     })
