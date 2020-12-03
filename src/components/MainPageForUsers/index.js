@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import TodosPage from './TodosPage'
 import UsersPage from './Users'
 import CurrentOption from './CurrentOption'
@@ -14,6 +14,14 @@ export default _ => {
     if(currentOption !== name)
       setCurrentOption(name)
   }
+
+  useEffect(_ => {
+    const potentialTag = window.location.pathname.split('/')[2]
+    if(potentialTag){
+      setCurrentOption('todos')
+      setInput(potentialTag)
+    }
+  }, [])
   
   return(
     <>
