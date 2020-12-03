@@ -2,5 +2,7 @@ import React from 'react'
 
 
 export default ({ content }) => (
-  <span className="tooltiptext">{ content }</span>
+  <span className="tooltiptext">
+    { content }
+  </span>
 )

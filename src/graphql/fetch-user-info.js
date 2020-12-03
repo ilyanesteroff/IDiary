@@ -1,10 +1,10 @@
 
 
-export default userId => {
+export default username => {
   return {
     query: `
-      query FetchUserInfo($userId: ID!){
-        user(userId: $userId){
+      query FetchUserInfo($username: String!){
+        user(username: $username){
           _id
           username
           firstname
@@ -25,7 +25,7 @@ export default userId => {
       }
     `,
     variables: {
-      userId: userId
+      username
     }
   }
 }
