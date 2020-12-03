@@ -114,17 +114,18 @@ input::file-selector-button{
   border: none;
   color: #3377ff;
   font-family: Ubuntu, sans-serif;
+  outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 input::-webkit-file-upload-button{
   background-color: transparent;
   border: none;
   color: #3377ff;
   font-family: Ubuntu, sans-serif;
-}
-input::-webkit-file-upload-button:active{
-  outline: none;
-}
-input::file-selector-button:active{
   outline: none;
 }
 #SearchInput{
