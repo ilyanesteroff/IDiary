@@ -12,7 +12,7 @@ export default ({ setImage, editing, file }) => {
         accept="image/*" 
         onChange={e => setImage(e.target.files[0])}
       />
-      {editing && file !== 'remove' &&
+      {editing && editing.imageUrl && file !== 'remove' &&
         <RemoveImage clickHandler={_ => setImage('remove')}/>
       }
     </div>

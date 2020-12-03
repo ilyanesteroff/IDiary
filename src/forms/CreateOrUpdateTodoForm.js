@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext, useEffect, memo } from 'react'
+import React, { useRef, useState, useContext, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Checkbox from '../components/FormComponents/Checkbox'
@@ -7,7 +7,6 @@ import Textarea from '../components/todos/other/Textarea'
 import ImageInput from '../components/FormComponents/ImageInput'
 import updateTodo from '../actionHandlers/CreateOrUpdateTodo'
 import useComplainLog from '../hooks/useComplainLog'
-import restoreFocus from '../utils/restoreFocus'
 
 
 export default memo(({ closeModal, todoData }) => {
@@ -22,8 +21,6 @@ export default memo(({ closeModal, todoData }) => {
   const setNewTodo = useRef(SetNewTodo())
   const setTodoToUpdate = useRef(SetTodoToUpdate())
   
-  useEffect(_ => task.current && restoreFocus(task.current))
-
   const [ submiting, setSubmiting ] = useState(false)
   const [ setError, complainLog ] = useComplainLog()
 
