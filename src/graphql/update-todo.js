@@ -11,6 +11,7 @@ export default (todoInput, todoId) => {
         timeToComplete
         public
         tags
+        imageUrl
       }
     }`,
     variables: {
