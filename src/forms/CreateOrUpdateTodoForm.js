@@ -52,7 +52,7 @@ export default memo(({ closeModal, todoData }) => {
       />
       <p>Attach an image</p>
       <input
-        type="file" 
+        type="file"  
         accept="image/*" 
         ref={image}
       />
