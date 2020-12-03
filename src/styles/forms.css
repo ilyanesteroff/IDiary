@@ -121,6 +121,12 @@ input::-webkit-file-upload-button{
   color: #3377ff;
   font-family: Ubuntu, sans-serif;
 }
+input::-webkit-file-upload-button:active{
+  outline: none;
+}
+input::file-selector-button:active{
+  outline: none;
+}
 #SearchInput{
   margin-left: auto;
   margin-right: auto;
