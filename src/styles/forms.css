@@ -112,10 +112,6 @@ select{
 input[type="file"]{
   opacity:0;
 }
-input[type="file"]{
-  position: relative;
-  padding-right: 3rem;
-}
 #SearchInput{
   margin-left: auto;
   margin-right: auto;
