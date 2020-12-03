@@ -747,6 +747,11 @@ h1{
   padding: .2rem .5rem;
   font-size: 1.1rem;
 }
+#Todo img{
+  max-width: 96%;
+  margin-left: 2%;
+  border-radius: .5rem;
+}
 #time{
   font-family: Roboto;
   font-weight: 200;
