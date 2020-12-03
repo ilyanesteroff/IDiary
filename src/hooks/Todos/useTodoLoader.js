@@ -21,26 +21,20 @@ export default (page, setError, userId) => {
             if(res1.data.userByID.FullfilledTodos + res1.data.userByID.ActiveTodos !== 0) {
               return _fetch(queryTodos(page, userId))
                 .then(res => {
-                  setLoadingTodos(false)
                   setImmediate(_ => setTodos([...res.todos]))
                   if(res1.data.userByID.FullfilledTodos + res1.data.userByID.ActiveTodos > res.todos.length) setNextPage(true)
                 })
-                .catch(err => {
-                  setLoadingTodos(false)
-                  setError(err.message)
-                })
-            } else {
-              setLoadingTodos(false)
-            }
+            } else return
           })
           .catch(err => setError(err.message))
+          .finally(_ => setLoadingTodos(false))
       : _fetch(queryTodos(page, userId))
           .then(res => {
-            setLoadingTodos(false) 
             setTodos([...todos, ...res.todos])
             if(fullfilledTodos + activeTodos > todos.length + res.todos.length) setNextPage(true)
           })
           .catch(err => setError(err.message))
+          .finally(_ => setLoadingTodos(false))
   , [ userId, activeTodos, fullfilledTodos, page, setError, todos ])
 
   useEffect(_ => {
