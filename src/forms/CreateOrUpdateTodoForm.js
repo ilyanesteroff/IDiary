@@ -50,16 +50,6 @@ export default memo(({ closeModal, todoData }) => {
             : ''
         }
       />
-      <Input
-        type="number"
-        label="How long should it take"
-        placeholder="Hours"
-        defaultVal={
-          todoData.value && todoData.value.timeToComplete
-            ? todoData.value.timeToComplete / 3600000
-            : ''
-        }
-      />
       <p>Attach an image</p>
       <input
         type="file"  
