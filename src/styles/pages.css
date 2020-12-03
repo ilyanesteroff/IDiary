@@ -751,7 +751,12 @@ h1{
   max-width: 96%;
   margin-left: 2%;
   border-radius: .5rem;
-  border: solid 1px #888;
+}
+.BrightPage #Todo img{
+  box-shadow: 0 0 .2rem #222;
+}
+.DarkPage #Todo img{
+  box-shadow: 0 0 .2rem #eee;
 }
 #time{
   font-family: Roboto;
