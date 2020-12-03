@@ -751,6 +751,7 @@ h1{
   max-width: 96%;
   margin-left: 2%;
   border-radius: .5rem;
+  border: solid 1px #888;
 }
 #time{
   font-family: Roboto;
@@ -790,7 +791,7 @@ h1{
 }
 #todoDeletingSpinner{
   color: #3377ff;
-  animation: rotating infinite linear;
+  animation: rotating 2s infinite;
 }
 @keyframes rotating {
   from {transform: rotate(0deg);}
