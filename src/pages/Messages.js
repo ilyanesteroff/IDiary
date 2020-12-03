@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState } from 'react'
 import Navbar from '../components/navbar/index'
 import Footer from '../components/Footer/index'
 import Page from '../components/message-page/containers/index'
