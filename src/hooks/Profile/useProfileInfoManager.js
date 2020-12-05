@@ -13,7 +13,6 @@ export default (info) => {
 
   useEffect(_ => {
     if(updatedUser !== null) {
-      console.log(updatedUser)
       setUserInfo({
         ...userInfo, 
         username: updatedUser.username || userInfo.username,
