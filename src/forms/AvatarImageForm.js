@@ -4,9 +4,10 @@ import CropImage from '../components/profile-page/avatar/CropImage'
 import useComplainLog from '../hooks/useComplainLog'
 import useFormSubmitter from '../hooks/useFormSubmiter'
 import extractFileExt from '../utils/extractimageExt'
+import { UserDataContext } from '../utils/contexts'
 
 
-export default _ => {
+export default () => {
   const [ image, setImage ] = useState(null)
   const [ imageExt, setImageExt ] = useState(null)
 
@@ -43,15 +44,24 @@ export default _ => {
         onChange={imageDownloadHandle}
       />
       {image !== null &&
-        <CropImage 
-          imageSrc={ image } 
-          imageExt={ imageExt }
-          setError={ setError }
-          uploadCb={_ => {
-            setSubmiting(true)
-            input.current.disabled = true
-          }}
-        />
+        <UserDataContext.Consumer>
+          {data => 
+            <CropImage 
+              imageSrc={ image } 
+              imageExt={ imageExt }
+              setError={ setError }
+              uploadCb={_ => {
+                setSubmiting(true)
+                input.current.disabled = true
+              }}
+              oldUrl={ data.avatarUrl }
+              failureCb={_ => {
+                setSubmiting(false)
+                input.current.disabled = false
+              }}
+            />
+          }
+        </UserDataContext.Consumer>
       }
     </form>
   )

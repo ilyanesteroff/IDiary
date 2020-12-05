@@ -5,17 +5,16 @@ import { tokenFromStorage as token } from '../utils/tokens'
 
 export default (url) => {
   headers.set('Authorization', `Bearer ${token()}`)
-  return fetch(`${apiLink}/deleteAvatar/${url}`, {
+  return fetch(apiLink + '/deleteAvatar', {
     headers: headers,
-    method: 'DELETE'
+    method: 'PATCH',
+    body: JSON.stringify({
+      url: url
+    })
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.d
-    })
+    .then(res => res.deleted)
     .catch(err => {
-      console.log(err.message)
       return false
     })
 }

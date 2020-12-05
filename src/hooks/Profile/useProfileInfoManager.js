@@ -24,7 +24,7 @@ export default (info) => {
         relationshipStatus: updatedUser.relationshipStatus || userInfo.relationshipStatus || null,
         phone: updatedUser.phone || userInfo.phone || null,
         public: updatedUser.public || userInfo.public || null,
-        avatarUrl: updatedUser.avatarUrl || userInfo.avatarUrl || null
+        avatarUrl: updatedUser.avatarUrl || userInfo.avatarUrl || userInfo.deleted || null
       })
       setUpdatedUser(null)
     } 

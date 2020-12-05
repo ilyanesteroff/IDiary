@@ -27,7 +27,7 @@ export default memo(_ => {
   document.title = firstname.current
   
   useEffect(_ => window.scrollTo(0, 0), [ ])
-
+  console.log(userInfo)
   return(
     <>
       <Navbar/>
@@ -37,33 +37,33 @@ export default memo(_ => {
             {loading && <Spinner/>}
             {error.length > 0 && <h3>{error}</h3>}   
             <Ctx.SetEditUserContext.Provider value={{ value: editUser, set: val => setEditUser(val) }}>
-              <Ctx.UserDataContext.Provider value={userInfo}>
-                {info._id && !loading &&
-                  <Ctx.DecreaseUserStatsContext.Provider value={setDecreaseUserStats}>
-                    <Ctx.IncreaseUserStatsContext.Provider value={setIncreaseUserStats}>
-                      <User/>
-                    </Ctx.IncreaseUserStatsContext.Provider>
-                  </Ctx.DecreaseUserStatsContext.Provider>
-                }
-                {possibleEditOptions.some(p => p === editUser) &&
-                  <Ctx.SetUpdatedUserContext.Provider value={val => setUpdatedUser(val)}>
+              <Ctx.SetUpdatedUserContext.Provider value={val => setUpdatedUser(val)}>
+                <Ctx.UserDataContext.Provider value={userInfo}>
+                  {info._id && !loading &&
+                    <Ctx.DecreaseUserStatsContext.Provider value={setDecreaseUserStats}>
+                      <Ctx.IncreaseUserStatsContext.Provider value={setIncreaseUserStats}>
+                        <User/>
+                      </Ctx.IncreaseUserStatsContext.Provider>
+                    </Ctx.DecreaseUserStatsContext.Provider>
+                  }
+                  {possibleEditOptions.some(p => p === editUser) &&
                     <EditProfileModal theme={theme}/>
-                  </Ctx.SetUpdatedUserContext.Provider>
-                }
-                {editUser === 'AreYouSure' &&
-                  <AreYouSure 
-                    theme={theme} 
-                    yes={_ => setEditUser('Delete')} 
-                    no={_ => setEditUser('')}
-                  >
-                    <h2>Are you sure?</h2>
-                    <p>  
-                      All of your todos, followers and conversations will be lost
-                      <FontAwesomeIcon icon={faHeartBroken}/>
-                    </p>
-                  </AreYouSure>
-                }
-              </Ctx.UserDataContext.Provider>
+                  }
+                  {editUser === 'AreYouSure' &&
+                    <AreYouSure 
+                      theme={theme} 
+                      yes={_ => setEditUser('Delete')} 
+                      no={_ => setEditUser('')}
+                    >
+                      <h2>Are you sure?</h2>
+                      <p>  
+                        All of your todos, followers and conversations will be lost
+                        <FontAwesomeIcon icon={faHeartBroken}/>
+                      </p>
+                    </AreYouSure>
+                  }
+                </Ctx.UserDataContext.Provider>
+              </Ctx.SetUpdatedUserContext.Provider>
             </Ctx.SetEditUserContext.Provider>
           </div>
         }

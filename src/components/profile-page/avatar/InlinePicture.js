@@ -1,14 +1,24 @@
-import React/*, { useState }*/ from 'react'
+import React from 'react'
 import link from '../../../utils/AWS'
-//import userIdComparer from '../../../utils/userIdComparer'
+import useOutsideClicker from '../../../hooks/useOutsideClicker'
+import userIdComparer from '../../../utils/userIdComparer'
+import Options from './Options'
 
 
-export default ({ src }) => {
+export default ({ src, userId }) => {
+  const [ opened, setOpened, container ] = useOutsideClicker()
+  
   return(
-    <img
-      className="MainAvatarImage"
-      src={link + src}
-      alt=""
-    />
+    <div id="MainAvatarImage">
+      <img
+        src={link + src}
+        alt=""
+        ref={ container }
+        onClick={_ => setOpened(!opened)}
+      />
+      {opened && !userIdComparer(userId) &&
+        <Options url={ src }/>
+      }
+    </div>
   )
 }

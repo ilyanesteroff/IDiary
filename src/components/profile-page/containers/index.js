@@ -25,17 +25,13 @@ export default _ => {
               { userData._id && !userIdComparer(userData._id) &&
                 <UserOptions/>
               }
-              <div id="Headline">
-                <h1 id="UserNames">
-                  {`${userData.firstname} ${userData.lastname}`}
-                  { (userData.avatarUrl === null || userData.avatarUrl === undefined)
-                      && <RandomIcon/>
-                  }
-                </h1>
-                {userData.avatarUrl &&
-                  <AvatarImg src={ userData.avatarUrl }/>
+              <h1 id="UserNames">
+                {`${userData.firstname} ${userData.lastname}`}
+                { !userData.avatarUrl || userData.avatarUrl === 'removed' 
+                    ? <RandomIcon/>
+                    : <AvatarImg src={ userData.avatarUrl }/>
                 }
-              </div>
+              </h1>
               <UserSection userData={ userData }/>   
             </div>
             {userData.followers !== null &&
