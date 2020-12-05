@@ -66,7 +66,7 @@ export default ({ imageSrc, imageExt, uploadCb, setError }) => {
 
     uploadCb()
     const newFile = new File([ blob ], 'pic', { lastModified: new Date().getTime() })
-
+    console.log(newFile)
     const creds = await getPresignedUrl()
     if(!creds) return setError('Something broke')
     const success = await loadPic(newFile, creds.url)
