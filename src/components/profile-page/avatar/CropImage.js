@@ -35,7 +35,7 @@ export default ({ imageSrc, imageExt, uploadCb, setError }) => {
     const success = await loadPic(newFile, creds.url)
     if(success) {
       await setAvatar(creds.key)
-      update(creds.key)
+      update({ avatarUrl: creds.key })
     } else return setError('Something broke')
     
     unset('')
