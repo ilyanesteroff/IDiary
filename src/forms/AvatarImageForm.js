@@ -3,7 +3,7 @@ import FormSpinner from '../components/spiners/FormSpinner'
 import CropImage from '../components/profile-page/avatar/CropImage'
 import useComplainLog from '../hooks/useComplainLog'
 import useFormSubmitter from '../hooks/useFormSubmiter'
-import extractFileExt from '../utils/images/extractimageExt'
+import extractFileExt from '../utils/extractimageExt'
 
 
 export default _ => {
