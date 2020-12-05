@@ -21,6 +21,7 @@ export default username => {
           company
           about
           relationshipStatus
+          avatarUrl
         }
       }
     `,

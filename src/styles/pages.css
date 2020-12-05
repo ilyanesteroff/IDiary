@@ -517,6 +517,14 @@ h1{
   font-size: 1.1rem;
   transition: margin-left .6s;
 }
+.blue{
+  color: #2323F3;
+  margin-left: .5rem;
+  font-weight: 700;
+}
+.CropStyle{
+  margin: 1rem auto;
+}
 #shortcut #updatedAt-conversation{
   float: right;
   clear: both;

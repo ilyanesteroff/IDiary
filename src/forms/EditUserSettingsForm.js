@@ -1,14 +1,15 @@
-import React, { useState, useRef, memo } from 'react'
+import React, { useRef, memo } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import Input from '../components/FormComponents/TodoInput'
 import Checkbox from '../components/FormComponents/Checkbox'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserSettings'
 import useComplainLog from '../hooks/useComplainLog'
+import useFormSubmitter from '../hooks/useFormSubmiter'
 
 
 export default memo(({ unsetEditing }) => {
-  const [submiting, setSubmiting] = useState(false)
+  const [ setSubmiting, className ] = useFormSubmitter()
 
   const [ setError, complainLog ] = useComplainLog()
   
@@ -18,7 +19,7 @@ export default memo(({ unsetEditing }) => {
   return(
     <Ctx.UserDataContext.Consumer>
       {data => 
-        <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
+        <form id="FormInModal" className={ className }>
           <FormSpinner/>
           { complainLog }
           <Input type="tel" label="Your Phone number" placeholder="333333333" defaultVal={data.phone} ref={phone}/>
@@ -37,7 +38,8 @@ export default memo(({ unsetEditing }) => {
                     setError, 
                     setSubmiting, 
                     unsetEditing, 
-                    val => update.setSettings(val))
+                    update
+                  )
                 }
               >
                 Edit

@@ -5,13 +5,14 @@ import Input from '../components/FormComponents/TodoInput'
 import Textarea from '../components/todos/other/Textarea'
 import clickHandler from '../actionHandlers/updateuser/UpdateUserInfo'
 import useComplainLog from '../hooks/useComplainLog'
+import useFormSubmitter from '../hooks/useFormSubmiter'
 
 
 export default ({ unsetEditing }) => {
-  const [ submiting, setSubmiting ] = useState(false)
   const [ status, setStatus ] = useState('')
 
   const [ setError, complainLog ] = useComplainLog()
+  const [ setSubmiting, className ] = useFormSubmitter()
 
   const about = useRef(null)
   const website = useRef(null)
@@ -20,7 +21,7 @@ export default ({ unsetEditing }) => {
   return(
     <Ctx.UserDataContext.Consumer>
       {data =>
-        <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
+        <form id="FormInModal" className={className}>
           <FormSpinner/>
           { complainLog }
           <Textarea label="Tell us about yourself?" placeholder="Everything you wish" ref={about} value={data.about || ''}/>
@@ -51,7 +52,7 @@ export default ({ unsetEditing }) => {
                     setError, 
                     setSubmiting, 
                     unsetEditing,
-                    val => update.setInfo(val)
+                    update
                   )
                 }
               >

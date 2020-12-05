@@ -264,6 +264,10 @@ input[type="date"]{
   text-align: center;
   color: #2323F3;
 }
+.OverflowForm{
+  max-height: 60vh;
+  overflow: auto;
+}
 #CheckboxUnit {
   display: flex;
   width: 100%;

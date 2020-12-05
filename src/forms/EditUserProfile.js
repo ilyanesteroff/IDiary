@@ -1,13 +1,14 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef } from 'react'
 import * as Ctx from '../utils/contexts'
 import FormSpinner from '../components/spiners/FormSpinner'
 import useComplainLog from '../hooks/useComplainLog'
+import useFormSubmitter from '../hooks/useFormSubmiter'
 import InputField from '../components/FormComponents/InputField'
 import clickHandler from '../actionHandlers/updateuser/UpdateUser'
 
 
-export default ({ unsetEditing }) => {
-  const [ submiting, setSubmiting ] = useState(false)
+export default ({ unsetEditing }) => {  
+  const [ setSubmiting, className ] = useFormSubmitter()
  
   const [ setError, complainLog ] = useComplainLog()
 
@@ -18,7 +19,7 @@ export default ({ unsetEditing }) => {
   return(
     <Ctx.UserDataContext.Consumer>
       {data =>
-        <form id="FormInModal" className={`${submiting? 'FormWithSpinner' : ''}`}>
+        <form id="FormInModal" className={ className }>
           <FormSpinner/>
           { complainLog }
           <InputField placeholder="Firstname" ref={firstname} defaultVal={data.firstname} withLabel name/>
@@ -41,7 +42,7 @@ export default ({ unsetEditing }) => {
                         setError, 
                         setSubmiting,
                         unsetEditing,                
-                        val => update.setUser(val),
+                        update,
                         setFirstname
                       )
                     }

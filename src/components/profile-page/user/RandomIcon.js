@@ -4,6 +4,7 @@ import { faUser, faUserGraduate, faUserMd,
          faUserAstronaut, faUserNinja, faUserSecret, 
          faUserCheck, faUserNurse 
 } from '@fortawesome/free-solid-svg-icons'
+import { SetEditUserContext } from '../../../utils/contexts'
 
 
 export default _ => {
@@ -17,6 +18,14 @@ export default _ => {
   }, [])
 
   return(
-    <FontAwesomeIcon id="h1-Icon" icon={icons[iconToShow]}/> 
+    <SetEditUserContext.Consumer>
+      {({ set }) => 
+        <FontAwesomeIcon 
+          id="h1-Icon" 
+          icon={icons[iconToShow]}
+          onClick={_ => set('Avatar')}
+        /> 
+      }
+    </SetEditUserContext.Consumer>
   )
 }

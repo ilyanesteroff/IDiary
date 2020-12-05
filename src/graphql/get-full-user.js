@@ -23,6 +23,7 @@ export default {
         about
         relationshipStatus
         conversations
+        avatarUrl
       }
     }`
 }

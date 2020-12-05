@@ -9,6 +9,7 @@ export default (page, username) => {
           username
           firstname
           lastname
+          avatarUrl
         }
       }
     `,

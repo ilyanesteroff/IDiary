@@ -15,18 +15,20 @@ import AreYouSure from '../components/controls/AreYouSure'
 export default memo(_ => {
   const [ error, setError ] = useState('')
   const [ editUser, setEditUser ] = useState('')
-  const [ possibleEditOptions ] = useState([ 'Profile', 'Info', 'Privacy', 'Password', 'Delete' ])
+  const [ possibleEditOptions ] = useState([ 'Profile', 'Info', 'Privacy', 'Password', 'Delete', 'Avatar' ])
   
   const Firstname = _ => useContext(Ctx.FirstnameContext)
 
   const firstname = useRef(Firstname().firstname)
   
   const [ loading, info ] = useLoader(setError)
-  const [ userInfo, setUpdatedUser, setUpdatedUserInfo, setUpdatedUserSettings, setDecreaseUserStats, setIncreaseUserStats ] = useUserInfoManager(info)
+  const [ userInfo, setUpdatedUser, setDecreaseUserStats, setIncreaseUserStats ] = useUserInfoManager(info)
 
   document.title = firstname.current
   
   useEffect(_ => window.scrollTo(0, 0), [ ])
+
+  console.log(userInfo)
 
   return(
     <>
@@ -46,7 +48,7 @@ export default memo(_ => {
                   </Ctx.DecreaseUserStatsContext.Provider>
                 }
                 {possibleEditOptions.some(p => p === editUser) &&
-                  <Ctx.SetUpdatedUserContext.Provider value={{setSettings: setUpdatedUserSettings, setUser: setUpdatedUser, setInfo: setUpdatedUserInfo}}>
+                  <Ctx.SetUpdatedUserContext.Provider value={val => setUpdatedUser(val)}>
                     <EditProfileModal theme={theme}/>
                   </Ctx.SetUpdatedUserContext.Provider>
                 }

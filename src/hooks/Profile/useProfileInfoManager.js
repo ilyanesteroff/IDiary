@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react'
 
 export default (info) => {
   const [ updatedUser, setUpdatedUser ] = useState(null)
-  const [ updatedUserInfo, setUpdatedUserInfo ] = useState(null)
-  const [ updatedUserSettings, setUpdatedUserSettings ] = useState(null)
   const [ userInfo, setUserInfo ] = useState(info)
   const [ decreaseUserStats, setDecreaseUserStats ] = useState(null)
   const [ increaseUserStats, setIncreaseUserStats ] = useState(null)
@@ -20,34 +18,17 @@ export default (info) => {
         username: updatedUser.username || userInfo.username,
         lastname: updatedUser.lastname || userInfo.lastname,
         firstname: updatedUser.firstname || userInfo.firstname,
+        website: updatedUser.website || userInfo.website || null,
+        company: updatedUser.company || userInfo.company || null,
+        about: updatedUser.about || userInfo.about || null,
+        relationshipStatus: updatedUser.relationshipStatus || userInfo.relationshipStatus || null,
+        phone: updatedUser.phone || userInfo.phone || null,
+        public: updatedUser.public || userInfo.public || null,
+        avatarUrl: updatedUser.avatarUrl || userInfo.avatarUrl || null
       })
       setUpdatedUser(null)
     } 
   }, [ updatedUser, userInfo ])
-
-  useEffect(_ => {
-    if(updatedUserInfo !== null) {
-      setUserInfo({
-        ...userInfo,
-        website: updatedUserInfo.website,
-        company: updatedUserInfo.company,
-        about: updatedUserInfo.about,
-        relationshipStatus: updatedUserInfo.relationshipStatus
-      })
-      setUpdatedUserInfo(null)
-    }
-  }, [ updatedUserInfo, userInfo ])
-
-  useEffect(_ => {
-    if(updatedUserSettings !== null) {
-      setUserInfo({
-        ...userInfo,
-        phone: updatedUserSettings.phone,
-        public: updatedUserSettings.public
-      })
-      setUpdatedUserSettings(null)
-    }
-  }, [ updatedUserSettings, userInfo ])
 
   useEffect(_ => {
     if(decreaseUserStats !== null) {
@@ -76,8 +57,6 @@ export default (info) => {
   return [ 
     userInfo, 
     setUpdatedUser, 
-    setUpdatedUserInfo, 
-    setUpdatedUserSettings, 
     category => setDecreaseUserStats(category),
     category => setIncreaseUserStats(category)
   ]

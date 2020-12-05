@@ -50,7 +50,7 @@ export const EditUserContext = createContext('')
 
 export const SetEditUserContext = createContext({ value: '', set: _ => {} })
 
-export const SetUpdatedUserContext = createContext({})
+export const SetUpdatedUserContext = createContext(_ => {})
 
 export const ViewUserStatsContext = createContext({ value: '', set: _ => {} })
 

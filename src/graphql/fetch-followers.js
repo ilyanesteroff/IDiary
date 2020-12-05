@@ -11,6 +11,7 @@ export default (page, _id) => {
             username
             firstname
             lastname
+            avatarUrl
           }
           followingSince
         }

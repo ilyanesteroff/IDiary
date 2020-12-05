@@ -12,7 +12,12 @@ export default ({ reqsTo, reqsFrom, convs, blockedUsers }) => (
           <div id="flex">
             <h4 id="userSection-flexItem" onClick={_ => set('Incoming Requests')}>
               Incoming Requests: 
-              <span id="count">{formatNum(reqsFrom)}</span>
+              <span 
+                className={reqsFrom > 0 ? 'blue' : ''}
+                id={ reqsFrom > 0 ? '' : 'count' }
+              >
+                {formatNum(reqsFrom)}
+              </span>
             </h4>
             <h4 id="userSection-flexItem" onClick={_ => set('Sent Requests')}>
               Outcoming Requests: 

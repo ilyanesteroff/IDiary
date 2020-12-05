@@ -7,6 +7,7 @@ import EditUserSettingsForm from '../../../forms/EditUserSettingsForm'
 import EditUserProfileForm from '../../../forms/EditUserProfile'
 import EditPasswordForm from '../../../forms/ChangePasswordForm'
 import DeleteUserForm from '../../../forms/DeleteUserForm'
+import AvatarImageForm from '../../../forms/AvatarImageForm'
 
 
 export default ({theme}) => {
@@ -26,6 +27,7 @@ export default ({theme}) => {
           {value === 'Profile' && <EditUserProfileForm unsetEditing={_ => set('')}/>}
           {value === 'Password' && <EditPasswordForm unsetEditing={_ => set('')}/>}
           {value === 'Delete' && <DeleteUserForm/>}
+          {value === 'Avatar' && <AvatarImageForm/>}
         </div>
       }
     </Ctx.SetEditUserContext.Consumer>
