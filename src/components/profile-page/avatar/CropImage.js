@@ -65,17 +65,20 @@ export default ({ imageSrc, imageExt, uploadCb, setError }) => {
     event.preventDefault()
 
     uploadCb()
-    const newFile = new File([ blob ], 'pic', { lastModified: new Date().getTime() })
-    console.log(newFile)
-    const creds = await getPresignedUrl()
-    if(!creds) return setError('Something broke')
-    const success = await loadPic(newFile, creds.url)
-    if(success) {
-      await setAvatar(creds.key)
-      update.current({ avatarUrl: creds.key })
-    } else return setError('Something broke')
-    
-    unset.current('')
+    try{
+      const newFile = new File([ blob ], 'pic', { lastModified: new Date().getTime() })
+     
+      const creds = await getPresignedUrl()
+      const success = await loadPic(newFile, creds.url)
+      if(success) {
+        const result = await setAvatar(creds.key)
+        if(result.avatarSet) update.current({ avatarUrl: creds.key })
+        else throw new Error()
+      } else throw new Error()
+      unset.current('')
+    } catch {
+      return setError('Somethong broke')
+    }
   }
 
   return(

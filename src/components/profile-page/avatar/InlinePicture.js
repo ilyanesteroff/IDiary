@@ -6,6 +6,7 @@ import link from '../../../utils/AWS'
 export default ({ src }) => {
   return(
     <img
+      className="MainAvatarImage"
       src={link + src}
       alt=""
     />
