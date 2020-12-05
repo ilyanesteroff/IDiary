@@ -65,13 +65,7 @@ export default ({ imageSrc, imageExt, uploadCb, setError }) => {
     event.preventDefault()
 
     uploadCb()
-    const fileName = 'pic.' + imageExt
-    const newFile = {
-      size: blob.size,
-      lastModifiedDate: new Date(),
-      name: fileName,
-      type: blob.type
-    }
+    const newFile = new File([ blob ], 'pic', { lastModified: new Date().getTime() })
 
     const creds = await getPresignedUrl()
     if(!creds) return setError('Something broke')
