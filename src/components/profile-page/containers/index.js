@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import RandomIcon from '../user/RandomIcon'
+import AvatarImg from '../avatar/InlinePicture'
 import * as Ctx from '../../../utils/contexts'
 import UserSection from './UserSection'
 import UserFriendBar from './UserFriendsBar'
@@ -26,7 +27,10 @@ export default _ => {
               }
               <h1 id="UserNames">
                 {`${userData.firstname} ${userData.lastname}`}
-                <RandomIcon/>
+                { userData.avatarUrl === null || userData.avatarUrl === undefined
+                    ? <RandomIcon/>
+                    : <AvatarImg src={ userData.avatarUrl }/>
+                }
               </h1>
               <UserSection userData={ userData }/>   
             </div>

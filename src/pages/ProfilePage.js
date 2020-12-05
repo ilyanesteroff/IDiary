@@ -28,8 +28,6 @@ export default memo(_ => {
   
   useEffect(_ => window.scrollTo(0, 0), [ ])
 
-  console.log(userInfo)
-
   return(
     <>
       <Navbar/>

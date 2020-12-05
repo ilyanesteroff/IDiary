@@ -1,10 +1,11 @@
 import React from 'react'
+import link from '../../../utils/AWS'
 
 
 export default ({ imgSrc }) => 
   imgSrc
     ? <img 
-        src={'https://todo-pic-bucket.s3.eu-north-1.amazonaws.com/' + imgSrc}
+        src={link + imgSrc}
         alt=""
       />
     : null
