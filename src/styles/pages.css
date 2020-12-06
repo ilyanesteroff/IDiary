@@ -321,7 +321,7 @@ h1{
   display: flex;
 }
 #users #request {
-  width: 25%
+  width: 25%;
 }
 #UserSection{
   margin: auto 10vw;
@@ -557,6 +557,20 @@ div#Headline{
 #MainAvatarImage li:hover{
   color: #3377ff;
 }
+#AvatarFromReq{
+  float: left;
+  clear: both;
+}
+#AvatarFromReq img{
+  height: 50px;
+  border-radius: 50%;
+  margin-top: .3rem;
+  margin-right: .5rem;
+}
+#AvatarFromReq svg{
+  font-size: 2rem;
+  color: #3377ff;
+}
 #shortcut #updatedAt-conversation{
   float: right;
   clear: both;
@@ -588,6 +602,7 @@ div#Headline{
 #request{
   padding: .5rem;
   transition: background-color .3s;
+  position: relative;
 }
 .IncomingRequest{
   display: flex;
@@ -613,8 +628,9 @@ div#Headline{
   background-color: #22222f;
 }
 #request #reqButtons{
-  float: right;
-  clear: both;
+  position: absolute;
+  right: 2%;
+  top: 35%;
 }
 #userBtns {
   width: 100%;
@@ -636,6 +652,10 @@ div#Headline{
   font-size: .9rem;
   margin: .3rem 0;
   text-align: left;
+}
+#request #time{
+  font-size: .7rem;
+  font-weight: 300;
 }
 #request #BlueIcon,
 #userBtns #BlueIcon{

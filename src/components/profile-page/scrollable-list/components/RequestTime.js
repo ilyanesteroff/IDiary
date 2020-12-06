@@ -13,5 +13,5 @@ export default ({ date }) => {
   ) timeString = `${shortFormatedMonths[time.getMonth()]} ${time.getDate()}`
   else timeString = `Today at: ${time.getUTCHours()}:${time.getUTCMinutes()}`
 
-  return <p>{timeString}</p>
+  return <p id="time">{timeString}</p>
 }

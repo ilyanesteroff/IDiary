@@ -1,4 +1,5 @@
 import React from 'react'
+import Avatar from '../components/Avatar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUnlock } from '@fortawesome/free-solid-svg-icons'
 import { SetItemToDeleteContext, DecreaseUserStatsContext } from '../../../../utils/contexts'
@@ -7,6 +8,7 @@ import unblock from '../../../../api/profile/unblock-user'
 
 export default ({ data }) => (
   <div id="request">
+    <Avatar url={ data.user.avatarUrl }/>
     <p id="username">{data.user.username}</p>
     <SetItemToDeleteContext.Consumer>
       {setItemToDelete => 

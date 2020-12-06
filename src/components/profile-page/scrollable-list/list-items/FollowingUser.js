@@ -4,11 +4,13 @@ import Username from '../components/UsernameInReq'
 import Time from '../components/RequestTime'
 import ContactUser from '../../buttons/ContactUser'
 import UnfollowButton from '../../buttons/UnfollowBtn'
+import Avatar from '../components/Avatar'
 import unfollow from '../../../../actionHandlers/RemoveFollow'
 
 
 export default ({ data }) => (
   <div id="request">
+    <Avatar url={ data.user.avatarUrl }/>
     <Username user={data.user}/>
     <FollowControlsContext.Consumer>
       {controls => 

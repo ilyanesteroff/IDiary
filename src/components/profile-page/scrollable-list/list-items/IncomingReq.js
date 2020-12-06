@@ -4,10 +4,12 @@ import Username from '../components/UsernameInReq'
 import RequestTime from '../components/RequestTime'
 import AcceptRequestBtn from '../../buttons/AcceptRequestBtn'
 import RejectRequestBtn from '../../buttons/RejectRequestBtn'
+import Avatar from '../components/Avatar'
 
 
 export default ({ data }) => (
   <div id="request">
+    <Avatar url={ data.sender.avatarUrl }/>
     <Username user={data.sender}/>
     <Ctx.DecreaseUserStatsContext.Consumer>
       {decrease => 

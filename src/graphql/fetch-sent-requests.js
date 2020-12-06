@@ -11,6 +11,7 @@ export default (page) => {
             username
             firstname
             lastname
+            avatarUrl
           }
           sentAt
         }

@@ -17,6 +17,7 @@ import Project from '../pages/Project'
 import Stack from '../pages/Stack'
 import Features from '../pages/Features'
 import userIdComparer from '../utils/userIdComparer'
+import usernameComparer from '../utils/usernameComparer'
 
 
 export default ({ isAuth })  => (
@@ -61,9 +62,9 @@ export default ({ isAuth })  => (
       />
       <Route
         path="/user/:id"
-        render={({match}) => 
+        render={({ match }) => 
           isAuth 
-            ? userIdComparer(match.params.id)
+            ? usernameComparer(match.params.id)
               ? <Redirect to="/profile"/> 
               : <AnotherProfile userId={match.params.id}/> 
             : <Redirect to="/login"/>

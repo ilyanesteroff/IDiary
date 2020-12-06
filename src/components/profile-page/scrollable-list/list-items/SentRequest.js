@@ -3,10 +3,12 @@ import { SetItemToDeleteContext, DecreaseUserStatsContext } from '../../../../ut
 import Username from '../components/UsernameInReq'
 import RequestTime from '../components/RequestTime'
 import UnsendReqBtn from '../../buttons/UnsendReq'
+import Avatar from '../components/Avatar'
 
 
 export default ({ data }) => (
   <div id="request">
+    <Avatar url={ data.receiver.avatarUrl }/>
     <Username user={data.receiver}/>
     <SetItemToDeleteContext.Consumer>
       {setItemToDelete => 
@@ -29,4 +31,3 @@ export default ({ data }) => (
     <RequestTime date={data.sentAt}/>
   </div>
 )
-

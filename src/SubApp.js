@@ -18,6 +18,7 @@ export default memo(({ signal }) => {
   
   useEffect(_ => {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token')
+    const username = localStorage.getItem('username') || sessionStorage.getItem('username')
     const firstname = localStorage.getItem('firstname') || sessionStorage.getItem('firstname')
     const userId = localStorage.getItem('userId') || sessionStorage.getItem('userId')
     const theme = localStorage.getItem('theme')
@@ -27,7 +28,7 @@ export default memo(({ signal }) => {
       document.body.style.backgroundColor = '#232323'
     }
     if(!theme) window.localStorage.setItem('theme', brightTheme)
-    if (!token || !theme || !firstname || !userId) {
+    if (!token || !theme || !username || !firstname || !userId) {
       return setIsAuth(false)
     }
     setIsAuth(true)
@@ -78,17 +79,19 @@ export default memo(({ signal }) => {
         return res
       })
       .then(res => {        
-        const { userId, token, firstname } = res
+        const { userId, token, firstname, username } = res
         setUserId(userId)
         setFirstname(firstname)
         if(session) {
           window.sessionStorage.setItem('token', token)
           window.sessionStorage.setItem('userId', userId)
           window.sessionStorage.setItem('firstname', firstname)
+          window.sessionStorage.setItem('username', username)
         } else {
           window.localStorage.setItem('token', token)
           window.localStorage.setItem('userId', userId)
           window.localStorage.setItem('firstname', firstname)
+          window.localStorage.setItem('username', username)
         }
         return 
       })
@@ -107,13 +110,14 @@ export default memo(({ signal }) => {
       .then(res => {
         if(res.error) throw new Error(res.errors)
         clearStorages()
-        const { userId, token, firstname } = res
+        const { userId, token, firstname, username } = res
         setUserId(userId)
         setFirstname(firstname)
         setIsAuth(true)
         window.localStorage.setItem('token', token)
         window.localStorage.setItem('userId', userId)
         window.localStorage.setItem('firstname', firstname)
+        window.localStorage.setItem('username', username)
         window.location.pathname = '/'
       })
       .catch(_ => {

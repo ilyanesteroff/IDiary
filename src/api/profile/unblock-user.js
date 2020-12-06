@@ -10,10 +10,7 @@ export default username => {
     method: 'DELETE'
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.userUnblocked
-    })
+    .then(res => res.userUnblocked)
     .catch(_ => {
       return false
     })
