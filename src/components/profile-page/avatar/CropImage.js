@@ -4,14 +4,13 @@ import Canvas from './Canvas'
 import getPresignedUrl from '../../../api/get-presigned-url'
 import loadPic from '../../../api/send-pic'
 import setAvatar from '../../../api/set-avatar'
-import deleteAvatar from '../../../api/delete-avatar'
 import { SetEditUserContext, SetUpdatedUserContext } from '../../../utils/contexts'
 
 import "react-image-crop/dist/ReactCrop.css"
 
 const pixelRatio = window.devicePixelRatio || 1
 
-export default ({ imageSrc, imageExt, uploadCb, setError, failureCb, oldUrl }) => {
+export default ({ imageSrc, imageExt, uploadCb, setError, failureCb }) => {
   const Unset = _ => useContext(SetEditUserContext)
   const Update = _ => useContext(SetUpdatedUserContext)
 
@@ -74,7 +73,6 @@ export default ({ imageSrc, imageExt, uploadCb, setError, failureCb, oldUrl }) =
       if(success) {
         const result = await setAvatar(creds.key)
         if(result.avatarSet) {
-          if(oldUrl && oldUrl !== 'removed') await deleteAvatar(oldUrl)
           update.current({ avatarUrl: creds.key })
         }
         else throw new Error()
