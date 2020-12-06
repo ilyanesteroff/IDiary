@@ -10,7 +10,7 @@ export default ({ url }) => {
       {({ set }) => 
         <li 
           id="AcceptRequest"
-          onClick={_ => set('Image')}
+          onClick={_ => set('Avatar')}
         >
           Update
         </li>
