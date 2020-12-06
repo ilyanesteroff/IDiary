@@ -534,15 +534,16 @@ div#Headline{
   position: relative;
 }
 #MainAvatarImage img{
+  margin-top: .3rem;
   display: inline-block;
-  width: 70px;
-  height: 70px;
-  border-radius: 35px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
 #MainAvatarImage ul{
   position: absolute;
-  right: 10px;
-  top: 75px;
+  right: calc(50% - 45px);
+  top: 90px;
   font-size: 1rem;
   border: solid 2px #3377ff;
   border-radius: 1.5vh;
@@ -550,6 +551,11 @@ div#Headline{
 }
 #MainAvatarImage ul li{
   padding: .5rem 1rem;
+  transition: color .5s;
+  cursor: pointer;
+}
+#MainAvatarImage li:hover{
+  color: #3377ff;
 }
 #shortcut #updatedAt-conversation{
   float: right;
