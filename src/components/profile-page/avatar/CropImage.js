@@ -18,7 +18,7 @@ export default ({ imageSrc, imageExt, uploadCb, setError, failureCb }) => {
   const update = useRef(Update())
   const imgRef = useRef(null)
   const canvasRef = useRef(null)
-   
+  
   const [ crop, setCrop ] = useState({ unit: "%", width: 50, aspect: 1 / 1 })
   const [ completedCrop, setCompletedCrop ] = useState(null)
   const [ blob, setBlob ] = useState('')

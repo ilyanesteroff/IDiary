@@ -27,7 +27,7 @@ export default memo(_ => {
   document.title = firstname.current
   
   useEffect(_ => window.scrollTo(0, 0), [ ])
-  console.log(userInfo)
+  
   return(
     <>
       <Navbar/>

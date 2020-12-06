@@ -540,8 +540,6 @@ div#Headline{
   width: 70px;
   height: 70px;
   border-radius: 35px;
-  border: solid 2px #3377ff;
-  box-shadow: 0 0 .3rem #3377ff;
 }
 #MainAvatarImage ul{
   position: absolute;
