@@ -657,6 +657,9 @@ div#Headline{
   font-size: .7rem;
   font-weight: 300;
 }
+#request p{
+  max-width: 80%;
+}
 #request #BlueIcon,
 #userBtns #BlueIcon{
   color: #3377ff;
