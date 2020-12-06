@@ -28,8 +28,11 @@ export default _ => {
               <h1 id="UserNames">
                 {`${userData.firstname} ${userData.lastname}`}
                 { !userData.avatarUrl || userData.avatarUrl === 'removed' 
-                    ? <RandomIcon/>
-                    : <AvatarImg src={ userData.avatarUrl }/>
+                    ? <RandomIcon userId={ userData._id }/>
+                    : <AvatarImg 
+                        src={ userData.avatarUrl }
+                        userId={ userData._id }
+                      />
                 }
               </h1>
               <UserSection userData={ userData }/>   
