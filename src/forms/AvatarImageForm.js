@@ -14,7 +14,7 @@ export default () => {
 
   const [ setError, complainLog ] = useComplainLog()
   const [ setSubmiting, className ] = useFormSubmitter()
-  console.log('rendering')
+ 
   const imageDownloadHandle = event => {
     setError('')
     const currentFile = event.target.files[0]

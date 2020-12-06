@@ -531,9 +531,7 @@ div#Headline{
   justify-content: space-around;
 }
 #MainAvatarImage{
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+  position: relative;
 }
 #MainAvatarImage img{
   display: inline-block;

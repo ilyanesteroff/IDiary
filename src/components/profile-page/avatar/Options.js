@@ -6,16 +6,16 @@ import deleteAvatar from '../../../api/delete-avatar'
 export default ({ url }) => {
   return(
     <ul>
-    <SetEditUserContext.Consumer>
-      {({ set }) => 
-        <li 
-          id="AcceptRequest"
-          onClick={_ => set('Avatar')}
-        >
-          Update
-        </li>
-      }
-    </SetEditUserContext.Consumer>
+      <SetEditUserContext.Consumer>
+        {({ set }) => 
+          <li 
+            id="AcceptRequest"
+            onClick={_ => set('Avatar')}
+          >
+            Update
+          </li>
+        }
+      </SetEditUserContext.Consumer>
       <SetUpdatedUserContext.Consumer>
         {update => 
           <li 

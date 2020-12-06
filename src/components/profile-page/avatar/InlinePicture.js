@@ -16,7 +16,7 @@ export default ({ src, userId }) => {
         ref={ container }
         onClick={_ => setOpened(!opened)}
       />
-      {opened && !userIdComparer(userId) &&
+      {opened && userIdComparer(userId) &&
         <Options url={ src }/>
       }
     </div>

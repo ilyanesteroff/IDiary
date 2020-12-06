@@ -17,7 +17,7 @@ export default ({ userId }) => {
   useLayoutEffect(_ => {
     setIconToShow(Math.floor((Math.random() * 8)))
   }, [])
-
+  
   return(
     <SetEditUserContext.Consumer>
       {({ set }) => 
@@ -25,7 +25,7 @@ export default ({ userId }) => {
           id="h1-Icon" 
           icon={icons[iconToShow]}
           onClick={_ => {
-            if(!userIdComparer(userId))
+            if(userIdComparer(userId))
               set('Avatar')
           }}
         /> 
