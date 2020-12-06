@@ -72,7 +72,7 @@ export default ({ imageSrc, imageExt, uploadCb, setError, failureCb }) => {
       const success = await loadPic(newFile, creds.url)
       if(success) {
         const result = await setAvatar(creds.key)
-        if(result.avatarSet) {
+        if(result) {
           update.current({ avatarUrl: creds.key })
         }
         else throw new Error()

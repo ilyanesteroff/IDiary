@@ -11,12 +11,8 @@ export default newUrl => {
     body: JSON.stringify({ newUrl })
   })
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res.avatarSet
-    })
-    .catch(err => {
-      console.log(err.message)
+    .then(res => res.avatarSet)
+    .catch(_ => {
       return false
     })
 }
