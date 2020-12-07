@@ -19,6 +19,9 @@ export default _ => {
         As result of my almost 2 month hard work the application is done, but here is one thing I regret about in IDiary which is the absence of websockets, that would be nice addition to the messaging and requesting APIs.
       </p>
       <p id="Project">
+        <span id="RejectRequest">The space on DB is limited because there is only 500mb on the mongoDB cluster</span>
+      </p>
+      <p id="Project">
         <span id="activeOption">Deployed with Netlify</span>
       </p>
     </>
