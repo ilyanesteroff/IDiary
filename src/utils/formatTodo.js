@@ -11,7 +11,7 @@ export default async todoData => {
     completed: completed
   }
   let words = task.split(' ')
-  let tags = words.filter(word => word.startsWith('#')).map(tag => tag.substring(1))
+  let tags = words.filter(word => word.startsWith('#')).map(tag => tag.substring(1).toLowerCase())
   tags = Array.from(new Set(tags.filter(tag => validator.isAlphanumeric(tag))))
   tags.length > 0 
     ? todoInput.tags = tags

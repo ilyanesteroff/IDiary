@@ -23,7 +23,7 @@ export default ({ username }) => {
                 }
               </span>
               <p id={window.location.pathname.split('/')[1] === 'profile'? 'ActiveNavbarOption' : ''}>
-                { username }
+                { username.charAt(0).toUpperCase() + username.slice(1) }
                 {requests > 0 && width > 1200 &&
                   <>
                     <span>{ '  ' }</span>
