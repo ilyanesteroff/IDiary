@@ -39,7 +39,6 @@ export default memo(_ => {
               {completed === 0 && active === 0 && error.length === 0 &&
                 <h3>It seems like you have no todos yet</h3>
               }     
-              {loading && <Spinner/>}
               {addTodoModalOpened && 
                 <Ctx.SetNewTodoContext.Provider value={todo => setNewTodo(todo)}>
                   <Ctx.CloseModalContext.Provider value={_ => setAddTodoModalOpened(false)}>
@@ -67,6 +66,7 @@ export default memo(_ => {
                 {!addTodoModalOpened && 
                   <AddTodoBtn/>
                 }
+                { loading && <Spinner/>}
               </Ctx.OpenModalContext.Provider>
             </div>
           </Ctx.TodoStatsContext.Provider>
