@@ -9,6 +9,7 @@ export default (file, url) =>
     }
   })
     .then(_ => true)
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })

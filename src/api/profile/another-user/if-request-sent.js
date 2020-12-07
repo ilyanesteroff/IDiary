@@ -15,7 +15,8 @@ export default userId => {
       if(res.requestSent) return res.request
       return false
     })
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })
 }

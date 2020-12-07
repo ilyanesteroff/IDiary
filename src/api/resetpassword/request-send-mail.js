@@ -16,5 +16,6 @@ export default (email, signal, setError) =>
       else return res.requested
     })
     .catch(err => {
+      console.log(err.message)
       return false
     })

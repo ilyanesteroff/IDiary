@@ -10,7 +10,3 @@ export default (token, signal) =>
     signal: signal
   }) 
     .then(res => res.json())
-    .then(res => {
-      console.log(res)
-      return res
-    })

@@ -15,7 +15,8 @@ export default reqId => {
       if(res.error) throw new Error(res.error)
       return res.requestAccepted
     })
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })
 }

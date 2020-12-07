@@ -12,7 +12,8 @@ export default (userId) => {
   })
     .then(res => res.json())
     .then(res => res.userBlocked)
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })
 }

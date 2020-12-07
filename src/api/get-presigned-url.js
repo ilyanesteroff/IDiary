@@ -14,7 +14,8 @@ export default _ => {
       if(res.error) throw new Error('broke')
       return res
     })
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })
 }

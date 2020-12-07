@@ -12,7 +12,8 @@ export default newUrl => {
   })
     .then(res => res.json())
     .then(res => res.avatarSet)
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })
 }

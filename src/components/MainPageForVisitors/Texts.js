@@ -13,6 +13,6 @@ export default _ => (
     <p id="description">
       Just <Link to="/login">log in</Link> or <Link to="/create-user">sign up</Link> & <span id="activeOption">go</span>
     </p>
-    <h1 id="Headline">IDiary makes it possible to:</h1>
+    <h1 id="Headline">IDiary makes it seamless to:</h1>
   </div>
 )

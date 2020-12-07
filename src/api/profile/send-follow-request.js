@@ -12,7 +12,8 @@ export default to => {
   })
     .then(res => res.json())
     .then(res => res.requestSent)
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })
 }

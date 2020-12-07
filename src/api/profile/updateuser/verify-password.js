@@ -13,6 +13,6 @@ export default (password) =>
     .then(res => res.json())
     .then(res => res.passwordMatches || false)
     .catch(err => {
-      console.log(err)
+      console.log(err.message)
       return false
     })

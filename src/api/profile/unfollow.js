@@ -14,7 +14,8 @@ export default followId => {
       if(res.error) throw new Error(res.error)
       return res.unfollowed
     })
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return false
     })
 }

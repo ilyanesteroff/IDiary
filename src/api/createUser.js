@@ -12,5 +12,6 @@ export default (data, signal) =>
     .then(res => res.json())
     .then(res => res.data.createUser || false)
     .catch(err => {
+      console.log(err.message)
       return false
     })

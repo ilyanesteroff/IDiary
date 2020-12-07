@@ -10,7 +10,6 @@ export default async (e, email, setSubmiting, setMailSent, setError, signal) => 
   if(!verdict) return setSubmiting(false)
   const sentEmail = await requestSendMail(email, signal, setError)
   setSubmiting(false)
-  console.log(sentEmail)
   sentEmail
     ? setMailSent(true)
     : setError('Technical error occured')

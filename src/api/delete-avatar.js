@@ -12,6 +12,7 @@ export default (url) => {
     .then(res => res.json())
     .then(res => res.deleted)
     .catch(err => {
+      console.log(err.message)
       return false
     })
 }

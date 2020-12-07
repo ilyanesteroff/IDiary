@@ -13,7 +13,8 @@ export default (data) => {
   })
   .then(res => res.json())
   .then(res => res.data.updateUser)
-  .catch(_ => {
+  .catch(err => {
+    console.log(err.message)
     return false
   })
 }

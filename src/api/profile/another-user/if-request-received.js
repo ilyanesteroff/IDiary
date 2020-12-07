@@ -16,7 +16,8 @@ export default userId => {
         ? res.request
         : null
     )
-    .catch(_ => {
+    .catch(err => {
+      console.log(err.message)
       return null
     })
 }

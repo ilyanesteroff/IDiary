@@ -12,7 +12,6 @@ export default async (conv, msg, messageInput, setMsgToEditLocally, setMsgToEdit
   setMsgToEditLocally(null)
   const res = await edit(msg._id, txt)
   if(res.messageUpdated){
-    console.log(res.conversationUpdated)
     if(res.conversationUpdated) updateConv({
       ...conv, 
       latestMessage: {
