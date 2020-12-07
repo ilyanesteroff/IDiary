@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Chapter from '../Global/Chapter'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArchive, faUserPlus, faCogs, faUnlock, faPaperPlane, faCheck, faUserAltSlash } from '@fortawesome/free-solid-svg-icons'
+import { faArchive, faUserPlus, faCogs, faUnlock, faPaperPlane, faCheck, faUserAltSlash, faUserNinja } from '@fortawesome/free-solid-svg-icons'
 import { faEdit, faTrashAlt, faTimesCircle, faCheckCircle, faComment } from '@fortawesome/free-regular-svg-icons'
 
 
@@ -18,7 +18,7 @@ export default _ => {
         <h4>Todo</h4>
         <p>
           <span id="activeOption">Creating todos</span>
-           , with tags, with task, with status, and with time to complete in hours, that's paramount:D
+           , with tags, with task, with status, with time to complete in hours and even with picture, that's paramount:D
         </p>
         <p>
           <span id="activeOption">Editing todos</span>,
@@ -42,6 +42,18 @@ export default _ => {
            And of course you can filter fetched todos
         </p>
         <h4>User</h4>
+        <p>
+          <span id="activeOption">Set your avatar</span>,
+          By clicking on the <FontAwesomeIcon icon={ faUserNinja } id="activeOption"/> icon on the left from your name
+        </p>
+        <p>
+          <span id="activeOption">Edit your avatar</span>,
+          By clicking on your avatar image below your name and choosing "update" option
+        </p>
+        <p>
+          <span id="activeOption">Delete your avatar</span>,
+          By clicking on your avatar image below your name and choosing "delete" option
+        </p>
         <p>
           <span id="activeOption">Edit your names</span>
         </p>

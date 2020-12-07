@@ -1,6 +1,6 @@
 import React from 'react'
 import { faCss3, faReact, faHtml5 } from '@fortawesome/free-brands-svg-icons'
-import { faCheck, faRoute } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faRoute, faImages } from '@fortawesome/free-solid-svg-icons'
 import StackItem from './StackItem'
 
 
@@ -21,7 +21,10 @@ export default _ => (
         The HyperMarkupTextLanguage, the base of every UI application
       </StackItem>
       <StackItem label="ValidatorJS" icon={ faCheck }>
-        Great and reliable library for data validating in all kinds of JavaScript applications, used for validating emails, phone numbers and some input values 
+        The great and reliable library for data validating in all kinds of JavaScript applications, used for validating emails, phone numbers and some input values 
+      </StackItem>
+      <StackItem label="React-image-crop" icon={ faImages }>
+        An incredibly usefull image-croping packege that is used for avatar image croping in thes project
       </StackItem>
     </ul>
   </div>
