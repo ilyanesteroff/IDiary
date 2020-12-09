@@ -36,7 +36,7 @@ export default memo(({ closeModal, todoData }) => {
           <p className="InputLabel">Todo is public</p>
         </Checkbox>
       </div>
-      <Textarea label="What you need to do?" placeholder="Anything you need" value={todoData.value && todoData.value.task} ref={task}/>
+      <Textarea label="What needs to be done?" placeholder="enter here" value={todoData.value && todoData.value.task} ref={task}/>
       <Input
         ref={timeToComplete}
         type="number"

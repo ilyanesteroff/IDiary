@@ -182,7 +182,7 @@ textarea::-webkit-input-placeholder{
   font-weight: 600;
   font-size: 1rem;
 }
-input[type="date"]{
+input[type="date"], select{
   display:block;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
