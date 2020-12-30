@@ -7,6 +7,7 @@ export default async (e, email, setSubmiting, setMailSent, setError, signal) => 
   setSubmiting(true)
   setError('')
   const verdict = await ifUserExists(email, signal)
+  console.log('This endpoint')
   if(!verdict) return setSubmiting(false)
   const sentEmail = await requestSendMail(email, signal, setError)
   setSubmiting(false)

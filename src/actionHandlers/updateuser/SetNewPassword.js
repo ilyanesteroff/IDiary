@@ -13,16 +13,16 @@ export default async (e, data, setSubmiting, closeModal, userId, setError) => {
   const someInputsAreEmpty = passwordsValidator(oldPw, newPw1, newPw2, setError)
   if(someInputsAreEmpty) return setSubmiting(false)
 
-  const pwMatches = await verifyPassword(oldPw)
-  if(!pwMatches){
-    setSubmiting(false)
-    return setError('Old password is invalid')
-  }
-
   const verdict = passwordValidator(newPw1, newPw2, setError)
   if(oldPw === newPw1){
     setSubmiting(false)
     return closeModal()
+  }
+
+  const pwMatches = await verifyPassword(oldPw)
+  if(!pwMatches){
+    setSubmiting(false)
+    return setError('Old password is invalid')
   }
 
   if(verdict) {

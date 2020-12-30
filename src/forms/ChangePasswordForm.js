@@ -6,7 +6,7 @@ import Password from '../components/FormComponents/Password'
 import setNewPassword from '../actionHandlers/updateuser/SetNewPassword'
 
 
-export default memo(({unsetEditing}) => {
+export default memo(({ unsetEditing }) => {
   const [ submiting, setSubmiting ] = useState(false)
   const [ setError, complainLog ] = useComplainLog()
 

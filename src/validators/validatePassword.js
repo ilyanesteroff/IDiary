@@ -3,20 +3,20 @@ import { passwordPattern } from '../utils/regExp'
 
 export default (password1, password2, setError) => {
   if(password1.length === 0){
-    setError('please enter password')
+    setError('Please enter password')
     return false
   }
   if(password2.length === 0){
-    setError('please repeat password')
+    setError('Please repeat password')
     return false
   }
   if(password1 !== password2){
-    setError('passwords should be the same')
+    setError('Passwords should be the same')
     return false
   }
   const validationPassed = validator.matches(password1, passwordPattern)
   if(!validationPassed){
-    setError('password should be at least 8 characters long and include at least one Uppercase letter and special character')
+    setError('Password is insecure')
     return false
   }
   return true
